@@ -1,6 +1,6 @@
-# CarStore
+# poc-dashboard
 
-A hands-on GitHub Copilot workshop project built on a real-world **.NET 10 MVC** solution. **CarStore** manages
+A hands-on GitHub Copilot workshop project built on a real-world **.NET 10 MVC** solution. **poc-dashboard** manages
 brands, cars and customers, and doubles as a reference implementation for migrating a classic MVC + Razor +
 Bootstrap app into an MVC-hosted **Vue 3 + PrimeVue + Tailwind CSS v4** single-page app.
 
