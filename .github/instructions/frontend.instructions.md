@@ -27,11 +27,11 @@ Never hand-edit vault notes; always go through `/vault-write`.
 | Concern | Choice | Notes |
 |---|---|---|
 | Framework | Vue 3.5 SFC, `<script setup lang="ts">` | Single-page app: `vue-router` (history mode) owns client-side navigation. No Pinia yet. |
-| Build | Vite 6 + `@vitejs/plugin-vue` | Output goes to `../wwwroot/dist`. |
-| UI kit | PrimeVue 4.3 + `@primeuix/themes` (Aura preset) | Registered in `src/main.ts`, `darkModeSelector: false` (light-only app). |
+| Build | Vite 8 (Rolldown) + `@vitejs/plugin-vue` 6 | Output goes to `../wwwroot/dist`. |
+| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (Aura preset) | Registered in `src/main.ts`, `darkModeSelector: false` (light-only app). |
 | Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
 | CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
-| Types | TypeScript 5.7, `strict: true`, `vue-tsc` | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
+| Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
 | Bootstrap / jQuery UI | **Removed** | jQuery remains ONLY for ASP.NET unobtrusive validation on the Razor Customers forms. |
 
 ## Folder layout (do not deviate)

@@ -42,8 +42,8 @@ config changes, MCP server changes, new API controller/DTO, changes to how the b
 
 ## Current state of this repository (verify, do not assume)
 
-- `Src/CarStore.Web/ClientApp/` - standalone Vite 6 + Vue 3.5 + TypeScript project. NOT part of `CarStore.slnx`, NOT built by `dotnet build`.
-  - deps: `vue`, `vue-router` (4.5), `primevue` (4.3), `@primeuix/themes` (Aura preset), `@lucide/vue` (icons; `lucide-vue-next` is deprecated - do not use it). devDeps: `vite`, `@vitejs/plugin-vue`, `tailwindcss` (v4), `@tailwindcss/vite`, `tailwindcss-primeui`, `typescript`, `vue-tsc`.
+- `Src/CarStore.Web/ClientApp/` - standalone Vite 8 + Vue 3.5 + TypeScript 6 project. NOT part of `CarStore.slnx`, NOT built by `dotnet build`.
+  - deps: `vue`, `vue-router` (5), `primevue` (4.5), `@primeuix/themes` (1, Aura preset), `@lucide/vue` (icons; `lucide-vue-next` is deprecated - do not use it). devDeps: `vite`, `@vitejs/plugin-vue`, `tailwindcss` (v4), `@tailwindcss/vite`, `tailwindcss-primeui`, `typescript`, `vue-tsc`.
   - `src/style.css`: `@import "tailwindcss"; @import "tailwindcss-primeui";` plus `@source "../../Views";`, a `@layer base` `.lucide` rule that sizes icons to `1em` and a legacy `@layer components` shim (`.btn*`, `.form-*`, `.alert-danger`) that is now dead code - no Razor form consumes it anymore; safe to remove as a follow-up but do not add new dependents. Tailwind v4 is CSS-config based - there is no `tailwind.config.js`.
   - `src/main.ts`: single entry point. Mounts one `App` instance on the single `#app` element, wired with `vue-router` (`.use(router)`) and PrimeVue (Aura preset, `darkModeSelector: false`). There is no per-feature mount point and no `dataset`-to-props copying anymore.
   - `src/router/index.ts`: `vue-router` `createWebHistory()` config; routes map `/`, `/cars`, `/brands`, `/customers` to `<Feature>Page.vue` components. Adding a page = add a route here + a `Sidebar.vue` nav item, not a new mount point.
@@ -65,7 +65,7 @@ config changes, MCP server changes, new API controller/DTO, changes to how the b
 
 ## Bootstrapping on a fresh clone
 
-1. `node -v` / `npm -v` - Node 20+ required (verified on Node 24) for Tailwind v4 / Vite 6.
+1. `node -v` / `npm -v` - Node 20+ required (verified on Node 24) for Tailwind v4 / Vite 8.
 2. `cd Src/CarStore.Web/ClientApp && npm install`.
 3. `npm run build` -> `wwwroot/dist/main.js` + `main.css`. Re-run after every ClientApp change; it is NOT wired into `dotnet build`.
 4. Verify/create `.vscode/mcp.json` as above.
