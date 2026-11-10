@@ -34,7 +34,7 @@ Output of this skill is a **discovery report**, not code. Hand it to `/primevue-
 3. **Pull the real spec.** Call `get_design_context` for the node. Treat its output as a REFERENCE to adapt, not as final code - it knows nothing about this codebase's components, composables or token conventions.
 4. **Resolve ambiguous raw values.** If a color/spacing value is not obviously a token, call `get_variable_defs` to resolve it to a named Figma variable, then map it with the table below.
 5. **Check for an existing match first.** Search `ClientApp/src/components/common/` for an analogous piece (a Dialog shell, a button style, a paginator, a form field, a table). If the app already has a pattern for this UI, prefer reusing/extending the existing convention over the raw Figma pixel value. Introduce a new value only where there is a deliberate visual difference.
-6. **Identify assets.** Note any image/icon that must be exported. Icons: prefer an equivalent PrimeIcon (`pi pi-*`). Real images: export and place under `Src/CarStore.Web/wwwroot/images/<page>/`, referenced by absolute URL (`/images/home/books.jpg`) - not imported through Vite.
+6. **Identify assets.** Note any image/icon that must be exported. Icons: prefer an equivalent Lucide icon (`@lucide/vue`, search https://lucide.dev/icons). Real images: export and place under `Src/CarStore.Web/wwwroot/images/<page>/`, referenced by absolute URL (`/images/home/books.jpg`) - not imported through Vite.
 7. **Map interaction and data.** Say which parts are static design and which are data-bound (rows, empty state, loading, error, pagination) - the data always comes from the `/api/*` endpoints via the composables, never from Figma sample content.
 8. **Report the discovery** (hand-off to `/primevue-component-build`): node id + name, mapped color tokens, spacing/sizing (flagging which need Tailwind arbitrary values vs. the default scale), typography, icons/assets, which existing component(s) to mirror or extend, and which PrimeVue component + `pt` sections will carry the styling.
 
@@ -50,7 +50,7 @@ Output of this skill is a **discovery report**, not code. Hand it to `/primevue-
 | `#64748b` muted gray text | `text-muted-color` |
 | primary body text (near-black slate) | `text-color` |
 | Brand/primary action fill | `bg-primary` + `text-primary-contrast` (or `primaryButtonClass` from `styles/buttonStyles.ts`) |
-| Icon glyphs | PrimeIcons `pi pi-*` - never inline SVG or Bootstrap Icons (`bi-*`) when an equivalent `pi-*` exists |
+| Icon glyphs | Lucide components from `@lucide/vue` - never inline SVG, PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`) when an equivalent Lucide icon exists |
 
 Recurring component-level mappings already derived from Figma (reuse, do not re-derive):
 

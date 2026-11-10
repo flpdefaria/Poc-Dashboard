@@ -29,7 +29,7 @@ Never hand-edit vault notes; always go through `/vault-write`.
 | Framework | Vue 3.5 SFC, `<script setup lang="ts">` | Single-page app: `vue-router` (history mode) owns client-side navigation. No Pinia yet. |
 | Build | Vite 6 + `@vitejs/plugin-vue` | Output goes to `../wwwroot/dist`. |
 | UI kit | PrimeVue 4.3 + `@primeuix/themes` (Aura preset) | Registered in `src/main.ts`, `darkModeSelector: false` (light-only app). |
-| Icons | `primeicons` 7 (`pi pi-*`) | Imported in `src/style.css`. Never Bootstrap Icons (`bi-*`), never a raw SVG when a `pi-*` glyph exists. |
+| Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
 | CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
 | Types | TypeScript 5.7, `strict: true`, `vue-tsc` | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
 | Bootstrap / jQuery UI | **Removed** | jQuery remains ONLY for ASP.NET unobtrusive validation on the Razor Customers forms. |
@@ -45,7 +45,7 @@ Src/CarStore.Web/ClientApp/
     main.ts                  # single entry: mounts the App shell once, on #app
     App.vue                  # SPA shell: Sidebar + <RouterView />
     router/index.ts          # vue-router routes ("/", "/cars", "/brands", "/customers")
-    style.css                # Tailwind + primeui + primeicons imports, @source, @layer components
+    style.css                # Tailwind + primeui imports, @source, @layer components, .lucide icon sizing
     types.ts                 # shared DTO interfaces mirroring Models/Api/*Dto.cs
     shims-vue.d.ts
     components/
@@ -99,7 +99,7 @@ Prerequisites: Node.js 20+ (repo verified on Node 24) and npm 10+; .NET 10 SDK f
 ```bash
 cd Src/CarStore.Web/ClientApp
 npm install          # first clone only
-npm run build        # emits ../wwwroot/dist/main.js + main.css (+ primeicons fonts)
+npm run build        # emits ../wwwroot/dist/main.js + main.css
 ```
 
 MCP servers used by the front-end agents live in `.vscode/mcp.json` (`primevue` stdio + `figma-mcp` http).
@@ -164,7 +164,7 @@ Rules:
 3. **`!important` is postfix in Tailwind v4**: `bg-surface-700!`, `text-color!`. (A few prefix usages survive in `Home.vue`; do not copy them.) Only add `!` when overriding a PrimeVue theme-colored state class (`.p-paginator-page-selected`, default Button primary) - PrimeVue injects its stylesheet after Tailwind, so equal-specificity utilities lose silently. Plain layout/spacing `pt` classes never need it.
 4. **Arbitrary values are fine and expected** when the design does not land on Tailwind's scale: `rounded-[21px]`, `gap-1.75`, `px-[11.5px]`, `w-69.5`.
 5. **Reuse the shared class strings**: `styles/buttonStyles.ts` (`primaryButtonClass`, `secondaryButtonClass`, `dangerButtonClass`) and `common/dialog/dialogStyles.ts` (`dialogShellPt(width, contentClass?)`, `detailsDialogPt(width)`). If a new combination appears in 2+ places, extract it there.
-6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui"; @import "primeicons/primeicons.css";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
+6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
 7. **The `@layer components` block in `style.css` is not Bootstrap.** `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-danger`, `.form-label`, `.form-control`, `.form-select`, `.alert-danger` are Tailwind-backed re-implementations kept so the remaining Razor forms (Customers Create/Edit/Delete/Details) keep working. Do not rename them and do not treat them as Bootstrap remnants.
 
 ### Shared building blocks
@@ -209,7 +209,7 @@ Rules:
 When migrating another classic MVC + Razor + Bootstrap app, reproduce this exact shape:
 
 1. `<WebProject>/ClientApp/` scaffolded with Vite + Vue 3 + TS; `build.outDir` -> `../wwwroot/dist`, `base: "/dist/"`, fixed `main.js` / `main.css` output names.
-2. `npm i vue primevue @primeuix/themes primeicons` + `npm i -D vite @vitejs/plugin-vue tailwindcss @tailwindcss/vite tailwindcss-primeui typescript vue-tsc`.
+2. `npm i vue primevue @primeuix/themes @lucide/vue` + `npm i -D vite @vitejs/plugin-vue tailwindcss @tailwindcss/vite tailwindcss-primeui typescript vue-tsc`.
 3. `src/style.css` with the three `@import`s, `@source "../../Views";`, and a `@layer components` shim for whatever Bootstrap classes the surviving Razor forms still use.
 4. `src/main.ts` with the `mount()` + `dataset`-as-props helper and the PrimeVue/Aura registration.
 5. Remove `wwwroot/lib/bootstrap/` and every Bootstrap `<link>`/`<script>`/`bi-*` icon; keep jQuery + jquery-validation only if Razor forms still use unobtrusive validation.

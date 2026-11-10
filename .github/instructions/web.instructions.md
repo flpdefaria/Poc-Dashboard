@@ -127,7 +127,7 @@ Conventions:
 
 ## Static assets
 
-- `wwwroot/dist/` - Vite output (`main.js`, `main.css`, PrimeIcons fonts). **Generated, but committed**: `dotnet build`/`publish` never runs npm, so the deployed app would otherwise ship no front-end. Never hand-edit.
+- `wwwroot/dist/` - Vite output (`main.js`, `main.css`). **Generated, but committed**: `dotnet build`/`publish` never runs npm, so the deployed app would otherwise ship no front-end. Never hand-edit.
 - `wwwroot/images/` - Figma-exported assets, referenced by absolute path from Vue (`/images/home/cars.jpg`).
 - `wwwroot/lib/` - leftover jquery/jquery-validation packages from the pre-SPA Customers forms; no longer
   referenced by any view. **No bootstrap folder** - do not reintroduce one.
@@ -179,7 +179,7 @@ data resets on restart, and every mutation done through the API disappears with 
 - Never load `~/dist/main.js` (or the Vite dev entry) from a view - it is a layout-level global gated by `<environment>`.
 - Never add a second bundler entry point or a per-page bundle; `main.ts` is the single entry.
 - Never point the Vite dev server at a different port than `5173` (`vite.config.ts` pins `server.port` + `strictPort`) - `_Layout.cshtml`'s dev script tags hardcode that origin.
-- Never reintroduce Bootstrap CSS/JS or `bi-*` icons (PrimeIcons `pi pi-*` only).
+- Never reintroduce Bootstrap CSS/JS, `bi-*` icons or PrimeIcons `pi pi-*` (Lucide `@lucide/vue` only).
 - Never serialize EF entities directly to JSON - always a DTO.
 - Never move paging or validation logic into an API controller.
 - Never add EF Core migrations or change the persistence provider.

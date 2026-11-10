@@ -26,7 +26,7 @@ Read these before acting - they are the source of truth and this agent file only
 ## Skills you own
 
 - `/figma-discovery` - run FIRST whenever the task references a Figma URL/node, or asks to implement or match a design, BEFORE writing any component code. Extracts the real spec via the Figma MCP tools and maps it to this codebase's PrimeVue/Tailwind token conventions instead of raw hex/pixel values.
-- `/primevue-component-build` - run to create or restyle a component: placement, reuse of existing composables/styles, PrimeVue tokens + `pt` passthrough + Tailwind + PrimeIcons, Bootstrap audit, and verification. Use it directly for straightforward work, or follow the "Workflow" section below when you need finer manual control.
+- `/primevue-component-build` - run to create or restyle a component: placement, reuse of existing composables/styles, PrimeVue tokens + `pt` passthrough + Tailwind + Lucide icons, Bootstrap audit, and verification. Use it directly for straightforward work, or follow the "Workflow" section below when you need finer manual control.
 - `/echarts-chart-build` - run for ANY chart work on ANY page: a new chart type, a chart on a page other than Home, or a change to an existing chart. `echarts` is the app's one and only charting library (installed via the one-shot `echarts-new-customers-chart` skill for the Home "New customers" chart) - every chart component lives in `components/common/chart/` and goes through this skill so they all share the same import strategy and token-driven look. Never add a second charting library.
 
 ## Mandatory Vault Workflow
@@ -99,7 +99,7 @@ are no more Razor CRUD forms left in the app (the last one, Customers, was migra
 extending them; do not add new markup that depends on them.
 
 - Before finishing any task, grep `Src/CarStore.Web/**` (excluding `node_modules`, `wwwroot/dist`, `bin`, `obj`) for `bootstrap|bi-|cdn.jsdelivr.net/npm/bootstrap`; remove any genuine Bootstrap reference found.
-- Never add a `<link>`/`<script>` referencing Bootstrap or jQuery-Bootstrap plugins, and never use `bi bi-*` icons - PrimeIcons (`pi pi-*`) only.
+- Never add a `<link>`/`<script>` referencing Bootstrap or jQuery-Bootstrap plugins, and never use `bi bi-*` or PrimeIcons `pi pi-*` icons - Lucide (`@lucide/vue`) only.
 
 ## Workflow: adding or changing a component
 
