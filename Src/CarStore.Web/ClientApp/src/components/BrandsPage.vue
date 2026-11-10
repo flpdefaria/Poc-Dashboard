@@ -6,6 +6,7 @@ import CreateBrandDialog, { type CreateBrandPayload } from "./common/dialog/Crea
 import Button from "primevue/button";
 import { primaryButtonClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
+import { Plus } from "@lucide/vue";
 
 const apiUrl = "/api/brands";
 
@@ -35,7 +36,7 @@ const {
           :class="primaryButtonClass"
           @click="openCreate"
         >
-          <i class="pi pi-plus text-xs" />
+          <Plus class="text-xs" />
           New brand
         </Button>
       </template>

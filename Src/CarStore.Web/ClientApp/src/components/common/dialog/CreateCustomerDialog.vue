@@ -6,6 +6,7 @@ import InputText from "primevue/inputtext";
 import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
+import { Check } from "@lucide/vue";
 
 export interface CreateCustomerPayload {
   fullName: string;
@@ -105,11 +106,12 @@ const dialogPt = dialogShellPt("w-[480px]");
       />
       <Button
         label="Save"
-        icon="pi pi-check"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"
-      />
+      >
+        <template #icon><Check /></template>
+      </Button>
     </template>
   </Dialog>
 </template>

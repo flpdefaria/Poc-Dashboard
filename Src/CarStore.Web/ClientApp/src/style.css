@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
-@import "primeicons/primeicons.css";
 
 /* Tailwind v4's automatic content detection only scans files inside the Vite
    project root (this ClientApp folder). Razor views live outside of it
@@ -280,5 +279,17 @@ html.app-dark {
   }
   .p-datatable-tbody > tr.row-fx-leaving > td {
     animation: fade-in 250ms linear reverse forwards;
+  }
+}
+
+/* Lucide icons render as inline SVGs with a fixed 24px size. Size them in `em` instead so they
+   follow the surrounding font size, the way icon fonts did: `text-xl` on an icon (or on its parent)
+   scales it, and icons inside buttons/menus match the label text. In the base layer so a size
+   utility (`size-4`) on a specific icon still wins. */
+@layer base {
+  .lucide {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, type Component } from "vue";
 import DataTable, { type DataTablePageEvent, type DataTableSortEvent } from "primevue/datatable";
 import Column from "primevue/column";
 import Menu from "primevue/menu";
@@ -8,6 +8,7 @@ import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
 import InputText from "primevue/inputtext";
 import { rowEffectClass } from "../../../utils/rowEffects";
+import { EllipsisVertical, Eye, Pencil, Search, Trash2 } from "@lucide/vue";
 
 export interface DataTableColumn {
   field: string;
@@ -16,7 +17,8 @@ export interface DataTableColumn {
   primary?: boolean;
 }
 
-type MenuItem = { label?: string; icon?: string; command?: () => void };
+// `lucideIcon` (not PrimeVue's string `icon`) is rendered through the Menu's #itemicon slot.
+type MenuItem = { label?: string; lucideIcon?: Component; command?: () => void };
 
 // Matches Figma "modal action" popup (node 39:22030): white panel, 12px radius, 4/8px list padding, 2px item gap.
 const menuPt = {
@@ -161,7 +163,7 @@ function toggleMenu(event: Event, data: any) {
       ? [
           {
             label: "Details",
-            icon: "pi pi-eye",
+            lucideIcon: Eye,
             command: () => {
               if (props.confirmDetails) emit("details", data);
               else window.location.href = `${props.detailsUrl}/${data.id}`;
@@ -173,7 +175,7 @@ function toggleMenu(event: Event, data: any) {
       ? [
           {
             label: "Edit",
-            icon: "pi pi-pencil",
+            lucideIcon: Pencil,
             command: () => {
               if (props.confirmEdit) emit("edit", data);
               else window.location.href = `${props.editUrl}/${data.id}`;
@@ -185,7 +187,7 @@ function toggleMenu(event: Event, data: any) {
       ? [
           {
             label: "Delete",
-            icon: "pi pi-trash",
+            lucideIcon: Trash2,
             command: () => {
               if (props.confirmDelete) emit("delete", data);
               else window.location.href = `${props.deleteUrl}/${data.id}`;
@@ -202,19 +204,20 @@ function toggleMenu(event: Event, data: any) {
   <div class="flex flex-col gap-2">
     <div class="flex items-center justify-between gap-3">
       <IconField class="w-full max-w-[280px]">
-        <InputIcon class="pi pi-search" />
+        <InputIcon><Search /></InputIcon>
         <InputText v-model="searchTerm" placeholder="Search this page..." class="w-full" />
       </IconField>
       <Button
         v-if="bulkDelete && selectedRows.length"
         label="Delete selected"
-        icon="pi pi-trash"
         severity="danger"
         outlined
         :badge="String(selectedRows.length)"
         badge-severity="danger"
         @click="onBulkDeleteClick"
-      />
+      >
+        <template #icon><Trash2 /></template>
+      </Button>
     </div>
 
     <div class="rounded-xl border border-surface-300 overflow-hidden">
@@ -249,12 +252,16 @@ function toggleMenu(event: Event, data: any) {
         <Column v-if="hasActions" header="Actions" class="text-center" style="width: 4rem">
           <template #body="{ data }">
             <Button text rounded severity="secondary" aria-haspopup="true" @click="toggleMenu($event, data)">
-              <i class="pi pi-ellipsis-v" />
+              <EllipsisVertical />
             </Button>
           </template>
         </Column>
       </DataTable>
-      <Menu ref="menu" :model="menuItems" :popup="true" :pt="menuPt" />
+      <Menu ref="menu" :model="menuItems" :popup="true" :pt="menuPt">
+        <template #itemicon="{ item, class: iconClass }">
+          <component :is="item.lucideIcon" v-if="item.lucideIcon" :class="iconClass" />
+        </template>
+      </Menu>
     </div>
   </div>
 </template>

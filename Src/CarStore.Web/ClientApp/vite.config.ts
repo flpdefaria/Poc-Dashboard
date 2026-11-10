@@ -17,7 +17,7 @@ export default defineConfig(({ command }) => ({
     cors: true,
     // The page is served by the ASP.NET app on a different origin (5045),
     // not by Vite itself. Without this, root-relative asset URLs injected by
-    // Vite (e.g. primeicons' @font-face url(/node_modules/...)) resolve
+    // Vite (e.g. a CSS url(/node_modules/...) for a font or image) resolve
     // against the document's origin instead of the dev server, 404ing.
     origin: "http://localhost:5173",
   },

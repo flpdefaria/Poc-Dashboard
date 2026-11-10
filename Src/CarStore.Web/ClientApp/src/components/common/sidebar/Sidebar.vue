@@ -3,14 +3,15 @@ import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import Avatar from "primevue/avatar";
 import { useTheme } from "../../../composables/useTheme";
+import { Building2, Car, House, IdCard, Moon, Sun, User } from "@lucide/vue";
 
 const route = useRoute();
 
 const navItems = [
-  { key: "home", label: "Home", icon: "pi-home", to: "/" },
-  { key: "cars", label: "Cars", icon: "pi-car", to: "/cars" },
-  { key: "brands", label: "Brands", icon: "pi-building", to: "/brands" },
-  { key: "customers", label: "Customers", icon: "pi-id-card", to: "/customers" },
+  { key: "home", label: "Home", icon: House, to: "/" },
+  { key: "cars", label: "Cars", icon: Car, to: "/cars" },
+  { key: "brands", label: "Brands", icon: Building2, to: "/brands" },
+  { key: "customers", label: "Customers", icon: IdCard, to: "/customers" },
 ];
 
 const activeKey = computed(() => route.name as string);
@@ -46,7 +47,7 @@ const expanded = ref(false);
         class="flex h-10 w-full items-center gap-1.75 overflow-hidden rounded-lg py-[10.5px] pl-[14.5px] pr-[10.5px] text-sm font-medium no-underline"
         :class="item.key === activeKey ? 'bg-surface-800 text-surface-0' : 'bg-surface-100 text-color hover:bg-surface-50'"
       >
-        <i class="pi shrink-0 text-sm" :class="item.icon" />
+        <component :is="item.icon" class="text-sm" />
         <span v-show="expanded" class="truncate whitespace-nowrap">{{ item.label }}</span>
       </router-link>
     </nav>
@@ -61,7 +62,7 @@ const expanded = ref(false);
       :aria-pressed="theme === 'dark'"
       @click="toggleTheme"
     >
-      <i class="pi shrink-0 text-sm" :class="theme === 'dark' ? 'pi-sun' : 'pi-moon'" />
+      <component :is="theme === 'dark' ? Sun : Moon" class="text-sm" />
       <span v-show="expanded" class="flex min-w-0 flex-1 items-center justify-between gap-2">
         <span class="truncate whitespace-nowrap">Dark theme</span>
         <!-- Switch track mirrors aria-pressed for sighted users. -->
@@ -83,11 +84,12 @@ const expanded = ref(false);
       :class="expanded ? 'justify-start border border-surface-300 bg-surface-50' : 'justify-center'"
     >
       <Avatar
-        icon="pi pi-user"
         shape="circle"
         class="shrink-0 bg-surface-300! text-surface-700!"
         :class="expanded ? 'size-10' : 'size-[35px]'"
-      />
+      >
+        <template #icon><User /></template>
+      </Avatar>
       <div v-show="expanded" class="flex min-w-0 flex-1 flex-col">
         <p class="truncate whitespace-nowrap text-sm font-semibold text-color">Felipe Faria</p>
         <p class="truncate whitespace-nowrap text-xs text-muted-color">felipe@email.com</p>

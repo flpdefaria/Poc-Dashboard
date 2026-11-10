@@ -16,6 +16,7 @@ import { useTweenedNumber } from "../composables/useTweenedNumber";
 import { formatCurrency, formatDate } from "../utils/format";
 import { primaryButtonClass } from "../styles/buttonStyles";
 import type { BrandDto, CarDto, CustomerDto } from "../types";
+import { ArrowRight, Car, CircleCheck, IdCard, Wallet } from "@lucide/vue";
 
 const carsApiUrl = "/api/cars";
 const brandsApiUrl = "/api/brands";
@@ -165,7 +166,7 @@ let introPlayed = false;
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-muted-color">Fleet value</span>
             <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-paint-bronze/12">
-              <i class="pi pi-wallet text-xl text-paint-bronze" />
+              <Wallet class="text-xl text-paint-bronze" />
             </div>
           </div>
           <p class="mt-1.75 text-[32px] font-bold text-surface-700 tabular-nums">{{ formatCurrency(Math.round(fleetValueShown)) }}</p>
@@ -177,7 +178,7 @@ let introPlayed = false;
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-muted-color">Car in stock</span>
             <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-paint-gulf/12">
-              <i class="pi pi-car text-xl text-paint-gulf" />
+              <Car class="text-xl text-paint-gulf" />
             </div>
           </div>
           <p class="mt-1.75 text-[32px] font-bold text-surface-700 tabular-nums">{{ Math.round(carsInStockShown) }}</p>
@@ -189,7 +190,7 @@ let introPlayed = false;
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-muted-color">Registered customers</span>
             <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-paint-green/12">
-              <i class="pi pi-id-card text-xl text-paint-green" />
+              <IdCard class="text-xl text-paint-green" />
             </div>
           </div>
           <p class="mt-1.75 text-[32px] font-bold text-surface-700 tabular-nums">{{ Math.round(recentTotalShown) }}</p>
@@ -202,7 +203,7 @@ let introPlayed = false;
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-muted-color">Availability rate</span>
             <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-paint-graphite/12">
-              <i class="pi pi-check-circle text-xl text-paint-graphite" />
+              <CircleCheck class="text-xl text-paint-graphite" />
             </div>
           </div>
           <p class="mt-1.75 text-[32px] font-bold text-surface-700 tabular-nums">{{ Math.round(availabilityRateShown) }}%</p>
@@ -272,7 +273,7 @@ let introPlayed = false;
           </ul>
           <Button :as="RouterLink" to="/brands" :class="primaryButtonClass + ' mt-4 w-full justify-center'">
             View brands
-            <i class="pi pi-arrow-right text-xs" />
+            <ArrowRight class="text-xs" />
           </Button>
         </template>
       </Card>
@@ -284,7 +285,7 @@ let introPlayed = false;
           <p class="reveal text-sm font-semibold text-color" style="--i: 9">Recent customers</p>
           <Button :as="RouterLink" to="/customers" :class="primaryButtonClass">
             View all
-            <i class="pi pi-arrow-right text-xs" />
+            <ArrowRight class="text-xs" />
           </Button>
         </div>
         <Message v-if="recentError" severity="error" :closable="false" class="mt-3">{{ recentError }}</Message>
@@ -310,7 +311,7 @@ let introPlayed = false;
     <div class="flex items-center justify-between">
       <PoweredByBadge />
       <Button :as="RouterLink" to="/cars" :class="primaryButtonClass">
-        <i class="pi pi-car" />
+        <Car />
         Manage fleet
       </Button>
     </div>

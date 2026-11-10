@@ -10,6 +10,7 @@ import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
 import type { BrandOption, CarDto } from "../../../types";
+import { Check } from "@lucide/vue";
 
 export interface EditCarPayload {
   model: string;
@@ -165,11 +166,12 @@ const dialogPt = dialogShellPt("w-[765px]");
       />
       <Button
         label="Save"
-        icon="pi pi-check"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"
-      />
+      >
+        <template #icon><Check /></template>
+      </Button>
     </template>
   </Dialog>
 </template>

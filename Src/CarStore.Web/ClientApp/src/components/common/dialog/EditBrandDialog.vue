@@ -9,6 +9,7 @@ import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
 import type { BrandDto } from "../../../types";
+import { Check } from "@lucide/vue";
 
 export interface EditBrandPayload {
   name: string;
@@ -121,11 +122,12 @@ const dialogPt = dialogShellPt("w-[480px]");
       />
       <Button
         label="Save"
-        icon="pi pi-check"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"
-      />
+      >
+        <template #icon><Check /></template>
+      </Button>
     </template>
   </Dialog>
 </template>

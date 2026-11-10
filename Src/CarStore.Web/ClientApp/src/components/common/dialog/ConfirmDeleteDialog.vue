@@ -3,6 +3,7 @@ import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import Message from "primevue/message";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogDangerButtonClass } from "./dialogStyles";
+import { TriangleAlert } from "@lucide/vue";
 
 export interface ConfirmDeleteDetail {
   label: string;
@@ -47,7 +48,7 @@ const dialogPt = dialogShellPt("w-[765px]");
     </template>
 
     <div class="flex w-full items-center gap-3">
-      <i class="pi pi-exclamation-triangle text-base text-red-500" />
+      <TriangleAlert class="text-base text-red-500" />
       <p class="flex-1 text-sm font-medium text-color">{{ props.message }}</p>
     </div>
 

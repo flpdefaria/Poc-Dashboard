@@ -7,6 +7,7 @@ import Button from "primevue/button";
 import { primaryButtonClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
 import type { BrandOption } from "../types";
+import { Plus } from "@lucide/vue";
 
 const apiUrl = "/api/cars";
 const brandsUrl = "/api/brands";
@@ -46,7 +47,7 @@ onMounted(loadBrandOptions);
           :class="primaryButtonClass"
           @click="openCreate"
         >
-          <i class="pi pi-plus text-xs" />
+          <Plus class="text-xs" />
           New car
         </Button>
       </template>
