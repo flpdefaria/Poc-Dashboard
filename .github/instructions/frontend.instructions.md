@@ -28,7 +28,7 @@ Never hand-edit vault notes; always go through `/vault-write`.
 |---|---|---|
 | Framework | Vue 3.5 SFC, `<script setup lang="ts">` | Single-page app: `vue-router` (history mode) owns client-side navigation. No Pinia yet. |
 | Build | Vite 8 (Rolldown) + `@vitejs/plugin-vue` 6 | Output goes to `../wwwroot/dist`. |
-| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (Aura preset) | Registered in `src/main.ts`, `darkModeSelector: false` (light-only app). |
+| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (Aura preset) | Registered in `src/main.ts` with `darkModeSelector: false` **on purpose**: the app has light AND dark themes, but dark is implemented by remapping the surface scale under `html.app-dark` (see "Light and dark themes"), not by PrimeVue's dark mode. |
 | Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
 | CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
 | Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
@@ -167,6 +167,27 @@ Rules:
 6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
 7. **The `@layer components` block in `style.css` is not Bootstrap.** `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-danger`, `.form-label`, `.form-control`, `.form-select`, `.alert-danger` are Tailwind-backed re-implementations kept so the remaining Razor forms (Customers Create/Edit/Delete/Details) keep working. Do not rename them and do not treat them as Bootstrap remnants.
 
+### Light and dark themes (mandatory for every screen)
+
+The app ships both themes ("Showroom After Hours" dark theme, see `DESIGN.md`). Every screen, dialog and chart must be readable and consistent in both.
+
+| Piece | Role |
+|---|---|
+| `Views/Shared/_Layout.cshtml` inline script | Applies `app-dark` to `<html>` before first paint: saved choice in `localStorage["carstore-theme"]`, else the OS `prefers-color-scheme`. |
+| `composables/useTheme.ts` | `useTheme()` -> `{ theme, toggle }`. Re-applies the class, persists the choice, plays the circular View Transition reveal (instant under reduced motion). |
+| `common/sidebar/Sidebar.vue` | The only theme toggle ("Dark theme" button). |
+| `src/style.css` -> `html.app-dark { ... }` | Remaps `--p-surface-0...950` to a graphite ramp, plus highlight, card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens resolve through the surface scale, so PrimeVue components and Tailwind `surface-*` utilities flip together. |
+
+Rules:
+
+1. **Use tokens and the theme follows for free.** `surface-*`, `text-color`, `text-muted-color`, `border-surface-*` and `--color-paint-*` all flip under `html.app-dark`. A raw hex, `bg-white`, `text-black` or a fixed `gray-*`/`slate-*` utility does not: it is a dark-theme bug.
+2. **Surfaces are inverted, not "dark versions".** In dark, `surface-0` is the darkest canvas and `surface-700/800` are light. So the slate primary action (`bg-surface-700` + `text-surface-0`) becomes a light fill with dark text. Use `primaryButtonClass`, never `text-white` on a `surface-*` fill.
+3. **Keep `darkModeSelector: false`.** Enabling PrimeVue's dark mode would apply Aura's own dark palette on top of the remap. New dark-specific values go into the `html.app-dark` block in `style.css`, overriding the matching `--p-*` component token, never as per-component `.app-dark ...` selectors.
+4. **Canvas consumers (ECharts) read CSS tokens at option-build time** and must rebuild on theme change: watch `useTheme().theme` and call `setOption(buildOption())`, as `common/chart/BarChart.vue` does.
+5. **Elevation:** light-theme shadows vanish on dark, so cards and the sidebar sit one surface step above the canvas (`--p-card-background: var(--p-surface-50)`). Do not rely on a shadow alone to separate a panel.
+6. **Contrast:** body text must stay at least 4.5:1 and large text/icons at least 3:1 in both themes. The existing ramp is tuned for this (muted `surface-500` 5.9:1, body `surface-700` 14:1 on the canvas). Status colors use the tinted fill + light ink tokens already defined.
+7. **Figma usually covers light only.** Derive dark from these existing tokens, never invent per-screen dark colors.
+
 ### Shared building blocks
 
 | Piece | What it gives you |
@@ -194,12 +215,14 @@ Rules:
 - [ ] `npx vue-tsc --noEmit` clean.
 - [ ] `npm run build` clean, and the rebuilt `wwwroot/dist` committed with the change.
 - [ ] `dotnet build Src/CarStore.slnx` run if a `.cshtml` mount point or an API DTO changed.
-- [ ] Page opened in the running app and checked against the Figma frame.
+- [ ] Page opened in the running app and checked against the Figma frame, in **both light and dark themes** (toggle in the sidebar).
+- [ ] Visual validation, when requested, runs through the QA agent (`/frontend-visual-check`), not the implementing agent.
 
 ## Never
 
 - Never introduce a second UI framework (Bootstrap, Bulma) or a second JS framework (React, Angular).
 - Never paginate client-side.
+- Never hardcode colors that bypass the theme (`#fff`, `bg-white`, `text-black`, fixed `gray-*`/`slate-*`), and never switch `darkModeSelector` on.
 - Never hardcode a `/api/*` base URL other than the documented constants; keep them colocated in the page component that owns the fetch.
 - Never edit `wwwroot/dist/*` by hand; it is generated.
 - Never change `vite.config.ts`, `package.json` deps, or `.vscode/mcp.json` from a component task - that is Frontend-Tooling-Specialist scope.

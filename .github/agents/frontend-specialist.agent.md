@@ -28,6 +28,10 @@ Read these before acting - they are the source of truth and this agent file only
 - `/figma-discovery` - run FIRST whenever the task references a Figma URL/node, or asks to implement or match a design, BEFORE writing any component code. Extracts the real spec via the Figma MCP tools and maps it to this codebase's PrimeVue/Tailwind token conventions instead of raw hex/pixel values.
 - `/primevue-component-build` - run to create or restyle a component: placement, reuse of existing composables/styles, PrimeVue tokens + `pt` passthrough + Tailwind + Lucide icons, Bootstrap audit, and verification. Use it directly for straightforward work, or follow the "Workflow" section below when you need finer manual control.
 - `/echarts-chart-build` - run for ANY chart work on ANY page: a new chart type, a chart on a page other than Home, or a change to an existing chart. `echarts` is the app's one and only charting library (installed via the one-shot `echarts-new-customers-chart` skill for the Home "New customers" chart) - every chart component lives in `components/common/chart/` and goes through this skill so they all share the same import strategy and token-driven look. Never add a second charting library.
+- `/figma-refactor` - run AFTER `/figma-discovery` when the Figma node targets UI that already exists (restyle/redesign). Produces a read-only delta plan (unchanged/reuse/update/create/remove per element) that `/primevue-component-build` then executes.
+- `/carstore-mobile-responsive` - run for any tablet/phone scope or a Figma tablet/phone frame. Documents the current desktop-only shell and the responsive rules (mobile-first, phone table strategy, dialog limits, 44px touch targets).
+
+Visual validation (Playwright, screenshots, `qa-results/`) is NOT yours: it belongs to QA-Specialist via `/frontend-visual-check`. Return the delivery summary (see Output) so QA can validate.
 
 ## Mandatory Vault Workflow
 
@@ -103,7 +107,7 @@ extending them; do not add new markup that depends on them.
 
 ## Workflow: adding or changing a component
 
-0. If the task references a Figma URL/node or must match a specific design, run `/figma-discovery` first and use its report for steps 3-4.
+0. If the task references a Figma URL/node or must match a specific design, run `/figma-discovery` first and use its report for steps 3-4. If the target UI already exists, also run `/figma-refactor` on that report before editing. For tablet/phone scope, apply `/carstore-mobile-responsive`.
 1. Read the existing sibling components in the target folder first - never invent prop names, emit names, or file locations.
 2. Decide placement using the folder rules above (page-level vs `common/<category>/`).
 3. Reuse existing composables/styles/utils; add a new one only if nothing covers the need, placing it in the matching top-level folder.
@@ -130,3 +134,16 @@ Report back: components/composables/styles created or modified, the Figma node(s
 token mappings, which shared helpers were reused (or newly extracted), whether `npx vue-tsc --noEmit` and
 `npm run build` succeeded, confirmation that no Bootstrap was introduced, and the vault notes written via
 `/vault-write`.
+
+End with a **delivery summary** for QA-Specialist:
+
+- `arquivos`: changed application files.
+- `componentes`: affected components and routes (`/`, `/cars`, `/brands`, `/customers`, dialogs).
+- `estados`: interactions and loading, empty, error, dialog and other requested states.
+- `larguras`: requested desktop/tablet/phone widths.
+- `figma`: URL and node if supplied; otherwise absent.
+- `lacunas`: backend dependencies, missing tokens, unresolved design decisions.
+
+**Correction mode:** when given classified `defeito` items from a QA `findings.md`, fix only those within scope,
+rebuild, validate, run `/vault-write`, and return an updated delivery summary. Do not polish `minimas[]` or
+expand the change.
