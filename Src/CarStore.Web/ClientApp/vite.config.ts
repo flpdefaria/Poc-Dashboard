@@ -25,7 +25,7 @@ export default defineConfig(({ command }) => ({
   build: {
     outDir: path.resolve(__dirname, "../wwwroot/dist"),
     emptyOutDir: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: path.resolve(__dirname, "src/main.ts"),
       output: {
         entryFileNames: "main.js",
