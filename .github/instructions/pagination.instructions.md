@@ -1,33 +1,31 @@
 ---
-applyTo: "**/*.cshtml,Src/CarStore.Application/Common/PagedResult.cs,Src/CarStore.Application/Services/*.cs"
+applyTo: "Src/CarStore.Application/Common/PagedResult.cs,Src/CarStore.Application/Services/*.cs,Src/CarStore.Web/Controllers/Api/**,Src/CarStore.Web/Models/Api/PagedResultDto.cs,Src/CarStore.Web/ClientApp/src/composables/usePagedFetch.ts,Src/CarStore.Web/ClientApp/src/components/common/table/**"
 ---
 
-# Pagination conventions for CarStore.Web
+# Pagination conventions (server-side only)
 
-When implementing or modifying a list/index page:
+Every list is paged on the server and flows: service → API controller → `usePagedFetch` → `DataTableCommon`.
+Reuse each layer; never re-implement paging in another one.
 
 ## Application layer
-- Add `Application/Common/PagedResult.cs` with a generic `PagedResult<T>`:
-  - Properties: `Items` (IReadOnlyList<T>), `PageNumber` (int, 1-based), `PageSize` (int), `TotalItems` (int).
-  - Computed: `TotalPages`, `HasPrevious`, `HasNext`.
-- Service index methods expose a paged variant: `Task<PagedResult<T>> GetPagedAsync(int pageNumber, int pageSize)`.
-  - Default page size: **10**.
-  - Clamp `pageNumber >= 1`, `pageSize` between 1 and 100.
-  - Use `Skip((pageNumber - 1) * pageSize).Take(pageSize)` before materializing.
-  - Count via `CountAsync()` over the same base query.
-- Do **not** load the full table into memory to paginate.
+- `Application/Common/PagedResult.cs` (exists): `Items`, `PageNumber` (1-based), `PageSize`, `TotalItems`, plus computed `TotalPages`, `HasPrevious` and `HasNext`.
+- Each service exposes `Task<PagedResult<T>> GetPagedAsync(int pageNumber, int pageSize)`:
+  - Clamp with `pageNumber = Math.Max(1, pageNumber)` and `pageSize = Math.Clamp(pageSize, 1, 100)`.
+  - Use a deterministic `OrderBy(...)` before paging, so pages are stable.
+  - Run `CountAsync()` over the same base query, then `Skip((pageNumber - 1) * pageSize).Take(pageSize)` before materializing.
+  - Never load the full table into memory to paginate.
 
-## Controllers
-- MVC `Index` actions accept `int page = 1` and pass it to the service.
-- The JSON API controllers (`Controllers/Api/*ApiController.cs`) expose `GET /api/<feature>?page=&pageSize=` and map `PagedResult<T>` to `PagedResultDto<T>` (`Items`, `PageNumber`, `PageSize`, `TotalItems`, `TotalPages`, `HasPrevious`, `HasNext`). They reuse the same `GetPagedAsync` - never re-implement paging there.
+## API controllers (`Controllers/Api/*ApiController.cs`)
+- `GET /api/<feature>?page=1&pageSize=10` (defaults `page = 1`, `pageSize = 10`) calls `GetPagedAsync` and maps to `PagedResultDto<TDto>` with all seven fields, copied from `PagedResult<T>` (never recomputed).
+- Dropdown/lookup data uses a dedicated unpaged endpoint (e.g. `GET /api/brands/options`), never a full paged fetch.
 
-## Views and front-end
-- Index views are Vue mount points (`<div id="<feature>-app" data-api-url="/api/<feature>">`); the list and its pager are rendered by PrimeVue, not Razor. Views may still declare `@model PagedResult<Entity>` as a server-side fallback.
-- Paging happens through PrimeVue `DataTable` with `lazy` + `paginator`, fed by `composables/usePagedFetch.ts`, which calls the paged API endpoint on every page change.
-- `Views/Shared/_Pagination.cshtml` is a Bootstrap-era leftover no longer referenced by any view. Do not wire it back in; if a new Razor list page needs paging, migrate it to the Vue + API pattern instead.
+## Front-end
+- `composables/usePagedFetch.ts` calls `GET {apiUrl}?page=&pageSize=` and exposes `items`, `totalRecords`, `loading`, `error` and `load(page, pageSize)`.
+- `components/common/table/DataTableCommon.vue` renders PrimeVue `DataTable` with `lazy` + `paginator` (default `rows: 10`, options `[10, 20, 50]`) and calls `load` on every page change.
+- `PagedResult<T>` in `ClientApp/src/types.ts` mirrors the DTO (camelCase).
 
 ## What not to do
-- Do not add a NuGet pagination package.
-- Do not paginate on the client side (never fetch all rows and slice them in the browser).
+- Do not add a NuGet or npm pagination package.
+- Do not paginate on the client (never fetch all rows and slice them in the browser).
 - Do not duplicate paging logic in an API controller or a Vue component.
-- Only change Index actions - leave CRUD actions untouched.
+- Do not change the `page`/`pageSize` query names; `usePagedFetch` depends on them.

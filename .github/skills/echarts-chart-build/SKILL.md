@@ -1,6 +1,6 @@
 ---
 name: echarts-chart-build
-description: "Use when: adding a chart to ANY ClientApp page (Home or any other page/dialog), adding a new chart type (line, pie, multi-series bar, ...) not yet covered by an existing components/common/chart/ component, or restyling/extending one. `echarts` is already installed in this repo - see `echarts-new-customers-chart` only for the one-time npm install/first Home chart, never for a second or later chart. This is the general, ongoing ECharts skill: every chart in the app must go through it so they all share one import strategy and one visual language."
+description: "Use when: adding a chart to ANY ClientApp page (Home or any other page/dialog), adding a new chart type (line, pie, multi-series bar, ...) not yet covered by an existing components/common/chart/ component, or restyling/extending one. `echarts` is already installed in this repo. This is the general, ongoing ECharts skill: every chart in the app must go through it so they all share one import strategy and one visual language."
 argument-hint: "The page/component the chart goes in, the data it charts, and the chart type (bar/line/pie/...)"
 ---
 
@@ -54,6 +54,8 @@ verbatim.
 - `chart.setOption(buildOption())` right after init, and again inside a `watch` over the component's data
   props (`{ deep: true }`) so the chart updates when the data changes - never call `echarts.init()` more than
   once for the same element; always `setOption` on data change, not re-init.
+- Include `useTheme().theme` in that `watch` source, so a light/dark switch rebuilds the option with the
+  re-read CSS tokens (canvas colors do not follow CSS on their own).
 - A `ResizeObserver` on the container element calling `chart.resize()`, so the chart adapts to its `Card`/grid
   cell resizing (PrimeVue `Card`s here are inside a responsive Tailwind grid).
 - `chart.dispose()` + `resizeObserver.disconnect()` in `onBeforeUnmount` - required, ECharts instances leak
@@ -61,12 +63,12 @@ verbatim.
 
 ## Visual language - match the rest of the app, don't import an ECharts theme
 
-- **Color:** read the live PrimeVue CSS token instead of a hardcoded hex, so charts always track the active
-  theme: `getComputedStyle(document.documentElement).getPropertyValue("--p-primary-color").trim()` for a
-  single-series chart. For a multi-series chart needing more colors, use other PrimeVue token vars in the same
-  family (e.g. `--p-primary-color`, `--p-blue-500`, `--p-green-500`, `--p-amber-500` - check what's actually
-  defined via the `primevue` MCP server or the Aura preset before inventing a token name) rather than picking
-  arbitrary hex values.
+- **Color:** read live CSS tokens at option-build time (`getComputedStyle(document.documentElement)
+  .getPropertyValue(name).trim()`), never a hardcoded hex. Series colors come from the data palette in
+  `src/style.css` (`--color-paint-gulf`, `--color-paint-green`, `--color-paint-bronze`, `--color-paint-burgundy`,
+  `--color-paint-graphite`), which has lifted dark-theme variants; pass the token name via the `colorVar`
+  prop as `Home.vue` does. Axes, grid, labels and tooltip use `--p-surface-*` / `--p-text-*` tokens. A hex
+  appears only as the fallback argument when a token is missing (see `themeColor()` in `BarChart.vue`).
 - **Axes/grid:** thin gray axis line, light gray split lines, small muted axis-label text - matches
   `BarChart.vue`'s `buildOption()`. Keep `grid` tight (`left/right: 8`, `top: 16`, `bottom: 24`,
   `containLabel: true`) so the chart sits flush inside its `Card`.
@@ -107,7 +109,7 @@ verbatim.
 - Never add a second charting library (Chart.js, ApexCharts, D3, ...) - ECharts is the app's only charting
   dependency; if ECharts genuinely cannot do what's needed, propose the alternative to the user instead of
   adding it unilaterally.
-- Never hardcode a chart color as a raw hex - always a `--p-*` PrimeVue token.
+- Never hardcode a chart color as a raw hex - always a `--color-paint-*` or `--p-*` token, re-read on theme change.
 - Never duplicate a data-shaping/aggregation computed that already exists on the target page - reuse it and
   only add the small mapping to the chart's prop contract.
 - Never skip the `vue-tsc --noEmit` + `npm run build` verification step.

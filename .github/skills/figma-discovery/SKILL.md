@@ -14,13 +14,9 @@ Output of this skill is a **discovery report**, not code. Hand it to `/primevue-
 
 ## Required setup
 
-- `.vscode/mcp.json` must contain the `figma-mcp` server entry:
-  ```json
-  "figma-mcp": { "type": "http", "url": "https://mcp.figma.com/mcp" }
-  ```
-  If it is missing or malformed, stop and say this is Frontend-Tooling-Specialist's responsibility - do not add it from this skill.
+- `.mcp.json` (Claude Code) and `.vscode/mcp.json` (Copilot) must both contain the `figma-mcp` server (`{ "type": "http", "url": "https://mcp.figma.com/mcp" }`). If it is missing or malformed, stop and say this is Frontend-Tooling-Specialist's responsibility - do not add it from this skill.
 - The remote server requires the user to be signed into Figma and to approve the OAuth prompt in the IDE. If tool calls return an auth/permission error, ask the user to re-authenticate; never fall back to inventing values.
-- Figma MCP tools used: `get_metadata`, `get_screenshot`, `get_design_context`, `get_variable_defs`, plus whatever design-system search the server exposes. Tool names are prefixed per workspace (here: `mcp_figma_mcp_ser_*`) - list the available tools rather than assuming an exact name.
+- Figma MCP tools used: `get_metadata`, `get_screenshot`, `get_design_context`, `get_variable_defs`, plus whatever design-system search the server exposes. Tool names are prefixed per host (e.g. `mcp__figma-mcp__*` in Claude Code) - list the available tools rather than assuming an exact name.
 
 ## Vault touchpoints
 

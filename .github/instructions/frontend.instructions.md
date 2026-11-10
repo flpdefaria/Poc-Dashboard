@@ -11,16 +11,7 @@ see `web.instructions.md`. For the vault rules, see `vault.instructions.md`.
 This file documents the **reference implementation**. The same architecture is reused when migrating other
 classic MVC + Razor + Bootstrap projects - see "Porting to a new project" at the end.
 
-## Mandatory vault workflow
-
-Every agent touching this folder MUST:
-
-1. Read `.github/instructions/vault.instructions.md`.
-2. Run `/vault-search` for existing context BEFORE writing code.
-3. Do the work.
-4. Run `/vault-write` afterwards to record what changed (new tags go in `00_Index/Tags.md` first).
-
-Never hand-edit vault notes; always go through `/vault-write`.
+Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` before, `vault-write` after).
 
 ## Stack
 
@@ -32,7 +23,8 @@ Never hand-edit vault notes; always go through `/vault-write`.
 | Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
 | CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
 | Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
-| Bootstrap / jQuery UI | **Removed** | jQuery remains ONLY for ASP.NET unobtrusive validation on the Razor Customers forms. |
+| Bootstrap / jQuery | **Removed** | No Razor forms remain; every CRUD flow is a Vue dialog. Do not reintroduce either. |
+| Charts | Apache ECharts 6, tree-shaken (`echarts/core`) | Only via `components/common/chart/` and the `/echarts-chart-build` skill. |
 
 ## Folder layout (do not deviate)
 
@@ -45,7 +37,7 @@ Src/CarStore.Web/ClientApp/
     main.ts                  # single entry: mounts the App shell once, on #app
     App.vue                  # SPA shell: Sidebar + <RouterView />
     router/index.ts          # vue-router routes ("/", "/cars", "/brands", "/customers")
-    style.css                # Tailwind + primeui imports, @source, @layer components, .lucide icon sizing
+    style.css                # Tailwind + primeui imports, @source, paint palette, html.app-dark theme, .lucide sizing
     types.ts                 # shared DTO interfaces mirroring Models/Api/*Dto.cs
     shims-vue.d.ts
     components/
@@ -53,20 +45,24 @@ Src/CarStore.Web/ClientApp/
       <Feature>Table.vue     # DataTableCommon wrapper + row-action wiring
       Home.vue, PoweredByBadge.vue
       common/
+        chart/               # <Type>Chart.vue (ECharts, generic, token-colored) - BarChart.vue
         dialog/              # <Verb><Entity>Dialog.vue + dialogStyles.ts
         form/                # FormField.vue (label + input slot), DetailField.vue (label + value)
+        loader/              # ShowroomLoader.vue (loading placeholder)
         pageheader/          # PageHeader.vue (title, description, #actions slot)
-        sidebar/             # Sidebar.vue (global nav, uses vue-router RouterLink/useRoute)
+        sidebar/             # Sidebar.vue (global nav + theme toggle, uses vue-router RouterLink/useRoute)
         table/               # DataTableCommon.vue (generic lazy paged DataTable)
-    composables/             # usePagedFetch.ts, useEntityCrud.ts, useCreateEntity.ts
+    composables/             # usePagedFetch, useEntityCrud, useCreateEntity (data); useTheme (light/dark);
+                             # useTweenedNumber (animated counters)
     styles/                  # buttonStyles.ts - shared Tailwind class-string constants
-    utils/                   # format.ts - formatCurrency (BRL), formatDate (pt-BR)
+    utils/                   # format.ts - formatCurrency (BRL), formatDate (pt-BR);
+                             # rowEffects.ts - per-row created/updated/leaving animation flags
 ```
 
 Placement rules:
 
 - Directly under `components/` **only** for a page (`<Feature>Page.vue`) or a page-specific `<Feature>Table.vue`.
-- Anything reused by 2+ entities/pages goes to `components/common/<category>/` (`dialog`, `form`, `pageheader`, `sidebar`, `table`). Ask before inventing a new category.
+- Anything reused by 2+ entities/pages goes to `components/common/<category>/` (`chart`, `dialog`, `form`, `loader`, `pageheader`, `sidebar`, `table`). Ask before inventing a new category.
 - Stateful logic (fetch, dialog visibility, loading/error) belongs in `composables/`, not copy-pasted into components.
 - Reusable Tailwind class strings go to `styles/`; `pt` objects shared by dialogs go to `common/dialog/dialogStyles.ts`.
 - Pure helpers (formatting, parsing) go to `utils/`.
@@ -102,8 +98,9 @@ npm install          # first clone only
 npm run build        # emits ../wwwroot/dist/main.js + main.css
 ```
 
-MCP servers used by the front-end agents live in `.vscode/mcp.json` (`primevue` stdio + `figma-mcp` http).
-Creating/repairing that file is Frontend-Tooling-Specialist's job.
+MCP servers used by the front-end agents (`primevue` stdio, `figma-mcp` http, `playwright` stdio) are declared,
+with identical content, in `.vscode/mcp.json` (VS Code/Copilot) and `.mcp.json` (Claude Code). Both are committed;
+creating/repairing them is Frontend-Tooling-Specialist's job, and they must change together.
 
 ## Build / run loop
 
@@ -165,7 +162,7 @@ Rules:
 4. **Arbitrary values are fine and expected** when the design does not land on Tailwind's scale: `rounded-[21px]`, `gap-1.75`, `px-[11.5px]`, `w-69.5`.
 5. **Reuse the shared class strings**: `styles/buttonStyles.ts` (`primaryButtonClass`, `secondaryButtonClass`, `dangerButtonClass`) and `common/dialog/dialogStyles.ts` (`dialogShellPt(width, contentClass?)`, `detailsDialogPt(width)`). If a new combination appears in 2+ places, extract it there.
 6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
-7. **The `@layer components` block in `style.css` is not Bootstrap.** `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-danger`, `.form-label`, `.form-control`, `.form-select`, `.alert-danger` are Tailwind-backed re-implementations kept so the remaining Razor forms (Customers Create/Edit/Delete/Details) keep working. Do not rename them and do not treat them as Bootstrap remnants.
+7. **The `@layer components` block in `style.css` (`.btn*`, `.form-*`, `.alert-danger`) is dead code.** It was a Tailwind shim for the Razor forms that no longer exist, and nothing references it. Never use those classes in new markup; removing the block is a pending cleanup.
 
 ### Light and dark themes (mandatory for every screen)
 
@@ -192,7 +189,8 @@ Rules:
 
 | Piece | What it gives you |
 |---|---|
-| `common/table/DataTableCommon.vue` | Lazy paged `DataTable` + Figma-matched paginator/menu `pt`, `columns: DataTableColumn[]` (`field`, `header`, `primary`), per-column `#col-<field>` slots, and a row-actions `Menu`. Actions either navigate (`detailsUrl`/`editUrl`/`deleteUrl`) or emit (`confirmDetails`/`confirmEdit`/`confirmDelete` -> `details`/`edit`/`delete`). |
+| `common/table/DataTableCommon.vue` | Lazy paged `DataTable` + Figma-matched paginator/menu `pt`, `columns: DataTableColumn[]` (`field`, `header`, `primary`), per-column `#col-<field>` slots, and a row-actions `Menu`. Row actions emit via `confirmDetails`/`confirmEdit`/`confirmDelete` -> `details`/`edit`/`delete` events. The `detailsUrl`/`editUrl`/`deleteUrl` navigate props are legacy: never use them. |
+| `common/chart/BarChart.vue` | Generic ECharts bar (`labels`, `values`, optional `colorVar`); rebuilds on theme change. New chart types follow `/echarts-chart-build`. |
 | `common/dialog/*` | `Create/Edit/Details<Car|Brand|Customer>Dialog`, and `ConfirmDeleteDialog`. Copy the closest one's `pt` wiring instead of hand-rolling spacing. |
 | `common/form/FormField.vue` / `DetailField.vue` | Editable label + input slot / read-only label + value. |
 | `common/pageheader/PageHeader.vue` | `title`, optional `description`, `#actions` slot (used for the "New X" button). |
@@ -225,7 +223,7 @@ Rules:
 - Never hardcode colors that bypass the theme (`#fff`, `bg-white`, `text-black`, fixed `gray-*`/`slate-*`), and never switch `darkModeSelector` on.
 - Never hardcode a `/api/*` base URL other than the documented constants; keep them colocated in the page component that owns the fetch.
 - Never edit `wwwroot/dist/*` by hand; it is generated.
-- Never change `vite.config.ts`, `package.json` deps, or `.vscode/mcp.json` from a component task - that is Frontend-Tooling-Specialist scope.
+- Never change `vite.config.ts`, `package.json` deps, `.mcp.json` or `.vscode/mcp.json` from a component task - that is Frontend-Tooling-Specialist scope.
 
 ## Porting to a new project
 
@@ -233,11 +231,11 @@ When migrating another classic MVC + Razor + Bootstrap app, reproduce this exact
 
 1. `<WebProject>/ClientApp/` scaffolded with Vite + Vue 3 + TS; `build.outDir` -> `../wwwroot/dist`, `base: "/dist/"`, fixed `main.js` / `main.css` output names.
 2. `npm i vue primevue @primeuix/themes @lucide/vue` + `npm i -D vite @vitejs/plugin-vue tailwindcss @tailwindcss/vite tailwindcss-primeui typescript vue-tsc`.
-3. `src/style.css` with the three `@import`s, `@source "../../Views";`, and a `@layer components` shim for whatever Bootstrap classes the surviving Razor forms still use.
-4. `src/main.ts` with the `mount()` + `dataset`-as-props helper and the PrimeVue/Aura registration.
-5. Remove `wwwroot/lib/bootstrap/` and every Bootstrap `<link>`/`<script>`/`bi-*` icon; keep jQuery + jquery-validation only if Razor forms still use unobtrusive validation.
+3. `src/style.css` with the `@import`s and `@source "../../Views";`. Add a temporary `@layer components` shim only while Razor forms still need Bootstrap class names, and delete it with the last form.
+4. `src/main.ts` mounting a single `App` (Sidebar + `RouterView`) on `#app`, with `vue-router` and the PrimeVue/Aura registration; `src/router/index.ts` for the routes.
+5. Remove `wwwroot/lib/bootstrap/` and every Bootstrap `<link>`/`<script>`/`bi-*` icon; keep jQuery + jquery-validation only while Razor forms still use unobtrusive validation.
 6. Add `Controllers/Api/*ApiController.cs` + `Models/Api/*Dto.cs` returning `PagedResultDto<T>`, reusing the existing services (never re-implement paging or business rules).
-7. Convert Index views to mount `<div>`s with `data-*` URLs; migrate CRUD pages to dialogs feature by feature.
+7. Migrate page by page: add a route + `<Feature>Page.vue` over the paged API, then the CRUD dialogs, then delete the old Razor controller/views (see `web.instructions.md` -> "Porting to a new project").
 8. Copy `composables/`, `common/table`, `common/dialog`, `common/form`, `common/pageheader`, `styles/`, `utils/` as the starting kit, then adapt to that project's design system.
-9. Create `.vscode/mcp.json` with the `primevue` and `figma-mcp` servers.
+9. Create `.mcp.json` and `.vscode/mcp.json` with the `primevue`, `figma-mcp` and `playwright` servers.
 10. Seed the new project's vault with the equivalent front-end notes via `/vault-write`.

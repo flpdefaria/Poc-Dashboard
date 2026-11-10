@@ -11,12 +11,7 @@ How `CarStore.Web` serves a Vue 3 + PrimeVue front-end from classic MVC. Compani
 This is the **reference implementation** for migrating a classic MVC + Razor + Bootstrap app to
 an MVC-hosted Vue 3 single-page app (SPA).
 
-## Mandatory vault workflow
-
-1. Read `.github/instructions/vault.instructions.md`.
-2. `/vault-search` before changing anything.
-3. Do the work.
-4. `/vault-write` afterwards (add new tags to `00_Index/Tags.md` first). Never hand-edit vault notes.
+Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` before, `vault-write` after).
 
 ## The hosting model in one paragraph
 
@@ -117,7 +112,7 @@ public class CarsApiController : ControllerBase
 Conventions:
 
 - **Reuse the existing application services** (`ICarService`, `IBrandService`, `ICustomerService`). Never duplicate business rules, validation or paging logic in an API controller - see `pagination.instructions.md`.
-- **Always map to a DTO** in `Models/Api/`. Entities have circular navigation properties (`Car.Brand` / `Brand.Cars`) that break JSON serialization, and DTOs also flatten what the table needs (`BrandName`, `CarsCount`, `Age`).
+- **Always map to a DTO** in `Models/Api/`. Entities have circular navigation properties (`Car.Brand` / `Brand.Cars`) that break JSON serialization, and DTOs also flatten what the table needs (e.g. `BrandName`, `CarsCount`).
 - Paged responses use `PagedResultDto<T>` (`Items`, `PageNumber`, `PageSize`, `TotalItems`, `TotalPages`, `HasPrevious`, `HasNext`) - it mirrors `PagedResult<T>` and the `PagedResult<T>` interface in `ClientApp/src/types.ts`.
 - Catch `DomainException` and return `BadRequest(new { message = ex.Message })`. The front-end composables read `body.message` and show it in the dialog, so the domain message is the user-facing error.
 - Return `NotFound()` for a missing id, `NoContent()` for a successful delete.

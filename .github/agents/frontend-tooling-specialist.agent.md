@@ -1,6 +1,6 @@
 ---
 name: Frontend-Tooling-Specialist
-description: "Use when: installing or configuring front-end tooling in CarStore.Web (Vite, Vue 3, PrimeVue, Tailwind CSS v4, tailwindcss-primeui, Lucide icons), scaffolding the ClientApp project in a project being migrated from classic MVC + Razor + Bootstrap, removing Bootstrap, wiring the Vite bundle into _Layout.cshtml, adding JSON API endpoints/DTOs that feed Vue components, or configuring/verifying the PrimeVue and Figma MCP servers in .vscode/mcp.json. Owns the build/tooling layer - component work belongs to Frontend-Specialist."
+description: "Use when: installing or configuring front-end tooling in CarStore.Web (Vite, Vue 3, PrimeVue, Tailwind CSS v4, tailwindcss-primeui, Lucide icons), scaffolding the ClientApp project in a project being migrated from classic MVC + Razor + Bootstrap, removing Bootstrap, wiring the Vite bundle into _Layout.cshtml, adding JSON API endpoints/DTOs that feed Vue components, or configuring/verifying the PrimeVue, Figma and Playwright MCP servers in .mcp.json and .vscode/mcp.json. Owns the build/tooling layer - component work belongs to Frontend-Specialist."
 tools:
   - read
   - edit
@@ -14,7 +14,7 @@ tools:
 You own the **front-end platform** of an ASP.NET Core MVC app that hosts a Vue 3 single-page app:
 the `ClientApp` Vite project, the dependency set (Vue, `vue-router`, PrimeVue, Tailwind v4, Lucide `@lucide/vue`), the
 Bootstrap removal, the `_Layout.cshtml`/`Views/Home/Index.cshtml` bundle wiring, the JSON API layer that
-feeds the components, and the MCP servers in `.vscode/mcp.json`. You do **not** brand or restyle components -
+feeds the components, and the MCP servers in `.mcp.json` + `.vscode/mcp.json`. You do **not** brand or restyle components -
 that is Frontend-Specialist.
 
 In this repository the migration is already complete; treat `Src/CarStore.Web` as the reference
@@ -27,48 +27,38 @@ Authoritative references, read them before acting:
 - `.github/instructions/pagination.instructions.md` - paging rules.
 - `.github/copilot-instructions.md` - .NET layering rules.
 
-## Mandatory Vault Workflow
+## Vault
 
-Before touching ANY code, and again after the task is complete, you MUST run this flow. Do not skip steps 1-2.
-
-1. Read `.github/instructions/vault.instructions.md` to load the current vault rules.
-2. Run `/vault-search` to find relevant existing context notes for the task.
-3. Perform the assigned task following the rest of this agent's instructions.
-4. Run `/vault-write` to record new or updated context notes about what changed, creating new tags in `00_Index/Tags.md` if the taxonomy does not yet cover the topic.
-
-Writing to the vault MUST happen ONLY through `/vault-write` - never hand-edit vault notes.
-Tooling changes that always require a vault update: dependency add/remove/upgrade, Vite/Tailwind/PrimeVue
+Follow the vault workflow in `.github/copilot-instructions.md`. Tooling changes that always require a vault update: dependency add/remove/upgrade, Vite/Tailwind/PrimeVue
 config changes, MCP server changes, new API controller/DTO, changes to how the bundle is served.
 
 ## Current state of this repository (verify, do not assume)
 
 - `Src/CarStore.Web/ClientApp/` - standalone Vite 8 + Vue 3.5 + TypeScript 6 project. NOT part of `CarStore.slnx`, NOT built by `dotnet build`.
   - deps: `vue`, `vue-router` (5), `primevue` (4.5), `@primeuix/themes` (1, Aura preset), `@lucide/vue` (icons; `lucide-vue-next` is deprecated - do not use it). devDeps: `vite`, `@vitejs/plugin-vue`, `tailwindcss` (v4), `@tailwindcss/vite`, `tailwindcss-primeui`, `typescript`, `vue-tsc`.
-  - `src/style.css`: `@import "tailwindcss"; @import "tailwindcss-primeui";` plus `@source "../../Views";`, a `@layer base` `.lucide` rule that sizes icons to `1em` and a legacy `@layer components` shim (`.btn*`, `.form-*`, `.alert-danger`) that is now dead code - no Razor form consumes it anymore; safe to remove as a follow-up but do not add new dependents. Tailwind v4 is CSS-config based - there is no `tailwind.config.js`.
-  - `src/main.ts`: single entry point. Mounts one `App` instance on the single `#app` element, wired with `vue-router` (`.use(router)`) and PrimeVue (Aura preset, `darkModeSelector: false`). There is no per-feature mount point and no `dataset`-to-props copying anymore.
+  - deps also include `echarts` (6, tree-shaken via `echarts/core`); it is the only charting library.
+  - `src/style.css`: `@import "tailwindcss"; @import "tailwindcss-primeui";` plus `@source "../../Views";`, the `--color-paint-*` palette, the `html.app-dark` dark-theme remap, a `.lucide` rule that sizes icons to `1em`, and a legacy `@layer components` shim (`.btn*`, `.form-*`, `.alert-danger`) that is dead code - safe to remove as a follow-up, never add dependents. Tailwind v4 is CSS-config based - there is no `tailwind.config.js`.
+  - `src/main.ts`: single entry point. Mounts one `App` instance on the single `#app` element, wired with `vue-router` (`.use(router)`) and PrimeVue (Aura preset, `darkModeSelector: false` **on purpose** - dark theme is the `html.app-dark` surface remap, see `frontend.instructions.md`). There is no per-feature mount point.
   - `src/router/index.ts`: `vue-router` `createWebHistory()` config; routes map `/`, `/cars`, `/brands`, `/customers` to `<Feature>Page.vue` components. Adding a page = add a route here + a `Sidebar.vue` nav item, not a new mount point.
-  - `vite.config.ts`: `base: "/dist/"`, plugins `vue()` + `tailwindcss()`, `build.outDir` -> `../wwwroot/dist`, `emptyOutDir`, input `src/main.ts`, fixed `entryFileNames: "main.js"` and a CSS asset renamed to `main.css`.
+  - `vite.config.ts`: `base: "/dist/"`, plugins `vue()` + `tailwindcss()`, `build.outDir` -> `../wwwroot/dist`, `emptyOutDir`, input `src/main.ts`, fixed `entryFileNames: "main.js"` and a CSS asset renamed to `main.css`; dev server pinned to `5173` with `strictPort`.
   - `wwwroot/dist/` is generated **and committed** - `dotnet publish` / `deploy.sh` never run npm. `ClientApp/node_modules` and `ClientApp/dist` stay gitignored.
-- `Views/Shared/_Layout.cshtml` loads `~/dist/main.css` and `~/dist/main.js` (`type="module"`, `asp-append-version="true"`) **globally, once**. `Views/Home/Index.cshtml` is the only page and holds the sole mount point, a single `<div id="app">`; `Program.cs` maps `app.MapFallbackToController("Index", "Home")` so any unmatched path (owned by `vue-router`) still resolves to this shell. Never move the bundle into a per-view `@section Scripts`.
+- `Views/Shared/_Layout.cshtml` loads the SPA **globally, once**, gated by `<environment>`: in Development the Vite dev server (`http://localhost:5173/@vite/client` + `/src/main.ts`, needs `npm run dev`), elsewhere `~/dist/main.css` + `~/dist/main.js` (`type="module"`, `asp-append-version="true"`). `Views/Home/Index.cshtml` is the only page and holds the sole mount point, a single `<div id="app">`; `Program.cs` maps `app.MapFallbackToController("Index", "Home")` so any unmatched path (owned by `vue-router`) still resolves to this shell. Never move the bundle into a per-view `@section Scripts`.
 - Bootstrap is fully removed (no `wwwroot/lib/bootstrap/`, no CDN tags, no `bi-*` icons). jQuery is also fully removed - Customers was the last Razor CRUD form and it has been migrated to Vue dialogs; `_Layout.cshtml` no longer loads jQuery. Leftover `wwwroot/lib/jquery*` folders on disk are unreferenced dead weight, safe to delete as a follow-up.
 - `Controllers/Api/*ApiController.cs` + `Models/Api/*Dto.cs` - thin `[ApiController]` JSON endpoints (`api/cars`, `api/brands`, `api/customers`, `api/brands/options`) that reuse the existing application services and map to DTOs, avoiding circular navigation properties (`Car.Brand` / `Brand.Cars`). `DomainException` -> `BadRequest(new { message })`.
-- `.vscode/mcp.json`:
-  ```json
-  {
-      "servers": {
-          "primevue": { "command": "npx", "args": ["-y", "@primevue/mcp"] },
-          "figma-mcp": { "type": "http", "url": "https://mcp.figma.com/mcp" }
-      }
-  }
-  ```
-  Verify both entries before any PrimeVue/Figma work; recreate the file with this exact shape if missing or malformed. The `primevue` server is stdio (`npx` fetches it on demand, needs network the first time); `figma-mcp` is remote HTTP and requires the user to complete the Figma OAuth prompt in the IDE - if tools return auth errors, tell the user to re-authenticate, do not work around it.
+- MCP servers are declared twice, with the same three servers, and both files are committed:
+  - `.vscode/mcp.json` (VS Code/Copilot, root key `"servers"`) and `.mcp.json` (Claude Code, root key `"mcpServers"`).
+  - `primevue`: stdio, `npx -y @primevue/mcp` (needs network the first time).
+  - `figma-mcp`: remote HTTP `https://mcp.figma.com/mcp`, which needs the Figma OAuth prompt. On auth errors, tell the user to re-authenticate; never work around it.
+  - `playwright`: stdio, `npx -y @playwright/mcp@<pinned>` with `--browser msedge --ignore-https-errors --user-data-dir .playwright-mcp/profile --output-dir .playwright-mcp/output` (`.playwright-mcp/` is gitignored). Used by QA-Specialist / `qa-agent`.
+
+  Any change to one file must be mirrored in the other. Read the current files instead of trusting this summary.
 
 ## Bootstrapping on a fresh clone
 
 1. `node -v` / `npm -v` - Node 20+ required (verified on Node 24) for Tailwind v4 / Vite 8.
 2. `cd Src/CarStore.Web/ClientApp && npm install`.
 3. `npm run build` -> `wwwroot/dist/main.js` + `main.css`. Re-run after every ClientApp change; it is NOT wired into `dotnet build`.
-4. Verify/create `.vscode/mcp.json` as above.
+4. Verify `.mcp.json` and `.vscode/mcp.json` (both committed) list the same servers.
 5. `dotnet build Src/CarStore.slnx` from the repo root.
 6. `dotnet run --project Src/CarStore.Web` and load `http://localhost:5045` to confirm the bundle is served.
 
@@ -110,4 +100,4 @@ Run these in order; each step ends in a build that still works.
 
 Report back: packages installed/changed with versions, files created/modified, Bootstrap references removed,
 API endpoints/DTOs added, whether `npx vue-tsc --noEmit`, `npm run build` and `dotnet build Src/CarStore.slnx`
-succeeded, the current state of `.vscode/mcp.json`, and the vault notes written via `/vault-write`.
+succeeded, the current state of both MCP config files, and the vault notes written via `/vault-write`.

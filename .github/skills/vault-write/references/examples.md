@@ -1,172 +1,65 @@
 # Example Operations
 
-> The tag values, folder names, and template filenames used below (e.g., `type/runbook`, `component/application`, `05_Operations`, `template-runbook.md`) are **illustrative only**. At runtime, valid values come from reading the live vault:
->
-> - Tags → `Docs/Vault/CarStore/00_Index/Tags.md`
-> - Folders → `Docs/Vault/CarStore/00_Index/Home.md` + `fd --type d --max-depth 2 . Docs/Vault/CarStore`
-> - Templates → `fd --extension md . Docs/Vault/CarStore/07_Templates`
->
-> Substitute the real values from those reads when applying the patterns below.
+Tags, folders and templates below exist in the CarStore vault at the time of writing. Always reload `00_Index/Tags.md`, `00_Index/Home.md` and `07_Templates/` before applying a pattern. Commands assume the repo root.
 
-All examples assume the vault root is the current directory:
+## Example 1: Add a new frontend guide
 
-```bash
-cd Docs/Vault/CarStore
-```
+Request: "Document the dark theme implementation."
 
-## Example 1: Add a single new guide
-
-User request: "Document how the error handling flow works end-to-end."
-
-1. Search to confirm no existing note covers it:
-    ```bash
-    rg -l --glob "*.md" --ignore-case --fixed-strings "error handling" .
-    ```
-2. Pick folder: `04_Engineering/`.
-3. Pick template: `07_Templates/Note-Template.md`.
-4. Filename: `Error-Handling-Flow.md`.
-5. Frontmatter:
+1. Check for overlap: `rg -l --glob "*.md" -i -F "dark theme" Docs/Vault/CarStore` → no strong match → `add`.
+2. Folder `04_Engineering/`, template `07_Templates/Note-Template.md`, filename `Dark-Theme.md`, matching siblings such as `Sidebar-Collapse-Expand.md`.
+3. Frontmatter:
     ```yaml
     ---
     type: guide
-    created: 2026-05-28
-    updated: 2026-05-28
+    created: 2026-11-10
+    updated: 2026-11-10
     tags:
       - note
       - type/guide
       - area/engineering
-      - component/application
-      - component/clientapp
-      - topic/error-handling
+      - component/web
     ---
     ```
-6. Cross-link from related notes in `04_Engineering/` (under `## Related`).
+4. Body cites source paths (`Src/CarStore.Web/ClientApp/src/composables/useTheme.ts`, `src/style.css`).
+5. Add `[[Dark-Theme]]` to `## Related` of `Frontend-SPA.md`, to `Navigation.md` under `## 04_Engineering`, and to the `04_Engineering` line in `Home.md` → `## Sections`.
 
 ## Example 2: Update an existing note
 
-User request: "Add info about the new Offering entity to the domain notes."
+Request: "Customer gained a `Phone` property."
 
-1. Locate the note:
-    ```bash
-    rg -l --glob "*.md" --ignore-case --fixed-strings "offering" .
-    # → 03_Domain/Offering.md (if exists)
-    ```
-2. Read the existing file.
-3. Set `updated: 2026-05-28` (preserve `created:`).
-4. Append or revise sections without removing existing content.
-5. Do not change `type` or `area/*` tags unless scope changed.
+1. `rg -l --glob "*.md" -i -F "entity/customer" Docs/Vault/CarStore` → `03_Domain/Customer.md`, `04_Engineering/Testing.md`.
+2. Update `Customer.md` (property + invariant, with the source path `Src/CarStore.Domain/Entities/Customer.cs`). Set `updated:` and keep `created:`.
+3. Domain entity changed → also update `[[Domain-Overview]]`, per the "When to Update" rules.
 
-## Example 3: Split into multiple notes (atomic rule)
+## Example 3: Split into atomic notes
 
-User request: "Document the distributor sync — both the architecture and the operational runbook."
-
-Split into **two** notes:
+Request: "Document the deploy architecture and the step-by-step deploy."
 
 | File | Folder | Type tag |
-|------|--------|----------|
-| `Distributor-Sync.md` | `02_Architecture/` | `type/overview` |
-| `Run-Distributor-Sync.md` | `05_Operations/` | `type/runbook` |
+|---|---|---|
+| `Deployment-Architecture.md` | `02_Architecture/` | `type/overview` |
+| `Deployment-Runbook.md` (exists → update) | `05_Operations/` | `type/runbook` |
 
-Each note links to the other via `[[Distributor-Sync]]` / `[[Run-Distributor-Sync]]`.
+Each links to the other in `## Related`.
 
 ## Example 4: Introduce a new tag
 
-User request: "Add notes tagged with `topic/renewal`."
+Request: "Tag notes about the QA flow."
 
-1. Confirm the tag does not exist:
-    ```bash
-    rg --glob "*.md" --ignore-case --fixed-strings "topic/renewal" .
-    ```
-2. Update `00_Index/Tags.md` — add `topic/renewal` under the `topic/*` section with a one-line description.
-3. Then write the new note with the tag.
-4. Report both files in the final summary.
+1. `rg -i -F "topic/qa" Docs/Vault/CarStore/00_Index/Tags.md` → missing.
+2. Add a `### topic/*` section to `Tags.md` with `` - `topic/qa` — frontend visual QA (Playwright) ``, then write the note with that tag.
+3. Report the new tag in the summary.
 
-## Example 5: Add a new component note
-
-User request: "Document the new `component/notifications-worker`."
-
-1. The component does not exist in the catalog → update `00_Index/Tags.md` first.
-2. Create `02_Architecture/Notifications-Worker.md`:
-    ```yaml
-    ---
-    type: overview
-    created: 2026-05-11
-    updated: 2026-05-11
-    tags:
-      - note
-      - type/overview
-      - area/architecture
-      - component/notifications-worker
-    ---
-    ```
-3. Cross-link from `02_Architecture/Architecture-Overview.md`.
-
-## Example 6: Detect existing note before adding
-
-```bash
-rg -l --glob "*.md" --ignore-case --fixed-strings "teams notifications" .
-# → 03_Domain/Teams-Notifications.md
-```
-
-One strong match → switch intent from `add` to `update`.
-
-## Example 7: List notes in a target folder before naming a new one
-
-```bash
-fd --extension md . 05_Operations
-```
-
-Use the listing to match casing and naming style of siblings.
-
-## Example 8: Date normalization
-
-Always use `YYYY-MM-DD`:
-
-```yaml
-created: 2026-05-11
-updated: 2026-05-11
-```
-
-When updating, change only `updated`.
-
-## Example 9: Frontmatter for a policy note
-
-```yaml
----
-type: policy
-created: 2026-05-11
-updated: 2026-05-11
-tags:
-  - note
-  - type/policy
-  - area/engineering
-  - area/configuration
-  - topic/configuration
----
-```
-
-## Example 10: Cross-linking
-
-Inside `## Related` at the end of every note:
-
-```markdown
-## Related
-
-- [[Error-Handling-Flow]]
-- [[Distributor-Sync]]
-- [[Profile]]
-```
-
-Use the filename without `.md`.
-
-## Example 11: Output summary returned by the skill
+## Example 5: Output summary returned by the skill
 
 ```text
 Created:
-- 04_Engineering/Error-Handling-Flow.md (type/guide, component/application, topic/error-handling)
+- 04_Engineering/Dark-Theme.md (type/guide, area/engineering, component/web)
 
 Updated:
-- 04_Engineering/Validation-Pattern.md (added cross-link)
+- 04_Engineering/Frontend-SPA.md (Related link)
+- 00_Index/Navigation.md, 00_Index/Home.md
 
 New tags: none
 TODOs: none

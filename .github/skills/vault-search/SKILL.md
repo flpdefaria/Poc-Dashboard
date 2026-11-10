@@ -11,7 +11,7 @@ Full-text keyword search over `Docs/Vault/CarStore/` using chained `rg` pipeline
 ## Required tools
 
 ```bash
-brew install ripgrep fd
+brew install ripgrep
 ```
 
 ## Procedure

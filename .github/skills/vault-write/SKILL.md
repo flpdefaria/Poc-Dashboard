@@ -11,7 +11,7 @@ Create or update notes in `Docs/Vault/CarStore/`. For all structural rules — f
 ## Required tools
 
 ```bash
-brew install ripgrep fd
+brew install ripgrep
 ```
 
 ## Inputs

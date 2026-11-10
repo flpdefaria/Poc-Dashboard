@@ -20,7 +20,7 @@ Obsidian vault for living technical documentation of the CarStore .NET 10 MVC so
 * New feature, bug fix, refactor, new entity property, changed invariant.
 * Undocumented behavior discovered worth recording.
 * When adding/removing/upgrading a NuGet package, or changing a `.csproj` reference, update [[Dependencies]] in `01_Project/`.
-* When changing domain entities (`Brand`, `Car`) or their invariants, update [[Domain-Overview]] in `03_Domain/`.
+* When changing domain entities (`Brand`, `Car`, `Customer`) or their invariants, update [[Domain-Overview]] in `03_Domain/`.
 * When changing layering rules or the composition root (`Program.cs`), update [[Architecture-Overview]] in `02_Architecture/` and [[Repository-Structure]] in `01_Project/`.
 
 ## Note Format

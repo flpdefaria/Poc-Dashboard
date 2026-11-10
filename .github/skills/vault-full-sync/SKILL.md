@@ -17,7 +17,7 @@ This skill does NOT hardcode vault rules. Every structural rule — frontmatter,
 ## Required tools
 
 ```bash
-brew install ripgrep fd
+brew install ripgrep
 ```
 
 ## Inputs

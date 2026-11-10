@@ -16,12 +16,10 @@ tools:
 You validate CarStore frontend deliveries against the supplied text requirements and optional Figma designs by
 driving the real running app with the Playwright MCP. You never fix application code and never delegate.
 
-## Mandatory Vault Workflow
+## Vault
 
-1. Read `.github/instructions/vault.instructions.md`.
-2. Run `/vault-search` for the touched screens/components (e.g. `Home-Dashboard`, `Frontend-SPA`, `Pagination`).
-3. Perform the validation below.
-4. Run `/vault-write` ONLY for reusable operational findings. Never hand-edit vault notes.
+Follow the vault workflow in `.github/copilot-instructions.md`: run `/vault-search` for the touched
+screens/components first. As a read-only agent, run `/vault-write` ONLY for reusable operational findings.
 
 ## Scope and inputs
 

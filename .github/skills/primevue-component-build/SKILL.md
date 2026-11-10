@@ -47,6 +47,6 @@ is ambiguous.
 - Never introduce Bootstrap, jQuery-Bootstrap plugins, or `bi bi-*` icons - PrimeVue + Tailwind + Lucide only (no PrimeIcons `pi pi-*`).
 - Never introduce a second JS framework, a second routing library, or a global store - `vue-router` already owns navigation; adding Pinia is a Frontend-Tooling-Specialist proposal, not this skill's call.
 - Never paginate client-side.
-- Never change `vite.config.ts`, `package.json`, `router/index.ts`'s setup, or `.vscode/mcp.json` from this skill - that is Frontend-Tooling-Specialist's scope.
+- Never change `vite.config.ts`, `package.json`, `router/index.ts`'s setup, or the MCP config files (`.mcp.json`, `.vscode/mcp.json`) from this skill - that is Frontend-Tooling-Specialist's scope.
 - Never add a new mount point or page-serving Razor view - a new page is a `router/index.ts` route + component + `Sidebar.vue` nav item.
 - Never skip the `vue-tsc --noEmit` + `npm run build` verification step.

@@ -1,281 +1,55 @@
 # Example Queries
 
-> The tag values and folder names used below (e.g., `type/policy`, `component/application`, `05_Operations`) are **illustrative only**. At runtime, the actual valid tags come from `Docs/Vault/CarStore/00_Index/Tags.md` and the actual navigation index comes from `Docs/Vault/CarStore/00_Index/Navigation.md`. Substitute the real values from those reads when running the commands below.
+All commands run from the repo root. Tags shown here exist in `00_Index/Tags.md` at the time of writing, but always reload the catalog before relying on them.
 
-All examples assume the vault root as the base path:
+## Example 1: "How does paging work between the API and the Vue tables?"
 
-```bash
-Docs/Vault/CarStore
+```
+Search Item 1: text="pagination"   tags=["area/engineering"]
+Search Item 2: text="usePagedFetch"
+Search Item 3: text="api"          tags=["component/web"]
 ```
 
----
-
-## Example 1: Distributor sync and Contract matching
-
-**Query:** `How does distributor sync match Contracts to Companies?`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | distributor sync | `topic/sync` |
-| 2 | contract | `entity/contract` |
-| 3 | company | `entity/company` |
-
-**Primary search (full chain):**
-
 ```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "entity/contract" \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "company" \
+rg -l --glob "*.md" -i -F "pagination" Docs/Vault/CarStore \
+| xargs rg -l -i -F "usePagedFetch" \
 | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
 ```
 
-**Fallback 1 — drop `company`:**
+Expected hits: `04_Engineering/Pagination.md`, then one hop to `Frontend-SPA.md` / `Controllers.md` if they mention the terms.
+
+## Example 2: "Business rules for deleting a brand"
+
+```
+Search Item 1: text="brand"  tags=["entity/brand"]
+Search Item 2: text="delete"
+Search Item 3: text="DomainException"
+```
 
 ```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "entity/contract" \
+rg -l --glob "*.md" -i -F "entity/brand" Docs/Vault/CarStore \
+| xargs rg -l -i -F "delete" \
 | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
 ```
 
-**Fallback 2 — tag only:**
+If nothing matches, drop `delete` and retry, then follow `[[Domain-Overview]]`.
+
+## Example 3: "Home dashboard chart / sidebar behavior" (frontend)
 
 ```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/sync" \
-  Docs/Vault/CarStore \
+rg -l --glob "*.md" -i -F "component/web" Docs/Vault/CarStore \
+| xargs rg -l -i -e "echarts" -e "dashboard" -e "sidebar" \
 | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
 ```
 
-**Smart recombination (if results are only index files):**
+Expected hits: `Home-Dashboard.md`, `Sidebar-Collapse-Expand.md`, `Sidebar-Logo-Icon.md`, `Frontend-SPA.md`.
 
-Round 1 — swap tags for free-text:
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "distributor sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "contract" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-Round 2 — try new pairing:
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "company" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-**Wikilink follow** — if any matched note contains links:
-```bash
-# Extract links from a matched note
-rg -o --no-heading '\[\[([^\]]+)\]\]' --replace '$1' Docs/Vault/CarStore/03_Domain/Distributor-Sync.md
-
-# Resolve link path
-fd --extension md --full-path "Contract" Docs/Vault/CarStore
-
-# Check relevance against original query terms
-rg -l --ignore-case --fixed-strings "sync" Docs/Vault/CarStore/03_Domain/Contract.md
-```
-
-If the linked note is relevant, add it to the result set.
-
----
-
-## Example 2: Opportunity lifecycle for renewals
-
-**Query:** `Show me how the renewal flow works for Opportunities`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | opportunity | `entity/opportunity` |
-| 2 | renewal | _(none — free text)_ |
-| 3 | flow | _(none — free text)_ |
-
-**Primary search:**
+## Example 4: "How do I deploy?" (operations, synonym recombination)
 
 ```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "entity/opportunity" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "renewal" \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "flow" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
+rg -l --glob "*.md" -i -F "type/runbook" Docs/Vault/CarStore | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
+# Too few results → synonyms
+rg -l --glob "*.md" -i -e "deploy" -e "publish" -e "zip" Docs/Vault/CarStore
 ```
 
----
-
-## Example 3: Error handling and validation patterns
-
-**Query:** `Find the error handling and validation patterns`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | error handling | `topic/error-handling` |
-| 2 | validation | `topic/validation` |
-
-**Primary search:**
-
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/error-handling" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "topic/validation" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
----
-
-## Example 4: Authentication configuration
-
-**Query:** `How is authentication configured in CarStore?`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | authentication | `topic/auth` |
-| 2 | configuration | _(none — free text)_ |
-
-**Primary search:**
-
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/auth" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "configuration" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-**Fallback — tag only:**
-
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/auth" \
-  Docs/Vault/CarStore \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-**Smart recombination (if only Tags.md matched):**
-
-Round 1 — swap `topic/auth` for synonym text:
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "OIDC" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "authentication" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-Round 2 — try `area/security` instead of `topic/auth`:
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "area/security" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "Entra" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
----
-
-## Example 5: Application layer service patterns
-
-**Query:** `How are services structured in the Application layer?`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | application | `component/application` |
-| 2 | service | _(none — free text)_ |
-
-**Primary search:**
-
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "component/application" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "service" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
----
-
-## Example 6: Soft deletion pattern
-
-**Query:** `How does soft deletion work?`
-
-**Decomposition:**
-
-| # | Text | Tags |
-|---|------|------|
-| 1 | soft deletion | `topic/soft-deletion` |
-
-**Primary search:**
-
-```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "topic/soft-deletion" \
-  Docs/Vault/CarStore \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
+Expected hits: `05_Operations/Deployment-Runbook.md`, plus one hop to `06_References/Azure-App-Service-Docs.md`.

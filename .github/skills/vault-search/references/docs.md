@@ -1,167 +1,61 @@
 # Search Strategy
 
-Commands and strategy for keyword search over `Docs/Vault/CarStore/`. For vault structure, tag taxonomy, and note format, see `.github/instructions/vault.instructions.md`. Run all commands from the repo root.
+Commands and strategy for keyword search over `Docs/Vault/CarStore/`. For vault structure, tag taxonomy and note format, see `.github/instructions/vault.instructions.md`. Run all commands from the repo root. Only `rg` (ripgrep) and POSIX tools are required.
 
 ## Load reference data first
 
-Decomposition needs the live tag catalog; result-gathering uses the navigation index. Always read them at runtime — never hard-code.
-
-Tag values (deduplicated, sorted):
+Always read the tag catalog and the navigation index at runtime. Never hard-code them.
 
 ```bash
-rg -N --no-heading -o '`([a-z]+/[a-z0-9-]+)`' --replace '$1' \
-  Docs/Vault/CarStore/00_Index/Tags.md | sort -u
-```
+# Tag values (deduplicated, sorted)
+rg -N --no-heading -o '`([a-z]+/[a-z0-9-]+)`' --replace '$1' Docs/Vault/CarStore/00_Index/Tags.md | sort -u
 
-Values under one prefix (replace `area`):
-
-```bash
-awk '/^### area\/\*/{flag=1;next} /^### /{flag=0} flag' \
-  Docs/Vault/CarStore/00_Index/Tags.md \
+# Values under one prefix (replace `entity`)
+awk '/^### entity\/\*/{flag=1;next} /^### /{flag=0} flag' Docs/Vault/CarStore/00_Index/Tags.md \
   | rg -o '`([a-z]+/[a-z0-9-]+)`' --replace '$1'
-```
 
-Navigation index (all notes + paths):
-
-```bash
+# Navigation index (all linked notes)
 cat Docs/Vault/CarStore/00_Index/Navigation.md
+
+# Notes in a folder
+rg --files -g '*.md' Docs/Vault/CarStore/<folder>
 ```
 
-List notes in a folder:
+## Query decomposition
 
-```bash
-fd --extension md . Docs/Vault/CarStore/<folder>
-```
-
-## Query Decomposition
-
-The skill receives a **complex natural-language query** and must break it into small search items.
-
-### How to decompose
-
-1. Extract the **key nouns and concepts** from the query as 1–2 word terms. Normalize to lowercase.
-2. For each term, match it against the tag catalog loaded at runtime:
-   - `component/*` tags match backend/frontend layers (e.g., `application` → `component/application`).
-   - `entity/*` tags match domain entities (e.g., `contract` → `entity/contract`).
-   - `topic/*` tags match cross-cutting concerns (e.g., `sync` → `topic/sync`).
-   - `type/*` tags match note kinds (e.g., `runbook` → `type/runbook`).
-   - `area/*` tags match functional areas (e.g., `security` → `area/security`).
-   - `env/*` tags match environments (e.g., `production` → `env/prod`).
-3. A term may have zero tags (pure free-text), one tag, or multiple tags.
-4. Aim for 2–5 search items per query. Do not over-split.
-
-### Decomposition output format
+1. Extract the key nouns/concepts as 1–2 word lowercase terms.
+2. Match each term against the tag catalog loaded above. The prefixes that exist today are `type/*`, `area/*`, `component/*` and `entity/*`, but read the catalog live because new ones may appear. Examples: `brand` → `entity/brand`, `controller` → `component/web`, `deploy` → `type/runbook`.
+3. A term may map to zero, one or several tags. Aim for 2–5 search items and do not over-split.
 
 ```
-Search Item 1: text="distributor sync" tags=["topic/sync"]
-Search Item 2: text="contract"         tags=["entity/contract"]
-Search Item 3: text="company"          tags=["entity/company"]
+Search Item 1: text="pagination" tags=["area/engineering"]
+Search Item 2: text="customer"   tags=["entity/customer"]
 ```
 
 ## Search pipelines
 
-### Chained pipeline (intersection)
-
-The primary search uses chained `rg` pipes. Each pipe narrows the file list further. Prefer tags over free-text for the first filter (more selective):
+**Chained intersection (primary).** Each pipe narrows the file list. Put the most selective filter (usually a tag) first:
 
 ```bash
-rg -l \
-  --glob "*.md" \
-  --ignore-case \
-  --fixed-strings "<tag-or-text-1>" \
-  Docs/Vault/CarStore \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "<tag-or-text-2>" \
-| xargs rg -l \
-  --ignore-case \
-  --fixed-strings "<text-3>" \
+rg -l --glob "*.md" --ignore-case --fixed-strings "<tag-or-text-1>" Docs/Vault/CarStore \
+| xargs rg -l --ignore-case --fixed-strings "<tag-or-text-2>" \
 | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
 ```
 
-### Fallback — progressive filter removal
+**Fallback.** If the chain returns nothing, drop the last (least specific) pipe and retry until something matches or one filter remains. Then try each item alone and union the results. Cap noisy queries with `| head -n 5` before the `cat`.
 
-If the full chain returns zero results:
-1. Remove the last (least-specific) pipe and re-run.
-2. Repeat until at least one note is found or only one filter remains.
-3. If a single filter still returns nothing, try the next search item alone.
+**Recombination (at most 2 rounds).** Use it when you find fewer than 2 content notes:
 
-### Broadening — individual item searches
+- Swap tag ↔ text (`entity/car` ↔ `car`).
+- Try synonyms (`deploy` → `deployment`, `publish`, `zip`; `chart` → `echarts`, `dashboard`).
+- Re-pair items: A→B→C failed, so try A→C and B→C.
 
-If intersections return nothing, run each item independently and union the results:
-
-```bash
-rg -l --glob "*.md" --ignore-case --fixed-strings "<tag-or-text>" \
-  Docs/Vault/CarStore \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-### Limiting results
+## Wikilink follow (one hop)
 
 ```bash
-rg -l --glob "*.md" --ignore-case --fixed-strings "<term>" \
-  Docs/Vault/CarStore \
-  | head -n 5 \
-  | xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
+rg -o --no-heading '\[\[([^\]|#]+)' --replace '$1' <matched-file>        # extract links
+rg --files -g '<Link-Name>.md' Docs/Vault/CarStore                        # resolve path
+rg -l --ignore-case --fixed-strings "<any-search-term>" <linked-file>     # relevance check
 ```
 
-### Smart recombination (when results are too few)
-
-If the primary + fallback searches return fewer than 2 content notes (or only index files like `Tags.md`), generate **new search combinations**:
-
-1. **Swap tag ↔ text** — replace a tag filter with its plain-text equivalent, or vice-versa:
-   - Tag `entity/contract` → text `contract`
-   - Text `sync` → tag `topic/sync`
-2. **Use synonyms** — try alternative terms for the same concept:
-   - `authentication` → `auth`, `credentials`, `login`
-   - `deploy` → `deployment`, `release`, `publish`
-3. **Try different tag prefixes** — a concept may live under a different prefix:
-   - `topic/auth` → `area/security`
-   - `entity/distributor` → `area/integration` + text `distributor`
-4. **Re-pair items** — combine items that were not paired in the original chain:
-   - Original: A → B → C (0 results). Try: A → C, B → C, A + C text only.
-
-Run new pipelines with these recombined items and union with any previous results. Do at most **2 recombination rounds**.
-
-Example — original `topic/sync` + `entity/contract` + `company` returned nothing:
-
-```bash
-# Round 1: swap tags for text
-rg -l --glob "*.md" --ignore-case --fixed-strings "distributor sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l --ignore-case --fixed-strings "contract" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-
-# Round 2: try new pair (skip middle term)
-rg -l --glob "*.md" --ignore-case --fixed-strings "sync" \
-  Docs/Vault/CarStore \
-| xargs rg -l --ignore-case --fixed-strings "company" \
-| xargs -I {} sh -c 'echo "\n===== {} ====="; cat "{}"'
-```
-
-### Wikilink relevance check
-
-After collecting matched notes, extract and validate `[[wikilinks]]` to find additional relevant content:
-
-1. **Extract links** from each matched note:
-   ```bash
-   rg -o --no-heading '\[\[([^\]]+)\]\]' --replace '$1' <matched-file>
-   ```
-
-2. **Resolve paths** — find the linked file in the vault:
-   ```bash
-   fd --extension md --full-path "<Link-Name>" Docs/Vault/CarStore
-   ```
-
-3. **Check relevance** — the linked note is relevant if it contains at least one of the original search terms (tags or text):
-   ```bash
-   rg -l --ignore-case --fixed-strings "<any-search-term>" <linked-file>
-   ```
-
-4. If relevant, **add to the result set** (deduplicate).
-
-5. **One hop only** — do not follow links inside the linked notes.
-
-6. **Exclude index files** — skip `Tags.md`, `Navigation.md`, `Home.md` unless they contain query-specific content beyond tag definitions.
-
-Then **follow `[[Wikilinks]]`** in the matched notes to gather complete context.
+Add a linked note only if it contains at least one search term. Do not follow links inside linked notes. Skip `Tags.md`, `Navigation.md` and `Home.md` unless they hold query-specific content.
