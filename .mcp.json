@@ -6,7 +6,25 @@
     },
     "primevue": {
       "command": "npx",
-      "args": ["-y", "@primevue/mcp"]
+      "args": [
+        "-y",
+        "@primevue/mcp"
+      ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--browser",
+        "msedge",
+        "--ignore-https-errors",
+        "--user-data-dir",
+        ".playwright-mcp/profile",
+        "--output-dir",
+        ".playwright-mcp/output"
+      ]
     }
   }
 }

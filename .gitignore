@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Playwright MCP (browser profile and outputs)
+.playwright-mcp/
