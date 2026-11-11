@@ -1,24 +1,19 @@
 <script setup lang="ts">
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
-import { Check, Moon, Sun } from "@lucide/vue";
+import { Check } from "@lucide/vue";
 import { dialogShellPt, dialogSecondaryButtonClass } from "./dialogStyles";
-import { SURFACE_MODES, useTheme, type SurfaceMode, type Theme } from "../../../composables/useTheme";
+import { SURFACE_MODES, useTheme, type SurfaceMode } from "../../../composables/useTheme";
 
 /**
- * Theme settings (light/dark + surface mode), modeled on Atlas' ThemeSettingsDialog. Every choice
- * applies immediately and is persisted by useTheme(); there is no save step, so the footer only
- * closes the dialog.
+ * Appearance settings (surface mode), modeled on Atlas' ThemeSettingsDialog. Light/dark is switched
+ * only by the sidebar's theme icon button. Every choice applies immediately and is persisted by
+ * useTheme(); there is no save step, so the footer only closes the dialog.
  */
 defineProps<{ visible: boolean }>();
 const emit = defineEmits<{ "update:visible": [value: boolean] }>();
 
-const { theme, surface, setTheme, setSurface } = useTheme();
-
-const THEME_OPTIONS: { value: Theme; label: string; icon: typeof Sun }[] = [
-  { value: "light", label: "Claro", icon: Sun },
-  { value: "dark", label: "Escuro", icon: Moon },
-];
+const { surface, setSurface } = useTheme();
 
 const SURFACE_LABELS: Record<SurfaceMode, string> = {
   gray: "Cinza",
@@ -54,25 +49,6 @@ const dialogPt = dialogShellPt("w-[520px]");
     <template #header>
       <span class="text-[21px] font-bold text-color">Aparência</span>
     </template>
-
-    <fieldset class="m-0 min-w-0 border-0 p-0">
-      <legend class="mb-3 p-0 text-sm font-semibold text-color">Tema</legend>
-      <div class="grid grid-cols-2 gap-3">
-        <label v-for="option in THEME_OPTIONS" :key="option.value" :class="optionClass(theme === option.value)">
-          <input
-            type="radio"
-            name="theme-mode"
-            class="sr-only"
-            :value="option.value"
-            :checked="theme === option.value"
-            @change="(event) => setTheme(option.value, event)"
-          />
-          <component :is="option.icon" class="text-base" />
-          <span class="flex-1">{{ option.label }}</span>
-          <Check v-if="theme === option.value" class="text-base" aria-hidden="true" />
-        </label>
-      </div>
-    </fieldset>
 
     <fieldset class="m-0 min-w-0 border-0 p-0">
       <legend class="mb-1 p-0 text-sm font-semibold text-color">Superfície</legend>

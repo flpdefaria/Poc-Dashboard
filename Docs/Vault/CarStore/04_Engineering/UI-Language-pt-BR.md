@@ -19,7 +19,7 @@ strings live in the components, and the app runs in one language.
 - Pages and tables (`components/*Page.vue`, `*Table.vue`): titles, descriptions, "Novo carro/Nova marca/Novo
   cliente", column headers, delete-confirmation texts.
 - Dialogs (`components/common/dialog/*`): headers, `FormField`/`DetailField` labels, "Cancelar/Salvar/Fechar/
-  Excluir", required-field validation messages. `ThemeSettingsDialog` ("Aparência", "Tema", "Superfície").
+  Excluir", required-field validation messages. `ThemeSettingsDialog` ("Aparência", "Superfície").
 - `common/table/DataTableCommon.vue`: row menu "Detalhes/Editar/Excluir", "Ações", "Excluir selecionados",
   default `searchPlaceholder` "Buscar nesta página…".
 - `common/sidebar/Sidebar.vue`, `common/loader/ShowroomLoader.vue`, `Home.vue`.

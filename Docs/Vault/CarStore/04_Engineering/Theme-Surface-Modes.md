@@ -39,8 +39,9 @@ ramp, the pre-paint script and the preset stay in sync.
 - **State** `composables/useTheme.ts` -> `{ theme, surface, toggle, setTheme, setSurface }`; persisted in
   `localStorage` `carstore-theme` / `carstore-surface`. `Views/Shared/_Layout.cshtml` applies `app-dark` and
   `data-surface` before first paint (its mode list must match `SURFACE_MODES`).
-- **UI** `components/common/dialog/ThemeSettingsDialog.vue` (light/dark radios + surface swatch strips, live
-  apply, Close only), opened by the sidebar "Appearance" row (`Palette` icon) above the "Dark theme" switch.
+- **UI** `components/common/dialog/ThemeSettingsDialog.vue` (surface swatch strips only, live apply, Close
+  only), opened by the sidebar "Aparência" row (`Palette` icon). Light/dark is switched only by the sidebar
+  "Tema escuro" icon button (`Moon`/`Sun`, `toggle()` with the circular reveal); the dialog has no theme radios.
 - **Charts** `common/chart/BarChart.vue` rebuilds on `theme` and `surface` changes; default bar color is
   `--p-primary-color` (now neutral). Dark `--p-surface-50/200` are `color-mix()` strings, so canvas code must
   read plain steps.

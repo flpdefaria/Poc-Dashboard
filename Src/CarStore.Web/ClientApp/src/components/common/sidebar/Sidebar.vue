@@ -93,7 +93,7 @@ const selectedRowClass =
         </RouterLink>
       </nav>
 
-      <!-- Footer items: appearance settings and the light/dark quick switch. -->
+      <!-- Footer items: appearance settings (surface mode) and the light/dark icon button, the only theme switch. -->
       <div class="flex shrink-0 flex-col gap-2 px-3">
         <button
           v-tooltip.right="tooltipFor('Aparência')"
@@ -120,20 +120,7 @@ const selectedRowClass =
           <span class="flex size-12 shrink-0 items-center justify-center">
             <component :is="theme === 'dark' ? Sun : Moon" class="size-6" :stroke-width="1.5" />
           </span>
-          <span v-show="expanded" class="flex min-w-0 flex-1 items-center justify-between gap-2 pr-3">
-            <span class="truncate whitespace-nowrap">Tema escuro</span>
-            <!-- Switch track mirrors aria-pressed for sighted users. -->
-            <span
-              class="relative h-4 w-7 shrink-0 rounded-full transition-colors duration-200"
-              :class="theme === 'dark' ? 'bg-primary' : 'bg-surface-300'"
-              aria-hidden="true"
-            >
-              <span
-                class="absolute top-0.5 left-0.5 size-3 rounded-full bg-surface-0 transition-transform duration-200"
-                :class="theme === 'dark' ? 'translate-x-3' : ''"
-              ></span>
-            </span>
-          </span>
+          <span v-show="expanded" class="truncate whitespace-nowrap pr-3">Tema escuro</span>
         </button>
       </div>
       <ThemeSettingsDialog v-model:visible="themeSettingsVisible" />

@@ -30,7 +30,8 @@ Figma **nav-rail** in IconOnly layout (file `EOvtzuJAvw1UnoH9tsYmiO`, instance `
   `src/style.css`: `#2564cf` in light (white ink 5.5:1, fill 5.3:1 vs the `#f9fafb` rail), `#7aa7f5` under
   `html.app-dark` (dark `surface-0` ink about 8.3:1, fill about 7.9:1 vs the rail). Others: `text-color`,
   `hover:bg-surface-100`.
-- Footer: "Aparência" (opens `ThemeSettingsDialog`) and the "Tema escuro" switch (`aria-pressed`), then a
+- Footer: "Aparência" (opens `ThemeSettingsDialog`, surface mode only) and the "Tema escuro" icon button
+  (`Moon`/`Sun`, `aria-pressed`, no switch track; the only light/dark control in the app), then a
   `bg-surface-200` divider and the account row (32px `Avatar`, `bg-surface-200`; name/e-mail only when expanded).
 
 ## Behavior
