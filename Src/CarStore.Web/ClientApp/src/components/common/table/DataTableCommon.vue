@@ -50,6 +50,13 @@ const paginatorPt = {
   },
 };
 
+// `flush` rows follow the Figma table component (dashboard node 2009:212): 40px rows, 14px cell inset.
+// `!` is needed because PrimeVue's `.p-datatable-tbody > tr > td` padding outranks a utility class.
+const flushColumnPt = {
+  headerCell: { class: "px-3.5! py-2.5!" },
+  bodyCell: { class: "px-3.5! py-2.5!" },
+};
+
 const props = withDefaults(
   defineProps<{
     value: any[];
@@ -73,9 +80,19 @@ const props = withDefaults(
     bulkDelete?: boolean;
     /** The entity's API url: rows flagged under it by the CRUD composables play their create/edit/delete effect. */
     effectScope?: string;
+    /** Placeholder of the current-page search box. */
+    searchPlaceholder?: string;
+    /** Set false for a fixed-size preview (e.g. a dashboard panel) that links to the full list instead. */
+    paginator?: boolean;
+    /** Alternate row backgrounds. */
+    stripedRows?: boolean;
+    /** Edge-to-edge variant for a table that is itself the card body: no outer border, padded toolbar, 40px rows. */
+    flush?: boolean;
   }>(),
   {
     rowsPerPageOptions: () => [10, 20, 50],
+    searchPlaceholder: "Search this page...",
+    paginator: true,
     dataKey: "id",
     rows: 10,
     first: 0,
@@ -202,11 +219,15 @@ function toggleMenu(event: Event, data: any) {
 
 <template>
   <div class="flex flex-col gap-2">
-    <div class="flex items-center justify-between gap-3">
-      <IconField class="w-full max-w-[280px]">
-        <InputIcon><Search /></InputIcon>
-        <InputText v-model="searchTerm" placeholder="Search this page..." class="w-full" />
-      </IconField>
+    <div class="flex items-center justify-between gap-3" :class="{ 'px-4': flush }">
+      <div class="flex w-full items-center gap-2">
+        <IconField class="w-full max-w-[280px]">
+          <InputIcon><Search /></InputIcon>
+          <InputText v-model="searchTerm" :placeholder="searchPlaceholder" class="w-full" />
+        </IconField>
+        <!-- Extra toolbar actions next to the search box (e.g. a "View all" link). -->
+        <slot name="toolbar" />
+      </div>
       <Button
         v-if="bulkDelete && selectedRows.length"
         label="Delete selected"
@@ -220,13 +241,14 @@ function toggleMenu(event: Event, data: any) {
       </Button>
     </div>
 
-    <div class="rounded-xl border border-surface-300 overflow-hidden">
+    <div :class="flush ? 'overflow-hidden' : 'rounded-xl border border-surface-300 overflow-hidden'">
       <DataTable
         v-model:selection="selectedRows"
         :value="displayValue"
         :loading="loading"
         lazy
-        paginator
+        :paginator="paginator"
+        :striped-rows="stripedRows"
         row-hover
         :rows="rows"
         :rowsPerPageOptions="rowsPerPageOptions"
@@ -242,7 +264,14 @@ function toggleMenu(event: Event, data: any) {
         @sort="onSort"
       >
         <Column v-if="bulkDelete" selectionMode="multiple" header-style="width: 3rem" />
-        <Column v-for="col in columns" :key="col.field" :field="col.field" :header="col.header" sortable>
+        <Column
+          v-for="col in columns"
+          :key="col.field"
+          :field="col.field"
+          :header="col.header"
+          sortable
+          :pt="flush ? flushColumnPt : undefined"
+        >
           <template #body="{ data }">
             <slot :name="`col-${col.field}`" :data="data">
               <span :class="col.primary ? 'font-semibold text-color' : 'text-xs text-muted-color'">{{ data[col.field] }}</span>

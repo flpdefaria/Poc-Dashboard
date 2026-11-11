@@ -9,7 +9,7 @@
 @source "../../Views";
 
 /* Data palette: automotive paint swatches. Color on the dashboard encodes data categories and
-   metric identity only; slate (surface-700/800) stays the single "act here" color. Every swatch
+   metric identity only; the monochrome surface-700/800 stays the single "act here" color. Every swatch
    holds >= 4.5:1 on white and >= 3:1 on its own 12% tint, so it works as text, icon or bar. */
 @theme {
   --color-paint-gulf: #2f6f9f;
@@ -17,34 +17,75 @@
   --color-paint-bronze: #9a6a1c;
   --color-paint-burgundy: #8e2f52;
   --color-paint-graphite: #475569;
+  /* Dashboard data palette from Figma "Central da frota" (node 2005:5266): series/databar tones. */
+  --color-paint-violet: #6b3fe2;
+  --color-paint-rust: #c14624;
+  --color-paint-teal: #05817c;
+}
+
+/* Surface modes (Atlas / Prometheus): `data-surface` on <html> picks the Aura primitive palette
+   behind the surface scale. The preset (src/plugins/primevue-preset.ts) sets `--p-surface-N` to
+   `var(--sm-N)`, and `primary.N` aliases `surface.N`, so a mode switch recolors PrimeVue
+   components, the Tailwind surface/primary utilities and the monochrome primary together.
+   Gray is the default (no attribute). Applied before first paint by _Layout.cshtml, then by
+   useTheme.ts. */
+:root,
+html[data-surface="gray"] {
+  --sm-0: #ffffff;
+  --sm-50: var(--p-gray-50); --sm-100: var(--p-gray-100); --sm-200: var(--p-gray-200);
+  --sm-300: var(--p-gray-300); --sm-400: var(--p-gray-400); --sm-500: var(--p-gray-500);
+  --sm-600: var(--p-gray-600); --sm-700: var(--p-gray-700); --sm-800: var(--p-gray-800);
+  --sm-900: var(--p-gray-900); --sm-950: var(--p-gray-950);
+}
+html[data-surface="neutral"] {
+  --sm-50: var(--p-neutral-50); --sm-100: var(--p-neutral-100); --sm-200: var(--p-neutral-200);
+  --sm-300: var(--p-neutral-300); --sm-400: var(--p-neutral-400); --sm-500: var(--p-neutral-500);
+  --sm-600: var(--p-neutral-600); --sm-700: var(--p-neutral-700); --sm-800: var(--p-neutral-800);
+  --sm-900: var(--p-neutral-900); --sm-950: var(--p-neutral-950);
+}
+html[data-surface="slate"] {
+  --sm-50: var(--p-slate-50); --sm-100: var(--p-slate-100); --sm-200: var(--p-slate-200);
+  --sm-300: var(--p-slate-300); --sm-400: var(--p-slate-400); --sm-500: var(--p-slate-500);
+  --sm-600: var(--p-slate-600); --sm-700: var(--p-slate-700); --sm-800: var(--p-slate-800);
+  --sm-900: var(--p-slate-900); --sm-950: var(--p-slate-950);
+}
+html[data-surface="stone"] {
+  --sm-50: var(--p-stone-50); --sm-100: var(--p-stone-100); --sm-200: var(--p-stone-200);
+  --sm-300: var(--p-stone-300); --sm-400: var(--p-stone-400); --sm-500: var(--p-stone-500);
+  --sm-600: var(--p-stone-600); --sm-700: var(--p-stone-700); --sm-800: var(--p-stone-800);
+  --sm-900: var(--p-stone-900); --sm-950: var(--p-stone-950);
+}
+html[data-surface="zinc"] {
+  --sm-50: var(--p-zinc-50); --sm-100: var(--p-zinc-100); --sm-200: var(--p-zinc-200);
+  --sm-300: var(--p-zinc-300); --sm-400: var(--p-zinc-400); --sm-500: var(--p-zinc-500);
+  --sm-600: var(--p-zinc-600); --sm-700: var(--p-zinc-700); --sm-800: var(--p-zinc-800);
+  --sm-900: var(--p-zinc-900); --sm-950: var(--p-zinc-950);
 }
 
 /* Dark theme: "showroom after hours". Aura's light semantic tokens all resolve through the
-   surface scale (content = surface-0, text = surface-700, borders = surface-200/300...), so
-   remapping that scale to a designed graphite ramp moves PrimeVue components, the Tailwind
-   surface utilities and the slate accent together. Steps are tuned for elevation, not a
-   mechanical inversion: canvas 0, sidebar/cards 50-100, borders 200-300, muted text 500
-   (>= 5.5:1 on canvas), body text 700 (>= 12:1), slate accent 700/800 becomes a light fill.
+   surface scale (content = surface-0, text = surface-700, borders = surface-200/300...), and
+   the monochrome primary aliases it too, so inverting that scale moves PrimeVue components,
+   the Tailwind surface utilities and the primary accent together. The ramp is built from the
+   active surface mode and tuned for elevation, not a mechanical inversion: canvas 0 (mode 950),
+   sidebar/cards 50-100, borders 200-300, muted text 500 (mode 400, >= 7:1 on canvas), body text
+   700 (mode 200, >= 14:1); primary 950 becomes the white end, so solid primary fills and the
+   highlight turn into light fills with dark text.
    `html.app-dark` outranks PrimeVue's runtime `:root` block regardless of injection order. */
 html.app-dark {
   color-scheme: dark;
-  --p-surface-0: #0d1117;
-  --p-surface-50: #131922;
-  --p-surface-100: #19202b;
-  --p-surface-200: #232b37;
-  --p-surface-300: #2f3846;
-  --p-surface-400: #4d5868;
-  --p-surface-500: #8b96a8;
-  --p-surface-600: #aab3c2;
-  --p-surface-700: #dbe1ea;
-  --p-surface-800: #edf1f6;
-  --p-surface-900: #f5f7fa;
-  --p-surface-950: #fbfcfd;
+  --p-surface-0: var(--sm-950);
+  --p-surface-50: color-mix(in srgb, var(--sm-950) 55%, var(--sm-900));
+  --p-surface-100: var(--sm-900);
+  --p-surface-200: color-mix(in srgb, var(--sm-900) 45%, var(--sm-800));
+  --p-surface-300: var(--sm-800);
+  --p-surface-400: var(--sm-600);
+  --p-surface-500: var(--sm-400);
+  --p-surface-600: var(--sm-300);
+  --p-surface-700: var(--sm-200);
+  --p-surface-800: var(--sm-100);
+  --p-surface-900: var(--sm-50);
+  --p-surface-950: var(--sm-0);
 
-  --p-highlight-background: color-mix(in srgb, var(--p-primary-400) 18%, transparent);
-  --p-highlight-color: var(--p-primary-200);
-  --p-highlight-focus-background: color-mix(in srgb, var(--p-primary-400) 26%, transparent);
-  --p-highlight-focus-color: var(--p-primary-100);
   --p-mask-background: rgba(0, 0, 0, 0.6);
 
   /* Elevation: cards sit one step above the canvas, since light-theme shadows vanish on dark. */
@@ -76,6 +117,9 @@ html.app-dark {
   --color-paint-bronze: #d9aa5c;
   --color-paint-burgundy: #e083a6;
   --color-paint-graphite: #a3aec0;
+  --color-paint-violet: #a991f5;
+  --color-paint-rust: #ee9475;
+  --color-paint-teal: #4cc6be;
 }
 
 /* Theme switch: the new theme is revealed by a circle clip (useTheme.ts), so the default
@@ -155,28 +199,8 @@ html.app-dark {
   opacity: 0;
 }
 
-/* Home reveal: the headline rises out of a mask word by word, the rest follows in reading order.
-   Everything is visible by default; the animations only run once `.home-ready` is set. */
-.headline-word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  padding-bottom: 0.08em;
-  margin-right: 0.25em;
-}
-.headline-word-inner {
-  display: inline-block;
-}
-@keyframes headline-rise {
-  from {
-    transform: translateY(105%);
-    filter: blur(6px);
-  }
-}
-.home-ready .headline-word-inner {
-  animation: headline-rise 900ms var(--ease-out-expo) backwards;
-  animation-delay: calc(var(--i) * 110ms);
-}
+/* Home reveal: sections rise in reading order. Everything is visible by default; the animations
+   only run once `.home-ready` is set. */
 @keyframes reveal-up {
   from {
     opacity: 0;
@@ -267,7 +291,6 @@ html.app-dark {
   .loader-leave-to .loader-car {
     transform: none;
   }
-  .home-ready .headline-word-inner,
   .home-ready .reveal,
   .home-ready .bar-fill {
     animation: fade-in 250ms linear backwards;

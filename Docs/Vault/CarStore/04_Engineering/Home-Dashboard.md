@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-11-10
 tags:
   - note
   - type/guide
@@ -11,40 +11,59 @@ tags:
 
 # Home Dashboard
 
-`Home.vue` (route `/`) was rewritten from a two-card "Cars/Brands" landing page into a small analytics
-dashboard, first styled after a reference screenshot (a generic crypto-portfolio dashboard UI), then
-progressively corrected against real Figma nodes (file `2zyEr3S75NxHIJ5vgTFCWR`) as they became reachable.
-Rebuilt entirely with real data from the existing `/api/cars`, `/api/brands`, `/api/customers` endpoints —
-no fabricated metrics, deltas, or history.
+`Home.vue` (route `/`) is a small analytics dashboard built only from the existing `/api/cars`, `/api/brands`,
+`/api/customers` endpoints. No fabricated metrics, deltas, or history.
 
-## Layout
+On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da frota"** (file
+`EOvtzuJAvw1UnoH9tsYmiO`, node `2005:5266`), replacing the earlier version derived from file
+`2zyEr3S75NxHIJ5vgTFCWR` (node `217:6263`). Copy is in Portuguese, following the frame.
 
-- Header: "Fleet command" title + description only (the "Overview/Live" eyebrow, decorative search
-  `InputText`, and notification bell `Button` from the first pass were removed per user request — they had
-  no backing functionality).
-- Stat card row (`Card` x4: fleet value, cars in stock, registered customers, availability rate), corrected
-  on 2026-09-18 against Figma node `217:6263` ("card cars" component set): `!bg-surface-50` card background
-  (not the default white), `text-sm font-medium` muted label, a `size-9 bg-surface-0 rounded-md` icon box
-  wrapping a `text-xl` icon (not a bare padded icon), and a `text-[32px] font-bold` value (Figma's exact
-  32px, off Tailwind's default scale). All four values are `computed()` from the fetched `CarDto[]`/
-  `CustomerDto[]` — no deltas/history, since Figma's card also does not show any real trend data beyond the
-  static tags.
-- "New customers" panel: an ECharts `BarChart` (see `components/common/chart/BarChart.vue`, added
-  separately per the `echarts-chart-build` skill) grouping real `CustomerDto.createdAt` values by
-  week/month/year via a `SelectButton` period toggle (`period` ref drives `bucketLabel()`). This replaced an
-  earlier CSS-only bar chart from before ECharts was installed.
-- "Fleet by brand" panel: top 5 `BrandDto` by `carsCount`, shown as a dot + name + share-of-fleet percentage
-  + progress bar, linking to `/brands`.
-- "Recent customers": a real lazy-paged `DataTableCommon` bound to `/api/customers` (separate
-  `usePagedFetch` instance from the one used for the chart's aggregate load), rows defaulting to 5.
-- Footer: kept the existing `PoweredByBadge`, added a "Manage fleet" CTA to `/cars`.
+## Figma node -> code
 
-## Data loading
+| Figma node | Code (`Src/CarStore.Web/ClientApp/src/components/Home.vue`) |
+|---|---|
+| `2005:5302` page-header | Shared `common/pageheader/PageHeader.vue` ("Central da frota" + description) |
+| `2007:102` kpis (4 x `_kpi-card`) | `Card` x4 rendered from a `kpis` computed; `panelPt` (12px radius, `border-surface-200`, 18px body); value `text-[48px] font-semibold leading-14 tracking-[-0.96px]`; icon box `bg-surface-100 p-2 rounded-md` |
+| `2007:103` annotation (compact value + full-value tooltip) | `formatCurrencyCompact` ("R$ 20,8 mi") + PrimeVue `v-tooltip.top` with `formatCurrency` |
+| `2008:3752` new-customers | `Card` + `SelectButton` (Semanal/Mensal/Anual) + `common/chart/BarChart.vue` at 332px, `--color-paint-violet` |
+| `2008:3784` fleet-by-brand | Top 5 brands + "Outros" row, 8px databars (`bg-surface-200` track), `primaryButtonClass` "Ver marcas" |
+| `2037:268` / `2009:212` recent-customers | `Card` (body `p-0`) wrapping `DataTableCommon` with `flush`, `striped-rows`, `:paginator="false"`, `#toolbar` "Ver todos" |
 
-Three `usePagedFetch` instances: one each for `cars` and `brands` loaded with `pageSize=100` (the fleet is
-well under the paging API's 100-row cap) purely to compute the aggregates above — this is a one-time
-dashboard load, not a paginated list UI, so it does not conflict with the "no client-side pagination"
-convention. A fourth instance drives the real lazy-paged "Recent customers" table.
+## Behavior
+
+- **KPIs:** fleet value (`price * stock`), cars in stock, registered customers (`totalItems` of the paged
+  customers call, tag "Ao vivo"), availability rate (tag "Alta" >= 50%, else "Baixa").
+- **New customers:** trailing, zero-filled windows from `CustomerDto.createdAt`: 12 months ending this month
+  (pt-BR short month labels), 12 weeks (Monday starts, `dd/MM`), or every year from the first customer to now.
+  An all-zero window shows "Nenhum cliente novo neste período." This replaced the earlier grouping by month
+  name, which merged different years.
+- **Recent customers:** first server page (5 rows) of `/api/customers`; no paginator, "Ver todos" links to
+  `/customers`. Search/sort only act on that page (see `DataTableCommon`).
+- Showroom loader, staggered `.reveal` entrance, count-up numbers and `.bar-fill` animations are kept; the old
+  word-by-word headline animation and its CSS were removed.
+- `PoweredByBadge` and the "Manage fleet" footer CTA were removed from Home (not in the frame); the component
+  file is kept.
+
+## Shared pieces added or changed
+
+- `src/style.css` `@theme`: new data swatches `--color-paint-violet` (`#6b3fe2`), `--color-paint-rust`
+  (`#c14624`), `--color-paint-teal` (`#05817c`) with lifted `html.app-dark` variants. Figma `#a07307` -> existing
+  `paint-bronze`, `#8a3658` -> `paint-burgundy`, gray "Outros" -> `paint-graphite`.
+- Figma neutrals: `#e5e5e5` -> `border-surface-200` / `bg-surface-200`, `#262626` -> `text-color`,
+  `#737373` -> `text-muted-color`, sunken `#fafafa` -> `bg-surface-100`, contrast button `#0a0a0a` ->
+  `primaryButtonClass`.
+- `utils/format.ts`: `formatCurrencyCompact` (pt-BR compact BRL).
+- `common/chart/BarChart.vue`: optional `height` (px, default 160) and `ariaLabel` props, `minInterval: 1`,
+  24px square bars, tight grid.
+- `common/table/DataTableCommon.vue`: optional `searchPlaceholder`, `paginator` (default `true`),
+  `stripedRows`, `flush` (no outer border, padded toolbar, 40px rows) and a `#toolbar` slot. The defaults leave
+  the Cars/Brands/Customers tables unchanged.
+
+## Known gaps
+
+- Figma column "Carro" has no data source: `CustomerDto` has no car. It is omitted.
+- "Clientes recentes" lists the first page ordered by `FullName` (`CustomerService`), not by `CreatedAt`.
+- Aggregates use `pageSize=100` loads, so they undercount past 100 rows.
 
 ## Related
 

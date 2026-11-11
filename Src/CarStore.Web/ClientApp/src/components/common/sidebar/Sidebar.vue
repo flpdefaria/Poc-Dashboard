@@ -3,7 +3,8 @@ import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import Avatar from "primevue/avatar";
 import { useTheme } from "../../../composables/useTheme";
-import { Building2, Car, House, IdCard, Moon, Sun, User } from "@lucide/vue";
+import ThemeSettingsDialog from "../dialog/ThemeSettingsDialog.vue";
+import { Building2, Car, House, IdCard, Moon, Palette, Sun, User } from "@lucide/vue";
 
 const route = useRoute();
 
@@ -17,6 +18,7 @@ const navItems = [
 const activeKey = computed(() => route.name as string);
 
 const { theme, toggle: toggleTheme } = useTheme();
+const themeSettingsVisible = ref(false);
 
 // collapsed by default; hovering the rail expands it back to the full layout
 const expanded = ref(false);
@@ -53,6 +55,19 @@ const expanded = ref(false);
     </nav>
 
     <div class="flex-1"></div>
+
+    <!-- Appearance (theme + surface mode, Atlas-style settings dialog): same nav-row styling as the switch below. -->
+    <button
+      type="button"
+      class="flex h-10 w-full shrink-0 cursor-pointer items-center gap-1.75 overflow-hidden rounded-lg border-0 bg-transparent py-[10.5px] pl-[14.5px] pr-[10.5px] text-sm font-medium text-color transition-colors duration-150 hover:bg-surface-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      aria-label="Appearance"
+      aria-haspopup="dialog"
+      @click="themeSettingsVisible = true"
+    >
+      <Palette class="text-sm" />
+      <span v-show="expanded" class="truncate whitespace-nowrap">Appearance</span>
+    </button>
+    <ThemeSettingsDialog v-model:visible="themeSettingsVisible" />
 
     <!-- Theme switch: styled as a nav row so it reads as part of the rail, not a floating control. -->
     <button

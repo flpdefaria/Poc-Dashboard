@@ -44,6 +44,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 - [[Sidebar-Logo-Icon]]
 - [[Sidebar-Collapse-Expand]]
 - [[Home-Dashboard]]
+- [[Theme-Surface-Modes]]
 
 ## 05_Operations
 

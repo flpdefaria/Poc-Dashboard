@@ -14,6 +14,10 @@ const props = defineProps<{
   valueFormatter?: (value: number) => string;
   /** CSS custom property for the bar color; defaults to the PrimeVue primary. */
   colorVar?: string;
+  /** Chart height in px (default 160). */
+  height?: number;
+  /** Accessible summary of the chart, exposed on the container (canvas content is invisible to screen readers). */
+  ariaLabel?: string;
 }>();
 
 const el = ref<HTMLDivElement>();
@@ -25,7 +29,7 @@ function themeColor(token: string, fallback: string): string {
 }
 
 function primaryColor(): string {
-  return props.colorVar ? themeColor(props.colorVar, "#2f6f9f") : themeColor("--p-primary-color", "#10b981");
+  return props.colorVar ? themeColor(props.colorVar, "#2f6f9f") : themeColor("--p-primary-color", "#030712");
 }
 
 function buildOption() {
@@ -40,7 +44,7 @@ function buildOption() {
     animationDuration: 500,
     animationEasing: "cubicOut" as const,
     animationDurationUpdate: 300,
-    grid: { left: 8, right: 8, top: 16, bottom: 24, containLabel: true },
+    grid: { left: 0, right: 0, top: 8, bottom: 0, containLabel: true },
     tooltip: {
       trigger: "axis" as const,
       backgroundColor: themeColor("--p-surface-0", "#ffffff"),
@@ -57,6 +61,8 @@ function buildOption() {
     },
     yAxis: {
       type: "value" as const,
+      // Counts are whole numbers: never show fractional ticks.
+      minInterval: 1,
       splitLine: { lineStyle: { color: splitLineColor } },
       axisLabel: { color: axisLabelColor, fontSize: 11 },
     },
@@ -64,8 +70,8 @@ function buildOption() {
       {
         type: "bar" as const,
         data: props.values,
-        barMaxWidth: 32,
-        itemStyle: { color: primaryColor(), borderRadius: [4, 4, 0, 0] },
+        barMaxWidth: 24,
+        itemStyle: { color: primaryColor() },
       },
     ],
   };
@@ -79,11 +85,11 @@ onMounted(() => {
   resizeObserver.observe(el.value);
 });
 
-// Colors are read from CSS tokens at option-build time, so a theme switch rebuilds the option.
-const { theme } = useTheme();
+// Colors are read from CSS tokens at option-build time, so a theme or surface-mode switch rebuilds the option.
+const { theme, surface } = useTheme();
 
 watch(
-  () => [props.labels, props.values, theme.value],
+  () => [props.labels, props.values, theme.value, surface.value],
   () => chart.value?.setOption(buildOption()),
   { deep: true },
 );
@@ -95,5 +101,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="el" class="h-40 w-full"></div>
+  <div
+    ref="el"
+    class="w-full"
+    :style="{ height: `${height ?? 160}px` }"
+    :role="ariaLabel ? 'img' : undefined"
+    :aria-label="ariaLabel"
+  ></div>
 </template>

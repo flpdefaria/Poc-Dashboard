@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Car Store</title>
     <script>
-        // Theme before first paint: saved choice, else the OS preference (see useTheme.ts).
+        // Theme before first paint: saved choice, else the OS preference; plus the saved surface
+        // mode, else gray (see useTheme.ts).
         (function () {
-            var saved = null;
-            try { saved = localStorage.getItem("carstore-theme"); } catch (e) { }
+            var saved = null, surface = null;
+            try { saved = localStorage.getItem("carstore-theme"); surface = localStorage.getItem("carstore-surface"); } catch (e) { }
             var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
             if (dark) document.documentElement.classList.add("app-dark");
+            var modes = ["gray", "neutral", "slate", "stone", "zinc"];
+            document.documentElement.setAttribute("data-surface", modes.indexOf(surface) >= 0 ? surface : "gray");
         })();
     </script>
     <script type="importmap"></script>

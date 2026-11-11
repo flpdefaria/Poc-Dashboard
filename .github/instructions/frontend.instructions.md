@@ -19,7 +19,7 @@ Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` b
 |---|---|---|
 | Framework | Vue 3.5 SFC, `<script setup lang="ts">` | Single-page app: `vue-router` (history mode) owns client-side navigation. No Pinia yet. |
 | Build | Vite 8 (Rolldown) + `@vitejs/plugin-vue` 6 | Output goes to `../wwwroot/dist`. |
-| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (Aura preset) | Registered in `src/main.ts` with `darkModeSelector: false` **on purpose**: the app has light AND dark themes, but dark is implemented by remapping the surface scale under `html.app-dark` (see "Light and dark themes"), not by PrimeVue's dark mode. |
+| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (`CarStorePreset` on Aura, `src/plugins/primevue-preset.ts`) | Monochrome primary and surface modes modeled on the Atlas app (Prometheus design system). Registered in `src/main.ts` with `darkModeSelector: false` **on purpose**: the app has light AND dark themes, but dark is implemented by inverting the surface scale under `html.app-dark` (see "Light and dark themes"), not by PrimeVue's dark mode. |
 | Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
 | CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
 | Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
@@ -37,7 +37,8 @@ Src/CarStore.Web/ClientApp/
     main.ts                  # single entry: mounts the App shell once, on #app
     App.vue                  # SPA shell: Sidebar + <RouterView />
     router/index.ts          # vue-router routes ("/", "/cars", "/brands", "/customers")
-    style.css                # Tailwind + primeui imports, @source, paint palette, html.app-dark theme, .lucide sizing
+    plugins/primevue-preset.ts # CarStorePreset (Aura + monochrome primary + Prometheus tokens), SURFACE_MODES
+    style.css                # Tailwind + primeui imports, @source, paint palette, surface modes (--sm-*), html.app-dark theme, .lucide sizing
     types.ts                 # shared DTO interfaces mirroring Models/Api/*Dto.cs
     shims-vue.d.ts
     components/
@@ -52,7 +53,7 @@ Src/CarStore.Web/ClientApp/
         pageheader/          # PageHeader.vue (title, description, #actions slot)
         sidebar/             # Sidebar.vue (global nav + theme toggle, uses vue-router RouterLink/useRoute)
         table/               # DataTableCommon.vue (generic lazy paged DataTable)
-    composables/             # usePagedFetch, useEntityCrud, useCreateEntity (data); useTheme (light/dark);
+    composables/             # usePagedFetch, useEntityCrud, useCreateEntity (data); useTheme (light/dark + surface mode);
                              # useTweenedNumber (animated counters)
     styles/                  # buttonStyles.ts - shared Tailwind class-string constants
     utils/                   # format.ts - formatCurrency (BRL), formatDate (pt-BR);
@@ -170,17 +171,18 @@ The app ships both themes ("Showroom After Hours" dark theme, see `DESIGN.md`). 
 
 | Piece | Role |
 |---|---|
-| `Views/Shared/_Layout.cshtml` inline script | Applies `app-dark` to `<html>` before first paint: saved choice in `localStorage["carstore-theme"]`, else the OS `prefers-color-scheme`. |
-| `composables/useTheme.ts` | `useTheme()` -> `{ theme, toggle }`. Re-applies the class, persists the choice, plays the circular View Transition reveal (instant under reduced motion). |
-| `common/sidebar/Sidebar.vue` | The only theme toggle ("Dark theme" button). |
-| `src/style.css` -> `html.app-dark { ... }` | Remaps `--p-surface-0...950` to a graphite ramp, plus highlight, card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens resolve through the surface scale, so PrimeVue components and Tailwind `surface-*` utilities flip together. |
+| `plugins/primevue-preset.ts` | `CarStorePreset`: `--p-surface-N` = `var(--sm-N)`; `primary.N` aliases `surface.N` (Atlas "Noir": `primary.color` = `primary.950`, contrast = `surface.0`, highlight = solid `primary.950`); `extend` adds `--p-soft-*`, `--p-layout-*`, `--p-highlight-pressed-background`. |
+| `Views/Shared/_Layout.cshtml` inline script | Before first paint: `app-dark` on `<html>` (saved `localStorage["carstore-theme"]`, else OS `prefers-color-scheme`) and `data-surface` (saved `localStorage["carstore-surface"]`, else `gray`). |
+| `composables/useTheme.ts` | `useTheme()` -> `{ theme, surface, toggle, setTheme, setSurface }`. Applies the class/attribute, persists both choices, plays the circular View Transition reveal on theme changes (instant under reduced motion). |
+| `common/sidebar/Sidebar.vue` | "Appearance" row (opens `common/dialog/ThemeSettingsDialog.vue`: light/dark + surface mode `gray`/`neutral`/`slate`/`stone`/`zinc`) and the "Dark theme" quick switch. |
+| `src/style.css` -> `html[data-surface]` + `html.app-dark { ... }` | `data-surface` picks the Aura primitive palette behind `--sm-*`. Dark inverts `--p-surface-0...950` from the same `--sm-*` (canvas = mode 950, body text = mode 200, `surface-950` = white), plus card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens and the primary scale resolve through the surface scale, so PrimeVue components, Tailwind `surface-*`/`primary` utilities and the primary accent flip together. |
 
 Rules:
 
 1. **Use tokens and the theme follows for free.** `surface-*`, `text-color`, `text-muted-color`, `border-surface-*` and `--color-paint-*` all flip under `html.app-dark`. A raw hex, `bg-white`, `text-black` or a fixed `gray-*`/`slate-*` utility does not: it is a dark-theme bug.
 2. **Surfaces are inverted, not "dark versions".** In dark, `surface-0` is the darkest canvas and `surface-700/800` are light. So the slate primary action (`bg-surface-700` + `text-surface-0`) becomes a light fill with dark text. Use `primaryButtonClass`, never `text-white` on a `surface-*` fill.
-3. **Keep `darkModeSelector: false`.** Enabling PrimeVue's dark mode would apply Aura's own dark palette on top of the remap. New dark-specific values go into the `html.app-dark` block in `style.css`, overriding the matching `--p-*` component token, never as per-component `.app-dark ...` selectors.
-4. **Canvas consumers (ECharts) read CSS tokens at option-build time** and must rebuild on theme change: watch `useTheme().theme` and call `setOption(buildOption())`, as `common/chart/BarChart.vue` does.
+3. **Keep `darkModeSelector: false`.** Enabling PrimeVue's dark mode would apply Aura's own dark palette on top of the inverted ramp. New surface modes go into `SURFACE_MODES` (preset), the `html[data-surface]` blocks in `style.css`, and the `_Layout.cshtml` list together. New dark-specific values go into the `html.app-dark` block in `style.css`, overriding the matching `--p-*` component token, never as per-component `.app-dark ...` selectors.
+4. **Canvas consumers (ECharts) read CSS tokens at option-build time** and must rebuild on theme or surface change: watch `useTheme().theme` and `useTheme().surface` and call `setOption(buildOption())`, as `common/chart/BarChart.vue` does. Dark `--p-surface-50`/`-200` are `color-mix()` strings that a canvas cannot parse; read the plain steps (0, 100, 300, ...) instead.
 5. **Elevation:** light-theme shadows vanish on dark, so cards and the sidebar sit one surface step above the canvas (`--p-card-background: var(--p-surface-50)`). Do not rely on a shadow alone to separate a panel.
 6. **Contrast:** body text must stay at least 4.5:1 and large text/icons at least 3:1 in both themes. The existing ramp is tuned for this (muted `surface-500` 5.9:1, body `surface-700` 14:1 on the canvas). Status colors use the tinted fill + light ink tokens already defined.
 7. **Figma usually covers light only.** Derive dark from these existing tokens, never invent per-screen dark colors.
