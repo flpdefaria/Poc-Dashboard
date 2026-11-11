@@ -10,10 +10,12 @@ import { usePagedFetch } from "../composables/usePagedFetch";
 import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatDate } from "../utils/format";
 import { customerLabel } from "../utils/entityLabel";
-import type { CustomerDto } from "../types";
+import type { CarOption, CustomerDto } from "../types";
 
 const props = defineProps<{
   apiUrl: string;
+  /** Car lookup for the Edit dialog's "Carro" field. */
+  cars: CarOption[];
 }>();
 
 const rows = ref(10);
@@ -114,6 +116,7 @@ defineExpose({ reload: () => load(1, rows.value) });
   <EditCustomerDialog
     v-model:visible="editDialogVisible"
     :customer="editTarget"
+    :cars="props.cars"
     :loading="editLoading"
     :error="editError"
     @submit="onEditSubmit"

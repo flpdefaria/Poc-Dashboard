@@ -3,19 +3,25 @@ import { reactive, ref, watch } from "vue";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
+import Select from "primevue/select";
 import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
+import type { CarOption } from "../../../types";
 import { Check } from "@lucide/vue";
 
 export interface CreateCustomerPayload {
   fullName: string;
   email: string;
   phoneNumber: string | null;
+  /** Optional linked car; null = no car. */
+  carId: number | null;
 }
 
 const props = defineProps<{
   visible: boolean;
+  /** Car lookup (`GET /api/cars/options`), loaded by the page. */
+  cars: CarOption[];
   loading?: boolean;
   error?: string | null;
 }>();
@@ -27,7 +33,7 @@ const emit = defineEmits<{
 }>();
 
 function emptyForm() {
-  return { fullName: "", email: "", phoneNumber: "" };
+  return { fullName: "", email: "", phoneNumber: "", carId: null as number | null };
 }
 
 const form = reactive(emptyForm());
@@ -58,6 +64,7 @@ function onSave() {
     fullName: form.fullName.trim(),
     email: form.email.trim(),
     phoneNumber: form.phoneNumber.trim() || null,
+    carId: form.carId ?? null,
   });
 }
 
@@ -89,6 +96,21 @@ const dialogPt = dialogShellPt("w-[480px]");
 
     <FormField label="Telefone">
       <InputText v-model="form.phoneNumber" class="w-full" />
+    </FormField>
+
+    <FormField label="Carro">
+      <Select
+        v-model="form.carId"
+        :options="props.cars"
+        option-label="name"
+        option-value="id"
+        placeholder="Sem carro"
+        filter
+        filter-placeholder="Buscar carro"
+        show-clear
+        empty-filter-message="Nenhum carro encontrado"
+        class="w-full"
+      />
     </FormField>
 
     <Message v-if="validationError || props.error" severity="error" :closable="false">

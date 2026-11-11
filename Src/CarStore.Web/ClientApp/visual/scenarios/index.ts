@@ -1,12 +1,13 @@
 import type { VisualScenario } from '../types'
 import homeDashboard from './home-dashboard'
 import entityPages from './entity-pages'
+import customerDialogs from './customer-dialogs'
 
 /**
  * Scenario registry. Every id must be unique and filename-safe; a light
  * scenario needs its dark sibling (`visual:verdict` blocks PASS otherwise).
  */
-export const scenarios: VisualScenario[] = [...homeDashboard, ...entityPages]
+export const scenarios: VisualScenario[] = [...homeDashboard, ...entityPages, ...customerDialogs]
 
 export function getScenario(id: string): VisualScenario | undefined {
   return scenarios.find((s) => s.id === id)

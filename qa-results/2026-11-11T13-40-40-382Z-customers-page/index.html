@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Visual check — Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</title>
+<style>
+:root{color-scheme:light dark;--bg:#ffffff;--fg:#18181b;--muted:#71717a;--line:#e4e4e7;--card:#fafafa;
+--ok:#15803d;--diff:#b91c1c;--na:#a16207;--blocked:#7c2d12;--accent:#1d4ed8;--info:#1d4ed8}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0f19;--fg:#e5e7eb;--muted:#9ca3af;--line:#27272a;--card:#111827;
+--ok:#4ade80;--diff:#f87171;--na:#fbbf24;--blocked:#fdba74;--accent:#93c5fd;--info:#93c5fd}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:32px 0 10px}h3{font-size:15px;margin:20px 0 8px}
+a{color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 20px}
+.badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;
+border:1px solid currentColor}
+.s-passed,.s-captured,.s-reused,.s-pass{color:var(--ok)}.s-differences,.s-fail{color:var(--diff)}
+.s-not-applicable,.s-absent-at-base{color:var(--na)}
+.s-partial{color:var(--na)}.s-blocked{color:var(--blocked)}.s-disabled,.s-unknown{color:var(--muted)}
+.s-changed{color:var(--info)}.s-verified{color:var(--ok)}
+.s-missing,.s-missing-element,.s-invalid,.s-unresolved{color:var(--na)}
+.s-dimension-mismatch{color:var(--diff)}.s-partial-region,.s-dynamic,.s-data-driven,.s-info{color:var(--info)}
+.card{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:18px;margin:16px 0}
+.card>h2:first-child{margin-top:0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:rgba(127,127,127,.09);font-weight:600}
+.scroll{overflow-x:auto}
+.imgs{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+.imgs figure{margin:0;max-width:100%}
+.imgs figcaption,.cols figcaption{color:var(--muted);font-size:12px;margin-bottom:6px}
+.imgs img{max-width:520px;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:10px}
+.cols figure{margin:0;min-width:0}
+.cols img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.wide img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.wide figure{margin:10px 0 0}
+.thumb{max-width:220px;width:100%;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff}
+.info{border-left:3px solid var(--info);padding:6px 10px;margin:10px 0;background:rgba(29,78,216,.06)}
+ul{margin:6px 0 0;padding-left:20px}
+pre{background:rgba(127,127,127,.1);border:1px solid var(--line);border-radius:8px;padding:12px;
+overflow-x:auto;font-size:12px;white-space:pre-wrap;word-break:break-word}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.missing{color:var(--na)}
+.note{color:var(--muted);font-size:12px}
+h1,h2,h3,.sub,li,p{overflow-wrap:anywhere}
+.scroll{max-width:100%}
+.pill{display:inline-block;padding:2px 9px;border-radius:6px;font-size:12px;font-weight:600;border:1px solid var(--line);background:rgba(127,127,127,.1);color:var(--fg);vertical-align:middle}
+.pill.p-light{background:#fef9c3;color:#713f12;border-color:#fde68a}
+.pill.p-dark{background:#1e293b;color:#e2e8f0;border-color:#334155}
+.pill.p-state{background:rgba(29,78,216,.1);color:var(--accent);border-color:var(--accent)}
+.matrix{min-width:620px;table-layout:fixed}
+.matrix th.rowh{width:96px;white-space:nowrap}
+.matrix td:first-child,.matrix th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+.cell{display:block;margin:0 0 3px;font-size:12px;overflow-wrap:anywhere}
+.cell b{font-weight:600}
+.cell.empty{color:var(--muted)}
+.cell-sep{border-top:1px dashed var(--line);margin:8px 0 0;padding-top:8px}
+.grouphead{margin-top:36px}
+.legend{margin:6px 0 12px}
+.sec{border:1px solid var(--line);border-radius:8px;padding:12px;margin:12px 0}
+.sec h4{margin:0 0 6px;font-size:14px;overflow-wrap:anywhere}
+.sec .meta{color:var(--muted);font-size:12px;margin:0 0 8px;overflow-wrap:anywhere}
+.sec .why{border-left:3px solid var(--na);padding:4px 10px;margin:6px 0;background:rgba(161,98,7,.07);font-size:13px}
+.sec .cols{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.tabnav{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 0;padding:0;border-bottom:1px solid var(--line)}
+.tabnav a{display:inline-block;padding:8px 14px;border:1px solid transparent;border-bottom:0;border-radius:8px 8px 0 0;
+text-decoration:none;color:var(--fg);font-weight:500;margin-bottom:-1px}
+.tabnav a:hover{background:rgba(127,127,127,.09)}
+.tabnav a[aria-selected="true"]{background:var(--bg);border-color:var(--line);color:var(--accent);font-weight:700;
+box-shadow:inset 0 3px 0 var(--accent)}
+.tabnav a:focus-visible,.tabpanel:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabnav.sub{margin-top:10px}
+.tabnav.sub a{padding:6px 12px;font-size:13px}
+.tabnav .count{color:var(--muted);font-weight:400;font-size:12px}
+.tabpanel{padding-top:6px}
+.tabpanel[hidden]{display:none}
+.panel-title{margin:28px 0 4px}
+.js .panel-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,128px),1fr));gap:10px;margin:10px 0}
+.stat{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--card)}
+.stat b{display:block;font-size:20px;line-height:1.2}
+.stat span{color:var(--muted);font-size:12px}
+.cat{display:inline-block;padding:1px 8px;border-radius:6px;font-size:12px;font-weight:600;border:1px solid currentColor;white-space:nowrap}
+.c-defeito{color:var(--diff)}.c-backend{color:var(--na)}.c-decisao-design{color:var(--info)}
+.c-artefato-harness{color:var(--muted)}.c-intencional{color:var(--ok)}.c-conteudo-dinamico{color:var(--info)}
+.c-nao-classificado{color:var(--blocked);border-style:dashed}
+details.group{border:1px solid var(--line);border-radius:8px;margin:8px 0;background:var(--card)}
+details.group>summary{cursor:pointer;padding:8px 12px;list-style-position:inside;overflow-wrap:anywhere}
+details.group>summary .n{color:var(--muted);font-size:12px}
+details.group>.scroll{padding:0 12px 12px}
+details.more{margin:12px 0}
+details.more>summary{cursor:pointer;font-weight:600}
+td.num,th.num{text-align:right;white-space:nowrap}
+.combo-head{margin-top:24px}
+</style></head>
+<body><div class="wrap">
+<h1>Visual check — Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</h1>
+<p class="sub">Run <code>2026-11-11T13-40-40-382Z-customers-page</code> · generated 2026-11-11T13:43:41.179Z · run status <span class="badge s-partial">partial</span> · QA verdict <span class="badge s-pass">PASS</span> · <code>carstore-visual-check/6</code></p>
+<p><a href="findings.md">findings.md</a> · Decisão QA: <span class="badge s-pass">PASS</span></p>
+<p class="note">Página 100% offline: estilos e script inline, imagens por caminho relativo, sem CDN e sem acesso à rede.</p>
+<noscript><p class="note">JavaScript desligado: todas as abas aparecem em sequência; a barra de abas funciona como índice.</p></noscript>
+<div class="tabs" data-tabs="main"><nav class="tabnav" aria-label="Seções do relatório"><a href="#resumo" data-tab>Resumo</a><a href="#light" data-tab>Light <span class="count">(0)</span></a><a href="#dark" data-tab>Dark <span class="count">(0)</span></a><a href="#outros" data-tab>Outros estados <span class="count">(4)</span></a><a href="#detalhes" data-tab>Detalhes técnicos</a></nav>
+<section class="tabpanel" id="resumo"><h2 class="panel-title">Resumo</h2><p>0 cenário(s) da tela com dados, 4 em outros estados · run <span class="badge s-partial">partial</span> · veredito QA <span class="badge s-pass">PASS</span></p>
+<h3>Totais</h3><div class="stats">
+<div class="stat"><b>0</b><span>nodes do Figma verificados</span></div><div class="stat"><b>0</b><span>checagens do spec</span></div><div class="stat"><b>0</b><span>pass</span></div><div class="stat"><b>0</b><span>fail</span></div><div class="stat"><b>0</b><span>missing-element</span></div><div class="stat"><b>0</b><span>dynamic</span></div><div class="stat"><b>0 / 0</b><span>seções ok / total</span></div><div class="stat"><b>0</b><span>seções com falha</span></div>
+</div>
+<p class="note">Nodes = nodeIds únicos dos checks do spec mais os nós das seções, somados por combinação. Checagens = linhas do spec (inclui as dynamic, que ficam fora de pass/fail). Seções: ok, falha (fail ou bloqueada), dynamic (altura difere e é declarada dependente do conteúdo), data-driven e partial-region podem se sobrepor.</p>
+<h3>Motivos por categoria</h3><div class="scroll"><table><thead><tr><th>Categoria do motivo</th><th class="num">Total</th><th class="num"><a href="#light-desktop">Desktop · Light</a></th><th class="num"><a href="#light-tablet">Tablet · Light</a></th><th class="num"><a href="#light-mobile">Celular · Light</a></th><th class="num"><a href="#dark-desktop">Desktop · Dark</a></th><th class="num"><a href="#dark-tablet">Tablet · Dark</a></th><th class="num"><a href="#dark-mobile">Celular · Dark</a></th></tr></thead><tbody><tr><td><span class="cat c-defeito">Defeito real</span><br /><span class="note">volta para o dev</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-backend">Backend / regra de negócio</span><br /><span class="note">dado ou regra que vem do backend</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-decisao-design">Decisão de design</span><br /><span class="note">desvio decidido ou inconsistência do próprio protótipo</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-artefato-harness">Artefato do harness</span><br /><span class="note">efeito do preview mockado, não da view</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-intencional">Intencional</span><br /><span class="note">divergência aceita e documentada</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-conteudo-dinamico">Conteúdo dinâmico</span><br /><span class="note">depende do conteúdo (linhas, itens, valores do fixture)</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr><tr><td><span class="cat c-nao-classificado">Não classificado</span><br /><span class="note">sem explicação registrada no .figma.json</span></td><td class="num"><b>0</b></td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td><td class="num">·</td></tr></tbody></table></div>
+<p class="note">Itens = linhas do spec fail / missing-element / dynamic + seções com falha. A explicação vem do registro <code>explanations</code> do <code>.figma.json</code> (ou do <code>dynamicReason</code> da linha dynamic); o relatório não inventa motivo.</p>
+<h3>Por combinação (tema × dispositivo)</h3><div class="scroll"><table><thead><tr><th>Tema × dispositivo</th><th>Cenário</th><th>Frame Figma</th><th class="num">Nodes</th><th class="num">Checagens</th><th class="num">pass</th><th class="num">fail</th><th class="num">missing</th><th class="num">dynamic</th><th>Seções</th><th>Itens por categoria</th></tr></thead><tbody><tr><td><a href="#light-desktop">Desktop · Light</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#light-tablet">Tablet · Light</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#light-mobile">Celular · Light</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#dark-desktop">Desktop · Dark</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#dark-tablet">Tablet · Dark</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#dark-mobile">Celular · Dark</a></td><td><span class="note">sem cenário</span></td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr><tr><td><a href="#outros">Outros estados</a></td><td>4 cenário(s)</td><td>—</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>—</td><td>—</td></tr></tbody></table></div>
+<p class="note">Seções: dyn = dynamic (altura), dd = data-driven, pr = partial-region.</p>
+<h3 id="matriz">Matriz Dispositivo × Tema</h3><div class="scroll"><table class="matrix"><thead><tr><th class="rowh">Dispositivo</th><th scope="col">Claro</th><th scope="col">Escuro</th></tr></thead><tbody><tr><th class="rowh" scope="row">Desktop</th><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Desktop / Claro.</span></td><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Desktop / Escuro.</span></td></tr><tr><th class="rowh" scope="row">Tablet</th><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Tablet / Claro.</span></td><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Tablet / Escuro.</span></td></tr><tr><th class="rowh" scope="row">Celular</th><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Celular / Claro.</span></td><td><span class="cell empty">Sem cenário — este run não tem cenário principal de Celular / Escuro.</span></td></tr></tbody></table></div>
+<p class="note legend">Cada célula: cenário (link para a sub-aba), frame do Figma (nodeId com link), status, spec pass/total, resultado de pixels e achados do responsiveCheck. O diff de pixels só existe quando as dimensões são iguais; <code>dimension-mismatch</code> lista Figma × atual.</p>
+
+<section class="card" id="verdict">
+  <h2>Veredito QA / QA verdict <span class="badge s-pass">PASS</span></h2>
+  <p class="note">Recorded 2026-11-11T13:43:58.101Z</p>
+  <div class="scroll"><table><thead><tr><th>#</th><th>Criterion</th><th>Status</th><th>Evidence</th></tr></thead><tbody><tr><td>1</td><td>Novo cliente: campo Carro (Select com busca, placeholder &#39;Sem carro&#39;); filtro &#39;toy&#39; lista os 7 Toyota, nos dois temas</td><td><span class="badge s-pass">pass</span></td><td><ul><li><a href="actual/attempt-02/customer-create-car-select-light.png"><img class="thumb" src="actual/attempt-02/customer-create-car-select-light.png" alt="actual/attempt-02/customer-create-car-select-light.png" loading="lazy" /></a><br /><code>actual/attempt-02/customer-create-car-select-light.png</code></li><li><a href="actual/attempt-02/customer-create-car-select-dark.png"><img class="thumb" src="actual/attempt-02/customer-create-car-select-dark.png" alt="actual/attempt-02/customer-create-car-select-dark.png" loading="lazy" /></a><br /><code>actual/attempt-02/customer-create-car-select-dark.png</code></li><li>comparison/attempt-02/customer-create-car-select-light.requirements.json</li><li>comparison/attempt-02/customer-create-car-select-dark.requirements.json</li></ul></td></tr><tr><td>2</td><td>Editar cliente: carro atual pré-selecionado (Alice Johnson → Toyota Corolla) com botão de limpar, nos dois temas</td><td><span class="badge s-pass">pass</span></td><td><ul><li><a href="actual/attempt-02/customer-edit-car-light.png"><img class="thumb" src="actual/attempt-02/customer-edit-car-light.png" alt="actual/attempt-02/customer-edit-car-light.png" loading="lazy" /></a><br /><code>actual/attempt-02/customer-edit-car-light.png</code></li><li><a href="actual/attempt-02/customer-edit-car-dark.png"><img class="thumb" src="actual/attempt-02/customer-edit-car-dark.png" alt="actual/attempt-02/customer-edit-car-dark.png" loading="lazy" /></a><br /><code>actual/attempt-02/customer-edit-car-dark.png</code></li><li>comparison/attempt-02/customer-edit-car-light.requirements.json</li><li>comparison/attempt-02/customer-edit-car-dark.requirements.json</li></ul></td></tr><tr><td>3</td><td>Antes × depois (HEAD): a única mudança nos diálogos é o campo Carro</td><td><span class="badge s-pass">pass</span></td><td><ul><li><a href="baseline/customer-edit-car-light.png"><img class="thumb" src="baseline/customer-edit-car-light.png" alt="baseline/customer-edit-car-light.png" loading="lazy" /></a><br /><code>baseline/customer-edit-car-light.png</code></li><li><a href="comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png"><img class="thumb" src="comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png" alt="comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png" loading="lazy" /></a><br /><code>comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png</code></li><li><a href="baseline/customer-create-car-select-light.png"><img class="thumb" src="baseline/customer-create-car-select-light.png" alt="baseline/customer-create-car-select-light.png" loading="lazy" /></a><br /><code>baseline/customer-create-car-select-light.png</code></li><li><a href="comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png"><img class="thumb" src="comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png" alt="comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png" loading="lazy" /></a><br /><code>comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png</code></li></ul></td></tr></tbody></table></div>
+  <h3>Notes</h3><ul><li>Sem frame do Figma para os diálogos de cliente: paridade de design não avaliada (not-applicable); requisitos de texto revisados.</li><li>API validada numa instância separada (porta 5046): GET /api/cars/options (37 itens, &#39;Marca Modelo&#39;), POST com carId 3 → carName &#39;Toyota RAV4&#39;, PUT trocando para 17 e depois null (desvincula).</li><li>Attempt-01: baseline bloqueado porque o HEAD não tem o campo; attempt-02 usa baselineActions que só abrem os diálogos.</li></ul>
+</section>
+
+<h3 id="itens">Fail, missing-element e dynamic, por combinação e motivo</h3>
+<p class="note">Cada grupo junta os itens com a mesma explicação; abra para ver nó (link para o Figma), seletor, propriedade e Figma × atual. Seções com falha aparecem como "Seção: …" e o seletor leva à seção no cenário.</p>
+<p class="note">Nenhum cenário principal neste run.</p></section>
+<section class="tabpanel" id="light"><h2 class="panel-title">Light</h2><div class="tabs" data-tabs="light-devices"><nav class="tabnav sub" aria-label="Dispositivos — Light"><a href="#light-desktop" data-tab>Desktop <span class="count">(0)</span></a><a href="#light-tablet" data-tab>Tablet <span class="count">(0)</span></a><a href="#light-mobile" data-tab>Celular <span class="count">(0)</span></a></nav>
+<section class="tabpanel" id="light-desktop"><h3 class="panel-title">Desktop</h3><p class="note">Sem cenário desta combinação neste run.</p></section>
+<section class="tabpanel" id="light-tablet"><h3 class="panel-title">Tablet</h3><p class="note">Sem cenário desta combinação neste run.</p></section>
+<section class="tabpanel" id="light-mobile"><h3 class="panel-title">Celular</h3><p class="note">Sem cenário desta combinação neste run.</p></section></div></section>
+<section class="tabpanel" id="dark"><h2 class="panel-title">Dark</h2><div class="tabs" data-tabs="dark-devices"><nav class="tabnav sub" aria-label="Dispositivos — Dark"><a href="#dark-desktop" data-tab>Desktop <span class="count">(0)</span></a><a href="#dark-tablet" data-tab>Tablet <span class="count">(0)</span></a><a href="#dark-mobile" data-tab>Celular <span class="count">(0)</span></a></nav>
+<section class="tabpanel" id="dark-desktop"><h3 class="panel-title">Desktop</h3><p class="note">Sem cenário desta combinação neste run.</p></section>
+<section class="tabpanel" id="dark-tablet"><h3 class="panel-title">Tablet</h3><p class="note">Sem cenário desta combinação neste run.</p></section>
+<section class="tabpanel" id="dark-mobile"><h3 class="panel-title">Celular</h3><p class="note">Sem cenário desta combinação neste run.</p></section></div></section>
+<section class="tabpanel" id="outros"><h2 class="panel-title">Outros estados</h2><p class="note">Estados que não são a tela com dados (vazio, carregando, idioma, larguras intermediárias). Sem frame do Figma, a paridade é not-applicable; a captura é revisão do render.</p>
+<div class="scroll"><table><thead><tr><th>Cenário</th><th>Dispositivo · tema · estado</th><th>Status</th><th>responsiveCheck</th><th>Por que não há Figma</th></tr></thead><tbody><tr><td><a href="#customer-create-car-select-light">customer-create-car-select-light</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">novo cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td>—</td><td>—</td></tr><tr><td><a href="#customer-edit-car-light">customer-edit-car-light</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">editar cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td>—</td><td>—</td></tr><tr><td><a href="#customer-create-car-select-dark">customer-create-car-select-dark</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">novo cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td>—</td><td>—</td></tr><tr><td><a href="#customer-edit-car-dark">customer-edit-car-dark</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">editar cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td>—</td><td>—</td></tr></tbody></table></div>
+<div class="tabs" data-tabs="outros-temas"><nav class="tabnav sub" aria-label="Outros estados por tema"><a href="#outros-light" data-tab>Light <span class="count">(2)</span></a><a href="#outros-dark" data-tab>Dark <span class="count">(2)</span></a></nav>
+<section class="tabpanel" id="outros-light"><h3 class="panel-title">Light</h3>
+<section class="card" id="customer-create-car-select-light">
+  <h2><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">novo cliente · carro</span> Clientes — Novo cliente, campo Carro aberto e filtrado, claro <span class="badge s-not-applicable">not-applicable</span></h2>
+  <div class="scroll"><table><tbody><tr><th>Component</th><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td></tr><tr><th>Preview URL</th><td><code>/visual/preview.html?scenario=customer-create-car-select-light</code></td></tr><tr><th>Capture selector</th><td><code>body</code></td></tr><tr><th>Viewport</th><td><code>1440x900 @2x</code></td></tr><tr><th>Device</th><td><code>Desktop</code></td></tr><tr><th>Theme / locale</th><td><code>light / pt-BR</code></td></tr><tr><th>Attempt</th><td><code>attempt-02</code></td></tr><tr><th>Algorithm</th><td><code>not run</code></td></tr><tr><th>Reference dimensions</th><td><code>no reference image</code></td></tr><tr><th>Actual dimensions</th><td><code>not compared</code></td></tr><tr><th>Mismatched pixels</th><td><code>not computed</code></td></tr><tr><th>Baseline status</th><td><code>captured</code></td></tr><tr><th>Current vs previous</th><td><code>differences — 557262 / 5184000 px (10.750%)</code></td></tr><tr><th>Previous vs Figma</th><td><code>not compared</code></td></tr><tr><th>Figma spec (current)</th><td><code>no Figma spec</code></td></tr><tr><th>Figma spec (previous)</th><td><code>no Figma spec</code></td></tr></tbody></table></div>
+  <h3>Anterior / Previous · Atual / Current · Figma</h3>
+  <p class="note">The previous column is the base commit rendered by the same harness. It is never a Figma reference.</p>
+  <div class="cols">
+    <figure><figcaption>Anterior / Previous</figcaption><a href="baseline/customer-create-car-select-light.png"><img src="baseline/customer-create-car-select-light.png" alt="Anterior / Previous" loading="lazy" /></a></figure>
+    <figure><figcaption>Atual / Current</figcaption><a href="actual/attempt-02/customer-create-car-select-light.png"><img src="actual/attempt-02/customer-create-car-select-light.png" alt="Atual / Current" loading="lazy" /></a></figure>
+    <figure><figcaption>Figma</figcaption><p class="missing">Not available — no reference image was supplied for this scenario (set `referenceNote` on the scenario to say why)</p></figure>
+  </div>
+  <div class="wide"><figure><figcaption>Triptych (previous | current | figma — missing panes omitted)</figcaption><a href="comparison/attempt-02/customer-create-car-select-light.triptych.png"><img src="comparison/attempt-02/customer-create-car-select-light.triptych.png" alt="Triptych (previous | current | figma — missing panes omitted)" loading="lazy" /></a></figure></div>
+  
+  <h3>Figma comparison</h3>
+  <div class="imgs">
+    <figure><figcaption>Diff</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+    <figure><figcaption>Side by side (reference | actual)</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+  </div>
+  <h3>Spec Figma <span class="badge s-missing">missing</span></h3><p class="missing">No <code>reference/customer-create-car-select-light.figma.json</code> — layout, typography, colors, tokens and texts were not checked.</p>
+  <h3>Previous version (baseline) <span class="badge s-captured">captured</span></h3>
+  <p class="info"><strong>Visual change vs base detected</strong> (differences — 557262 / 5184000 px (10.750%)). Informational only — the run status reflects Figma parity.</p>
+  <div class="imgs">
+    <figure><figcaption>Diff (previous → current)</figcaption><a href="comparison/attempt-02/customer-create-car-select-light.baseline.diff.png"><img src="comparison/attempt-02/customer-create-car-select-light.baseline.diff.png" alt="Diff (previous → current)" loading="lazy" /></a></figure>
+    <figure><figcaption>Side by side (previous | current)</figcaption><a href="comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png"><img src="comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png" alt="Side by side (previous | current)" loading="lazy" /></a></figure>
+  </div>
+  <h3>Findings</h3><ul><li>Captured successfully, but marked not-applicable: there is nothing to compare against.</li></ul>
+  <h3>Missing evidence</h3><ul><li><code>reference/customer-create-car-select-light.png</code> — No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png.</li><li><code>reference/customer-create-car-select-light.figma.json</code> — No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.</li></ul>
+  <h3>Blocked requests</h3><p class="note">No requests were blocked.</p>
+  
+  
+</section>
+
+<section class="card" id="customer-edit-car-light">
+  <h2><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">editar cliente · carro</span> Clientes — Editar cliente com carro vinculado, claro <span class="badge s-not-applicable">not-applicable</span></h2>
+  <div class="scroll"><table><tbody><tr><th>Component</th><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td></tr><tr><th>Preview URL</th><td><code>/visual/preview.html?scenario=customer-edit-car-light</code></td></tr><tr><th>Capture selector</th><td><code>body</code></td></tr><tr><th>Viewport</th><td><code>1440x900 @2x</code></td></tr><tr><th>Device</th><td><code>Desktop</code></td></tr><tr><th>Theme / locale</th><td><code>light / pt-BR</code></td></tr><tr><th>Attempt</th><td><code>attempt-02</code></td></tr><tr><th>Algorithm</th><td><code>not run</code></td></tr><tr><th>Reference dimensions</th><td><code>no reference image</code></td></tr><tr><th>Actual dimensions</th><td><code>not compared</code></td></tr><tr><th>Mismatched pixels</th><td><code>not computed</code></td></tr><tr><th>Baseline status</th><td><code>captured</code></td></tr><tr><th>Current vs previous</th><td><code>differences — 219735 / 5184000 px (4.239%)</code></td></tr><tr><th>Previous vs Figma</th><td><code>not compared</code></td></tr><tr><th>Figma spec (current)</th><td><code>no Figma spec</code></td></tr><tr><th>Figma spec (previous)</th><td><code>no Figma spec</code></td></tr></tbody></table></div>
+  <h3>Anterior / Previous · Atual / Current · Figma</h3>
+  <p class="note">The previous column is the base commit rendered by the same harness. It is never a Figma reference.</p>
+  <div class="cols">
+    <figure><figcaption>Anterior / Previous</figcaption><a href="baseline/customer-edit-car-light.png"><img src="baseline/customer-edit-car-light.png" alt="Anterior / Previous" loading="lazy" /></a></figure>
+    <figure><figcaption>Atual / Current</figcaption><a href="actual/attempt-02/customer-edit-car-light.png"><img src="actual/attempt-02/customer-edit-car-light.png" alt="Atual / Current" loading="lazy" /></a></figure>
+    <figure><figcaption>Figma</figcaption><p class="missing">Not available — no reference image was supplied for this scenario (set `referenceNote` on the scenario to say why)</p></figure>
+  </div>
+  <div class="wide"><figure><figcaption>Triptych (previous | current | figma — missing panes omitted)</figcaption><a href="comparison/attempt-02/customer-edit-car-light.triptych.png"><img src="comparison/attempt-02/customer-edit-car-light.triptych.png" alt="Triptych (previous | current | figma — missing panes omitted)" loading="lazy" /></a></figure></div>
+  
+  <h3>Figma comparison</h3>
+  <div class="imgs">
+    <figure><figcaption>Diff</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+    <figure><figcaption>Side by side (reference | actual)</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+  </div>
+  <h3>Spec Figma <span class="badge s-missing">missing</span></h3><p class="missing">No <code>reference/customer-edit-car-light.figma.json</code> — layout, typography, colors, tokens and texts were not checked.</p>
+  <h3>Previous version (baseline) <span class="badge s-captured">captured</span></h3>
+  <p class="info"><strong>Visual change vs base detected</strong> (differences — 219735 / 5184000 px (4.239%)). Informational only — the run status reflects Figma parity.</p>
+  <div class="imgs">
+    <figure><figcaption>Diff (previous → current)</figcaption><a href="comparison/attempt-02/customer-edit-car-light.baseline.diff.png"><img src="comparison/attempt-02/customer-edit-car-light.baseline.diff.png" alt="Diff (previous → current)" loading="lazy" /></a></figure>
+    <figure><figcaption>Side by side (previous | current)</figcaption><a href="comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png"><img src="comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png" alt="Side by side (previous | current)" loading="lazy" /></a></figure>
+  </div>
+  <h3>Findings</h3><ul><li>Captured successfully, but marked not-applicable: there is nothing to compare against.</li></ul>
+  <h3>Missing evidence</h3><ul><li><code>reference/customer-edit-car-light.png</code> — No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png.</li><li><code>reference/customer-edit-car-light.figma.json</code> — No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.</li></ul>
+  <h3>Blocked requests</h3><p class="note">No requests were blocked.</p>
+  
+  
+</section></section>
+<section class="tabpanel" id="outros-dark"><h3 class="panel-title">Dark</h3>
+<section class="card" id="customer-create-car-select-dark">
+  <h2><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">novo cliente · carro</span> Clientes — Novo cliente, campo Carro aberto e filtrado, escuro <span class="badge s-not-applicable">not-applicable</span></h2>
+  <div class="scroll"><table><tbody><tr><th>Component</th><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td></tr><tr><th>Preview URL</th><td><code>/visual/preview.html?scenario=customer-create-car-select-dark</code></td></tr><tr><th>Capture selector</th><td><code>body</code></td></tr><tr><th>Viewport</th><td><code>1440x900 @2x</code></td></tr><tr><th>Device</th><td><code>Desktop</code></td></tr><tr><th>Theme / locale</th><td><code>dark / pt-BR</code></td></tr><tr><th>Attempt</th><td><code>attempt-02</code></td></tr><tr><th>Algorithm</th><td><code>not run</code></td></tr><tr><th>Reference dimensions</th><td><code>no reference image</code></td></tr><tr><th>Actual dimensions</th><td><code>not compared</code></td></tr><tr><th>Mismatched pixels</th><td><code>not computed</code></td></tr><tr><th>Baseline status</th><td><code>captured</code></td></tr><tr><th>Current vs previous</th><td><code>differences — 63612 / 5184000 px (1.227%)</code></td></tr><tr><th>Previous vs Figma</th><td><code>not compared</code></td></tr><tr><th>Figma spec (current)</th><td><code>no Figma spec</code></td></tr><tr><th>Figma spec (previous)</th><td><code>no Figma spec</code></td></tr></tbody></table></div>
+  <h3>Anterior / Previous · Atual / Current · Figma</h3>
+  <p class="note">The previous column is the base commit rendered by the same harness. It is never a Figma reference.</p>
+  <div class="cols">
+    <figure><figcaption>Anterior / Previous</figcaption><a href="baseline/customer-create-car-select-dark.png"><img src="baseline/customer-create-car-select-dark.png" alt="Anterior / Previous" loading="lazy" /></a></figure>
+    <figure><figcaption>Atual / Current</figcaption><a href="actual/attempt-02/customer-create-car-select-dark.png"><img src="actual/attempt-02/customer-create-car-select-dark.png" alt="Atual / Current" loading="lazy" /></a></figure>
+    <figure><figcaption>Figma</figcaption><p class="missing">Not available — no reference image was supplied for this scenario (set `referenceNote` on the scenario to say why)</p></figure>
+  </div>
+  <div class="wide"><figure><figcaption>Triptych (previous | current | figma — missing panes omitted)</figcaption><a href="comparison/attempt-02/customer-create-car-select-dark.triptych.png"><img src="comparison/attempt-02/customer-create-car-select-dark.triptych.png" alt="Triptych (previous | current | figma — missing panes omitted)" loading="lazy" /></a></figure></div>
+  
+  <h3>Figma comparison</h3>
+  <div class="imgs">
+    <figure><figcaption>Diff</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+    <figure><figcaption>Side by side (reference | actual)</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+  </div>
+  <h3>Spec Figma <span class="badge s-missing">missing</span></h3><p class="missing">No <code>reference/customer-create-car-select-dark.figma.json</code> — layout, typography, colors, tokens and texts were not checked.</p>
+  <h3>Previous version (baseline) <span class="badge s-captured">captured</span></h3>
+  <p class="info"><strong>Visual change vs base detected</strong> (differences — 63612 / 5184000 px (1.227%)). Informational only — the run status reflects Figma parity.</p>
+  <div class="imgs">
+    <figure><figcaption>Diff (previous → current)</figcaption><a href="comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png"><img src="comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png" alt="Diff (previous → current)" loading="lazy" /></a></figure>
+    <figure><figcaption>Side by side (previous | current)</figcaption><a href="comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png"><img src="comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png" alt="Side by side (previous | current)" loading="lazy" /></a></figure>
+  </div>
+  <h3>Findings</h3><ul><li>Captured successfully, but marked not-applicable: there is nothing to compare against.</li></ul>
+  <h3>Missing evidence</h3><ul><li><code>reference/customer-create-car-select-dark.png</code> — No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png.</li><li><code>reference/customer-create-car-select-dark.figma.json</code> — No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.</li></ul>
+  <h3>Blocked requests</h3><p class="note">No requests were blocked.</p>
+  
+  
+</section>
+
+<section class="card" id="customer-edit-car-dark">
+  <h2><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">editar cliente · carro</span> Clientes — Editar cliente com carro vinculado, escuro <span class="badge s-not-applicable">not-applicable</span></h2>
+  <div class="scroll"><table><tbody><tr><th>Component</th><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td></tr><tr><th>Preview URL</th><td><code>/visual/preview.html?scenario=customer-edit-car-dark</code></td></tr><tr><th>Capture selector</th><td><code>body</code></td></tr><tr><th>Viewport</th><td><code>1440x900 @2x</code></td></tr><tr><th>Device</th><td><code>Desktop</code></td></tr><tr><th>Theme / locale</th><td><code>dark / pt-BR</code></td></tr><tr><th>Attempt</th><td><code>attempt-02</code></td></tr><tr><th>Algorithm</th><td><code>not run</code></td></tr><tr><th>Reference dimensions</th><td><code>no reference image</code></td></tr><tr><th>Actual dimensions</th><td><code>not compared</code></td></tr><tr><th>Mismatched pixels</th><td><code>not computed</code></td></tr><tr><th>Baseline status</th><td><code>captured</code></td></tr><tr><th>Current vs previous</th><td><code>differences — 73290 / 5184000 px (1.414%)</code></td></tr><tr><th>Previous vs Figma</th><td><code>not compared</code></td></tr><tr><th>Figma spec (current)</th><td><code>no Figma spec</code></td></tr><tr><th>Figma spec (previous)</th><td><code>no Figma spec</code></td></tr></tbody></table></div>
+  <h3>Anterior / Previous · Atual / Current · Figma</h3>
+  <p class="note">The previous column is the base commit rendered by the same harness. It is never a Figma reference.</p>
+  <div class="cols">
+    <figure><figcaption>Anterior / Previous</figcaption><a href="baseline/customer-edit-car-dark.png"><img src="baseline/customer-edit-car-dark.png" alt="Anterior / Previous" loading="lazy" /></a></figure>
+    <figure><figcaption>Atual / Current</figcaption><a href="actual/attempt-02/customer-edit-car-dark.png"><img src="actual/attempt-02/customer-edit-car-dark.png" alt="Atual / Current" loading="lazy" /></a></figure>
+    <figure><figcaption>Figma</figcaption><p class="missing">Not available — no reference image was supplied for this scenario (set `referenceNote` on the scenario to say why)</p></figure>
+  </div>
+  <div class="wide"><figure><figcaption>Triptych (previous | current | figma — missing panes omitted)</figcaption><a href="comparison/attempt-02/customer-edit-car-dark.triptych.png"><img src="comparison/attempt-02/customer-edit-car-dark.triptych.png" alt="Triptych (previous | current | figma — missing panes omitted)" loading="lazy" /></a></figure></div>
+  
+  <h3>Figma comparison</h3>
+  <div class="imgs">
+    <figure><figcaption>Diff</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+    <figure><figcaption>Side by side (reference | actual)</figcaption><p class="missing">Not available — no comparison was run</p></figure>
+  </div>
+  <h3>Spec Figma <span class="badge s-missing">missing</span></h3><p class="missing">No <code>reference/customer-edit-car-dark.figma.json</code> — layout, typography, colors, tokens and texts were not checked.</p>
+  <h3>Previous version (baseline) <span class="badge s-captured">captured</span></h3>
+  <p class="info"><strong>Visual change vs base detected</strong> (differences — 73290 / 5184000 px (1.414%)). Informational only — the run status reflects Figma parity.</p>
+  <div class="imgs">
+    <figure><figcaption>Diff (previous → current)</figcaption><a href="comparison/attempt-02/customer-edit-car-dark.baseline.diff.png"><img src="comparison/attempt-02/customer-edit-car-dark.baseline.diff.png" alt="Diff (previous → current)" loading="lazy" /></a></figure>
+    <figure><figcaption>Side by side (previous | current)</figcaption><a href="comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png"><img src="comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png" alt="Side by side (previous | current)" loading="lazy" /></a></figure>
+  </div>
+  <h3>Findings</h3><ul><li>Captured successfully, but marked not-applicable: there is nothing to compare against.</li></ul>
+  <h3>Missing evidence</h3><ul><li><code>reference/customer-edit-car-dark.png</code> — No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png.</li><li><code>reference/customer-edit-car-dark.figma.json</code> — No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.</li></ul>
+  <h3>Blocked requests</h3><p class="note">No requests were blocked.</p>
+  
+  
+</section></section></div></section>
+<section class="tabpanel" id="detalhes"><h2 class="panel-title">Detalhes técnicos</h2><h3>Cenários (todos)</h3><div class="scroll"><table><thead><tr><th>Scenario</th><th>Device · theme</th><th>Status</th><th>Figma spec</th><th>Baseline</th><th>Component</th><th>Findings</th></tr></thead><tbody><tr><td><a href="#customer-create-car-select-light">customer-create-car-select-light</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">novo cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td><span class="badge s-missing">missing</span></td><td><span class="badge s-captured">captured</span> <span class="badge s-changed">changed</span></td><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td><td>1</td></tr><tr><td><a href="#customer-edit-car-light">customer-edit-car-light</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-light">Claro</span> <span class="pill p-state">editar cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td><span class="badge s-missing">missing</span></td><td><span class="badge s-captured">captured</span> <span class="badge s-changed">changed</span></td><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td><td>1</td></tr><tr><td><a href="#customer-create-car-select-dark">customer-create-car-select-dark</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">novo cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td><span class="badge s-missing">missing</span></td><td><span class="badge s-captured">captured</span> <span class="badge s-changed">changed</span></td><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td><td>1</td></tr><tr><td><a href="#customer-edit-car-dark">customer-edit-car-dark</a></td><td><span class="pill p-device">Desktop</span> <span class="pill p-dark">Escuro</span> <span class="pill p-state">editar cliente · carro</span></td><td><span class="badge s-not-applicable">not-applicable</span></td><td><span class="badge s-missing">missing</span></td><td><span class="badge s-captured">captured</span> <span class="badge s-changed">changed</span></td><td><code>Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue</code></td><td>1</td></tr></tbody></table></div>
+<h3>Baseline (versão anterior)</h3><div class="scroll"><table><tbody>
+<tr><th>Ref</th><td><code>HEAD</code></td></tr>
+<tr><th>Commit</th><td><code>1039311d700b61da7e8047b223c0618440d2b50c</code></td></tr>
+<tr><th>Dependencies</th><td><code>junction</code></td></tr>
+<tr><th>Visual change vs base</th><td><a href="#customer-create-car-select-dark">customer-create-car-select-dark</a>, <a href="#customer-create-car-select-light">customer-create-car-select-light</a>, <a href="#customer-edit-car-dark">customer-edit-car-dark</a>, <a href="#customer-edit-car-light">customer-edit-car-light</a></td></tr>
+</tbody></table></div>
+<h3>Attempts</h3><ul><li><code>actual/attempt-01</code> — completed 2026-11-11T13:42:53.445Z, 4 scenario(s)</li><li><code>actual/attempt-02</code> — completed 2026-11-11T13:43:41.179Z, 4 scenario(s)</li></ul>
+<details class="more"><summary>report.json (embutido)</summary>
+<pre><code>{
+  &quot;schema&quot;: &quot;carstore-visual-check/6&quot;,
+  &quot;runStatus&quot;: &quot;partial&quot;,
+  &quot;component&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+  &quot;generatedAt&quot;: &quot;2026-11-11T13:43:41.179Z&quot;,
+  &quot;latestAttempt&quot;: 2,
+  &quot;attempts&quot;: [
+    {
+      &quot;attempt&quot;: 1,
+      &quot;directory&quot;: &quot;actual/attempt-01&quot;,
+      &quot;completedAt&quot;: &quot;2026-11-11T13:42:53.445Z&quot;,
+      &quot;scenarios&quot;: [
+        {
+          &quot;id&quot;: &quot;customer-create-car-select-dark&quot;,
+          &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, escuro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 1,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-dark&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;dark&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-01/customer-create-car-select-dark.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;novo cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-dark.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-dark.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;baseline/customer-create-car-select-dark.png&quot;,
+              &quot;reason&quot;: &quot;Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: null,
+          &quot;baselineStatus&quot;: &quot;blocked&quot;,
+          &quot;baselineError&quot;: &quot;\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator(&#39;.p-dialog&#39;).first()\nExpected substring: \u001b[32m\&quot;Carro\&quot;\u001b[39m\nReceived string:    \u001b[31m\&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \&quot;toContainText\&quot; locator(&#39;.p-dialog&#39;).first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator(&#39;.p-dialog&#39;).first()\u001b[22m\n\u001b[2m    - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-from p-dialog-enter-active\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    4 × unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n\u001b[2m      - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-active p-dialog-enter-to\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    28 × unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n\u001b[2m       - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    - unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n&quot;,
+          &quot;baselineComparison&quot;: null,
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: null,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-create-car-select-light&quot;,
+          &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, claro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 1,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-light&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;light&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-01/customer-create-car-select-light.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;novo cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-light.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-light.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;baseline/customer-create-car-select-light.png&quot;,
+              &quot;reason&quot;: &quot;Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: null,
+          &quot;baselineStatus&quot;: &quot;blocked&quot;,
+          &quot;baselineError&quot;: &quot;\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator(&#39;.p-dialog&#39;).first()\nExpected substring: \u001b[32m\&quot;Carro\&quot;\u001b[39m\nReceived string:    \u001b[31m\&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \&quot;toContainText\&quot; locator(&#39;.p-dialog&#39;).first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator(&#39;.p-dialog&#39;).first()\u001b[22m\n\u001b[2m    - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-from p-dialog-enter-active\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    4 × unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n\u001b[2m      - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-active p-dialog-enter-to\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    29 × unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n\u001b[2m       - locator resolved to &lt;div pc47=\&quot;\&quot; role=\&quot;dialog\&quot; data-p=\&quot;modal\&quot; aria-modal=\&quot;true\&quot; data-pc-name=\&quot;dialog\&quot; data-pc-section=\&quot;root\&quot; data-pd-focustrap=\&quot;true\&quot; aria-labelledby=\&quot;pv_id_47_header\&quot; class=\&quot;p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden\&quot;&gt;…&lt;/div&gt;\u001b[22m\n\u001b[2m    - unexpected value \&quot;Novo clienteNome completoE-mailTelefoneCancelarSalvar\&quot;\u001b[22m\n&quot;,
+          &quot;baselineComparison&quot;: null,
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: null,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-edit-car-dark&quot;,
+          &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, escuro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 1,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-dark&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;dark&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-01/customer-edit-car-dark.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;editar cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-dark.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-dark.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;baseline/customer-edit-car-dark.png&quot;,
+              &quot;reason&quot;: &quot;Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: null,
+          &quot;baselineStatus&quot;: &quot;blocked&quot;,
+          &quot;baselineError&quot;: &quot;\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator(&#39;.p-dialog .p-select&#39;).first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \&quot;toBeVisible\&quot; locator(&#39;.p-dialog .p-select&#39;).first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator(&#39;.p-dialog .p-select&#39;).first()\u001b[22m\n&quot;,
+          &quot;baselineComparison&quot;: null,
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: null,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-edit-car-light&quot;,
+          &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, claro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 1,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-light&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;light&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-01/customer-edit-car-light.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;editar cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-light.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-light.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;baseline/customer-edit-car-light.png&quot;,
+              &quot;reason&quot;: &quot;Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: null,
+          &quot;baselineStatus&quot;: &quot;blocked&quot;,
+          &quot;baselineError&quot;: &quot;\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator(&#39;.p-dialog .p-select&#39;).first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \&quot;toBeVisible\&quot; locator(&#39;.p-dialog .p-select&#39;).first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator(&#39;.p-dialog .p-select&#39;).first()\u001b[22m\n&quot;,
+          &quot;baselineComparison&quot;: null,
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: null,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        }
+      ]
+    },
+    {
+      &quot;attempt&quot;: 2,
+      &quot;directory&quot;: &quot;actual/attempt-02&quot;,
+      &quot;completedAt&quot;: &quot;2026-11-11T13:43:41.179Z&quot;,
+      &quot;scenarios&quot;: [
+        {
+          &quot;id&quot;: &quot;customer-create-car-select-dark&quot;,
+          &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, escuro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 2,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-dark&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;dark&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-02/customer-create-car-select-dark.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;novo cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-dark.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-dark.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: &quot;baseline/customer-create-car-select-dark.png&quot;,
+          &quot;baselineStatus&quot;: &quot;captured&quot;,
+          &quot;baselineError&quot;: null,
+          &quot;baselineComparison&quot;: {
+            &quot;status&quot;: &quot;differences&quot;,
+            &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+            &quot;threshold&quot;: 0.1,
+            &quot;mismatchTolerance&quot;: 0.001,
+            &quot;reference&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;actual&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;mismatchedPixels&quot;: 63612,
+            &quot;comparedPixels&quot;: 5184000,
+            &quot;mismatchRatio&quot;: 0.012270833333333333,
+            &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png&quot;,
+            &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png&quot;,
+            &quot;findings&quot;: [
+              &quot;63612 of 5184000 pixels differ (1.227%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+            ]
+          },
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.triptych.png&quot;,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-create-car-select-light&quot;,
+          &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, claro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 2,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-light&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;light&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-02/customer-create-car-select-light.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;novo cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-light.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-create-car-select-light.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: &quot;baseline/customer-create-car-select-light.png&quot;,
+          &quot;baselineStatus&quot;: &quot;captured&quot;,
+          &quot;baselineError&quot;: null,
+          &quot;baselineComparison&quot;: {
+            &quot;status&quot;: &quot;differences&quot;,
+            &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+            &quot;threshold&quot;: 0.1,
+            &quot;mismatchTolerance&quot;: 0.001,
+            &quot;reference&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;actual&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;mismatchedPixels&quot;: 557262,
+            &quot;comparedPixels&quot;: 5184000,
+            &quot;mismatchRatio&quot;: 0.10749652777777778,
+            &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.baseline.diff.png&quot;,
+            &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png&quot;,
+            &quot;findings&quot;: [
+              &quot;557262 of 5184000 pixels differ (10.750%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+            ]
+          },
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.triptych.png&quot;,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-edit-car-dark&quot;,
+          &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, escuro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 2,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-dark&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;dark&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-02/customer-edit-car-dark.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;editar cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-dark.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-dark.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: &quot;baseline/customer-edit-car-dark.png&quot;,
+          &quot;baselineStatus&quot;: &quot;captured&quot;,
+          &quot;baselineError&quot;: null,
+          &quot;baselineComparison&quot;: {
+            &quot;status&quot;: &quot;differences&quot;,
+            &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+            &quot;threshold&quot;: 0.1,
+            &quot;mismatchTolerance&quot;: 0.001,
+            &quot;reference&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;actual&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;mismatchedPixels&quot;: 73290,
+            &quot;comparedPixels&quot;: 5184000,
+            &quot;mismatchRatio&quot;: 0.014137731481481482,
+            &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.baseline.diff.png&quot;,
+            &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png&quot;,
+            &quot;findings&quot;: [
+              &quot;73290 of 5184000 pixels differ (1.414%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+            ]
+          },
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.triptych.png&quot;,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        },
+        {
+          &quot;id&quot;: &quot;customer-edit-car-light&quot;,
+          &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, claro&quot;,
+          &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+          &quot;status&quot;: &quot;not-applicable&quot;,
+          &quot;attempt&quot;: 2,
+          &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-light&quot;,
+          &quot;viewport&quot;: {
+            &quot;width&quot;: 1440,
+            &quot;height&quot;: 900,
+            &quot;deviceScaleFactor&quot;: 2
+          },
+          &quot;theme&quot;: &quot;light&quot;,
+          &quot;locale&quot;: &quot;pt-BR&quot;,
+          &quot;captureSelector&quot;: &quot;body&quot;,
+          &quot;actualImage&quot;: &quot;actual/attempt-02/customer-edit-car-light.png&quot;,
+          &quot;referenceImage&quot;: null,
+          &quot;referenceNote&quot;: null,
+          &quot;device&quot;: &quot;desktop&quot;,
+          &quot;deviceDerived&quot;: false,
+          &quot;figmaNode&quot;: null,
+          &quot;state&quot;: &quot;editar cliente · carro&quot;,
+          &quot;responsiveFindings&quot;: null,
+          &quot;comparison&quot;: null,
+          &quot;findings&quot;: [
+            &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+          ],
+          &quot;missingEvidence&quot;: [
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-light.png&quot;,
+              &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png.&quot;
+            },
+            {
+              &quot;item&quot;: &quot;reference/customer-edit-car-light.figma.json&quot;,
+              &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+            }
+          ],
+          &quot;blockedRequests&quot;: [],
+          &quot;fulfilledMocks&quot;: [
+            &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+            &quot;http://localhost:5175/api/cars/options&quot;
+          ],
+          &quot;error&quot;: null,
+          &quot;baselineImage&quot;: &quot;baseline/customer-edit-car-light.png&quot;,
+          &quot;baselineStatus&quot;: &quot;captured&quot;,
+          &quot;baselineError&quot;: null,
+          &quot;baselineComparison&quot;: {
+            &quot;status&quot;: &quot;differences&quot;,
+            &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+            &quot;threshold&quot;: 0.1,
+            &quot;mismatchTolerance&quot;: 0.001,
+            &quot;reference&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;actual&quot;: {
+              &quot;width&quot;: 2880,
+              &quot;height&quot;: 1800
+            },
+            &quot;mismatchedPixels&quot;: 219735,
+            &quot;comparedPixels&quot;: 5184000,
+            &quot;mismatchRatio&quot;: 0.04238715277777778,
+            &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.baseline.diff.png&quot;,
+            &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png&quot;,
+            &quot;findings&quot;: [
+              &quot;219735 of 5184000 pixels differ (4.239%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+            ]
+          },
+          &quot;baselineVsReference&quot;: null,
+          &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.triptych.png&quot;,
+          &quot;figmaSpec&quot;: null,
+          &quot;figmaSpecError&quot;: null,
+          &quot;specComparison&quot;: null,
+          &quot;baselineSpecComparison&quot;: null
+        }
+      ]
+    }
+  ],
+  &quot;scenarios&quot;: [
+    {
+      &quot;id&quot;: &quot;customer-create-car-select-dark&quot;,
+      &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, escuro&quot;,
+      &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+      &quot;status&quot;: &quot;not-applicable&quot;,
+      &quot;attempt&quot;: 2,
+      &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-dark&quot;,
+      &quot;viewport&quot;: {
+        &quot;width&quot;: 1440,
+        &quot;height&quot;: 900,
+        &quot;deviceScaleFactor&quot;: 2
+      },
+      &quot;theme&quot;: &quot;dark&quot;,
+      &quot;locale&quot;: &quot;pt-BR&quot;,
+      &quot;captureSelector&quot;: &quot;body&quot;,
+      &quot;actualImage&quot;: &quot;actual/attempt-02/customer-create-car-select-dark.png&quot;,
+      &quot;referenceImage&quot;: null,
+      &quot;referenceNote&quot;: null,
+      &quot;device&quot;: &quot;desktop&quot;,
+      &quot;deviceDerived&quot;: false,
+      &quot;figmaNode&quot;: null,
+      &quot;state&quot;: &quot;novo cliente · carro&quot;,
+      &quot;responsiveFindings&quot;: null,
+      &quot;comparison&quot;: null,
+      &quot;findings&quot;: [
+        &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+      ],
+      &quot;missingEvidence&quot;: [
+        {
+          &quot;item&quot;: &quot;reference/customer-create-car-select-dark.png&quot;,
+          &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png.&quot;
+        },
+        {
+          &quot;item&quot;: &quot;reference/customer-create-car-select-dark.figma.json&quot;,
+          &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+        }
+      ],
+      &quot;blockedRequests&quot;: [],
+      &quot;fulfilledMocks&quot;: [
+        &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+        &quot;http://localhost:5175/api/cars/options&quot;
+      ],
+      &quot;error&quot;: null,
+      &quot;baselineImage&quot;: &quot;baseline/customer-create-car-select-dark.png&quot;,
+      &quot;baselineStatus&quot;: &quot;captured&quot;,
+      &quot;baselineError&quot;: null,
+      &quot;baselineComparison&quot;: {
+        &quot;status&quot;: &quot;differences&quot;,
+        &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+        &quot;threshold&quot;: 0.1,
+        &quot;mismatchTolerance&quot;: 0.001,
+        &quot;reference&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;actual&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;mismatchedPixels&quot;: 63612,
+        &quot;comparedPixels&quot;: 5184000,
+        &quot;mismatchRatio&quot;: 0.012270833333333333,
+        &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png&quot;,
+        &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png&quot;,
+        &quot;findings&quot;: [
+          &quot;63612 of 5184000 pixels differ (1.227%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+        ]
+      },
+      &quot;baselineVsReference&quot;: null,
+      &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-dark.triptych.png&quot;,
+      &quot;figmaSpec&quot;: null,
+      &quot;figmaSpecError&quot;: null,
+      &quot;specComparison&quot;: null,
+      &quot;baselineSpecComparison&quot;: null
+    },
+    {
+      &quot;id&quot;: &quot;customer-create-car-select-light&quot;,
+      &quot;label&quot;: &quot;Clientes — Novo cliente, campo Carro aberto e filtrado, claro&quot;,
+      &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+      &quot;status&quot;: &quot;not-applicable&quot;,
+      &quot;attempt&quot;: 2,
+      &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-create-car-select-light&quot;,
+      &quot;viewport&quot;: {
+        &quot;width&quot;: 1440,
+        &quot;height&quot;: 900,
+        &quot;deviceScaleFactor&quot;: 2
+      },
+      &quot;theme&quot;: &quot;light&quot;,
+      &quot;locale&quot;: &quot;pt-BR&quot;,
+      &quot;captureSelector&quot;: &quot;body&quot;,
+      &quot;actualImage&quot;: &quot;actual/attempt-02/customer-create-car-select-light.png&quot;,
+      &quot;referenceImage&quot;: null,
+      &quot;referenceNote&quot;: null,
+      &quot;device&quot;: &quot;desktop&quot;,
+      &quot;deviceDerived&quot;: false,
+      &quot;figmaNode&quot;: null,
+      &quot;state&quot;: &quot;novo cliente · carro&quot;,
+      &quot;responsiveFindings&quot;: null,
+      &quot;comparison&quot;: null,
+      &quot;findings&quot;: [
+        &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+      ],
+      &quot;missingEvidence&quot;: [
+        {
+          &quot;item&quot;: &quot;reference/customer-create-car-select-light.png&quot;,
+          &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png.&quot;
+        },
+        {
+          &quot;item&quot;: &quot;reference/customer-create-car-select-light.figma.json&quot;,
+          &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+        }
+      ],
+      &quot;blockedRequests&quot;: [],
+      &quot;fulfilledMocks&quot;: [
+        &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+        &quot;http://localhost:5175/api/cars/options&quot;
+      ],
+      &quot;error&quot;: null,
+      &quot;baselineImage&quot;: &quot;baseline/customer-create-car-select-light.png&quot;,
+      &quot;baselineStatus&quot;: &quot;captured&quot;,
+      &quot;baselineError&quot;: null,
+      &quot;baselineComparison&quot;: {
+        &quot;status&quot;: &quot;differences&quot;,
+        &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+        &quot;threshold&quot;: 0.1,
+        &quot;mismatchTolerance&quot;: 0.001,
+        &quot;reference&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;actual&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;mismatchedPixels&quot;: 557262,
+        &quot;comparedPixels&quot;: 5184000,
+        &quot;mismatchRatio&quot;: 0.10749652777777778,
+        &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.baseline.diff.png&quot;,
+        &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png&quot;,
+        &quot;findings&quot;: [
+          &quot;557262 of 5184000 pixels differ (10.750%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+        ]
+      },
+      &quot;baselineVsReference&quot;: null,
+      &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-create-car-select-light.triptych.png&quot;,
+      &quot;figmaSpec&quot;: null,
+      &quot;figmaSpecError&quot;: null,
+      &quot;specComparison&quot;: null,
+      &quot;baselineSpecComparison&quot;: null
+    },
+    {
+      &quot;id&quot;: &quot;customer-edit-car-dark&quot;,
+      &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, escuro&quot;,
+      &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+      &quot;status&quot;: &quot;not-applicable&quot;,
+      &quot;attempt&quot;: 2,
+      &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-dark&quot;,
+      &quot;viewport&quot;: {
+        &quot;width&quot;: 1440,
+        &quot;height&quot;: 900,
+        &quot;deviceScaleFactor&quot;: 2
+      },
+      &quot;theme&quot;: &quot;dark&quot;,
+      &quot;locale&quot;: &quot;pt-BR&quot;,
+      &quot;captureSelector&quot;: &quot;body&quot;,
+      &quot;actualImage&quot;: &quot;actual/attempt-02/customer-edit-car-dark.png&quot;,
+      &quot;referenceImage&quot;: null,
+      &quot;referenceNote&quot;: null,
+      &quot;device&quot;: &quot;desktop&quot;,
+      &quot;deviceDerived&quot;: false,
+      &quot;figmaNode&quot;: null,
+      &quot;state&quot;: &quot;editar cliente · carro&quot;,
+      &quot;responsiveFindings&quot;: null,
+      &quot;comparison&quot;: null,
+      &quot;findings&quot;: [
+        &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+      ],
+      &quot;missingEvidence&quot;: [
+        {
+          &quot;item&quot;: &quot;reference/customer-edit-car-dark.png&quot;,
+          &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png.&quot;
+        },
+        {
+          &quot;item&quot;: &quot;reference/customer-edit-car-dark.figma.json&quot;,
+          &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+        }
+      ],
+      &quot;blockedRequests&quot;: [],
+      &quot;fulfilledMocks&quot;: [
+        &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+        &quot;http://localhost:5175/api/cars/options&quot;
+      ],
+      &quot;error&quot;: null,
+      &quot;baselineImage&quot;: &quot;baseline/customer-edit-car-dark.png&quot;,
+      &quot;baselineStatus&quot;: &quot;captured&quot;,
+      &quot;baselineError&quot;: null,
+      &quot;baselineComparison&quot;: {
+        &quot;status&quot;: &quot;differences&quot;,
+        &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+        &quot;threshold&quot;: 0.1,
+        &quot;mismatchTolerance&quot;: 0.001,
+        &quot;reference&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;actual&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;mismatchedPixels&quot;: 73290,
+        &quot;comparedPixels&quot;: 5184000,
+        &quot;mismatchRatio&quot;: 0.014137731481481482,
+        &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.baseline.diff.png&quot;,
+        &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png&quot;,
+        &quot;findings&quot;: [
+          &quot;73290 of 5184000 pixels differ (1.414%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+        ]
+      },
+      &quot;baselineVsReference&quot;: null,
+      &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-edit-car-dark.triptych.png&quot;,
+      &quot;figmaSpec&quot;: null,
+      &quot;figmaSpecError&quot;: null,
+      &quot;specComparison&quot;: null,
+      &quot;baselineSpecComparison&quot;: null
+    },
+    {
+      &quot;id&quot;: &quot;customer-edit-car-light&quot;,
+      &quot;label&quot;: &quot;Clientes — Editar cliente com carro vinculado, claro&quot;,
+      &quot;componentPath&quot;: &quot;Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue&quot;,
+      &quot;status&quot;: &quot;not-applicable&quot;,
+      &quot;attempt&quot;: 2,
+      &quot;previewUrl&quot;: &quot;/visual/preview.html?scenario=customer-edit-car-light&quot;,
+      &quot;viewport&quot;: {
+        &quot;width&quot;: 1440,
+        &quot;height&quot;: 900,
+        &quot;deviceScaleFactor&quot;: 2
+      },
+      &quot;theme&quot;: &quot;light&quot;,
+      &quot;locale&quot;: &quot;pt-BR&quot;,
+      &quot;captureSelector&quot;: &quot;body&quot;,
+      &quot;actualImage&quot;: &quot;actual/attempt-02/customer-edit-car-light.png&quot;,
+      &quot;referenceImage&quot;: null,
+      &quot;referenceNote&quot;: null,
+      &quot;device&quot;: &quot;desktop&quot;,
+      &quot;deviceDerived&quot;: false,
+      &quot;figmaNode&quot;: null,
+      &quot;state&quot;: &quot;editar cliente · carro&quot;,
+      &quot;responsiveFindings&quot;: null,
+      &quot;comparison&quot;: null,
+      &quot;findings&quot;: [
+        &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+      ],
+      &quot;missingEvidence&quot;: [
+        {
+          &quot;item&quot;: &quot;reference/customer-edit-car-light.png&quot;,
+          &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png.&quot;
+        },
+        {
+          &quot;item&quot;: &quot;reference/customer-edit-car-light.figma.json&quot;,
+          &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+        }
+      ],
+      &quot;blockedRequests&quot;: [],
+      &quot;fulfilledMocks&quot;: [
+        &quot;http://localhost:5175/api/customers?&lt;redacted&gt;&quot;,
+        &quot;http://localhost:5175/api/cars/options&quot;
+      ],
+      &quot;error&quot;: null,
+      &quot;baselineImage&quot;: &quot;baseline/customer-edit-car-light.png&quot;,
+      &quot;baselineStatus&quot;: &quot;captured&quot;,
+      &quot;baselineError&quot;: null,
+      &quot;baselineComparison&quot;: {
+        &quot;status&quot;: &quot;differences&quot;,
+        &quot;algorithm&quot;: &quot;pixelmatch&quot;,
+        &quot;threshold&quot;: 0.1,
+        &quot;mismatchTolerance&quot;: 0.001,
+        &quot;reference&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;actual&quot;: {
+          &quot;width&quot;: 2880,
+          &quot;height&quot;: 1800
+        },
+        &quot;mismatchedPixels&quot;: 219735,
+        &quot;comparedPixels&quot;: 5184000,
+        &quot;mismatchRatio&quot;: 0.04238715277777778,
+        &quot;diffImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.baseline.diff.png&quot;,
+        &quot;sideBySideImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png&quot;,
+        &quot;findings&quot;: [
+          &quot;219735 of 5184000 pixels differ (4.239%), above the 0.100% tolerance at pixelmatch threshold 0.1.&quot;
+        ]
+      },
+      &quot;baselineVsReference&quot;: null,
+      &quot;triptychImage&quot;: &quot;comparison/attempt-02/customer-edit-car-light.triptych.png&quot;,
+      &quot;figmaSpec&quot;: null,
+      &quot;figmaSpecError&quot;: null,
+      &quot;specComparison&quot;: null,
+      &quot;baselineSpecComparison&quot;: null
+    }
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-dark&quot;,
+      &quot;finding&quot;: &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-light&quot;,
+      &quot;finding&quot;: &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-dark&quot;,
+      &quot;finding&quot;: &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-light&quot;,
+      &quot;finding&quot;: &quot;Captured successfully, but marked not-applicable: there is nothing to compare against.&quot;
+    }
+  ],
+  &quot;blockedRequests&quot;: [],
+  &quot;missingEvidence&quot;: [
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-dark&quot;,
+      &quot;item&quot;: &quot;reference/customer-create-car-select-dark.png&quot;,
+      &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-dark&quot;,
+      &quot;item&quot;: &quot;reference/customer-create-car-select-dark.figma.json&quot;,
+      &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-light&quot;,
+      &quot;item&quot;: &quot;reference/customer-create-car-select-light.png&quot;,
+      &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-create-car-select-light&quot;,
+      &quot;item&quot;: &quot;reference/customer-create-car-select-light.figma.json&quot;,
+      &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-dark&quot;,
+      &quot;item&quot;: &quot;reference/customer-edit-car-dark.png&quot;,
+      &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-dark&quot;,
+      &quot;item&quot;: &quot;reference/customer-edit-car-dark.figma.json&quot;,
+      &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-light&quot;,
+      &quot;item&quot;: &quot;reference/customer-edit-car-light.png&quot;,
+      &quot;reason&quot;: &quot;No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png.&quot;
+    },
+    {
+      &quot;scenarioId&quot;: &quot;customer-edit-car-light&quot;,
+      &quot;item&quot;: &quot;reference/customer-edit-car-light.figma.json&quot;,
+      &quot;reason&quot;: &quot;No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG.&quot;
+    }
+  ],
+  &quot;baseline&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;ref&quot;: &quot;HEAD&quot;,
+    &quot;commit&quot;: &quot;1039311d700b61da7e8047b223c0618440d2b50c&quot;,
+    &quot;worktreePath&quot;: &quot;/Users/felipefaria/projects/poc-dashboard/.visual-baseline/1039311d700b&quot;,
+    &quot;depsStrategy&quot;: &quot;junction&quot;,
+    &quot;url&quot;: &quot;http://localhost:5174&quot;,
+    &quot;changedScenarios&quot;: [
+      &quot;customer-create-car-select-dark&quot;,
+      &quot;customer-create-car-select-light&quot;,
+      &quot;customer-edit-car-dark&quot;,
+      &quot;customer-edit-car-light&quot;
+    ]
+  },
+  &quot;verdictHistory&quot;: [],
+  &quot;qaFindings&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;base&quot;: {
+      &quot;ref&quot;: &quot;HEAD&quot;,
+      &quot;commit&quot;: &quot;1039311d700b61da7e8047b223c0618440d2b50c&quot;
+    },
+    &quot;attempt&quot;: 2,
+    &quot;diferencas&quot;: [],
+    &quot;minimas&quot;: [],
+    &quot;bloqueios&quot;: []
+  },
+  &quot;verdict&quot;: {
+    &quot;result&quot;: &quot;PASS&quot;,
+    &quot;criteria&quot;: [
+      {
+        &quot;text&quot;: &quot;Novo cliente: campo Carro (Select com busca, placeholder &#39;Sem carro&#39;); filtro &#39;toy&#39; lista os 7 Toyota, nos dois temas&quot;,
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;evidence&quot;: [
+          &quot;actual/attempt-02/customer-create-car-select-light.png&quot;,
+          &quot;actual/attempt-02/customer-create-car-select-dark.png&quot;,
+          &quot;comparison/attempt-02/customer-create-car-select-light.requirements.json&quot;,
+          &quot;comparison/attempt-02/customer-create-car-select-dark.requirements.json&quot;
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;Editar cliente: carro atual pré-selecionado (Alice Johnson → Toyota Corolla) com botão de limpar, nos dois temas&quot;,
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;evidence&quot;: [
+          &quot;actual/attempt-02/customer-edit-car-light.png&quot;,
+          &quot;actual/attempt-02/customer-edit-car-dark.png&quot;,
+          &quot;comparison/attempt-02/customer-edit-car-light.requirements.json&quot;,
+          &quot;comparison/attempt-02/customer-edit-car-dark.requirements.json&quot;
+        ]
+      },
+      {
+        &quot;text&quot;: &quot;Antes × depois (HEAD): a única mudança nos diálogos é o campo Carro&quot;,
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;evidence&quot;: [
+          &quot;baseline/customer-edit-car-light.png&quot;,
+          &quot;comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png&quot;,
+          &quot;baseline/customer-create-car-select-light.png&quot;,
+          &quot;comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png&quot;
+        ]
+      }
+    ],
+    &quot;diferencas&quot;: [],
+    &quot;minimas&quot;: [],
+    &quot;bloqueios&quot;: [],
+    &quot;notes&quot;: [
+      &quot;Sem frame do Figma para os diálogos de cliente: paridade de design não avaliada (not-applicable); requisitos de texto revisados.&quot;,
+      &quot;API validada numa instância separada (porta 5046): GET /api/cars/options (37 itens, &#39;Marca Modelo&#39;), POST com carId 3 → carName &#39;Toyota RAV4&#39;, PUT trocando para 17 e depois null (desvincula).&quot;,
+      &quot;Attempt-01: baseline bloqueado porque o HEAD não tem o campo; attempt-02 usa baselineActions que só abrem os diálogos.&quot;
+    ],
+    &quot;recordedAt&quot;: &quot;2026-11-11T13:43:58.101Z&quot;,
+    &quot;attempt&quot;: 2
+  }
+}</code></pre>
+</details></section></div>
+</div>
+<script>(function(){
+var d=document;d.documentElement.classList.add('js');
+function each(l,f){Array.prototype.forEach.call(l,f)}
+function tabsOf(g){var n=g.firstElementChild;return n?Array.prototype.slice.call(n.querySelectorAll('a[data-tab]')):[]}
+function panelOf(t){return d.getElementById(t.getAttribute('href').slice(1))}
+function select(g,t,focus){each(tabsOf(g),function(x){var on=x===t,p=panelOf(x);x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;if(p){if(on)p.removeAttribute('hidden');else p.setAttribute('hidden','')}});if(focus)t.focus()}
+function setHash(id){if(history.replaceState)history.replaceState(null,'','#'+id)}
+each(d.querySelectorAll('[data-tabs]'),function(g){var nav=g.firstElementChild,tabs=tabsOf(g);if(!tabs.length)return;nav.setAttribute('role','tablist');
+each(tabs,function(t,i){var p=panelOf(t);t.setAttribute('role','tab');if(!t.id)t.id='tab-'+p.id;t.setAttribute('aria-controls',p.id);p.setAttribute('role','tabpanel');p.setAttribute('aria-labelledby',t.id);p.tabIndex=0;
+t.addEventListener('click',function(e){e.preventDefault();select(g,t,false);setHash(p.id)});
+t.addEventListener('keydown',function(e){var j=i,k=e.key;if(k==='ArrowRight')j=(i+1)%tabs.length;else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(k==='Home')j=0;else if(k==='End')j=tabs.length-1;else return;e.preventDefault();select(g,tabs[j],true);setHash(panelOf(tabs[j]).id)})});
+select(g,tabs[0],false)});
+function reveal(id){var el=id&&d.getElementById(id);if(!el)return false;var chain=[];for(var n=el;n&&n!==d.body;n=n.parentElement){if(n.getAttribute('role')==='tabpanel')chain.unshift(n)}
+each(chain,function(p){var t=d.getElementById(p.getAttribute('aria-labelledby'));var g=t&&t.closest('[data-tabs]');if(g)select(g,t,false)});
+for(var m=el;m&&m!==d.body;m=m.parentElement){if(m.tagName==='DETAILS')m.open=true}
+var target=el.getAttribute('role')==='tabpanel'?(el.closest('[data-tabs]')||el):el;target.scrollIntoView();return true}
+d.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||a.hasAttribute('data-tab'))return;var id=decodeURIComponent(a.getAttribute('href').slice(1));if(reveal(id)){e.preventDefault();if(history.pushState)history.pushState(null,'','#'+id)}});
+function fromHash(){reveal(decodeURIComponent(location.hash.slice(1)))}
+window.addEventListener('hashchange',fromHash);window.addEventListener('popstate',fromHash);if(location.hash)fromHash();
+})();</script>
+</body></html>

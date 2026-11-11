@@ -1,0 +1,989 @@
+{
+  "schema": "carstore-visual-check/6",
+  "runStatus": "partial",
+  "component": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+  "generatedAt": "2026-11-11T13:43:41.179Z",
+  "latestAttempt": 2,
+  "attempts": [
+    {
+      "attempt": 1,
+      "directory": "actual/attempt-01",
+      "completedAt": "2026-11-11T13:42:53.445Z",
+      "scenarios": [
+        {
+          "id": "customer-create-car-select-dark",
+          "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, escuro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-01/customer-create-car-select-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "novo cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-create-car-select-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png."
+            },
+            {
+              "item": "reference/customer-create-car-select-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            },
+            {
+              "item": "baseline/customer-create-car-select-dark.png",
+              "reason": "Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed"
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": null,
+          "baselineStatus": "blocked",
+          "baselineError": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.p-dialog').first()\nExpected substring: \u001b[32m\"Carro\"\u001b[39m\nReceived string:    \u001b[31m\"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.p-dialog').first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.p-dialog').first()\u001b[22m\n\u001b[2m    - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-from p-dialog-enter-active\">…</div>\u001b[22m\n\u001b[2m    4 × unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n\u001b[2m      - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-active p-dialog-enter-to\">…</div>\u001b[22m\n\u001b[2m    28 × unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n\u001b[2m       - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden\">…</div>\u001b[22m\n\u001b[2m    - unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n",
+          "baselineComparison": null,
+          "baselineVsReference": null,
+          "triptychImage": null,
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-create-car-select-light",
+          "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, claro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-01/customer-create-car-select-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "novo cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-create-car-select-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png."
+            },
+            {
+              "item": "reference/customer-create-car-select-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            },
+            {
+              "item": "baseline/customer-create-car-select-light.png",
+              "reason": "Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed"
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": null,
+          "baselineStatus": "blocked",
+          "baselineError": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.p-dialog').first()\nExpected substring: \u001b[32m\"Carro\"\u001b[39m\nReceived string:    \u001b[31m\"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.p-dialog').first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.p-dialog').first()\u001b[22m\n\u001b[2m    - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-from p-dialog-enter-active\">…</div>\u001b[22m\n\u001b[2m    4 × unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n\u001b[2m      - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden p-dialog-enter-active p-dialog-enter-to\">…</div>\u001b[22m\n\u001b[2m    29 × unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n\u001b[2m       - locator resolved to <div pc47=\"\" role=\"dialog\" data-p=\"modal\" aria-modal=\"true\" data-pc-name=\"dialog\" data-pc-section=\"root\" data-pd-focustrap=\"true\" aria-labelledby=\"pv_id_47_header\" class=\"p-dialog p-component w-[480px] max-w-[92vw] rounded-[21px] border border-surface-300 bg-surface-0 p-0 overflow-hidden\">…</div>\u001b[22m\n\u001b[2m    - unexpected value \"Novo clienteNome completoE-mailTelefoneCancelarSalvar\"\u001b[22m\n",
+          "baselineComparison": null,
+          "baselineVsReference": null,
+          "triptychImage": null,
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-edit-car-dark",
+          "label": "Clientes — Editar cliente com carro vinculado, escuro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customer-edit-car-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-01/customer-edit-car-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "editar cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-edit-car-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png."
+            },
+            {
+              "item": "reference/customer-edit-car-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            },
+            {
+              "item": "baseline/customer-edit-car-dark.png",
+              "reason": "Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed"
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": null,
+          "baselineStatus": "blocked",
+          "baselineError": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.p-dialog .p-select').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.p-dialog .p-select').first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.p-dialog .p-select').first()\u001b[22m\n",
+          "baselineComparison": null,
+          "baselineVsReference": null,
+          "triptychImage": null,
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-edit-car-light",
+          "label": "Clientes — Editar cliente com carro vinculado, claro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customer-edit-car-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-01/customer-edit-car-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "editar cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-edit-car-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png."
+            },
+            {
+              "item": "reference/customer-edit-car-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            },
+            {
+              "item": "baseline/customer-edit-car-light.png",
+              "reason": "Baseline capture failed — \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed"
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": null,
+          "baselineStatus": "blocked",
+          "baselineError": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.p-dialog .p-select').first()\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.p-dialog .p-select').first() with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.p-dialog .p-select').first()\u001b[22m\n",
+          "baselineComparison": null,
+          "baselineVsReference": null,
+          "triptychImage": null,
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "directory": "actual/attempt-02",
+      "completedAt": "2026-11-11T13:43:41.179Z",
+      "scenarios": [
+        {
+          "id": "customer-create-car-select-dark",
+          "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, escuro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 2,
+          "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-02/customer-create-car-select-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "novo cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-create-car-select-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png."
+            },
+            {
+              "item": "reference/customer-create-car-select-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customer-create-car-select-dark.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2880,
+              "height": 1800
+            },
+            "actual": {
+              "width": 2880,
+              "height": 1800
+            },
+            "mismatchedPixels": 63612,
+            "comparedPixels": 5184000,
+            "mismatchRatio": 0.012270833333333333,
+            "diffImage": "comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png",
+            "findings": [
+              "63612 of 5184000 pixels differ (1.227%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-02/customer-create-car-select-dark.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-create-car-select-light",
+          "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, claro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 2,
+          "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-02/customer-create-car-select-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "novo cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-create-car-select-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png."
+            },
+            {
+              "item": "reference/customer-create-car-select-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customer-create-car-select-light.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2880,
+              "height": 1800
+            },
+            "actual": {
+              "width": 2880,
+              "height": 1800
+            },
+            "mismatchedPixels": 557262,
+            "comparedPixels": 5184000,
+            "mismatchRatio": 0.10749652777777778,
+            "diffImage": "comparison/attempt-02/customer-create-car-select-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png",
+            "findings": [
+              "557262 of 5184000 pixels differ (10.750%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-02/customer-create-car-select-light.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-edit-car-dark",
+          "label": "Clientes — Editar cliente com carro vinculado, escuro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 2,
+          "previewUrl": "/visual/preview.html?scenario=customer-edit-car-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-02/customer-edit-car-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "editar cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-edit-car-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png."
+            },
+            {
+              "item": "reference/customer-edit-car-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customer-edit-car-dark.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2880,
+              "height": 1800
+            },
+            "actual": {
+              "width": 2880,
+              "height": 1800
+            },
+            "mismatchedPixels": 73290,
+            "comparedPixels": 5184000,
+            "mismatchRatio": 0.014137731481481482,
+            "diffImage": "comparison/attempt-02/customer-edit-car-dark.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png",
+            "findings": [
+              "73290 of 5184000 pixels differ (1.414%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-02/customer-edit-car-dark.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customer-edit-car-light",
+          "label": "Clientes — Editar cliente com carro vinculado, claro",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 2,
+          "previewUrl": "/visual/preview.html?scenario=customer-edit-car-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "body",
+          "actualImage": "actual/attempt-02/customer-edit-car-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "editar cliente · carro",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customer-edit-car-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png."
+            },
+            {
+              "item": "reference/customer-edit-car-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>",
+            "http://localhost:5175/api/cars/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customer-edit-car-light.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2880,
+              "height": 1800
+            },
+            "actual": {
+              "width": 2880,
+              "height": 1800
+            },
+            "mismatchedPixels": 219735,
+            "comparedPixels": 5184000,
+            "mismatchRatio": 0.04238715277777778,
+            "diffImage": "comparison/attempt-02/customer-edit-car-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png",
+            "findings": [
+              "219735 of 5184000 pixels differ (4.239%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-02/customer-edit-car-light.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "customer-create-car-select-dark",
+      "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, escuro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 2,
+      "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actualImage": "actual/attempt-02/customer-create-car-select-dark.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "novo cliente · carro",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customer-create-car-select-dark.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png."
+        },
+        {
+          "item": "reference/customer-create-car-select-dark.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>",
+        "http://localhost:5175/api/cars/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customer-create-car-select-dark.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2880,
+          "height": 1800
+        },
+        "actual": {
+          "width": 2880,
+          "height": 1800
+        },
+        "mismatchedPixels": 63612,
+        "comparedPixels": 5184000,
+        "mismatchRatio": 0.012270833333333333,
+        "diffImage": "comparison/attempt-02/customer-create-car-select-dark.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-02/customer-create-car-select-dark.baseline.side-by-side.png",
+        "findings": [
+          "63612 of 5184000 pixels differ (1.227%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-02/customer-create-car-select-dark.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customer-create-car-select-light",
+      "label": "Clientes — Novo cliente, campo Carro aberto e filtrado, claro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 2,
+      "previewUrl": "/visual/preview.html?scenario=customer-create-car-select-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actualImage": "actual/attempt-02/customer-create-car-select-light.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "novo cliente · carro",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customer-create-car-select-light.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png."
+        },
+        {
+          "item": "reference/customer-create-car-select-light.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>",
+        "http://localhost:5175/api/cars/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customer-create-car-select-light.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2880,
+          "height": 1800
+        },
+        "actual": {
+          "width": 2880,
+          "height": 1800
+        },
+        "mismatchedPixels": 557262,
+        "comparedPixels": 5184000,
+        "mismatchRatio": 0.10749652777777778,
+        "diffImage": "comparison/attempt-02/customer-create-car-select-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png",
+        "findings": [
+          "557262 of 5184000 pixels differ (10.750%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-02/customer-create-car-select-light.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customer-edit-car-dark",
+      "label": "Clientes — Editar cliente com carro vinculado, escuro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 2,
+      "previewUrl": "/visual/preview.html?scenario=customer-edit-car-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actualImage": "actual/attempt-02/customer-edit-car-dark.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "editar cliente · carro",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customer-edit-car-dark.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png."
+        },
+        {
+          "item": "reference/customer-edit-car-dark.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>",
+        "http://localhost:5175/api/cars/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customer-edit-car-dark.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2880,
+          "height": 1800
+        },
+        "actual": {
+          "width": 2880,
+          "height": 1800
+        },
+        "mismatchedPixels": 73290,
+        "comparedPixels": 5184000,
+        "mismatchRatio": 0.014137731481481482,
+        "diffImage": "comparison/attempt-02/customer-edit-car-dark.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-02/customer-edit-car-dark.baseline.side-by-side.png",
+        "findings": [
+          "73290 of 5184000 pixels differ (1.414%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-02/customer-edit-car-dark.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customer-edit-car-light",
+      "label": "Clientes — Editar cliente com carro vinculado, claro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 2,
+      "previewUrl": "/visual/preview.html?scenario=customer-edit-car-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actualImage": "actual/attempt-02/customer-edit-car-light.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "editar cliente · carro",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customer-edit-car-light.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png."
+        },
+        {
+          "item": "reference/customer-edit-car-light.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>",
+        "http://localhost:5175/api/cars/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customer-edit-car-light.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2880,
+          "height": 1800
+        },
+        "actual": {
+          "width": 2880,
+          "height": 1800
+        },
+        "mismatchedPixels": 219735,
+        "comparedPixels": 5184000,
+        "mismatchRatio": 0.04238715277777778,
+        "diffImage": "comparison/attempt-02/customer-edit-car-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png",
+        "findings": [
+          "219735 of 5184000 pixels differ (4.239%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-02/customer-edit-car-light.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    }
+  ],
+  "findings": [
+    {
+      "scenarioId": "customer-create-car-select-dark",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customer-create-car-select-light",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customer-edit-car-dark",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customer-edit-car-light",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    }
+  ],
+  "blockedRequests": [],
+  "missingEvidence": [
+    {
+      "scenarioId": "customer-create-car-select-dark",
+      "item": "reference/customer-create-car-select-dark.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-dark.png."
+    },
+    {
+      "scenarioId": "customer-create-car-select-dark",
+      "item": "reference/customer-create-car-select-dark.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customer-create-car-select-light",
+      "item": "reference/customer-create-car-select-light.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-create-car-select-light.png."
+    },
+    {
+      "scenarioId": "customer-create-car-select-light",
+      "item": "reference/customer-create-car-select-light.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customer-edit-car-dark",
+      "item": "reference/customer-edit-car-dark.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-dark.png."
+    },
+    {
+      "scenarioId": "customer-edit-car-dark",
+      "item": "reference/customer-edit-car-dark.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customer-edit-car-light",
+      "item": "reference/customer-edit-car-light.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customer-edit-car-light.png."
+    },
+    {
+      "scenarioId": "customer-edit-car-light",
+      "item": "reference/customer-edit-car-light.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    }
+  ],
+  "baseline": {
+    "enabled": true,
+    "ref": "HEAD",
+    "commit": "1039311d700b61da7e8047b223c0618440d2b50c",
+    "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/1039311d700b",
+    "depsStrategy": "junction",
+    "url": "http://localhost:5174",
+    "changedScenarios": [
+      "customer-create-car-select-dark",
+      "customer-create-car-select-light",
+      "customer-edit-car-dark",
+      "customer-edit-car-light"
+    ]
+  },
+  "verdictHistory": [],
+  "qaFindings": {
+    "status": "PASS",
+    "base": {
+      "ref": "HEAD",
+      "commit": "1039311d700b61da7e8047b223c0618440d2b50c"
+    },
+    "attempt": 2,
+    "diferencas": [],
+    "minimas": [],
+    "bloqueios": []
+  },
+  "verdict": {
+    "result": "PASS",
+    "criteria": [
+      {
+        "text": "Novo cliente: campo Carro (Select com busca, placeholder 'Sem carro'); filtro 'toy' lista os 7 Toyota, nos dois temas",
+        "status": "pass",
+        "evidence": [
+          "actual/attempt-02/customer-create-car-select-light.png",
+          "actual/attempt-02/customer-create-car-select-dark.png",
+          "comparison/attempt-02/customer-create-car-select-light.requirements.json",
+          "comparison/attempt-02/customer-create-car-select-dark.requirements.json"
+        ]
+      },
+      {
+        "text": "Editar cliente: carro atual pré-selecionado (Alice Johnson → Toyota Corolla) com botão de limpar, nos dois temas",
+        "status": "pass",
+        "evidence": [
+          "actual/attempt-02/customer-edit-car-light.png",
+          "actual/attempt-02/customer-edit-car-dark.png",
+          "comparison/attempt-02/customer-edit-car-light.requirements.json",
+          "comparison/attempt-02/customer-edit-car-dark.requirements.json"
+        ]
+      },
+      {
+        "text": "Antes × depois (HEAD): a única mudança nos diálogos é o campo Carro",
+        "status": "pass",
+        "evidence": [
+          "baseline/customer-edit-car-light.png",
+          "comparison/attempt-02/customer-edit-car-light.baseline.side-by-side.png",
+          "baseline/customer-create-car-select-light.png",
+          "comparison/attempt-02/customer-create-car-select-light.baseline.side-by-side.png"
+        ]
+      }
+    ],
+    "diferencas": [],
+    "minimas": [],
+    "bloqueios": [],
+    "notes": [
+      "Sem frame do Figma para os diálogos de cliente: paridade de design não avaliada (not-applicable); requisitos de texto revisados.",
+      "API validada numa instância separada (porta 5046): GET /api/cars/options (37 itens, 'Marca Modelo'), POST com carId 3 → carName 'Toyota RAV4', PUT trocando para 17 e depois null (desvincula).",
+      "Attempt-01: baseline bloqueado porque o HEAD não tem o campo; attempt-02 usa baselineActions que só abrem os diálogos."
+    ],
+    "recordedAt": "2026-11-11T13:43:58.101Z",
+    "attempt": 2
+  }
+}

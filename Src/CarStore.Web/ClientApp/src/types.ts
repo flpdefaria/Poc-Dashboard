@@ -39,6 +39,12 @@ export interface BrandDto {
   cars: BrandCarSummary[];
 }
 
+/** `GET /api/cars/options` entry: `name` = "Brand Model" (same label as `CustomerDto.carName`). */
+export interface CarOption {
+  id: number;
+  name: string;
+}
+
 export interface BrandOption {
   id: number;
   name: string;

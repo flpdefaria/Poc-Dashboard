@@ -3,23 +3,26 @@ import { reactive, ref, watch } from "vue";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
+import Select from "primevue/select";
 import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
 import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
-import type { CustomerDto } from "../../../types";
+import type { CarOption, CustomerDto } from "../../../types";
 import { Check } from "@lucide/vue";
 
 export interface EditCustomerPayload {
   fullName: string;
   email: string;
   phoneNumber: string | null;
-  /** Linked car, passed through unchanged: this dialog does not edit it, and PUT replaces every field. */
+  /** Linked car; null = no car (PUT replaces every field, so clearing the Select unlinks the car). */
   carId: number | null;
 }
 
 const props = defineProps<{
   visible: boolean;
   customer: CustomerDto | null;
+  /** Car lookup (`GET /api/cars/options`), loaded by the page. */
+  cars: CarOption[];
   loading?: boolean;
   error?: string | null;
 }>();
@@ -35,6 +38,7 @@ function formFromCustomer(customer: CustomerDto | null) {
     fullName: customer?.fullName ?? "",
     email: customer?.email ?? "",
     phoneNumber: customer?.phoneNumber ?? "",
+    carId: customer?.carId ?? null,
   };
 }
 
@@ -66,7 +70,7 @@ function onSave() {
     fullName: form.fullName.trim(),
     email: form.email.trim(),
     phoneNumber: form.phoneNumber.trim() || null,
-    carId: props.customer?.carId ?? null,
+    carId: form.carId ?? null,
   });
 }
 
@@ -98,6 +102,21 @@ const dialogPt = dialogShellPt("w-[480px]");
 
     <FormField label="Telefone">
       <InputText v-model="form.phoneNumber" class="w-full" />
+    </FormField>
+
+    <FormField label="Carro">
+      <Select
+        v-model="form.carId"
+        :options="props.cars"
+        option-label="name"
+        option-value="id"
+        placeholder="Sem carro"
+        filter
+        filter-placeholder="Buscar carro"
+        show-clear
+        empty-filter-message="Nenhum carro encontrado"
+        class="w-full"
+      />
     </FormField>
 
     <Message v-if="validationError || props.error" severity="error" :closable="false">

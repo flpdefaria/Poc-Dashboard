@@ -36,7 +36,6 @@ The `Customer` domain entity: properties, the optional link to a [[Car]], factor
 
 - `Customer.Create(fullName, email, phoneNumber, carId = null)`
 - `Update(fullName, email, phoneNumber, carId = null)`: `PUT` replaces every field, so `null` clears the car.
-  `EditCustomerDialog.vue` passes the current `carId` through unchanged, because it has no car field.
 
 ## Invariants (exact `DomainException` messages)
 
@@ -68,6 +67,17 @@ step, a deleted car left a dangling `CarId` (found by API test on 2026-11-11).
   or `null`.
 - `CustomerService` reads include `Car` and `Car.Brand`.
 - `CreateCustomerRequest` gains an optional `CarId`. Invalid values return `400 { message }`.
+
+## UI
+
+- `CustomersPage.vue` loads `GET /api/cars/options` (`CarOptionDto` `{ id, name }`, name = "Brand Model",
+  sorted by name, served by `CarsApiController.Options` over `ICarService.GetAllAsync`). It passes the list
+  to `CreateCustomerDialog` and, through `CustomersTable`, to `EditCustomerDialog`.
+- Both dialogs have a "Carro" field: a PrimeVue `Select` with filter and `show-clear`, placeholder
+  "Sem carro". The edit dialog preselects the customer's `carId`, and clearing it sends `carId: null`
+  (unlink).
+- QA: `visual/scenarios/customer-dialogs.ts` (create with filter, edit with car, light/dark). The run
+  `qa-results/2026-11-11T13-40-40-382Z-customers-page` is PASS.
 
 ## Seed
 

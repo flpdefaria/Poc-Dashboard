@@ -35,6 +35,17 @@ public class CarsApiController : ControllerBase
         return Ok(dto);
     }
 
+    [HttpGet("options")]
+    public async Task<ActionResult<List<CarOptionDto>>> Options()
+    {
+        var cars = await _carService.GetAllAsync();
+        var dto = cars
+            .Select(c => new CarOptionDto { Id = c.Id, Name = $"{c.Brand?.Name} {c.Model}".Trim() })
+            .OrderBy(o => o.Name)
+            .ToList();
+        return Ok(dto);
+    }
+
     [HttpPost]
     public async Task<ActionResult<CarDto>> Create(CreateCarRequest request)
     {

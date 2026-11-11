@@ -116,7 +116,7 @@ Conventions:
 - Paged responses use `PagedResultDto<T>` (`Items`, `PageNumber`, `PageSize`, `TotalItems`, `TotalPages`, `HasPrevious`, `HasNext`) - it mirrors `PagedResult<T>` and the `PagedResult<T>` interface in `ClientApp/src/types.ts`.
 - Catch `DomainException` and return `BadRequest(new { message = ex.Message })`. The front-end composables read `body.message` and show it in the dialog, so the domain message is the user-facing error.
 - Return `NotFound()` for a missing id, `NoContent()` for a successful delete.
-- Dropdown/lookup data gets its own endpoint (`GET /api/brands/options` -> `BrandOptionDto[]`), never a full paged fetch.
+- Dropdown/lookup data gets its own endpoint (`GET /api/brands/options` -> `BrandOptionDto[]`, `GET /api/cars/options` -> `CarOptionDto[]` with "Brand Model" names), never a full paged fetch.
 - API controllers use `[ApiController]` + `ControllerBase` (no views). There is no authentication in this solution; add auth before exposing mutating endpoints publicly.
 - Keep the JSON casing default (camelCase) - `types.ts` depends on it.
 

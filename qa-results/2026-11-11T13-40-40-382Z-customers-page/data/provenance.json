@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-11-11T13:43:22.517Z",
+  "attempt": 2,
+  "command": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp/node_modules/.bin/playwright test visual/capture.spec.ts",
+  "cwd": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp",
+  "repoRoot": "/Users/felipefaria/projects/poc-dashboard",
+  "git": {
+    "branch": "main",
+    "commit": "1039311d700b61da7e8047b223c0618440d2b50c",
+    "dirty": true
+  },
+  "node": "v24.16.0",
+  "platform": "darwin arm64",
+  "harness": {
+    "previewEntry": "Src/CarStore.Web/ClientApp/visual/preview.html",
+    "previewScript": "Src/CarStore.Web/ClientApp/visual/preview.ts",
+    "spec": "Src/CarStore.Web/ClientApp/visual/capture.spec.ts",
+    "config": "Src/CarStore.Web/ClientApp/playwright.config.ts",
+    "preset": "Src/CarStore.Web/ClientApp/src/plugins/primevue-preset.ts"
+  },
+  "references": {
+    "customer-create-car-select-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/customer-create-car-select-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customer-create-car-select-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customer-create-car-select-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/customer-create-car-select-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customer-create-car-select-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customer-edit-car-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/customer-edit-car-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customer-edit-car-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customer-edit-car-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/customer-edit-car-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customer-edit-car-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    }
+  },
+  "baseline": {
+    "enabled": true,
+    "ref": "HEAD",
+    "commit": "1039311d700b61da7e8047b223c0618440d2b50c",
+    "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/1039311d700b",
+    "depsStrategy": "junction",
+    "url": "http://localhost:5174"
+  }
+}
