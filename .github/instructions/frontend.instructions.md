@@ -32,7 +32,11 @@ Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` b
 Src/CarStore.Web/ClientApp/
   vite.config.ts             # base "/dist/", outDir ../wwwroot/dist, fixed main.js / main.css names
   tsconfig.json              # strict, noEmit, includes src/**/*.ts + src/**/*.vue
-  package.json               # dev | build | preview scripts
+  package.json               # dev | build | preview scripts, plus visual:* (QA harness)
+  playwright.config.ts       # visual harness only (Chromium, preview server 5175, baseline 5174)
+  tsconfig.visual.json       # type-checks visual/ + playwright.config.ts (npm run visual:type-check)
+  visual/                    # QA visual-check harness, test-only: never built, excluded from Tailwind
+                             # scanning (`@source not "../visual"`). Owned by the QA agent; see visual/README.md
   src/
     main.ts                  # single entry: mounts the App shell once, on #app
     App.vue                  # SPA shell: Sidebar + <RouterView />
@@ -216,7 +220,7 @@ Rules:
 - [ ] `npm run build` clean, and the rebuilt `wwwroot/dist` committed with the change.
 - [ ] `dotnet build Src/CarStore.slnx` run if a `.cshtml` mount point or an API DTO changed.
 - [ ] Page opened in the running app and checked against the Figma frame, in **both light and dark themes** (toggle in the sidebar).
-- [ ] Visual validation, when requested, runs through the QA agent (`/frontend-visual-check`), not the implementing agent.
+- [ ] Visual validation, when requested, runs through the QA agent (`/frontend-visual-check`, harness in `ClientApp/visual/`), not the implementing agent.
 
 ## Never
 

@@ -1,0 +1,95 @@
+{
+  "generatedAt": "2026-11-11T12:35:24.641Z",
+  "attempt": 1,
+  "command": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp/node_modules/.bin/playwright test visual/capture.spec.ts",
+  "cwd": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp",
+  "repoRoot": "/Users/felipefaria/projects/poc-dashboard",
+  "git": {
+    "branch": "main",
+    "commit": "dbb3572fdd6ebc03e262376218d8532614a22145",
+    "dirty": true
+  },
+  "node": "v24.16.0",
+  "platform": "darwin arm64",
+  "harness": {
+    "previewEntry": "Src/CarStore.Web/ClientApp/visual/preview.html",
+    "previewScript": "Src/CarStore.Web/ClientApp/visual/preview.ts",
+    "spec": "Src/CarStore.Web/ClientApp/visual/capture.spec.ts",
+    "config": "Src/CarStore.Web/ClientApp/playwright.config.ts",
+    "preset": "Src/CarStore.Web/ClientApp/src/plugins/primevue-preset.ts"
+  },
+  "references": {
+    "home-dashboard-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/home-dashboard-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/home-dashboard-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "home-dashboard-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/home-dashboard-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/home-dashboard-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "cars-page-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/cars-page-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/cars-page-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "cars-page-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/cars-page-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/cars-page-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customers-page-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/customers-page-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customers-page-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customers-page-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/customers-page-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customers-page-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customers-page-empty-light": {
+      "path": null,
+      "reason": "No reference image at visual/references/customers-page-empty-light.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customers-page-empty-light.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    },
+    "customers-page-empty-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/customers-page-empty-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/customers-page-empty-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    }
+  },
+  "baseline": {
+    "enabled": true,
+    "ref": "HEAD",
+    "commit": "dbb3572fdd6ebc03e262376218d8532614a22145",
+    "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/dbb3572fdd6e",
+    "depsStrategy": "npm-ci",
+    "url": "http://localhost:5174"
+  }
+}

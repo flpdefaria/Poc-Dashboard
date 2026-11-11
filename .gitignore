@@ -490,3 +490,9 @@ $RECYCLE.BIN/
 
 # Playwright MCP (browser profile and outputs)
 .playwright-mcp/
+
+# Visual harness: baseline worktrees and machine-local run pointers
+.visual-baseline/
+qa-results/.current-run
+qa-results/index.html
+Src/CarStore.Web/ClientApp/test-results/

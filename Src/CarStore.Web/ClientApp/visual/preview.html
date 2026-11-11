@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarStore visual-check preview</title>
+    <!--
+      Test-only entry. It lives outside `src/` and is not a Rolldown input
+      (`vite.config.ts` builds only `src/main.ts`), so `npm run build` never sees
+      it and it cannot reach `wwwroot/dist`. Served by the visual dev server at
+      /visual/preview.html?scenario=<id>.
+    -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        /*
+         * Components whose only rendered output is `position: fixed` (dialogs,
+         * toasts) otherwise leave `body` with ~0 normal-flow height, so a
+         * `captureSelector: 'body'` screenshot collapses to a sliver.
+         */
+        min-height: 100vh;
+      }
+      #preview-root {
+        display: inline-block;
+        padding: 24px;
+      }
+      .preview-error {
+        font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+        color: #b91c1c;
+        background: #fef2f2;
+        border: 2px solid #b91c1c;
+        padding: 16px;
+        margin: 24px;
+        max-width: 720px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preview-root"></div>
+    <script type="module" src="/visual/preview.ts"></script>
+  </body>
+</html>

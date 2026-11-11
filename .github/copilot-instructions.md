@@ -53,7 +53,7 @@ Never hand-edit vault notes; always go through `vault-write`. Read-only tasks (Q
 | Domain unit tests | Tester-Specialist | - |
 | Vue components, Figma, charts | Frontend-Specialist | `frontend-agent` |
 | Front-end tooling, deps, MCP setup | Frontend-Tooling-Specialist | - |
-| Visual QA with Playwright | QA-Specialist | `qa-agent` |
+| Visual QA (Playwright harness in `ClientApp/visual/`, report in `qa-results/`) | QA-Specialist | `qa-agent` |
 
 Skills live in `.github/skills/`; `.claude/skills/` holds symlinks to the same folders. Keep one copy.
 

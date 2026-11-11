@@ -51,6 +51,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 
 - [[Operations-Overview]]
 - [[Deployment-Runbook]]
+- [[Visual-QA-Harness]]
 
 ## 06_References
 

@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-11-11
 tags:
   - note
   - type/guide
@@ -52,6 +52,7 @@ dotnet test Src/CarStore.Tests/CarStore.Tests.csproj
 
 ## Related
 
+- [[Visual-QA-Harness]]
 - [[Engineering-Overview]]
 - [[Brand]]
 - [[Car]]

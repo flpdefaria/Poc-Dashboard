@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-11-11
 tags:
   - note
   - type/guide
@@ -60,6 +60,7 @@ Requested explicitly as an architecture change; the previous "never turn this in
 
 ## Related
 
+- [[Visual-QA-Harness]]
 - [[Theme-Surface-Modes]]
 - [[UI-Language-pt-BR]]
 - [[Architecture-Overview]]

@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-11-11
 tags:
   - note
   - type/overview
@@ -62,6 +62,7 @@ Production deployment is manual via `deploy.sh`. See [[Deployment-Runbook]] for 
 
 ## Related
 
+- [[Visual-QA-Harness]]
 - [[Deployment-Runbook]]
 - [[Testing]]
 - [[Architecture-Overview]]

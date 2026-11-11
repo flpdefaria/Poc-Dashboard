@@ -20,7 +20,7 @@ The core routing today:
 | Domain unit tests (xUnit + FluentAssertions) | Tester-Specialist |
 | Vue components, Figma, charts, responsive, dark theme | Frontend-Specialist |
 | Vite/Tailwind/PrimeVue/deps, bundle wiring, MCP config | Frontend-Tooling-Specialist |
-| Visual validation with Playwright (`qa-results/`) | QA-Specialist |
+| Visual validation with the Playwright harness (`ClientApp/visual/`, `qa-results/`) | QA-Specialist |
 
 Fall back to **Default Copilot** only when no agent's description covers the subtask. For a frontend-only
 feature that needs the implement → QA → correct loop, suggest the `/create-frontend-ticket` skill instead

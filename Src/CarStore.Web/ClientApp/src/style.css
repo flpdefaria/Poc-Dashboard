@@ -7,6 +7,8 @@
    (e.g. `h-screen` on <body> in _Layout.cshtml) would silently never be
    generated without this explicit @source. */
 @source "../../Views";
+/* The visual-check harness (ClientApp/visual, test-only) must never add utilities to the shipped CSS. */
+@source not "../visual";
 
 /* Data palette: automotive paint swatches. Color on the dashboard encodes data categories and
    metric identity only; the monochrome surface-700/800 stays the single "act here" color. Every swatch
