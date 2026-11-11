@@ -1,0 +1,406 @@
+{
+ "light": {
+  "selectedRow": {
+   "bg": "#d7e6fe",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#1046a0",
+   "contrast": 6.92,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 164.28,
+   "h": 48,
+   "borderColor": "rgb(229, 231, 235)",
+   "borderRadius": "0px"
+  },
+  "selectedRowTr": "rgb(215, 230, 254)",
+  "activePage": {
+   "bg": "#d7e6fe",
+   "rawBg": "rgb(215, 230, 254)",
+   "fg": "#1046a0",
+   "contrast": 6.92,
+   "fontWeight": "600",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 36,
+   "h": 36,
+   "borderColor": "rgb(16, 70, 160)",
+   "borderRadius": "50%"
+  },
+  "idlePage": {
+   "bg": "#ffffff",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#6b7280",
+   "contrast": 4.83,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 36,
+   "h": 36,
+   "borderColor": "rgb(107, 114, 128)",
+   "borderRadius": "50%"
+  },
+  "checkedBox": {
+   "bg": "#2564cf",
+   "rawBg": "rgb(37, 100, 207)",
+   "fg": "#ffffff",
+   "contrast": 5.52,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(37, 100, 207)",
+   "borderRadius": "4px"
+  },
+  "checkedIcon": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(255, 255, 255)"
+  },
+  "checkedRoot": {
+   "x": 19,
+   "y": 198.5,
+   "w": 20,
+   "h": 20,
+   "right": 39,
+   "bottom": 218.5
+  },
+  "uncheckedBox": {
+   "bg": "#ffffff",
+   "rawBg": "rgb(255, 255, 255)",
+   "fg": "#1f2937",
+   "contrast": 14.68,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(209, 213, 219)",
+   "borderRadius": "4px"
+  },
+  "headerBox": {
+   "bg": "#ffffff",
+   "rawBg": "rgb(255, 255, 255)",
+   "fg": "#1f2937",
+   "contrast": 14.68,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(209, 213, 219)",
+   "borderRadius": "4px"
+  },
+  "bulkButton": {
+   "bg": "#ffffff",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#ef4444",
+   "contrast": 3.76,
+   "fontWeight": "500",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 215.13,
+   "h": 40,
+   "borderColor": "rgb(254, 202, 202)",
+   "borderRadius": "6px"
+  },
+  "checkboxVsRowContrast": 4.38,
+  "vin": {
+   "text": "WBA5R1C0XLA123462",
+   "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+   "fontSize": "12px",
+   "lineHeight": "16px"
+  }
+ },
+ "light:open-row-2": {
+  "trigger": {
+   "x": 1225,
+   "y": 240.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 272.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 277,
+   "bottom": 383
+  },
+  "opensUp": false,
+  "gapPx": 4.5,
+  "overlap": false,
+  "focusedItems": [
+   {
+    "label": "Detalhes",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "trashPaths": 5,
+  "consoleErrors": [],
+  "afterArrowDown": [
+   {
+    "label": "Detalhes",
+    "focused": true,
+    "contentBg": "rgb(243, 244, 246)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ]
+ },
+ "light:flip-row-10": {
+  "trigger": {
+   "x": 1225,
+   "y": 624.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 656.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 515,
+   "bottom": 621
+  },
+  "opensUp": true,
+  "gapPx": 3.5,
+  "overlap": false,
+  "focusedItems": [
+   {
+    "label": "Detalhes",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "trashPaths": 5,
+  "consoleErrors": []
+ },
+ "dark": {
+  "selectedRow": {
+   "bg": "#1d2a44",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#bcd4fb",
+   "contrast": 9.47,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 164.28,
+   "h": 48,
+   "borderColor": "color(srgb 0.0968627 0.130784 0.187451)",
+   "borderRadius": "0px"
+  },
+  "selectedRowTr": "color(srgb 0.478431 0.654902 0.960784 / 0.22)",
+  "activePage": {
+   "bg": "#1d2a44",
+   "rawBg": "color(srgb 0.478431 0.654902 0.960784 / 0.22)",
+   "fg": "#bcd4fb",
+   "contrast": 9.47,
+   "fontWeight": "600",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 36,
+   "h": 36,
+   "borderColor": "rgb(188, 212, 251)",
+   "borderRadius": "50%"
+  },
+  "idlePage": {
+   "bg": "#030712",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#9ca3af",
+   "contrast": 7.93,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 36,
+   "h": 36,
+   "borderColor": "rgb(156, 163, 175)",
+   "borderRadius": "50%"
+  },
+  "checkedBox": {
+   "bg": "#7aa7f5",
+   "rawBg": "rgb(122, 167, 245)",
+   "fg": "#030712",
+   "contrast": 8.32,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(122, 167, 245)",
+   "borderRadius": "4px"
+  },
+  "checkedIcon": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(3, 7, 18)"
+  },
+  "checkedRoot": {
+   "x": 19,
+   "y": 198.5,
+   "w": 20,
+   "h": 20,
+   "right": 39,
+   "bottom": 218.5
+  },
+  "uncheckedBox": {
+   "bg": "#030712",
+   "rawBg": "rgb(3, 7, 18)",
+   "fg": "#f3f4f6",
+   "contrast": 18.3,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(31, 41, 55)",
+   "borderRadius": "4px"
+  },
+  "headerBox": {
+   "bg": "#030712",
+   "rawBg": "rgb(3, 7, 18)",
+   "fg": "#f3f4f6",
+   "contrast": 18.3,
+   "fontWeight": "400",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 20,
+   "h": 20,
+   "borderColor": "rgb(31, 41, 55)",
+   "borderRadius": "4px"
+  },
+  "bulkButton": {
+   "bg": "#030712",
+   "rawBg": "rgba(0, 0, 0, 0)",
+   "fg": "#ef4444",
+   "contrast": 5.35,
+   "fontWeight": "500",
+   "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+   "w": 215.13,
+   "h": 40,
+   "borderColor": "rgb(254, 202, 202)",
+   "borderRadius": "6px"
+  },
+  "checkboxVsRowContrast": 5.91,
+  "vin": {
+   "text": "WBA5R1C0XLA123462",
+   "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+   "fontSize": "12px",
+   "lineHeight": "16px"
+  }
+ },
+ "dark:open-row-2": {
+  "trigger": {
+   "x": 1225,
+   "y": 240.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 272.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 277,
+   "bottom": 383
+  },
+  "opensUp": false,
+  "gapPx": 4.5,
+  "overlap": false,
+  "focusedItems": [
+   {
+    "label": "Detalhes",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "trashPaths": 5,
+  "consoleErrors": [],
+  "afterArrowDown": [
+   {
+    "label": "Detalhes",
+    "focused": true,
+    "contentBg": "rgb(17, 24, 39)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ]
+ },
+ "dark:flip-row-10": {
+  "trigger": {
+   "x": 1225,
+   "y": 624.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 656.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 515,
+   "bottom": 621
+  },
+  "opensUp": true,
+  "gapPx": 3.5,
+  "overlap": false,
+  "focusedItems": [
+   {
+    "label": "Detalhes",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Editar",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   },
+   {
+    "label": "Excluir",
+    "focused": false,
+    "contentBg": "rgba(0, 0, 0, 0)"
+   }
+  ],
+  "trashPaths": 5,
+  "consoleErrors": []
+ }
+}

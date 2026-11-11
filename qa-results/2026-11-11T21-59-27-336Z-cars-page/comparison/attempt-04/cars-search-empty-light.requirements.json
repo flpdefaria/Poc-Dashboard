@@ -1,0 +1,51 @@
+{
+  "scenario": "cars-search-empty-light",
+  "checks": [
+    {
+      "label": "Busca mantém o termo",
+      "selector": ".p-iconfield input[placeholder=\"Buscar nesta página…\"]",
+      "value": "zzz-sem-resultado",
+      "observed": {
+        "count": 1,
+        "text": "",
+        "value": "zzz-sem-resultado",
+        "box": {
+          "x": 0,
+          "y": 80,
+          "width": 216,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Nenhuma linha de dados",
+      "selector": ".p-datatable-tbody > tr:not(.p-datatable-empty-message)",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Linha de vazio do DataTable",
+      "selector": ".p-datatable-empty-message",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "",
+        "value": null,
+        "box": {
+          "x": 1,
+          "y": 185,
+          "width": 1286,
+          "height": 25
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, type Component } from "vue";
+import { computed, markRaw, ref, watch, type Component } from "vue";
 import DataTable, { type DataTablePageEvent, type DataTableSortEvent } from "primevue/datatable";
 import Column from "primevue/column";
 import Menu from "primevue/menu";
@@ -8,6 +8,7 @@ import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
 import InputText from "primevue/inputtext";
 import { rowEffectClass } from "../../../utils/rowEffects";
+import TrashIcon from "../icons/TrashIcon.vue";
 import { ArrowDown, ArrowUp, ArrowUpDown, EllipsisVertical, Eye, Pencil, Search, Trash2 } from "@lucide/vue";
 
 export interface DataTableColumn {
@@ -94,12 +95,11 @@ const cardActionsColumnPt = {
   columnTitle: { class: "font-semibold" },
 };
 
-// Selected row (Figma table-row Selected, 2070:1090): a light tint with darker ink rather than Aura's solid
-// highlight. The Figma file uses a blue theme (#d7e6fe / #1046a0); this app's monochrome preset maps that pair
-// to the Prometheus soft tokens (`--p-soft-background` = primary.200, `--p-soft-color` = primary.900), which
-// flip with the theme. `!` beats `.p-datatable-row-selected`.
+// Selected row (Figma table-row Selected, 2070:1090): Figma's blue pair #d7e6fe / #1046a0, exactly, through
+// the `selected` / `selected-ink` theme tokens in style.css (lifted for dark theme). The checked checkbox
+// (#2564cf) is styled in style.css under `.dt-card`. `!` beats `.p-datatable-row-selected`.
 const cardBodyRowPt = ({ context }: { context: { selected: boolean } }) => ({
-  class: context.selected ? "bg-(--p-soft-background)! text-(--p-soft-color)!" : undefined,
+  class: context.selected ? "bg-selected! text-selected-ink!" : undefined,
 });
 
 // Figma paginator inside the card footer (I2069:2766;553:9905;2069:3083): centered, 4px gap, 14px x 6px padding
@@ -129,7 +129,7 @@ const cardPaginatorPt = {
     class: [
       "size-9! min-w-9! rounded-full text-sm",
       context.active
-        ? "bg-(--p-soft-background)! font-semibold text-(--p-soft-color)!"
+        ? "bg-selected! font-semibold text-selected-ink!"
         : "bg-transparent! font-normal text-muted-color! hover:bg-surface-100! hover:text-color!",
     ],
   }),
@@ -178,8 +178,11 @@ const cardSearchIconClass = "start-[17px]! size-3.5! -mt-[7px]! text-sm! text-mu
 const cardSearchIconProps = { size: 14, strokeWidth: 1.5, absoluteStrokeWidth: true };
 const cardSearchInputClass = "h-10! py-0! ps-[40.5px]! pe-4! text-sm! leading-[21px]! not-focus:border-surface-400!";
 
-// Figma "Excluir selecionados (N)" (2070:1925): 40px outlined danger button.
-const cardBulkButtonClass = "h-10! gap-2! rounded-md! px-4! py-0! text-sm! leading-[21px]! font-medium! [&_.lucide]:size-4!";
+// Figma "Excluir selecionados (N)" (2070:1925): 40px outlined danger button, `button/outlined/danger/color` #b91c1c
+// -> `--p-red-700` (PrimeVue palette var; Tailwind v4's oklch reds do not match), lifted to `--p-red-300` on the dark
+// canvas. The #fecaca border is Aura's outlined danger border already. `!` beats `.p-button-outlined.p-button-danger`.
+const cardBulkButtonClass =
+  "h-10! gap-2! rounded-md! px-4! py-0! text-sm! leading-[21px]! font-medium! text-(--p-red-700)! [html.app-dark_&]:text-(--p-red-300)! [&_.lucide]:size-4!";
 
 const props = withDefaults(
   defineProps<{
@@ -329,7 +332,10 @@ function onMenuShow() {
   const rect = menuTrigger.getBoundingClientRect();
   el.style.marginTop = "0px";
   const openedAbove = el.getBoundingClientRect().top < rect.top;
-  const top = openedAbove ? rect.top - cardMenuGap - el.offsetHeight : rect.bottom + cardMenuGap;
+  // The trigger can sit on a half pixel (7.5px cell inset), so a whole-pixel menu cannot be exactly 4px away. Below,
+  // rounding the sum gives 4.5px (as in the Figma frame 2069:2759). Above, the trigger top is floored so the gap is
+  // the same 4.5px; rounding it (Math.round(n.5) = n + 1) would leave 3.5px.
+  const top = openedAbove ? Math.floor(rect.top) - cardMenuGap - el.offsetHeight : rect.bottom + cardMenuGap;
   el.style.top = `${Math.round(top + window.scrollY)}px`;
   el.style.insetInlineStart = `${Math.round(Math.max(0, rect.right + window.scrollX - el.offsetWidth))}px`;
 }
@@ -371,9 +377,9 @@ function toggleMenu(event: Event, data: any) {
       ? [
           {
             label: "Excluir",
-            // Figma's card menu draws a trash glyph without inner lines, but no Lucide icon matches it (in
-            // @lucide/vue, `Trash` is an alias of `Trash2`). Pending a design decision, every table uses Trash2.
-            lucideIcon: Trash2,
+            // Card: Figma's trash glyph has no inner lines (TrashIcon); other tables keep Lucide Trash2.
+            // markRaw: the Menu model is reactive, and a stateful SFC inside it triggers a Vue warning.
+            lucideIcon: props.card ? markRaw(TrashIcon) : Trash2,
             command: () => {
               if (props.confirmDelete) emit("delete", data);
               else window.location.href = `${props.deleteUrl}/${data.id}`;
@@ -415,7 +421,7 @@ function toggleMenu(event: Event, data: any) {
         class="shrink-0"
         @click="onBulkDeleteClick"
       >
-        <template #icon><Trash2 /></template>
+        <template #icon><TrashIcon /></template>
       </Button>
       <Button
         v-else-if="bulkDelete && selectedRows.length"
@@ -458,7 +464,7 @@ function toggleMenu(event: Event, data: any) {
         :row-class="rowClass"
         :sortField="sortField ?? undefined"
         :sortOrder="sortOrder ?? undefined"
-        class="text-sm"
+        :class="['text-sm', card ? 'dt-card' : undefined]"
         :pt="card ? { pcPaginator: cardPaginatorPt, bodyRow: cardBodyRowPt } : { pcPaginator: paginatorPt }"
         :table-style="flush || card ? 'table-layout: fixed' : undefined"
         @page="(e) => $emit('page', e)"

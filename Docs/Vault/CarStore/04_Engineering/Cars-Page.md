@@ -39,24 +39,31 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
 - 48px header and body rows including the 1px border: cells `px-[18px] py-[13.5px]`; the actions cell uses
   `py-[7.5px]` for its 32px icon button. Checkbox column 56px, actions column 80px, data columns equal (fixed layout).
 - Every body cell is 14px and inherits the row ink (no muted/xs secondary columns, no bold "Modelo").
-- Selected row: `--p-soft-background` / `--p-soft-color` (see Deviations).
+- Selected row and active page: Figma's blue pair #d7e6fe / #1046a0 through the `--color-selected` /
+  `--color-selected-ink` tokens in `style.css` (`bg-selected!` / `text-selected-ink!`), lifted for dark theme.
+- Checkbox (card only, `.dt-card` rules in `style.css`): 18x18, 4px radius, unchecked border `--p-surface-400`
+  (#9ca3af) with no shadow, 12px check icon, checked fill/border `--color-selected-accent` (#2564cf; #7aa7f5 in
+  dark). Aura's hover and focus-visible rules are more specific and still apply (keyboard focus ring kept).
+- "Excluir selecionados (N)": `cardBulkButtonClass` forces the ink to `--p-red-700` (#b91c1c, Figma
+  `button/outlined/danger/color`) and `--p-red-300` under `html.app-dark`; Aura's #fecaca border already matched.
 - Paginator centered, 36px round buttons (`size-9! min-w-9!`), 4px gap, 14px vertical padding (68px footer, 598px
   card), no bottom border. Nav glyphs are PrimeVue's built-in angle SVGs (the Figma file uses the same PrimeOne
   `angle-*` icons, not Lucide), sized 14px through the `firstIcon`/`prevIcon`/`nextIcon`/`lastIcon` pt sections.
-  Idle pages 14px regular muted; the current page is semibold on `--p-soft-background` / `--p-soft-color`
+  Idle pages 14px regular muted; the current page is semibold on `--color-selected` / `--color-selected-ink`
   (Figma `paginator/nav/button/selected` #d7e6fe / #1046a0). Hover only on idle pages; disabled nav buttons keep
   Aura's 0.6 opacity (no Figma disabled state). Rows-per-page select 40px, `leading-[38px]!` label in
   `text-muted-color` (Figma `select/placeholder/color`), 14px dropdown chevron, surface-400 border.
 - Row menu 175px, 6px radius, 30px items (`px-3! py-2!`, 8px icon gap), 4px item gap, 3px list padding (106px
   menu, because Figma's stroke sits outside auto layout), 14px `text-muted-color` icons with an absolute 1.5px
   stroke, all labels `text-color` ("Excluir" is not red in Figma), no separators, `shadow-md` (= Figma
-  `menu/shadow`). "Excluir" uses `Trash2` everywhere: Figma's `trash` has no inner lines, but no Lucide icon matches
-  it (`Trash` is an alias of `Trash2`), so this is an accepted deviation pending a design decision. Icons pass
+  `menu/shadow`). "Excluir" uses `TrashIcon` in card mode (Figma `trash`, no inner lines); other tables keep Lucide `Trash2`. Icons pass
   `size` (14, ellipsis 16) because `absoluteStrokeWidth` scales by the `size` prop, not the CSS size. The icon classes are applied on the `#itemicon` slot's `<component>` in card mode, because PrimeVue
   passes only `cx('itemIcon')` to that slot and `cardMenuPt.itemIcon` alone never applies.
 - Menu placement (card only): `onMenuShow` runs after PrimeVue's `absolutePosition` and puts the menu's right edge
   on the trigger's right edge with a 4px gap (`cardMenuGap`), keeping PrimeVue's upward flip near the viewport
-  bottom (negative gap). PrimeVue alone left-aligns with a 2px gutter.
+  bottom. PrimeVue alone left-aligns with a 2px gutter. Coordinates are whole pixels and the trigger sits on a half
+  pixel (7.5px cell inset), so an exact 4px gap is impossible: below = round(bottom + 4) -> 4.5px (as in the frame);
+  above = floor(top) - 4 - height -> 4.5px (it was round(...) -> 3.5px).
 - Open state (card only): `menuRowKey` tracks the row whose menu is open (cleared on Menu `hide`). That row gets the
   `--p-datatable-row-hover-background` fill unless selected (selection dominates), and its trigger keeps
   `bg-surface-50!` and `aria-expanded`. Trigger glyph `text-surface-900!` (Figma #111827), 16px, 1.5px stroke.
@@ -64,12 +71,19 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
 
 ## Dialogs
 
+- Initial focus: PrimeVue Dialog focuses (focus-visible) the close button unless something has `[autofocus]`, and
+  Figma draws no ring. Each Car dialog (create, edit, details, delete list mode) puts `autofocus tabindex="-1"
+  class="outline-none"` on its `#header` title element (details: the header block). PrimeVue's `focus()` searches
+  the header container before falling back to the close button. The title was chosen over a content wrapper so the
+  content DOM (and the QA selectors such as `.p-dialog-content > section`) stays unchanged. Tab reaches the close
+  button and the fields; Esc still closes. Brands/Customers dialogs are untouched.
 - Shell: `modalDialogPt(width)` in `common/dialog/dialogStyles.ts` (12px radius, surface-200 border, shadow-xl,
   18px header/content/footer insets, 16px content gap, 6px footer gap, 32px close button). Close glyph = Lucide `X`
   in the Dialog `#closeicon` slot. Title class `modalDialogTitleClass` (18/24, 600). All Car dialogs are 400px.
 - Form controls: `modalInputClass`, `modalInputNumberPt`, `modalSelectPt`, `modalTextareaClass` (40px, 14px text,
   124px textarea, surface-400 border except while focused). The Select label is centered with `leading-[38px]!`
-  (40px minus the borders), because `.p-select-label { display: block }` ignores flex centering. `FormField.vue` gained optional `compact` (12/16 medium label, 8px gap) and `inputId` (`for`).
+  (40px minus the borders), because `.p-select-label { display: block }` ignores flex centering. Its chevron is
+  `dropdownIcon: size-3.5! text-muted-color!` (Figma 14px #6b7280; Aura 16px surface-400). `FormField.vue` gained optional `compact` (12/16 medium label, 8px gap) and `inputId` (`for`).
 - Form layout: Modelo; Chassi (VIN); Marca + Carroceria; Ano do modelo + Quilometragem; Preço + Estoque; Descrição.
   Create shows the Figma placeholders and "Cadastrar carro"; edit shows "Salvar alterações" and keeps Quilometragem
   disabled (as before). Validation ("Modelo e marca são obrigatórios.") and API `400 { message }` errors still show
@@ -78,7 +92,7 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   in `ConfirmDeleteDialog.vue`, node `2072:2739`: 33px, real 1px `--p-message-error-border-color` border instead of
   Aura's outline, 6x10px padding, 16/19 text, `--p-red-700` ink in light and the dark message token under
   `html.app-dark`), list rows
-  (model, "Marca · Carroceria", price), danger button "Excluir carro" / "Excluir N carros" with `Trash2`. Without
+  (model, "Marca · Carroceria", price), danger button "Excluir carro" / "Excluir N carros" with `TrashIcon`. Without
   `items` the dialog keeps its legacy layout (Brands, Customers).
 - Details: header icon box (`bg-sunken`, Lucide `Car`), model + "Disponível"/"Indisponível" tag, "Marca ·
   Carroceria"; price at 32/40; sunken stats (Estoque "N un.", Quilometragem, Ano do modelo); Especificações
@@ -92,29 +106,32 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   fills with `--p-red-600` (#dc2626), hover `--p-red-700`. Use the PrimeVue `--p-red-*` vars, not Tailwind v4's
   `red-*` utilities: Tailwind v4's oklch reds do not match the Aura/Figma hex values. The older 38px classes are
   unchanged.
+- `components/common/icons/TrashIcon.vue`: Lucide trash-2 minus the `M10 11v6` / `M14 11v6` paths, rendered
+  through `@lucide/vue`'s `Icon` (`name="trash"`), so it keeps the `.lucide` class and the `size` / `strokeWidth` /
+  `absoluteStrokeWidth` / `class` API. Used by the card row menu, the card bulk button and the list-mode delete
+  button only.
 - `styles/tagStyles.ts`: `tagPt` (moved from `Home.vue`, same classes; Home now imports it).
 - Token mapping (frame resolves to the gray surface mode, as on Home): text `#1f2937` -> `text-color`, muted
   `#6b7280` -> `text-muted-color`, borders `#e5e7eb` -> `surface-200`, input/select/outlined borders `#9ca3af` ->
   `surface-400` (forced by the classes; the preset/Aura default input border is surface-300), contrast `#030712` -> `bg-primary`, card shadow -> `shadow-sm`, modal shadow -> `shadow-xl`,
   menu shadow -> `shadow-md`, sunken `#f9fafb` -> `bg-sunken`. Second pass: `paginator/nav/button/selected`
-  #d7e6fe / #1046a0 -> `--p-soft-background` / `--p-soft-color`; `button/text/secondary/hover/background` #f9fafb
+  #d7e6fe / #1046a0 -> `--color-selected` / `--color-selected-ink` (style.css, exact hex); `button/text/secondary/hover/background` #f9fafb
   -> `bg-surface-50`; `button/text/secondary/color` #111827 -> `text-surface-900`; table row hover #f3f4f6 ->
   `--p-datatable-row-hover-background`.
 
-## Deviations from the frame
+## Figma alignment policy
 
-- **Selection color:** Figma uses a blue theme (`#2564cf` checkbox, `#d7e6fe` / `#1046a0` selected row). The app
-  preset is the monochrome Atlas primary, so the checkbox stays `primary` and the row uses the soft tint tokens.
-- **Active page:** no longer a deviation. The refreshed Figma marks the current page with the selected fill, so
-  it follows Figma through the soft tokens (same mapping as the selected row).
-- **Bulk button ink:** Aura outlined danger color (red 500) instead of Figma red 700, to stay theme-driven.
-- **VIN font:** Figma `code/sm` is Roboto Mono; the app has no mono webfont, so `font-mono` (system) is used.
-- **Checkbox:** Aura 20px instead of Figma 18px.
+No deviations from the frame are approved (2026-11-11). The former list (selection color, bulk button ink,
+checkbox size, trash glyph, VIN font) was fixed; see "Third pass". The upward menu gap is 4.5px (whole pixels,
+same as the downward gap and Figma's own rounding), approved by the user.
 
 ## Gaps
 
 - No API gaps: every field shown comes from `CarDto`. "N un." and "Brand · Body" are client formatting.
 - Search and column sort still act only on the loaded page (see [[Pagination]]).
+- **VIN font (resolved):** Figma `code/sm` is Roboto Mono 12/16. It is self-hosted like Inter (no CDN):
+  `@fontsource/roboto-mono` dependency, `@import "@fontsource/roboto-mono/latin-400.css"` in `style.css`, and
+  `--font-mono` in `@theme` starts with "Roboto Mono". The VIN is the only `font-mono` use in the app.
 
 ## PrimeVue override rule (`!`)
 
@@ -208,6 +225,12 @@ Toolbar slots are hidden). The only deltas were the search icon colour (#9ca3af 
 `text-muted-color`. The inputtext main component (`2004:11640`) is not readable through the MCP, so the filled,
 hover and focus states keep Aura's (text surface-700, hover border surface-400, focus border primary). The table
 component description asks for an accessible table name (`aria-label`); `DataTableCommon` has none yet (open).
+
+## Third pass 2026-11-11 (strict QA `qa-results/2026-11-11T21-59-27-336Z-cars-page/`)
+
+Fixed: checkbox 18px / 12px icon / surface-400 border / no shadow; bulk button ink `--p-red-700`; `TrashIcon` in
+the card menu, card bulk button and list-mode delete button; select chevron 14px muted; no close-button focus
+ring on open; upward menu gap 3.5px -> 4.5px; VIN in self-hosted Roboto Mono (see Gaps).
 
 ## Related
 

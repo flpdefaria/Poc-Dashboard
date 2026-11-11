@@ -1,0 +1,70 @@
+{
+ "light:create": {
+  "dialogH": 694,
+  "dialogY": 103,
+  "activeIsClose": true,
+  "closeFocusVisible": true,
+  "closeOutline": "solid 1px rgb(75, 85, 99)",
+  "closeBorder": "1px rgba(0, 0, 0, 0)",
+  "closeShadow": "none",
+  "chevron": {
+   "w": 16,
+   "h": 16,
+   "color": "rgb(156, 163, 175)"
+  },
+  "rows": [
+   68,
+   566,
+   58
+  ]
+ },
+ "light:bulk": {
+  "dialogH": 487,
+  "dialogY": 206.5,
+  "activeIsClose": true,
+  "closeFocusVisible": true,
+  "closeOutline": "solid 1px rgb(75, 85, 99)",
+  "closeBorder": "1px rgba(0, 0, 0, 0)",
+  "closeShadow": "none",
+  "chevron": null,
+  "rows": [
+   68,
+   359,
+   58
+  ]
+ },
+ "dark:create": {
+  "dialogH": 694,
+  "dialogY": 103,
+  "activeIsClose": true,
+  "closeFocusVisible": true,
+  "closeOutline": "solid 1px rgb(209, 213, 219)",
+  "closeBorder": "1px rgba(0, 0, 0, 0)",
+  "closeShadow": "none",
+  "chevron": {
+   "w": 16,
+   "h": 16,
+   "color": "rgb(75, 85, 99)"
+  },
+  "rows": [
+   68,
+   566,
+   58
+  ]
+ },
+ "dark:bulk": {
+  "dialogH": 487,
+  "dialogY": 206.5,
+  "activeIsClose": true,
+  "closeFocusVisible": true,
+  "closeOutline": "solid 1px rgb(209, 213, 219)",
+  "closeBorder": "1px rgba(0, 0, 0, 0)",
+  "closeShadow": "none",
+  "chevron": null,
+  "rows": [
+   68,
+   359,
+   58
+  ]
+ }
+}

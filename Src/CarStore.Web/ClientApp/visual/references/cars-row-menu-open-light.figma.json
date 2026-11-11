@@ -134,13 +134,6 @@
       }
     }
   ],
-  "explanations": [
-    {
-      "nodeId": "I2069:2766;553:9905;2069:3083;394:18726",
-      "category": "intencional",
-      "text": "Desvio aceito: preset monocromático, a página ativa usa --p-soft-background / --p-soft-color em vez do azul #d7e6fe / #1046a0 do Figma."
-    }
-  ],
   "notes": [
     "Referência = get_screenshot do frame 2069:2759 (1440x814 @1x) recortado em x112 y40 1288x734 (área main/conteúdo), incluindo o menu 2069:3601 sobreposto (x1194 y317 no frame).",
     "Linha aberta = 2ª linha (5 Series), gatilho I2069:2766;553:9904;2069:2779;...;2069:2843 em x1337..1369 y280.5..312.5 do frame; menu em x1194..1369 y317: borda direita do menu = borda direita do gatilho, 4px abaixo.",

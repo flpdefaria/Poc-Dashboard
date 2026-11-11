@@ -1,0 +1,471 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2005-5266",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2005:5301",
+    "nodeName": "Tela · Central da frota / main (área de conteúdo, sem a margem de 40px)",
+    "retrievedAt": "2026-11-11T13:10:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 1075,
+    "exportScale": 1
+  },
+  "tree": [
+    {
+      "id": "2005:5302",
+      "name": "page-header",
+      "type": "INSTANCE",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1288,
+        "height": 56
+      },
+      "componentName": "page-header"
+    },
+    {
+      "id": "2007:102",
+      "name": "kpis",
+      "type": "FRAME",
+      "bounds": {
+        "x": 0,
+        "y": 80,
+        "width": 1288,
+        "height": 163
+      }
+    },
+    {
+      "id": "2008:3752",
+      "name": "new-customers",
+      "type": "FRAME",
+      "bounds": {
+        "x": 0,
+        "y": 267,
+        "width": 864,
+        "height": 446
+      }
+    },
+    {
+      "id": "2008:3784",
+      "name": "fleet-by-brand",
+      "type": "FRAME",
+      "bounds": {
+        "x": 888,
+        "y": 267,
+        "width": 400,
+        "height": 446
+      }
+    },
+    {
+      "id": "2037:268",
+      "name": "recent-customers",
+      "type": "FRAME",
+      "bounds": {
+        "x": 0,
+        "y": 737,
+        "width": 1288,
+        "height": 338
+      }
+    }
+  ],
+  "texts": [
+    {
+      "nodeId": "I2005:5302;363:2793",
+      "text": "Central da frota"
+    },
+    {
+      "nodeId": "I2005:5302;363:2794",
+      "text": "Acompanhe o valor da frota, o estoque e a atividade recente de clientes."
+    },
+    {
+      "nodeId": "2008:3754",
+      "text": "Novos clientes"
+    },
+    {
+      "nodeId": "2008:3785",
+      "text": "Frota por marca"
+    },
+    {
+      "nodeId": "I2009:212;556:1396",
+      "text": "Clientes recentes"
+    },
+    {
+      "nodeId": "I2009:212;553:9757;2009:414;553:987;2009:411;552:990",
+      "text": "Carro"
+    }
+  ],
+  "primevue": [
+    {
+      "nodeId": "2008:3755",
+      "component": "SelectButton",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2008:3858",
+      "component": "Button",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2009:212",
+      "component": "DataTable",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2005:5302;363:2793",
+      "nodeName": "page-header / title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Central da frota",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "letterSpacing": 0,
+        "color": "#1f2937",
+        "fontFamily": "Inter"
+      }
+    },
+    {
+      "nodeId": "I2005:5302;363:2794",
+      "nodeName": "page-header / description",
+      "selector": ":scope > div:nth-child(1) p",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2007:103",
+      "nodeName": "_kpi-card (Valor da frota)",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(1)",
+      "props": {
+        "width": 304,
+        "height": 163,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2007:103",
+      "nodeName": "_kpi-card / body padding",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(1) > .p-card-body",
+      "props": {
+        "paddingTop": 18,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "I2007:103;2007:92",
+      "nodeName": "_kpi-card / label",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(1) .p-card-content > div:first-child > span",
+      "text": "Valor da frota",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2007:103;2007:93",
+      "nodeName": "_kpi-card / icon-box",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(1) .p-card-content > div:first-child > div",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "paddingTop": 8,
+        "borderRadius": 6,
+        "backgroundColor": "#f9fafb"
+      }
+    },
+    {
+      "nodeId": "I2007:103;2007:96",
+      "nodeName": "_kpi-card / value",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(1) .p-card-content > p",
+      "text": "R$ 20,8 mi",
+      "props": {
+        "fontSize": 48,
+        "fontWeight": 600,
+        "lineHeight": 56,
+        "letterSpacing": -0.96,
+        "color": "#1f2937",
+        "fontFamily": "Inter"
+      }
+    },
+    {
+      "nodeId": "I2007:127;2007:97",
+      "nodeName": "_kpi-card (Clientes cadastrados) / tag Ao vivo",
+      "selector": ":scope > div:nth-child(2) > .p-card:nth-child(3) .p-tag",
+      "text": "Ao vivo",
+      "props": {
+        "height": 17,
+        "fontSize": 11,
+        "fontWeight": 500,
+        "letterSpacing": 0.11,
+        "paddingTop": 2,
+        "paddingLeft": 6,
+        "borderRadius": 6,
+        "backgroundColor": "#cffafe",
+        "color": "#0e7490"
+      }
+    },
+    {
+      "nodeId": "2008:3752",
+      "nodeName": "new-customers (card)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1)",
+      "props": {
+        "width": 864,
+        "height": 446,
+        "borderRadius": 12,
+        "borderWidth": 1
+      }
+    },
+    {
+      "nodeId": "2008:3754",
+      "nodeName": "new-customers / title (heading/sm)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1) h2",
+      "text": "Novos clientes",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2008:3755",
+      "nodeName": "new-customers / selectbutton",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1) .p-selectbutton",
+      "props": {
+        "height": 40,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "I2008:3755;191:6746;4283:47172",
+      "nodeName": "selectbutton / Mensal (checked label)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1) .p-togglebutton-checked",
+      "text": "Mensal",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2008:3784",
+      "nodeName": "fleet-by-brand (card)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2)",
+      "props": {
+        "width": 400,
+        "height": 446,
+        "borderRadius": 12,
+        "borderWidth": 1
+      }
+    },
+    {
+      "nodeId": "2008:3785",
+      "nodeName": "fleet-by-brand / title (heading/sm)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2) h2",
+      "text": "Frota por marca",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2008:3807",
+      "nodeName": "brand · Toyota / label-row",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2) li:first-child > div:first-child",
+      "text": "Toyota",
+      "props": {
+        "height": 20,
+        "fontSize": 14,
+        "lineHeight": 20
+      }
+    },
+    {
+      "nodeId": "I2008:3810;516:3128",
+      "nodeName": "brand · Toyota / databar track",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2) li:first-child > div:nth-child(2)",
+      "props": {
+        "height": 8,
+        "borderRadius": 4,
+        "backgroundColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2008:3858",
+      "nodeName": "fleet-by-brand / button Ver marcas",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2) .p-button",
+      "text": "Ver marcas",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2037:268",
+      "nodeName": "recent-customers (card)",
+      "selector": ":scope > div:nth-child(4)",
+      "props": {
+        "width": 1288,
+        "height": 338,
+        "borderRadius": 12,
+        "borderWidth": 1
+      }
+    },
+    {
+      "nodeId": "I2009:212;556:1395",
+      "nodeName": "table / header (56px)",
+      "selector": ":scope > div:nth-child(4) h2",
+      "text": "Clientes recentes",
+      "props": {
+        "height": 56,
+        "paddingTop": 16,
+        "paddingLeft": 16,
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9756;2009:398",
+      "nodeName": "table / toolbar inputtext",
+      "selector": ":scope > div:nth-child(4) .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 32
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9757;2009:414",
+      "nodeName": "table / header row",
+      "selector": ":scope > div:nth-child(4) .p-datatable-thead > tr",
+      "props": {
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9757;2009:414;553:987;2009:411",
+      "nodeName": "table-header-cell Carro (célula)",
+      "selector": ":scope > div:nth-child(4) .p-datatable-thead th:nth-child(3)",
+      "props": {
+        "width": 468.25,
+        "height": 40,
+        "paddingLeft": 14
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9757;2009:414;553:987;2009:411;552:990",
+      "nodeName": "table-header-cell Carro (título)",
+      "selector": ":scope > div:nth-child(4) .p-datatable-thead th:nth-child(3) .p-datatable-column-title",
+      "text": "Carro",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9757;2009:414;553:987;2009:410",
+      "nodeName": "table-header-cell E-mail",
+      "selector": ":scope > div:nth-child(4) .p-datatable-thead th:nth-child(2)",
+      "text": "E-mail",
+      "props": {
+        "width": 174.75
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9758;2009:443",
+      "nodeName": "table / row",
+      "selector": ":scope > div:nth-child(4) .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9758;2009:443;553:999;2009:450;552:983;2009:457",
+      "nodeName": "table-cell Carro (linha 1)",
+      "selector": ":scope > div:nth-child(4) .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+      "text": "Toyota Corolla XEi 2.0",
+      "props": {
+        "height": 40,
+        "paddingLeft": 14,
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2009:212;553:9756;2009:385",
+      "nodeName": "table / toolbar button-small Ver todos",
+      "selector": ":scope > div:nth-child(4) .p-button",
+      "text": "Ver todos",
+      "props": {
+        "height": 32,
+        "borderRadius": 6,
+        "fontSize": 12,
+        "fontWeight": 500,
+        "backgroundColor": "#030712"
+      }
+    },
+    {
+      "nodeId": "I2008:3755;191:6733",
+      "nodeName": "selectbutton / Semanal (idle)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1) .p-togglebutton:not(.p-togglebutton-checked)",
+      "text": "Semanal",
+      "props": {
+        "backgroundColor": "#f9fafb",
+        "color": "#4b5563",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "I2008:3755;191:6746",
+      "nodeName": "selectbutton / Mensal (checked color)",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(1) .p-togglebutton-checked",
+      "props": {
+        "color": "#030712",
+        "backgroundColor": "#f9fafb"
+      }
+    },
+    {
+      "nodeId": "2033:562",
+      "nodeName": "brand · Outros / meter",
+      "selector": ":scope > div:nth-child(3) > .p-card:nth-child(2) li:nth-child(6) .bar-fill",
+      "props": {
+        "height": 8,
+        "backgroundColor": "#6b7280",
+        "borderRadius": 4
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó main 2005:5301 (1368x1155 @1x) recortado na área de conteúdo (x40 y40, 1288x1075): o frame inclui a nav-rail e a margem de 40px do shell, que o preview não monta.",
+    "Cores = valores RESOLVIDOS por get_variable_defs no nó 2005:5301 (modo de superfície gray: text #1f2937, muted #6b7280, borda #e5e7eb, sunken #f9fafb, contrast #030712). Os valores do código gerado pelo get_design_context (#262626, #737373...) são só fallbacks das variáveis e não o modo aplicado ao frame.",
+    "Valores esperados vêm só do get_design_context dos nós 2005:5302, 2007:103, 2007:127, 2008:3753, 2008:3784, 2035:268 e 2037:268 (tabela 2009:212); tamanhos complementares do get_metadata.",
+    "Dados do cenário = conteúdo do protótipo (visual/scenarios/fixtures-figma.ts + carros/marcas do seed). O protótipo é inconsistente: as datas da tabela (3 em nov, 2 em out) contradizem a série do gráfico (1 e 1); o fixture segue o gráfico, então 4 datas da tabela diferem do frame."
+  ]
+}

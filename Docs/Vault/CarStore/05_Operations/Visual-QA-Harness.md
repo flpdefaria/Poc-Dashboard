@@ -190,6 +190,33 @@ Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `refe
 - Run: `qa-results/2026-11-11T19-20-27-011Z-cars-page/` (56 `cars-*` scenarios, PASS). See [[Cars-Page]].
 - Full list: "Learnings (2026-11-11, Cars-only QA bundle)" in `visual/README.md`.
 
+### Caveats (strict Cars QA, fix-round recheck)
+
+- An icon `svg` spec row checks the box, not the glyph. Compare the Figma vector bounds (`get_metadata` on the icon
+  instance) with `path.getBBox()` scaled to px. Example: the Marca select chevron box is 14px, but the PrimeVue glyph is
+  12x6.8px against the Figma vector's 8.05x4.55px.
+- Spec rows do not check position inside a cell. Compare the `get_metadata` slot `y` with `child.top - row.top`.
+  Example: the Cars body-row checkbox sits at 15.5px against Figma's 14.5px.
+- `report.json` records console errors only. Grep the `visual:compare` output for `Vue warn`. Example: a SFC icon
+  (`TrashIcon.vue`) inside a reactive Menu `model` warns "Vue received a Component that was made a reactive object".
+- For ad-hoc measurement scripts while the harness holds 5175, run a second preview with
+  `npm run dev -- --config visual/vite.config.ts --port 5185 --strictPort`.
+- Run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` attempt-03 (FAIL). See [[Cars-Page]].
+- Full list: "Learnings (2026-11-11, strict Cars QA, fix-round recheck)" in `visual/README.md`.
+
+### Caveats (strict Cars QA, attempt-04 recheck)
+
+- A clean `Vue warn` grep proves nothing if the run log carries no `[console.*]` lines. Confirm with a page `console`
+  listener on the 5185 preview and fire a probe `console.warn` first.
+- Calibrate icon weight against an icon already judged equal. Compare the summed ink in the 1x capture with the Figma PNG.
+  Example: the card search icon gives 6574 against 6716, while the Marca chevron at 1.5px gives 2184 against 1463.
+- Lucide `getBBox()` is the centreline. Add the stroke width before comparing it with a Figma vector's bounds.
+- An 18px box at y=14.5 is anti-aliased across two rows in the Figma PNG and snapped to one row by Chromium, which leaves
+  about 19 red px per box. Compare a body-row residual with the header's before calling it a position defect.
+- Diff `actual/attempt-N-1` against `actual/attempt-N` (delta above 8 per channel) to isolate exactly what a fix changed.
+- Run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` attempt-04 (PASS). See [[Cars-Page]].
+- Full list: "Learnings (2026-11-11, strict Cars QA, attempt-04 recheck)" in `visual/README.md`.
+
 ## Related
 
 - [[Frontend-SPA]]

@@ -123,6 +123,9 @@ function bulkDeleteDialog(theme: Theme): VisualScenario {
   return {
     ...base(theme, '.p-dialog'),
     ...figma(theme, '2071:1663', 'Tela · Carros · Confirmar exclusão'),
+    // 901px tall: the 487px dialog is centred, so a 900px viewport puts it at y=206.5 and the element
+    // screenshot rounds to 488 rows (dimension-mismatch with no pixel diff). An odd height gives y=207.
+    viewport: { ...VIEWPORT, height: 901 },
     id: `cars-bulk-delete-dialog-${theme}`,
     label: `Carros — confirmar exclusão de 10 carros, ${themeLabel(theme)}`,
     state: 'excluir em massa',

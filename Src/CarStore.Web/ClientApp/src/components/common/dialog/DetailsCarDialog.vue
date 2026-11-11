@@ -35,7 +35,9 @@ function onEdit() {
   >
     <!-- Header (2076:3832): 36px icon box on the sunken surface, title + availability tag, "Brand · Body" line. -->
     <template #header>
-      <div class="flex min-w-0 flex-1 items-center gap-2">
+      <!-- Initial focus: without an [autofocus] element PrimeVue Dialog focuses the close button with a visible ring,
+           which Figma does not draw. The title takes it instead (tabindex -1: not in the Tab order, no outline). -->
+      <div class="flex min-w-0 flex-1 items-center gap-2 outline-none" autofocus tabindex="-1">
         <div class="flex shrink-0 rounded-md bg-sunken p-2 text-color">
           <Car class="size-5" :stroke-width="1.5" absolute-stroke-width />
         </div>

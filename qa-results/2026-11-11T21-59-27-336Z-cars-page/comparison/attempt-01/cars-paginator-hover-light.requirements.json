@@ -1,0 +1,51 @@
+{
+  "scenario": "cars-paginator-hover-light",
+  "checks": [
+    {
+      "label": "Página ativa = 1",
+      "selector": ".p-paginator-page-selected",
+      "text": "1",
+      "observed": {
+        "count": 1,
+        "text": "1",
+        "value": null,
+        "box": {
+          "x": 519.73,
+          "y": 681,
+          "width": 36,
+          "height": 36
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Sem texto de relatório de página",
+      "selector": ".p-paginator-current",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "4 páginas",
+      "selector": ".p-paginator-page",
+      "count": 4,
+      "observed": {
+        "count": 4,
+        "text": "1",
+        "value": null,
+        "box": {
+          "x": 519.73,
+          "y": 681,
+          "width": 36,
+          "height": 36
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

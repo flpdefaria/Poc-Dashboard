@@ -1,0 +1,972 @@
+{
+ "light": {
+  "headerCheckbox": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(31, 41, 55)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(31, 41, 55)",
+    "outlineOffset": "0px",
+    "color": "rgb(31, 41, 55)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(255, 255, 255)",
+    "border": "rgb(156, 163, 175)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(31, 41, 55)"
+   }
+  },
+  "uncheckedRow": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(31, 41, 55)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(31, 41, 55)",
+    "outlineOffset": "0px",
+    "color": "rgb(31, 41, 55)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(255, 255, 255)",
+    "border": "rgb(156, 163, 175)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(31, 41, 55)"
+   }
+  },
+  "checkedRow": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(16, 70, 160)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(16, 70, 160)",
+    "outlineOffset": "0px",
+    "color": "rgb(16, 70, 160)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(37, 100, 207)",
+    "border": "rgb(37, 100, 207)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(16, 70, 160)"
+   },
+   "icon": {
+    "w": 12,
+    "h": 12,
+    "color": "rgb(255, 255, 255)",
+    "paths": 1,
+    "d": [
+     "M4.86199 11.5948C4.78717 11.5923 4.71366 11.5745 4.64596 11.5426C4.57826 11.5107 4.51779 11.4652 4.46827 11.4091L0.753985 7.69483C0.683167 7.64891 0.623706 7.58751 0.580092 7.51525C0.536478 7.44299 0.509851 7.36177 0.502221 7.27771C0.49459 7.19366 0.506156 7.10897 0.536046 7.03004C0.565935 6.95111 0.613367 6.88 0.674759 6.82208C0.736151 6.76416 0.8099 6.72095 0.890436 6.69571C0.970973 6.67046 1.05619 6.66385 1.13966 6.67635C1.22313 6.68886 1.30266 6.72017 1.37226 6.76792C1.44186 6.81567 1.4997 6.8786 1.54141 6.95197L4.86199 10.2503L12.6397 2.49483C12.7444 2.42694 12.8689 2.39617 12.9932 2.40745C13.1174 2.41873 13.2343 2.47141 13.3251 2.55705C13.4159 2.64268 13.4753 2.75632 13.4938 2.87973C13.5123 3.00315 13.4888 3.1292 13.4271 3.23768L5.2557 11.4091C5.20618 11.4652 5.14571 11.5107 5.07801 11.5426C5.01031 11.5745 4.9368 11.5923 4.86199 11.5948Z"
+    ]
+   }
+  },
+  "uncheckedRowAfter": {
+   "w": 18,
+   "h": 18,
+   "bg": "rgb(255, 255, 255)",
+   "border": "rgb(156, 163, 175)",
+   "borderWidth": "1px",
+   "radius": "4px",
+   "shadow": "none",
+   "outline": "none 3px rgba(0, 0, 0, 0)",
+   "outlineOffset": "0px",
+   "color": "rgb(31, 41, 55)"
+  },
+  "bulkButton": {
+   "button": {
+    "w": 215.125,
+    "h": 40,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(254, 202, 202)",
+    "borderWidth": "1px",
+    "radius": "6px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(185, 28, 28)"
+   },
+   "label": {
+    "w": 157.125,
+    "h": 21,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(185, 28, 28)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(185, 28, 28)",
+    "outlineOffset": "0px",
+    "color": "rgb(185, 28, 28)"
+   },
+   "text": "Excluir selecionados (1)",
+   "icon": {
+    "w": 16,
+    "h": 16,
+    "color": "rgb(185, 28, 28)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   }
+  },
+  "focusVisibleUnchecked": {
+   "activeIsCheckboxInput": false,
+   "row": 1,
+   "focusVisible": true
+  },
+  "hoverUnchecked": {
+   "w": 18,
+   "h": 18,
+   "bg": "rgb(255, 255, 255)",
+   "border": "rgb(156, 163, 175)",
+   "borderWidth": "1px",
+   "radius": "4px",
+   "shadow": "none",
+   "outline": "none 3px rgba(0, 0, 0, 0)",
+   "outlineOffset": "0px",
+   "color": "rgb(17, 24, 39)"
+  },
+  "bulkDialog": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Excluir 10 carros?",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": false,
+    "activeOutline": "none 3px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "confirmText": "Excluir 10 carros",
+   "confirmIcon": {
+    "w": 16,
+    "h": 16,
+    "color": "rgb(255, 255, 255)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "closedByEsc": true
+  },
+  "consoleErrors": [],
+  "menuDown": {
+   "trigger": {
+    "x": 1225,
+    "y": 240.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 272.5
+   },
+   "menu": {
+    "x": 1082,
+    "y": 277,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 383
+   },
+   "opensUp": false,
+   "gapPx": 4.5,
+   "menuWholePx": true,
+   "overlap": false,
+   "trash": {
+    "w": 14,
+    "h": 14,
+    "color": "rgb(107, 114, 128)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "iconsPaths": [
+    2,
+    2,
+    3
+   ],
+   "consoleErrors": []
+  },
+  "menuUp": {
+   "trigger": {
+    "x": 1225,
+    "y": 624.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 656.5
+   },
+   "menu": {
+    "x": 1082,
+    "y": 514,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 620
+   },
+   "opensUp": true,
+   "gapPx": 4.5,
+   "menuWholePx": true,
+   "overlap": false,
+   "trash": {
+    "w": 14,
+    "h": 14,
+    "color": "rgb(107, 114, 128)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "iconsPaths": [
+    2,
+    2,
+    3
+   ],
+   "consoleErrors": []
+  },
+  "create": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Novo carro",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "input",
+     "id": "create-car-model",
+     "cls": "p-inputtext.p-component.w-full",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "input",
+     "id": "create-car-vin",
+     "cls": "p-inputtext.p-component.w-full",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "createChevron": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(107, 114, 128)",
+   "cls": "p-icon p-select-dropdown-icon size-3.5! text-muted-color!"
+  },
+  "editChevron": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(107, 114, 128)",
+   "cls": "p-icon p-select-dropdown-icon size-3.5! text-muted-color!"
+  },
+  "edit": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Editar carro",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "input",
+     "id": "edit-car-model",
+     "cls": "p-inputtext.p-component.p-filled",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "input",
+     "id": "edit-car-vin",
+     "cls": "p-inputtext.p-component.p-filled",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "details": {
+   "onOpen": {
+    "active": "div.flex.min-w-0.flex-1",
+    "activeText": "3 SeriesDisponívelBMW · Sedan",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-secondary",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.h-10!",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(3, 7, 18)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "vin": {
+   "text": "WBA5R1C0XLA123462",
+   "fontFamily": "\"Roboto Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+   "fontSize": "12px",
+   "lineHeight": "16px",
+   "fontWeight": "400",
+   "color": "rgb(31, 41, 55)",
+   "fontsCheck": true,
+   "fontsCheckText": true,
+   "faces": [
+    {
+     "family": "Roboto Mono",
+     "weight": "400",
+     "style": "normal",
+     "status": "loaded",
+     "unicodeRange": "U+0-10FFFF"
+    }
+   ],
+   "platformFonts": [
+    {
+     "familyName": "Roboto Mono",
+     "postScriptName": "RobotoMono-Regular",
+     "isCustomFont": true,
+     "glyphCount": 17
+    }
+   ]
+  },
+  "delete": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Excluir carro?",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-secondary",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(75, 85, 99)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-danger",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(239, 68, 68)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "deleteConfirmIcon": {
+   "w": 16,
+   "h": 16,
+   "color": "rgb(255, 255, 255)",
+   "paths": 3,
+   "d": [
+    "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+    "M3 6h18",
+    "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+   ]
+  },
+  "deleteConfirmText": "Excluir carro",
+  "dialogConsoleErrors": []
+ },
+ "dark": {
+  "headerCheckbox": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(243, 244, 246)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(243, 244, 246)",
+    "outlineOffset": "0px",
+    "color": "rgb(243, 244, 246)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(3, 7, 18)",
+    "border": "rgb(75, 85, 99)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(243, 244, 246)"
+   }
+  },
+  "uncheckedRow": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(243, 244, 246)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(243, 244, 246)",
+    "outlineOffset": "0px",
+    "color": "rgb(243, 244, 246)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(3, 7, 18)",
+    "border": "rgb(75, 85, 99)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(243, 244, 246)"
+   }
+  },
+  "checkedRow": {
+   "root": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(188, 212, 251)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(188, 212, 251)",
+    "outlineOffset": "0px",
+    "color": "rgb(188, 212, 251)"
+   },
+   "box": {
+    "w": 18,
+    "h": 18,
+    "bg": "rgb(122, 167, 245)",
+    "border": "rgb(122, 167, 245)",
+    "borderWidth": "1px",
+    "radius": "4px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(188, 212, 251)"
+   },
+   "icon": {
+    "w": 12,
+    "h": 12,
+    "color": "rgb(3, 7, 18)",
+    "paths": 1,
+    "d": [
+     "M4.86199 11.5948C4.78717 11.5923 4.71366 11.5745 4.64596 11.5426C4.57826 11.5107 4.51779 11.4652 4.46827 11.4091L0.753985 7.69483C0.683167 7.64891 0.623706 7.58751 0.580092 7.51525C0.536478 7.44299 0.509851 7.36177 0.502221 7.27771C0.49459 7.19366 0.506156 7.10897 0.536046 7.03004C0.565935 6.95111 0.613367 6.88 0.674759 6.82208C0.736151 6.76416 0.8099 6.72095 0.890436 6.69571C0.970973 6.67046 1.05619 6.66385 1.13966 6.67635C1.22313 6.68886 1.30266 6.72017 1.37226 6.76792C1.44186 6.81567 1.4997 6.8786 1.54141 6.95197L4.86199 10.2503L12.6397 2.49483C12.7444 2.42694 12.8689 2.39617 12.9932 2.40745C13.1174 2.41873 13.2343 2.47141 13.3251 2.55705C13.4159 2.64268 13.4753 2.75632 13.4938 2.87973C13.5123 3.00315 13.4888 3.1292 13.4271 3.23768L5.2557 11.4091C5.20618 11.4652 5.14571 11.5107 5.07801 11.5426C5.01031 11.5745 4.9368 11.5923 4.86199 11.5948Z"
+    ]
+   }
+  },
+  "uncheckedRowAfter": {
+   "w": 18,
+   "h": 18,
+   "bg": "rgb(3, 7, 18)",
+   "border": "rgb(75, 85, 99)",
+   "borderWidth": "1px",
+   "radius": "4px",
+   "shadow": "none",
+   "outline": "none 3px rgba(0, 0, 0, 0)",
+   "outlineOffset": "0px",
+   "color": "rgb(243, 244, 246)"
+  },
+  "bulkButton": {
+   "button": {
+    "w": 215.125,
+    "h": 40,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(254, 202, 202)",
+    "borderWidth": "1px",
+    "radius": "6px",
+    "shadow": "none",
+    "outline": "none 3px rgba(0, 0, 0, 0)",
+    "outlineOffset": "0px",
+    "color": "rgb(252, 165, 165)"
+   },
+   "label": {
+    "w": 157.125,
+    "h": 21,
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(252, 165, 165)",
+    "borderWidth": "0px",
+    "radius": "0px",
+    "shadow": "none",
+    "outline": "none 3px rgb(252, 165, 165)",
+    "outlineOffset": "0px",
+    "color": "rgb(252, 165, 165)"
+   },
+   "text": "Excluir selecionados (1)",
+   "icon": {
+    "w": 16,
+    "h": 16,
+    "color": "rgb(252, 165, 165)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   }
+  },
+  "focusVisibleUnchecked": {
+   "activeIsCheckboxInput": false,
+   "row": 1,
+   "focusVisible": true
+  },
+  "hoverUnchecked": {
+   "w": 18,
+   "h": 18,
+   "bg": "rgb(3, 7, 18)",
+   "border": "rgb(75, 85, 99)",
+   "borderWidth": "1px",
+   "radius": "4px",
+   "shadow": "none",
+   "outline": "none 3px rgba(0, 0, 0, 0)",
+   "outlineOffset": "0px",
+   "color": "rgb(249, 250, 251)"
+  },
+  "bulkDialog": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Excluir 10 carros?",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": false,
+    "activeOutline": "none 3px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "confirmText": "Excluir 10 carros",
+   "confirmIcon": {
+    "w": 16,
+    "h": 16,
+    "color": "rgb(255, 255, 255)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "closedByEsc": true
+  },
+  "consoleErrors": [],
+  "menuDown": {
+   "trigger": {
+    "x": 1225,
+    "y": 240.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 272.5
+   },
+   "menu": {
+    "x": 1082,
+    "y": 277,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 383
+   },
+   "opensUp": false,
+   "gapPx": 4.5,
+   "menuWholePx": true,
+   "overlap": false,
+   "trash": {
+    "w": 14,
+    "h": 14,
+    "color": "rgb(156, 163, 175)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "iconsPaths": [
+    2,
+    2,
+    3
+   ],
+   "consoleErrors": []
+  },
+  "menuUp": {
+   "trigger": {
+    "x": 1225,
+    "y": 624.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 656.5
+   },
+   "menu": {
+    "x": 1082,
+    "y": 514,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 620
+   },
+   "opensUp": true,
+   "gapPx": 4.5,
+   "menuWholePx": true,
+   "overlap": false,
+   "trash": {
+    "w": 14,
+    "h": 14,
+    "color": "rgb(156, 163, 175)",
+    "paths": 3,
+    "d": [
+     "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+     "M3 6h18",
+     "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+    ]
+   },
+   "iconsPaths": [
+    2,
+    2,
+    3
+   ],
+   "consoleErrors": []
+  },
+  "create": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Novo carro",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "input",
+     "id": "create-car-model",
+     "cls": "p-inputtext.p-component.w-full",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "input",
+     "id": "create-car-vin",
+     "cls": "p-inputtext.p-component.w-full",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "createChevron": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(156, 163, 175)",
+   "cls": "p-icon p-select-dropdown-icon size-3.5! text-muted-color!"
+  },
+  "editChevron": {
+   "w": 14,
+   "h": 14,
+   "color": "rgb(156, 163, 175)",
+   "cls": "p-icon p-select-dropdown-icon size-3.5! text-muted-color!"
+  },
+  "edit": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Editar carro",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "input",
+     "id": "edit-car-model",
+     "cls": "p-inputtext.p-component.p-filled",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "input",
+     "id": "edit-car-vin",
+     "cls": "p-inputtext.p-component.p-filled",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "none 0px rgba(0, 0, 0, 0)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "details": {
+   "onOpen": {
+    "active": "div.flex.min-w-0.flex-1",
+    "activeText": "3 SeriesDisponívelBMW · Sedan",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-secondary",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.h-10!",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(255, 255, 255)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "vin": {
+   "text": "WBA5R1C0XLA123462",
+   "fontFamily": "\"Roboto Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+   "fontSize": "12px",
+   "lineHeight": "16px",
+   "fontWeight": "400",
+   "color": "rgb(243, 244, 246)",
+   "fontsCheck": true,
+   "fontsCheckText": true,
+   "faces": [
+    {
+     "family": "Roboto Mono",
+     "weight": "400",
+     "style": "normal",
+     "status": "loaded",
+     "unicodeRange": "U+0-10FFFF"
+    }
+   ],
+   "platformFonts": [
+    {
+     "familyName": "Roboto Mono",
+     "postScriptName": "RobotoMono-Regular",
+     "isCustomFont": true,
+     "glyphCount": 17
+    }
+   ]
+  },
+  "delete": {
+   "onOpen": {
+    "active": "span.min-w-0.flex-1.text-lg",
+    "activeText": "Excluir carro?",
+    "activeTabindex": "-1",
+    "activeAutofocus": true,
+    "activeFocusVisible": true,
+    "activeOutline": "none 1px",
+    "activeIsClose": false,
+    "closeFocusVisible": false,
+    "closeOutline": "none 3px rgba(0, 0, 0, 0)"
+   },
+   "tabs": [
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-icon-only",
+     "isClose": true,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-secondary",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(209, 213, 219)"
+    },
+    {
+     "tag": "button",
+     "id": null,
+     "cls": "p-button.p-component.p-button-danger",
+     "isClose": false,
+     "inDialog": true,
+     "focusVisible": true,
+     "outline": "solid 1px rgb(239, 68, 68)"
+    }
+   ],
+   "closedByEsc": true
+  },
+  "deleteConfirmIcon": {
+   "w": 16,
+   "h": 16,
+   "color": "rgb(255, 255, 255)",
+   "paths": 3,
+   "d": [
+    "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+    "M3 6h18",
+    "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+   ]
+  },
+  "deleteConfirmText": "Excluir carro",
+  "dialogConsoleErrors": []
+ }
+}

@@ -232,12 +232,31 @@
         "paddingLeft": 16,
         "fontSize": 14
       }
+    },
+    {
+      "nodeId": "I2075:4944;6195:16139;6195:7759",
+      "nodeName": "chevron-down (select Marca)",
+      "selector": ":scope .p-select-dropdown svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2075:4944;6195:16139;6195:7758",
+      "nodeName": "dropdown (select Marca)",
+      "selector": ":scope .p-select-dropdown",
+      "props": {
+        "width": 40
+      }
     }
   ],
   "notes": [
     "Referência = get_screenshot do frame 2073:3806 (1440x814 @1x) recortado em x520 y60 400x694 (bounds do get_metadata), sem a nav-rail/margem do shell e sem sombra externa.",
     "Cores = valores resolvidos por get_variable_defs (modo de superfície gray: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712). Os hex do código gerado (#262626, #737373, #a3a3a3) são fallbacks.",
     "inputtext/color resolvido = #374151; disabled = fundo #e5e7eb, texto #6b7280.",
-    "Dados = primeira página do protótipo: seed sem \"Corolla\" (o frame lista Corolla Cross e CR-V nas linhas 9 e 10) e a descrição do 3 Series em português, como no frame."
+    "Dados = primeira página do protótipo: seed sem \"Corolla\" (o frame lista Corolla Cross e CR-V nas linhas 9 e 10) e a descrição do 3 Series em português, como no frame.",
+    "2026-11-11 22:10 (qa-agent): chevron do select Marca = get_variable_defs do 2075:4944 (select/dropdown/color #6b7280, icon/size 14, dropdown 40px)."
   ]
 }

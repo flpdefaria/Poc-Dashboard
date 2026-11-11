@@ -1,0 +1,68 @@
+{
+  "scenario": "customers-row-selected-light",
+  "checks": [
+    {
+      "label": "Título da página",
+      "selector": "h1",
+      "text": "Clientes",
+      "observed": {
+        "count": 1,
+        "text": "Clientes",
+        "value": null,
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1152.61,
+          "height": 32
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Uma linha selecionada",
+      "selector": ".p-datatable-tbody > tr[data-p-selected=\"true\"]",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Alice Johnson alice.johnson@example.com 555-0101 15/03/2021",
+        "value": null,
+        "box": {
+          "x": 1,
+          "y": 188,
+          "width": 1286,
+          "height": 59
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Sem modo card (dt-card ausente)",
+      "selector": ".dt-card",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Página ativa 1",
+      "selector": ".p-paginator-page-selected",
+      "text": "1",
+      "observed": {
+        "count": 1,
+        "text": "1",
+        "value": null,
+        "box": {
+          "x": 558.69,
+          "y": 786.42,
+          "width": 40,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

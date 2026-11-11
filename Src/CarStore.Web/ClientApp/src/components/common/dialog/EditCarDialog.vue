@@ -14,11 +14,12 @@ import {
   modalInputClass,
   modalInputNumberPt,
   modalSelectPt,
+  modalSelectChevronProps,
   modalTextareaClass,
 } from "./dialogStyles";
 import { primaryButtonMdClass, secondaryButtonMdClass } from "../../../styles/buttonStyles";
 import type { BrandOption, CarDto } from "../../../types";
-import { X } from "@lucide/vue";
+import { ChevronDown, X } from "@lucide/vue";
 
 export interface EditCarPayload {
   model: string;
@@ -114,7 +115,9 @@ const idPrefix = "edit-car";
     :pt="dialogPt"
   >
     <template #header>
-      <span :class="modalDialogTitleClass">Editar carro</span>
+      <!-- Initial focus: without an [autofocus] element PrimeVue Dialog focuses the close button with a visible ring,
+           which Figma does not draw. The title takes it instead (tabindex -1: not in the Tab order, no outline). -->
+      <span :class="modalDialogTitleClass" class="outline-none" autofocus tabindex="-1">Editar carro</span>
     </template>
     <template #closeicon><X /></template>
 
@@ -137,7 +140,9 @@ const idPrefix = "edit-car";
           placeholder="Marca"
           fluid
           :pt="modalSelectPt"
-        />
+        >
+          <template #dropdownicon><ChevronDown v-bind="modalSelectChevronProps" /></template>
+        </Select>
       </FormField>
       <FormField label="Carroceria" :input-id="`${idPrefix}-body`" compact>
         <InputText :id="`${idPrefix}-body`" v-model="form.bodyType" class="w-full" :class="modalInputClass" />

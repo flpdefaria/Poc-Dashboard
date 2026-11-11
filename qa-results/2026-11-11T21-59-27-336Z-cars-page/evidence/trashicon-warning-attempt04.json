@@ -1,0 +1,26 @@
+{
+ "light": {
+  "menuOpens": 10,
+  "trashPathCounts": [
+   3
+  ],
+  "vueWarnings": [],
+  "reactiveComponentWarnings": 0,
+  "allMessages": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "warning: [probe] listener ok"
+  ]
+ },
+ "dark": {
+  "menuOpens": 10,
+  "trashPathCounts": [
+   3
+  ],
+  "vueWarnings": [],
+  "reactiveComponentWarnings": 0,
+  "allMessages": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "warning: [probe] listener ok"
+  ]
+ }
+}

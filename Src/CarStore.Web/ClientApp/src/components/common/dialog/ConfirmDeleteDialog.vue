@@ -11,7 +11,8 @@ import {
   modalDialogTitleClass,
 } from "./dialogStyles";
 import { dangerButtonMdClass, secondaryButtonMdClass } from "../../../styles/buttonStyles";
-import { Trash2, TriangleAlert, X } from "@lucide/vue";
+import { TriangleAlert, X } from "@lucide/vue";
+import TrashIcon from "../icons/TrashIcon.vue";
 
 export interface ConfirmDeleteDetail {
   label: string;
@@ -84,7 +85,9 @@ const bannerPt = {
     :pt="dialogPt"
   >
     <template #header>
-      <span v-if="listMode" :class="modalDialogTitleClass">{{ props.title }}</span>
+      <!-- Initial focus: without an [autofocus] element PrimeVue Dialog focuses the close button with a visible ring,
+           which Figma does not draw. The title takes it instead (tabindex -1: not in the Tab order, no outline). -->
+      <span v-if="listMode" :class="modalDialogTitleClass" class="outline-none" autofocus tabindex="-1">{{ props.title }}</span>
       <span v-else class="text-[21px] font-bold text-color">{{ props.title }}</span>
     </template>
     <template v-if="listMode" #closeicon><X /></template>
@@ -147,7 +150,8 @@ const bannerPt = {
         :class="listMode ? dangerButtonMdClass : dialogDangerButtonClass"
         @click="emit('confirm')"
       >
-        <template v-if="listMode" #icon><Trash2 /></template>
+        <!-- Figma trash glyph without inner lines (list mode only); the legacy layout has no icon. -->
+        <template v-if="listMode" #icon><TrashIcon /></template>
       </Button>
     </template>
   </Dialog>

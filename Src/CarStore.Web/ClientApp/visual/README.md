@@ -402,3 +402,56 @@ from that run:
   With no `#empty` slot, the no-result state is a blank `.p-datatable-empty-message` row.
 - **Cars-only bundle:** `npm run visual:list | grep -oE "\bcars-[a-z0-9-]+-(light|dark)\b" | sort -u | paste -sd, -`
   gives the id list for `visual:compare`.
+
+## Learnings (2026-11-11, strict Cars QA, no accepted deviations)
+
+- **Spec `explanations` classify rows automatically.** An `intencional` entry in a `.figma.json` keeps accepting the row in
+  every later run. When the policy changes, remove the entries (the expected values stay Figma's) and classify in the verdict.
+- **Centred dialogs on a 900px viewport can sit at y = n.5.** A 487px dialog lands at y=206.5 and the element screenshot rounds to
+  488 rows (`dimension-mismatch`, no pixel diff). Use an odd viewport height (`cars-bulk-delete-dialog` uses 1440x901) so the
+  capture matches the frame and the pixel diff runs.
+- **PrimeVue Dialog focuses the close button on show** when nothing in the footer, header or content has `[autofocus]`
+  (`primevue/dialog` `focus()`), and Chromium shows `:focus-visible` on it. The ring appears in every dialog capture; spec rows
+  cannot see `outline`, so measure it (`evidence/measure-dialogs.cjs`) and zoom the region.
+- **Spec rows only cover what someone wrote.** Unchecked checkbox border, check icon size and dialog select chevrons had no
+  rows, so earlier runs never measured them. Pull the component variables with `get_variable_defs` on the frame and add a row
+  for each visible state, not only the one the delivery touched.
+- `scenarios/selection-guards.ts` (`brands-row-selected`, `customers-row-selected`) guards the non-card DataTableCommon path:
+  checked checkbox, selected row and active page against the base.
+- `pngjs` is installed (no PIL): the bundle's `evidence/crop.cjs` crops the same box from the reference and the capture and
+  scales them side by side for glyph-level checks.
+
+## Learnings (2026-11-11, strict Cars QA, fix-round recheck)
+
+- **An icon box row does not check the glyph.** A `width`/`height`/`color` spec row on `svg` passed at 14px #6b7280 while the
+  PrimeVue `ChevronDownIcon` path fills 12x6.8px of the box and the Figma vector is 8.05x4.55px. Read the vector bounds with
+  `get_metadata` on the icon instance and compare them with `path.getBBox()` scaled by `svgWidth / viewBox.width`
+  (bundle `evidence/measure-chevron-glyph.cjs`).
+- **Spec rows do not check position inside a cell.** An 18px checkbox can pass every size/colour row and still sit 1px low: an
+  `inline-flex` checkbox with `vertical-align: bottom` in a 20px line box lands at 15.5px, Figma's slot is at y=14.5. Compare the
+  `get_metadata` slot `y` with `child.top - row.top` (bundle `evidence/measure-checkbox-offset.cjs`), and count diff pixels in the
+  column to confirm.
+- **Vue warnings never reach `report.json`.** The report records console *errors* only. `console.warn` from the preview shows up in
+  the run log as `[WebServer] ... [console.warn] [Vue warn]: ...`; grep the `visual:compare` output for `Vue warn` on every run.
+  Example: a non-functional SFC icon (e.g. `TrashIcon.vue`) put into a reactive Menu `model` warns "Vue received a Component that
+  was made a reactive object" on each open; Lucide icons are functional components and do not.
+- **Keyboard focus on a checkbox needs a real Tab sequence.** `page.focus()` on the hidden `.p-checkbox-input` and one Tab can land
+  outside the table. Focus the search input and Tab until `document.activeElement` is a `.p-checkbox-input`
+  (bundle `evidence/measure-checkbox-focus.cjs`). Aura's focus-visible rule also replaces the box border, so read both outline and border.
+- **A second preview for measurements.** While `visual:compare` holds 5175, run
+  `npm run dev -- --config visual/vite.config.ts --port 5185 --strictPort` and pass `PORT=5185` to the bundle scripts.
+
+## Learnings (2026-11-11, strict Cars QA, attempt-04 recheck)
+
+- **A clean `Vue warn` grep is only proof if the log carries console output.** The attempt-04 `visual:compare` log had no
+  `[console.*]` lines at all, so its 0 hits proved nothing. Confirm warnings with a page `console` listener on the measurement
+  preview and fire a probe `console.warn` first (bundle `evidence/measure-trashicon-warning-attempt04.cjs`).
+- **Calibrate icon weight against an accepted icon.** Sum the ink (`255 - G` above 20) in the 1x capture and in the Figma PNG for the
+  icon under test and for one already judged equal (the card search icon: 6574 vs 6716). A ratio far from 1 (the Marca chevron
+  at 1.5px: 2184 vs 1463) means the stroke weight differs even when the bbox matches. `evidence/probe-chevron-stroke-attempt04.cjs`
+  sets `stroke-width` in the DOM to test candidate widths without touching code.
+- **Lucide `getBBox` is the centreline.** Add the stroke width (round caps/joins) before comparing with a Figma vector's bounds.
+- **Half-pixel Figma edges.** An 18px box at y=14.5 is anti-aliased across 2 rows in the Figma PNG and snapped to 1 row by Chromium,
+  leaving about 19 red px per box. Compare a body-row residual with the header's before calling it a position defect.
+- **Attempt-to-attempt capture diff** (`actual/attempt-N-1` vs `actual/attempt-N`, delta above 8 per channel) isolates exactly what a fix
+  changed. Lower deltas (up to 8) appear on dark toast/backdrop captures between runs and are rasterization noise.

@@ -1,0 +1,74 @@
+{
+ "light": [
+  {
+   "where": "thead",
+   "isCheckboxInput": true,
+   "checked": false,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(3, 7, 18)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(209, 213, 219)",
+   "boxShadow": "none",
+   "size": "18x18"
+  },
+  {
+   "where": "tbody row 1",
+   "isCheckboxInput": true,
+   "checked": false,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(3, 7, 18)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(209, 213, 219)",
+   "boxShadow": "none",
+   "size": "18x18"
+  },
+  {
+   "where": "tbody row 1",
+   "isCheckboxInput": true,
+   "checked": true,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(3, 7, 18)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(3, 7, 18)",
+   "boxShadow": "none",
+   "size": "18x18",
+   "note": "after Space"
+  }
+ ],
+ "dark": [
+  {
+   "where": "thead",
+   "isCheckboxInput": true,
+   "checked": false,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(255, 255, 255)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(31, 41, 55)",
+   "boxShadow": "none",
+   "size": "18x18"
+  },
+  {
+   "where": "tbody row 1",
+   "isCheckboxInput": true,
+   "checked": false,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(255, 255, 255)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(31, 41, 55)",
+   "boxShadow": "none",
+   "size": "18x18"
+  },
+  {
+   "where": "tbody row 1",
+   "isCheckboxInput": true,
+   "checked": true,
+   "focusVisible": true,
+   "boxOutline": "solid 1px rgb(255, 255, 255)",
+   "boxOutlineOffset": "2px",
+   "boxBorder": "rgb(255, 255, 255)",
+   "boxShadow": "none",
+   "size": "18x18",
+   "note": "after Space"
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+{
+  "scenario": "brands-create-dialog-dark",
+  "checks": [
+    {
+      "label": "Diálogo Nova marca",
+      "selector": ".p-dialog",
+      "text": "Salvar",
+      "observed": {
+        "count": 1,
+        "text": "Nova marca Nome País Data de fundação Descrição Cancelar Salvar",
+        "value": null,
+        "box": {
+          "x": 480,
+          "y": 172.5,
+          "width": 480,
+          "height": 555
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

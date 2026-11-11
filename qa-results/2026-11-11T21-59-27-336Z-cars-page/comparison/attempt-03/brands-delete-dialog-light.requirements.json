@@ -1,0 +1,22 @@
+{
+  "scenario": "brands-delete-dialog-light",
+  "checks": [
+    {
+      "label": "Título legado",
+      "selector": ".p-dialog",
+      "text": "Excluir marca",
+      "observed": {
+        "count": 1,
+        "text": "Excluir marca Tem certeza de que deseja excluir esta marca? Nome: Audi País: Germany Carros: 3 Esta marca tem 3 carro(s) cadastrado(s). Remova-os ou transfira-os antes de excluir a marca. Cancelar Excluir",
+        "value": null,
+        "box": {
+          "x": 337.5,
+          "y": 276.5,
+          "width": 765,
+          "height": 347
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

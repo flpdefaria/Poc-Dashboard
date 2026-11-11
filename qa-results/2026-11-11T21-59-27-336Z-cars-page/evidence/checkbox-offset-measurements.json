@@ -1,0 +1,24 @@
+{
+ "header": {
+  "rowTop": 137,
+  "rowH": 48,
+  "cbTopInRow": 14.5,
+  "cbBottomGap": 15.5,
+  "cbLeftInCell": 18,
+  "cellPadding": "13.5px 18px",
+  "cbVerticalAlign": "bottom",
+  "cbDisplay": "flex",
+  "cellLineHeight": "20px"
+ },
+ "row1": {
+  "rowTop": 185,
+  "rowH": 48,
+  "cbTopInRow": 15.5,
+  "cbBottomGap": 14.5,
+  "cbLeftInCell": 18,
+  "cellPadding": "13.5px 18px",
+  "cbVerticalAlign": "bottom",
+  "cbDisplay": "inline-flex",
+  "cellLineHeight": "20px"
+ }
+}

@@ -54,6 +54,16 @@ export const modalSelectPt = {
   // `.p-select-label { display: block }` ignores flex centering, so a 38px line (40px - 2 x 1px border)
   // centers the 14px text vertically and keeps the ellipsis working.
   label: { class: "px-4! py-0! text-sm! leading-[38px]!" },
+  // Figma chevron-down (2075:5083 / 2075:4944): `icon/size` 14px, `select/dropdown/color` #6b7280 -> muted
+  // (Aura draws 16px in surface-400). The glyph itself is Lucide ChevronDown via the `#dropdownicon` slot
+  // (`modalSelectChevronProps`): PrimeVue's own chevron fills 12x6.8px of the box, Figma's ~8x4.5px.
+  dropdownIcon: { class: "size-3.5! text-muted-color!" },
+};
+export const modalSelectChevronProps = {
+  size: 14,
+  strokeWidth: 1.5,
+  absoluteStrokeWidth: true,
+  class: "size-3.5 text-muted-color",
 };
 // Textarea: 5 lines of 21px + 2 x 8.5px padding + 2px border = 124px (Figma 2075:5025).
 export const modalTextareaClass = `h-[124px] resize-none px-4! py-[8.5px]! text-sm! leading-[21px]! ${modalBorderClass}`;

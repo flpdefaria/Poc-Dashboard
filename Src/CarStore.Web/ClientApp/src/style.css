@@ -10,6 +10,8 @@
 @import "@fontsource/inter/latin-ext-600.css";
 @import "@fontsource/inter/latin-700.css";
 @import "@fontsource/inter/latin-ext-700.css";
+/* Roboto Mono (Figma `code/sm`, the VIN in the car details dialog), self-hosted the same way: 400 only. */
+@import "@fontsource/roboto-mono/latin-400.css";
 
 /* Tailwind v4's automatic content detection only scans files inside the Vite
    project root (this ClientApp folder). Razor views live outside of it
@@ -26,6 +28,8 @@
 @theme {
   /* Figma typography: every text style is Inter. */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  /* Figma `code/sm` is Roboto Mono; `font-mono` is used only by the VIN today. */
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   /* Figma `--p-content-sunken-background` (#f9fafb, KPI icon box): surface-50 in light; one step up in dark
      (below), where surface-50 is the card background itself. */
   --color-sunken: var(--p-surface-50);
@@ -41,6 +45,48 @@
   /* Nav rail selected item fill (Figma navrail/item/selected/background, node 2005:5267). The label and
      icon use `surface-0` on it: white in light (5.5:1), the dark canvas in dark. */
   --color-navrail-selected: #2564cf;
+  /* Figma table selection blue (Cars 2070:1090, paginator active page): selected row / active page fill and
+     ink, and the checked checkbox fill. Used by DataTableCommon card mode only. */
+  --color-selected: #d7e6fe;
+  --color-selected-ink: #1046a0;
+  --color-selected-accent: #2564cf;
+}
+
+/* Card-mode tables (Cars): Figma's blue checked checkbox instead of the monochrome primary. Unlayered so it
+   beats PrimeVue's runtime checkbox CSS. */
+.dt-card .p-checkbox-checked .p-checkbox-box,
+.dt-card .p-checkbox-checked:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {
+  background: var(--color-selected-accent);
+  border-color: var(--color-selected-accent);
+}
+.dt-card .p-checkbox-checked .p-checkbox-icon {
+  color: #ffffff;
+}
+/* Figma checkbox (Cars 2063:4 / 2070:1090): 18x18, 4px radius, `checkbox/border/color` #9ca3af -> surface-400 (Aura
+   draws surface-300 with a shadow; Figma has no shadow token), 12px check icon. Aura's hover, focus-visible (border +
+   outline ring) and checked rules are more specific, so they still apply; in dark theme surface-400 follows the
+   inverted ramp and stays visible on the canvas. */
+.dt-card .p-checkbox,
+.dt-card .p-checkbox-box {
+  width: 18px;
+  height: 18px;
+}
+.dt-card .p-checkbox-box {
+  box-shadow: none;
+}
+.dt-card .p-checkbox:not(.p-checkbox-checked) .p-checkbox-box {
+  border-color: var(--p-surface-400);
+}
+.dt-card .p-checkbox-icon {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+}
+/* Body cells: the inline-flex checkbox sits on the 20px line box's bottom (y 15.5); Figma (2070:1951) puts it at
+   14.5 in the 48px row, like the header: 13.5px cell padding + 1px. */
+.dt-card .p-datatable-tbody .p-checkbox {
+  vertical-align: top;
+  margin-top: 1px;
 }
 
 /* Grayscale text smoothing (Tailwind `antialiased`): matches how the Figma frames rasterize Inter; macOS
@@ -152,6 +198,13 @@ html.app-dark {
   --color-paint-teal: #4cc6be;
   /* Lighter blue under the inverted ramp: dark `surface-0` ink >= 8:1, fill >= 7:1 against the rail. */
   --color-navrail-selected: #7aa7f5;
+  /* Selection blue lifted for the dark canvas: tinted fill with light-blue ink, accent as in the nav rail. */
+  --color-selected: color-mix(in srgb, #7aa7f5 22%, transparent);
+  --color-selected-ink: #bcd4fb;
+  --color-selected-accent: #7aa7f5;
+}
+html.app-dark .dt-card .p-checkbox-checked .p-checkbox-icon {
+  color: var(--p-surface-0);
 }
 
 /* Theme switch: the new theme is revealed by a circle clip (useTheme.ts), so the default
