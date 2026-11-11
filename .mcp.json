@@ -18,7 +18,7 @@
         "-y",
         "@playwright/mcp@0.0.82",
         "--browser",
-        "msedge",
+        "chrome",
         "--ignore-https-errors",
         "--user-data-dir",
         ".playwright-mcp/profile",

@@ -1,6 +1,6 @@
 ---
 name: frontend-visual-check
-description: "Validate the running CarStore SPA against text requirements and optional Figma evidence by driving it with the Playwright MCP (msedge). Captures states, widths and both themes, judges every difference, and writes a reviewed qa-results/<run>/findings.md. Use when: validating a frontend delivery, checking a screen/dialog/table visually, comparing with a Figma frame, or rechecking after a correction round. Never edits production code."
+description: "Validate the running CarStore SPA against text requirements and optional Figma evidence by driving it with the Playwright MCP (chrome). Captures states, widths and both themes, judges every difference, and writes a reviewed qa-results/<run>/findings.md. Use when: validating a frontend delivery, checking a screen/dialog/table visually, comparing with a Figma frame, or rechecking after a correction round. Never edits production code."
 argument-hint: "Requirements, delivery summary or changed files, optional Figma URL, optional existing run path for a recheck"
 ---
 
@@ -19,7 +19,7 @@ Own capture and review only. `Src/**`, `wwwroot/dist` and configuration stay rea
 | Start app | `dotnet run --project Src/CarStore.Web --launch-profile http` (background) |
 | Data | EF Core In-Memory + `Src/CarStore.Domain/Seed/DataSeeder.cs`; restart restores the seed |
 | Theme | `app-dark` class on `<html>`, persisted in `localStorage["carstore-theme"]` |
-| Browser | Playwright MCP (`.mcp.json`), msedge; raw output in git-ignored `.playwright-mcp/output/` |
+| Browser | Playwright MCP (`.mcp.json`), chrome; raw output in git-ignored `.playwright-mcp/output/` |
 
 - If the app is down, build and start it. If it is up but ClientApp files changed after the last build, rebuild (the server serves `wwwroot/dist`, not Vite). An exact failing command is a blocker.
 - The seed is the deterministic fixture. Create/Edit/Delete scenarios mutate it until restart: run read-only scenarios first, and record what you changed. Never seed data another way, and never put fixtures in production code.

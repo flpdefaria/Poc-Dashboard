@@ -49,7 +49,7 @@ config changes, MCP server changes, new API controller/DTO, changes to how the b
   - `.vscode/mcp.json` (VS Code/Copilot, root key `"servers"`) and `.mcp.json` (Claude Code, root key `"mcpServers"`).
   - `primevue`: stdio, `npx -y @primevue/mcp` (needs network the first time).
   - `figma-mcp`: remote HTTP `https://mcp.figma.com/mcp`, which needs the Figma OAuth prompt. On auth errors, tell the user to re-authenticate; never work around it.
-  - `playwright`: stdio, `npx -y @playwright/mcp@<pinned>` with `--browser msedge --ignore-https-errors --user-data-dir .playwright-mcp/profile --output-dir .playwright-mcp/output` (`.playwright-mcp/` is gitignored). Used by QA-Specialist / `qa-agent`.
+  - `playwright`: stdio, `npx -y @playwright/mcp@<pinned>` with `--browser chrome --ignore-https-errors --user-data-dir .playwright-mcp/profile --output-dir .playwright-mcp/output` (`.playwright-mcp/` is gitignored). Used by QA-Specialist / `qa-agent`.
 
   Any change to one file must be mirrored in the other. Read the current files instead of trusting this summary.
 

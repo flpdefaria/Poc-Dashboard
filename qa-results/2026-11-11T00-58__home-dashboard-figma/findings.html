@@ -1,0 +1,121 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QA Dashboard Findings</title><style>:root{--bg:#fff;--fg:#111827;--mut:#6b7280;--bd:#e5e7eb;--th:#f9fafb;--fail:#fef2f2;--code:#f3f4f6;--a:#2564cf}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0f17;--fg:#e5e7eb;--mut:#9ca3af;--bd:#1f2937;--th:#111827;--fail:#2a1215;--code:#1f2937;--a:#7aa7f5}}
+body{background:var(--bg);color:var(--fg);font:14px/1.55 -apple-system,system-ui,sans-serif;max-width:1400px;margin:0 auto;padding:24px 16px}
+h1{font-size:24px}h2{font-size:19px;margin-top:32px;border-bottom:1px solid var(--bd);padding-bottom:6px}h3{font-size:16px;margin-top:24px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:13px}
+th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--th)}
+tr.fail td{background:var(--fail)}code{background:var(--code);padding:1px 4px;border-radius:4px;font-size:12px}a{color:var(--a)}</style></head><body><h1>QA findings - Home dashboard (/) vs Figma "Tela · Central da frota"</h1>
+<p>Overall status: <strong>FAIL</strong> (Tentativa 03).</p>
+<h2>Tentativa 01</h2>
+<ul>
+<li style="margin-left:0px"><strong>Status:</strong> BLOCKED.</li>
+<li style="margin-left:0px"><strong>Cause:</strong> the Playwright MCP was configured with <code>--browser msedge</code>, and Edge is not installed. The exact error was: <code>Error: async initializeServer: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge. Run "npx playwright install msedge"</code>.</li>
+<li style="margin-left:0px"><strong>What did run:</strong></li>
+<li style="margin-left:16px">curl showed <code>&lt;html lang="pt-BR"&gt;</code> and that <code>/api/cars</code>, <code>/api/brands</code> and <code>/api/customers</code> return 200.</li>
+<li style="margin-left:16px">Figma references were collected: <a href="references/figma-frame-2005-5266.png">frame 2005:5266</a>, <a href="references/figma-recent-customers-2037-268.png">recent customers 2037:268</a>, <a href="references/figma-navrail-2005-5267.png">nav rail 2005:5267</a>.</li>
+<li style="margin-left:16px"><code>get_metadata</code> was read for 2037:268.</li>
+<li style="margin-left:0px"><strong>Data changed:</strong> none.</li>
+</ul>
+<h2>Tentativa 02</h2>
+<ul>
+<li style="margin-left:0px"><strong>Status:</strong> BLOCKED.</li>
+<li style="margin-left:0px"><strong>Cause:</strong> <code>.mcp.json</code> and <code>.vscode/mcp.json</code> already said <code>--browser chrome</code>, but this session was still connected to an old msedge server.</li>
+<li style="margin-left:16px">Stale msedge PIDs: 18299/18307, 7914/7915, 3108/3111, 90613/90614.</li>
+<li style="margin-left:16px">Chrome server PIDs: 33182/33183.</li>
+<li style="margin-left:16px">The error was the same as in Tentativa 01.</li>
+<li style="margin-left:0px"><strong>Data changed:</strong> none.</li>
+</ul>
+<h2>Tentativa 03</h2>
+<h3>status</h3>
+<p><strong>FAIL.</strong> There are 2 medium and 3 low defects in the delivered scope, plus 3 low defects that existed before this delivery.</p>
+<h3>ambiente</h3>
+<div class="tw"><table><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody>
+<tr><td>App</td><td>http://localhost:5045 (dotnet, Development). The SPA is served from Vite at http://localhost:5173. Neither process was stopped.</td></tr>
+<tr><td>HEAD</td><td><code>bde82ae</code></td></tr>
+<tr><td>Rebuilt</td><td>No (dev mode uses Vite with HMR)</td></tr>
+<tr><td>Browser</td><td>Playwright MCP 0.0.82, <code>--browser chrome</code>, DPR 1</td></tr>
+<tr><td>Figma</td><td><code>EOvtzuJAvw1UnoH9tsYmiO</code>. Nodes read: 2005:5266, 2005:5267, 2037:268, 2007:102, 2007:127, 2008:3752, 2008:3755, 2008:3784</td></tr>
+<tr><td>PrimeVue MCP</td><td>Confirmed that the Tooltip directive shows on hover by default and only uses focus/blur when given the <code>.focus</code> modifier</td></tr>
+</tbody></table></div>
+<h3>Console errors</h3>
+<div class="tw"><table><thead><tr><th>#</th><th>Message</th><th>Repeats</th><th>Category</th><th>Severity</th><th>Likely file</th></tr></thead><tbody>
+<tr><td>C1</td><td><code>Failed to load resource: 404 @ http://localhost:5045/CarStore.Web.Web.styles.css</code></td><td>Every full page load</td><td>defeito, pre-existing (path dates from commit <code>ebf0368</code>, Sep 2026)</td><td>low</td><td><code>Src/CarStore.Web/Views/Shared/_Layout.cshtml:24</code>. The href doubles ".Web". The correct bundle <code>/CarStore.Web.styles.css</code> returns 200. <code>_Layout.cshtml.css</code> holds only a comment, so nothing changes visually.</td></tr>
+<tr><td>C2</td><td><code>net::ERR_CONNECTION_REFUSED @ http://localhost:8400/live.js?token=…</code></td><td>Every full page load</td><td>artefato-ferramenta</td><td>info</td><td><code>_Layout.cshtml:40-42</code>. This is the "impeccable-live" dev injection, and its server on port 8400 is not running. Remove the block or start the tool. It is not an app defect.</td></tr>
+</tbody></table></div>
+<p>There were no other console errors or warnings. All <code>/api/*</code> calls succeeded (cars, brands, customers, brands/options, POST 201, DELETE 204).</p>
+<h3>cenarios[]</h3>
+<div class="tw"><table><thead><tr><th>id</th><th>route / state</th><th>widths</th><th>themes</th><th>evidence</th></tr></thead><tbody>
+<tr><td>H1</td><td><code>/</code> default</td><td>1440, 1920</td><td>light, dark</td><td><a href="evidence/H1-1440-light.png" target="_blank">evidence/H1-1440-light.png</a>, H1-1440-dark.png, H1-1920-light.png, H1-1920-dark.png</td></tr>
+<tr><td>H2</td><td>Nav rail: hover-expand timing, leave, Esc, tooltips on hover and keyboard focus</td><td>1440</td><td>light, dark</td><td><a href="evidence/H2-navrail-expanded-1440-light.png" target="_blank">evidence/H2-navrail-expanded-1440-light.png</a>, H2-navrail-expanded-settled-1440-light.png, H2-navrail-expanded-1440-dark.png, H2-tooltip-keyboard-1440-light.png, H2-tooltip-focus-1440-light.png, H2-tooltip-hover-1440-dark.png</td></tr>
+<tr><td>H3</td><td>KPI fleet value tooltip on hover and focus</td><td>1440</td><td>light, dark</td><td><a href="evidence/H3-kpi-tooltip-hover-1440-light.png" target="_blank">evidence/H3-kpi-tooltip-hover-1440-light.png</a>, H3-kpi-tooltip-focus-1440-light.png, H3-kpi-tooltip-hover-1440-dark.png</td></tr>
+<tr><td>H4</td><td>Chart Semanal / Mensal / Anual</td><td>1440</td><td>light, dark</td><td>evidence/H4-chart-{semanal,mensal,anual}-1440-{light,dark}.png</td></tr>
+<tr><td>H5</td><td>"Clientes recentes": default, asc, desc, search, corners</td><td>1440, 1920</td><td>light, dark</td><td>evidence/H5-recent-{default,sort1,sort2,search}-1440-light.png, H5-recent-{default,sort1,sort2}-1440-dark.png, H5-recent-default-1920-{light,dark}.png, H5-corner-{bl,br}-1440-{light,dark}.png</td></tr>
+<tr><td>P1</td><td><code>/cars</code>: table, row menu, Details, Edit, Create, Create validation</td><td>1440</td><td>light, dark</td><td>evidence/P1-table-1440-{light,dark}.png, P1-row-menu-1440-light.png, P1-details-dialog-1440-light.png, P1-edit-dialog-1440-light.png, P1-create-dialog-1440-{light,dark}.png, P1-create-validation-1440-light.png</td></tr>
+<tr><td>P2</td><td><code>/brands</code>: table, Details, Create plus toast, delete blocked (brand has cars), delete confirm plus toast</td><td>1440</td><td>light, dark</td><td>evidence/P2-table-1440-{light,dark}.png, P2-details-dialog-1440-light.png, P2-create-dialog-filled-1440-light.png, P2-toast-create-1440-light.png, P2-delete-blocked-1440-light.png, P2-delete-confirm-1440-light.png, P2-toast-delete-1440-light.png</td></tr>
+<tr><td>P3</td><td><code>/customers</code>: table, Edit, delete confirm</td><td>1440</td><td>light, dark</td><td>evidence/P3-table-1440-{light,dark}.png, P3-edit-dialog-1440-light.png, P3-delete-confirm-1440-{light,dark}.png</td></tr>
+</tbody></table></div>
+<h3>Requirement results</h3>
+<div class="tw"><table><thead><tr><th>#</th><th>Requirement</th><th>Result</th><th>Observed</th></tr></thead><tbody>
+<tr><td>1a</td><td>Rail 72px; hover ~300ms expands to 240px as an overlay; collapses on leave</td><td>PASS</td><td>Width stayed 72 until about 267ms, started growing at about 319ms, reached 240 by 531ms. <code>main</code> stays at x=72 (overlay). Mouse leave collapses to 72.</td></tr>
+<tr class="fail"><td>1b</td><td>Collapses on Esc</td><td><strong>FAIL (D2)</strong></td><td>Esc only works when focus is inside the rail</td></tr>
+<tr class="fail"><td>1c</td><td>Collapsed tooltips on hover and keyboard focus</td><td><strong>FAIL (D1)</strong></td><td>Hover works ("Clientes", "Marcas"). Tabbing through Início, Carros, Marcas and Clientes shows no tooltip.</td></tr>
+<tr><td>1d</td><td>Selected item colours</td><td>PASS</td><td>Light: bg rgb(37,100,207) = #2564cf, white text. Dark: bg rgb(122,167,245) = #7aa7f5, text rgb(3,7,18).</td></tr>
+<tr><td>1e</td><td><code>main p-10</code>; <code>#app</code> with no gap or p-4</td><td>PASS</td><td>main class <code>flex-1 overflow-y-auto p-10</code>, padding 40px. <code>#app</code> is <code>flex h-full w-full</code> with padding 0.</td></tr>
+<tr><td>2</td><td>Header "Central da frota" at weight 600 plus description</td><td>PASS</td><td>h1 24px/600, description matches Figma. The other pages' h1 is also 600.</td></tr>
+<tr><td>3a</td><td>Four KPI cards; compact value; tags</td><td>PASS</td><td>"R$ 20,8 mi", 538 (then 537), 15 "Ao vivo", 92% "Alta"</td></tr>
+<tr class="fail"><td>3b</td><td>Full-value tooltip on hover or focus</td><td><strong>FAIL (D1)</strong></td><td>Hover shows "R$ 20.756.575,00". Keyboard focus (tabindex=0) shows no tooltip; only the aria-label carries the value.</td></tr>
+<tr><td>4a</td><td>Period SelectButton switches the chart; violet bars</td><td>PASS (visual mismatch in D3)</td><td>aria-pressed updates. Mensal shows 12 months, Anual 2021-2026. Semanal shows the pt-BR empty state "Nenhum cliente novo neste período." Bars are #6b3fe2.</td></tr>
+<tr><td>4b</td><td>Top 5 brands plus "Outros"; full-width "Ver marcas" at the bottom</td><td>PASS (sizing in D5)</td><td>Toyota, Ford, BMW, Honda, Audi, Outros (19/16/14/11/8/32%). Button is 362px wide.</td></tr>
+<tr><td>5a</td><td>56px header; search 216×32, 6px radius, 12px icon, 12px text; "Ver todos" 32px and aligned</td><td>PASS</td><td>Header 56. Input 216×32, radius 6px, font 12px. Icon 12×12. "Ver todos" 103.6×32 at the same y (831.5).</td></tr>
+<tr class="fail"><td>5b</td><td>40px striped rows; no paginator; columns</td><td>Partial: <strong>rows FAIL (D4)</strong></td><td>Rows are 41px, the rest passes. Striping alternates #fff / #f9fafb. No <code>.p-paginator</code>. Columns are Cliente, E-mail, Cadastrado em.</td></tr>
+<tr><td>5c</td><td>Only Cliente sortable; Lucide icon 12px at the right edge; ArrowUp/Down; <code>aria-sort</code></td><td>PASS</td><td><code>lucide-arrow-up-down size-3</code>, 14px from the right edge. Sorting switches to <code>arrow-up</code> / <code>arrow-down</code>. <code>aria-sort</code> goes none → ascending → descending, and keyboard Enter also sorts. Other headers are not sortable.</td></tr>
+<tr><td>5d</td><td>Bottom corners follow the 12px radius</td><td>PASS</td><td>Wrapper has <code>rounded-b-[11px] overflow-hidden</code> inside a 1px border; crops in both themes show no square corner.</td></tr>
+<tr><td>6</td><td>pt-BR everywhere; <code>lang="pt-BR"</code></td><td>PASS with 2 low pre-existing items (D7, D8)</td><td>Sidebar, pages, row menu (Detalhes/Editar/Excluir), Create/Edit/Details/Delete dialogs, validation messages, toasts and paginator aria-labels are all pt-BR.</td></tr>
+<tr class="fail"><td>7a</td><td>Light and dark via the sidebar toggle; text contrast ≥ 4.5:1</td><td>Dark PASS, <strong>light FAIL (D3)</strong></td><td>Dark: lowest ratio 6.99:1 across 50 text nodes, and dialog text is all ≥ 4.5. Light: "Semanal"/"Anual" are at 4.39:1.</td></tr>
+<tr><td>7b</td><td>Primary buttons near-black in light, inverted in dark</td><td>PASS</td><td>Light: rgb(3,7,18) bg with white text. Dark: white bg with rgb(3,7,18) text. This holds for Ver marcas, Ver todos, Novo carro, Nova marca and Novo cliente.</td></tr>
+<tr><td>8</td><td>Cars, Brands and Customers tables unchanged</td><td>PASS</td><td>PrimeVue <code>p-datatable-sort-icon</code> on every column. Search 280×42 at 16px. Wrapper <code>rounded-xl border border-surface-300 overflow-hidden</code> (12px). Rows 59px. Paginator present. No <code>pi-*</code> or <code>bi-*</code> icons.</td></tr>
+</tbody></table></div>
+<h3>diferencas[]</h3>
+<div class="tw"><table><thead><tr><th>id</th><th>status</th><th>severity</th><th>category</th><th>scenario / element</th><th>Figma or requirement</th><th>Observed</th><th>evidence</th><th>likely file</th></tr></thead><tbody>
+<tr class="fail"><td>D1</td><td>FAIL</td><td><strong>medium</strong></td><td>defeito (a11y)</td><td>H2/H3: collapsed rail items, Aparência, Tema escuro, KPI fleet value</td><td>Tooltip appears on hover <strong>and keyboard focus</strong></td><td>Hover only. Tab focus shows no <code>.p-tooltip</code> for Início, Carros, Marcas, Clientes, or the "Valor da frota" value (tabindex=0). PrimeVue Tooltip uses hover unless given <code>.focus</code>, which then replaces hover; the fix needs both triggers.</td><td><a href="evidence/H2-tooltip-keyboard-1440-light.png" target="_blank">evidence/H2-tooltip-keyboard-1440-light.png</a>, <a href="evidence/H3-kpi-tooltip-focus-1440-light.png" target="_blank">evidence/H3-kpi-tooltip-focus-1440-light.png</a> (focus, no tooltip), <a href="evidence/H3-kpi-tooltip-hover-1440-light.png" target="_blank">evidence/H3-kpi-tooltip-hover-1440-light.png</a> (hover works)</td><td><code>Sidebar.vue:84,99,113</code> (<code>v-tooltip.right</code>); <code>Home.vue:260</code> (<code>v-tooltip.top</code>)</td></tr>
+<tr class="fail"><td>D2</td><td>FAIL</td><td>low</td><td>defeito</td><td>H2: rail expanded by hover, then Esc</td><td>Esc collapses the overlay</td><td>Rail stays 240px after Esc when focus is on the page. It only collapses (to 72) when focus is inside <code>&lt;aside&gt;</code>.</td><td><a href="evidence/H2-navrail-expanded-1440-light.png" target="_blank">evidence/H2-navrail-expanded-1440-light.png</a></td><td><code>Sidebar.vue:66</code> (<code>@keydown.esc</code> on the aside; needs a document-level listener while expanded)</td></tr>
+<tr class="fail"><td>D3</td><td>FAIL</td><td><strong>medium</strong></td><td>defeito (contrast plus Figma parity)</td><td>H4: SelectButton "Período"</td><td>Figma 2008:3755 is 235×40: toggle padding 5px, label 14px/500, unselected #525252 on #fafafa (about 7.4:1)</td><td>258.7×42, label 16px/500. Unselected rgb(107,114,128) on rgb(243,244,246) = <strong>4.39:1</strong>, below 4.5 in light. Dark passes.</td><td><a href="evidence/H4-chart-mensal-1440-light.png" target="_blank">evidence/H4-chart-mensal-1440-light.png</a>, <a href="evidence/H1-1440-light.png" target="_blank">evidence/H1-1440-light.png</a></td><td><code>Home.vue:282</code> (SelectButton: add small size or <code>pt</code> for 14px text and padding; unselected colour should be a stronger token such as <code>text-color</code> or surface-600)</td></tr>
+<tr class="fail"><td>D4</td><td>FAIL</td><td>low</td><td>defeito</td><td>H5: thead and tbody rows</td><td>Rows 40px (Figma 2009:212 rows and header row are 40; card 1288×338)</td><td>Header and every body row are <strong>41px</strong> (<code>py-2.5</code> + 20px line + 1px border-bottom), so the card is 344 tall</td><td><a href="evidence/H5-recent-default-1440-light.png" target="_blank">evidence/H5-recent-default-1440-light.png</a>, <a href="evidence/H5-recent-default-1920-light.png" target="_blank">evidence/H5-recent-default-1920-light.png</a></td><td><code>DataTableCommon.vue:59-64</code> <code>flushColumnPt</code> (e.g. <code>py-[9.5px]!</code>, or count the border in the 40px)</td></tr>
+<tr class="fail"><td>D5</td><td>FAIL</td><td>low</td><td>defeito</td><td>H1: "Frota por marca" button and the middle row</td><td>Figma 2008:3784: button 362×<strong>40</strong> at y=387, a <strong>24px</strong> gap after the list, card height <strong>446</strong></td><td>Button 362×<strong>38</strong> (<code>py-2</code>), gap list→button <strong>16px</strong> (from <code>mt-auto</code>), cards <strong>436</strong> tall. Together with D4 and the KPI delta, "Clientes recentes" starts at y=770.5 instead of 777.</td><td><a href="evidence/H1-1440-light.png" target="_blank">evidence/H1-1440-light.png</a> vs <a href="references/figma-frame-2005-5266.png" target="_blank">references/figma-frame-2005-5266.png</a></td><td><code>buttonStyles.ts</code> (<code>buttonBaseClass</code> → 40px, e.g. <code>h-10</code>/<code>py-2.5</code>); <code>Home.vue:336</code> (minimum <code>mt-6</code> before the button)</td></tr>
+<tr class="fail"><td>D7</td><td>FAIL</td><td>low</td><td>defeito, pre-existing</td><td>P2: Details "Data de fundação"</td><td>pt-BR date dd/MM/aaaa (the table shows 16/07/1909)</td><td><code>1909-07-16</code> (ISO)</td><td><a href="evidence/P2-details-dialog-1440-light.png" target="_blank">evidence/P2-details-dialog-1440-light.png</a></td><td><code>components/common/dialog/DetailsBrandDialog.vue:16-18,54</code> (<code>formatIsoDate</code> slices ISO)</td></tr>
+<tr class="fail"><td>D8</td><td>FAIL</td><td>low</td><td>defeito, pre-existing</td><td>P1-P3: <code>document.title</code></td><td>Page title per route</td><td>Always "Início - Car Store" on /cars, /brands and /customers</td><td>snapshot data (no image)</td><td><code>Views/Home/Index.cshtml:2</code> plus the router (no <code>document.title</code> update in ClientApp)</td></tr>
+<tr class="fail"><td>D9</td><td>FAIL</td><td>low</td><td>defeito, pre-existing</td><td>Console C1</td><td>No console errors</td><td>404 for <code>CarStore.Web.Web.styles.css</code></td><td>console log</td><td><code>Views/Shared/_Layout.cshtml:24</code></td></tr>
+<tr><td>D10</td><td>note</td><td>low</td><td>defeito, pre-existing, outside the brief</td><td>P2: search with no matches</td><td>Empty-state message</td><td>The table body is blank with no "Nenhum registro encontrado"</td><td><a href="evidence/P2-toast-delete-1440-light.png" target="_blank">evidence/P2-toast-delete-1440-light.png</a></td><td><code>DataTableCommon.vue</code> (no <code>#empty</code> / <code>emptyMessage</code>)</td></tr>
+</tbody></table></div>
+<h3>Classified, not failing</h3>
+<div class="tw"><table><thead><tr><th>id</th><th>category</th><th>item</th><th>evidence</th></tr></thead><tbody>
+<tr><td>N1</td><td>decisao-design (flag for designer)</td><td>When sorted, the Cliente header takes the PrimeVue highlight: near-black fill with white text in light, white fill in dark. Figma draws no sorted state. It is visually heavy compared with the quiet header; consider a muted highlight in <code>flushColumnPt</code>.</td><td><a href="evidence/H5-recent-sort2-1440-light.png" target="_blank">evidence/H5-recent-sort2-1440-light.png</a>, H5-recent-sort2-1440-dark.png</td></tr>
+<tr><td>N2</td><td>decisao-design</td><td>Logo is the animated car GIF (<code>/images/sidebar/minicar.gif</code>) instead of the blue Figma mark (vault note Sidebar-Logo-Icon). One expanded capture caught a near-blank GIF frame (artefato-ferramenta); the settled capture is fine.</td><td><a href="evidence/H2-navrail-expanded-settled-1440-light.png" target="_blank">evidence/H2-navrail-expanded-settled-1440-light.png</a></td></tr>
+<tr><td>N3</td><td>intencional</td><td>Extra "Aparência" (surface mode) rail button from commit 749c88b. Default <code>data-surface="gray"</code> gives text #374151 / #6b7280 where Figma's neutral palette uses #262626 / #737373.</td><td><a href="evidence/H1-1440-light.png" target="_blank">evidence/H1-1440-light.png</a></td></tr>
+<tr><td>N4</td><td>conteudo-dinamico</td><td>Seed data differs from the Figma sample: names, 2 chart bars instead of 10, dates, stock 538→537 changed externally, avatar icon instead of "P". Count-up animation shows 0 / 0% for about 1s after load. English seed text (country "Germany", descriptions, body type "Coupe") is domain data.</td><td><a href="evidence/H1-1440-light.png" target="_blank">evidence/H1-1440-light.png</a>, H1-1920-light.png</td></tr>
+<tr><td>N5</td><td>known gap</td><td>No "Carro" column, so column widths differ from Figma (Cliente 332px vs 468px)</td><td><a href="evidence/H5-recent-default-1440-light.png" target="_blank">evidence/H5-recent-default-1440-light.png</a></td></tr>
+<tr><td>N6</td><td>known gap</td><td>Sorted by FullName (Alice…Eva), not by CreatedAt</td><td>same</td></tr>
+<tr><td>N7</td><td>known gap</td><td>Dark: flush rows rgb(3,7,18) / card tone alternate and look darker than the card</td><td><a href="evidence/H5-recent-default-1440-dark.png" target="_blank">evidence/H5-recent-default-1440-dark.png</a>, H5-corner-br-1440-dark.png</td></tr>
+<tr><td>N8</td><td>intencional</td><td>Deleting a brand that has cars is blocked in the UI: Excluir is disabled and a pt-BR explanation is shown, so the English domain error never surfaces</td><td><a href="evidence/P2-delete-blocked-1440-light.png" target="_blank">evidence/P2-delete-blocked-1440-light.png</a></td></tr>
+</tbody></table></div>
+<h3>minimas[]</h3>
+<div class="tw"><table><thead><tr><th>item</th><th>Figma</th><th>observed</th><th>rationale</th></tr></thead><tbody>
+<tr><td>KPI card height</td><td>163</td><td>166.5 (tag is 20.5px tall vs about 17 in Figma: 11px label, 2/6 padding)</td><td>3.5px; no effect on the outcome</td></tr>
+<tr><td>KPI info tag tone</td><td>bg #cffafe / text #0e7490</td><td>#e0f2fe / #0369a1 (PrimeVue "info" severity)</td><td>Same hue family, readable</td></tr>
+<tr><td>Toast</td><td>(no Figma)</td><td>"Marca criada" / "Marca excluída", summary only</td><td>Text is pt-BR and correct</td></tr>
+</tbody></table></div>
+<h3>bloqueios</h3>
+<p>None. Every planned scenario ran.</p>
+<h3>dados-alterados</h3>
+<ul>
+<li style="margin-left:0px">Created brand "QA Marca Teste" / Brasil / 01/01/2000 (POST /api/brands → 201, id 11), then deleted it (DELETE /api/brands/11 → 204). The seed is unchanged.</li>
+<li style="margin-left:0px">Opened and cancelled the Edit and Create dialogs for cars and customers, and the delete confirmation for customer "Alice Johnson". Nothing was saved.</li>
+<li style="margin-left:0px">Not caused by QA: "Carros em estoque" changed from 538 to 537 between captures.</li>
+</ul>
+<h3>Known gaps (notes, not failures)</h3>
+<ul>
+<li style="margin-left:0px">No "Carro" column.</li>
+<li style="margin-left:0px">"Clientes recentes" is sorted by FullName.</li>
+<li style="margin-left:0px">Dark flush rows look darker than the card.</li>
+<li style="margin-left:0px">Domain API error messages are in English.</li>
+</ul></body></html>
