@@ -9,6 +9,7 @@ import DetailsCustomerDialog from "./common/dialog/DetailsCustomerDialog.vue";
 import { usePagedFetch } from "../composables/usePagedFetch";
 import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatDate } from "../utils/format";
+import { customerLabel } from "../utils/entityLabel";
 import type { CustomerDto } from "../types";
 
 const props = defineProps<{
@@ -20,10 +21,10 @@ const first = ref(0);
 const { items: customers, totalRecords, loading, error, load } = usePagedFetch<CustomerDto>(props.apiUrl);
 
 const columns: DataTableColumn[] = [
-  { field: "fullName", header: "Full name", primary: true },
-  { field: "email", header: "Email" },
-  { field: "phoneNumber", header: "Phone number" },
-  { field: "createdAt", header: "Created at" },
+  { field: "fullName", header: "Nome completo", primary: true },
+  { field: "email", header: "E-mail" },
+  { field: "phoneNumber", header: "Telefone" },
+  { field: "createdAt", header: "Cadastrado em" },
 ];
 
 function onPage(event: DataTablePageEvent) {
@@ -56,7 +57,7 @@ const {
   onDetailsRequest,
 } = useEntityCrud<CustomerDto, EditCustomerPayload>({
   apiUrl: props.apiUrl,
-  entityLabel: "customer",
+  entityLabel: customerLabel,
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
@@ -92,9 +93,9 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Delete Customer"
-    message="Are you sure you want to delete this customer?"
-    :details="deleteTarget ? [{ label: 'Full name', value: deleteTarget.fullName }, { label: 'Email', value: deleteTarget.email }] : []"
+    title="Excluir cliente"
+    message="Tem certeza de que deseja excluir este cliente?"
+    :details="deleteTarget ? [{ label: 'Nome completo', value: deleteTarget.fullName }, { label: 'E-mail', value: deleteTarget.email }] : []"
     :loading="deleteLoading"
     :error="deleteError"
     @confirm="onDeleteConfirm"
@@ -102,8 +103,8 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Delete Customers"
-    :message="`Are you sure you want to delete ${bulkDeleteTargets.length} customer(s)?`"
+    title="Excluir clientes"
+    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} cliente(s)?`"
     :details="bulkDeleteTargets.map((customer) => ({ label: customer.fullName, value: customer.email }))"
     :loading="bulkDeleteLoading"
     :error="bulkDeleteError"

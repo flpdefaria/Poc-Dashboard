@@ -27,59 +27,59 @@ const dialogPt = detailsDialogPt("w-[520px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Details</span>
+      <span class="text-[21px] font-bold text-color">Detalhes</span>
     </template>
 
     <template v-if="props.car">
       <p class="text-xs font-bold uppercase tracking-wide text-color">{{ props.car.model }}</p>
 
-      <DetailField label="Brand">
+      <DetailField label="Marca">
         <p class="text-sm font-medium text-color">{{ props.car.brandName }}</p>
       </DetailField>
 
       <div class="h-px w-full bg-surface-300 my-3.5" />
 
       <div class="flex w-full items-start gap-1.75">
-        <DetailField label="Body type">
+        <DetailField label="Carroceria">
           <p class="text-sm font-medium text-color">{{ props.car.bodyType }}</p>
         </DetailField>
-        <DetailField label="Model year">
+        <DetailField label="Ano do modelo">
           <p class="text-sm font-medium text-color">{{ props.car.modelYear }}</p>
         </DetailField>
       </div>
 
       <div class="flex w-full items-start gap-1.75">
-        <DetailField label="VIN">
+        <DetailField label="Chassi (VIN)">
           <p class="text-sm font-medium text-color">{{ props.car.vin }}</p>
         </DetailField>
-        <DetailField label="Mileage">
+        <DetailField label="Quilometragem">
           <p class="text-sm font-medium text-color">{{ props.car.mileage }}</p>
         </DetailField>
       </div>
 
       <div class="flex w-full items-start gap-1.75">
-        <DetailField label="Price">
+        <DetailField label="Preço">
           <p class="text-sm font-medium text-color">{{ formatCurrency(props.car.price) }}</p>
         </DetailField>
-        <DetailField label="Stock">
+        <DetailField label="Estoque">
           <p class="text-sm font-medium text-color">{{ props.car.stock }}</p>
         </DetailField>
       </div>
 
-      <DetailField label="Available">
-        <Tag :value="props.car.isAvailable ? 'Yes' : 'No'" :severity="props.car.isAvailable ? 'success' : 'danger'" />
+      <DetailField label="Disponível">
+        <Tag :value="props.car.isAvailable ? 'Sim' : 'Não'" :severity="props.car.isAvailable ? 'success' : 'danger'" />
       </DetailField>
 
       <div class="h-px w-full bg-surface-300 my-3.5" />
 
-      <DetailField label="Description">
+      <DetailField label="Descrição">
         <p class="text-sm font-medium text-color">{{ props.car.description }}</p>
       </DetailField>
     </template>
 
     <template #footer>
       <Button
-        label="Close"
+        label="Fechar"
         severity="secondary"
         outlined
         :class="dialogSecondaryButtonClass"

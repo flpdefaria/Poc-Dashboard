@@ -15,6 +15,8 @@ export interface DataTableColumn {
   header: string;
   /** Emphasized styling for the row's primary/identifying column (e.g. Title, Name). */
   primary?: boolean;
+  /** Current-page sorting on this column; defaults to true. */
+  sortable?: boolean;
 }
 
 // `lucideIcon` (not PrimeVue's string `icon`) is rendered through the Menu's #itemicon slot.
@@ -91,7 +93,7 @@ const props = withDefaults(
   }>(),
   {
     rowsPerPageOptions: () => [10, 20, 50],
-    searchPlaceholder: "Search this page...",
+    searchPlaceholder: "Buscar nesta página…",
     paginator: true,
     dataKey: "id",
     rows: 10,
@@ -179,7 +181,7 @@ function toggleMenu(event: Event, data: any) {
     ...(props.detailsUrl || props.confirmDetails
       ? [
           {
-            label: "Details",
+            label: "Detalhes",
             lucideIcon: Eye,
             command: () => {
               if (props.confirmDetails) emit("details", data);
@@ -191,7 +193,7 @@ function toggleMenu(event: Event, data: any) {
     ...(props.editUrl || props.confirmEdit
       ? [
           {
-            label: "Edit",
+            label: "Editar",
             lucideIcon: Pencil,
             command: () => {
               if (props.confirmEdit) emit("edit", data);
@@ -203,7 +205,7 @@ function toggleMenu(event: Event, data: any) {
     ...(props.deleteUrl || props.confirmDelete
       ? [
           {
-            label: "Delete",
+            label: "Excluir",
             lucideIcon: Trash2,
             command: () => {
               if (props.confirmDelete) emit("delete", data);
@@ -221,16 +223,22 @@ function toggleMenu(event: Event, data: any) {
   <div class="flex flex-col gap-2">
     <div class="flex items-center justify-between gap-3" :class="{ 'px-4': flush }">
       <div class="flex w-full items-center gap-2">
-        <IconField class="w-full max-w-[280px]">
+        <IconField class="w-full" :class="flush ? 'max-w-[216px]' : 'max-w-[280px]'">
           <InputIcon><Search /></InputIcon>
-          <InputText v-model="searchTerm" :placeholder="searchPlaceholder" class="w-full" />
+          <InputText
+            v-model="searchTerm"
+            :placeholder="searchPlaceholder"
+            :aria-label="searchPlaceholder"
+            :size="flush ? 'small' : undefined"
+            class="w-full"
+          />
         </IconField>
         <!-- Extra toolbar actions next to the search box (e.g. a "View all" link). -->
         <slot name="toolbar" />
       </div>
       <Button
         v-if="bulkDelete && selectedRows.length"
-        label="Delete selected"
+        label="Excluir selecionados"
         severity="danger"
         outlined
         :badge="String(selectedRows.length)"
@@ -269,7 +277,7 @@ function toggleMenu(event: Event, data: any) {
           :key="col.field"
           :field="col.field"
           :header="col.header"
-          sortable
+          :sortable="col.sortable ?? true"
           :pt="flush ? flushColumnPt : undefined"
         >
           <template #body="{ data }">
@@ -278,9 +286,9 @@ function toggleMenu(event: Event, data: any) {
             </slot>
           </template>
         </Column>
-        <Column v-if="hasActions" header="Actions" class="text-center" style="width: 4rem">
+        <Column v-if="hasActions" header="Ações" class="text-center" style="width: 4rem">
           <template #body="{ data }">
-            <Button text rounded severity="secondary" aria-haspopup="true" @click="toggleMenu($event, data)">
+            <Button text rounded severity="secondary" aria-haspopup="true" aria-label="Ações da linha" @click="toggleMenu($event, data)">
               <EllipsisVertical />
             </Button>
           </template>

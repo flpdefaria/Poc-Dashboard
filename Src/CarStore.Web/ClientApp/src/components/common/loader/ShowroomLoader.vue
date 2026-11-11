@@ -19,7 +19,7 @@ const percent = computed(() => Math.round(shown.value));
 
       <div
         role="progressbar"
-        aria-label="Loading fleet data"
+        aria-label="Carregando dados da frota"
         aria-valuemin="0"
         aria-valuemax="100"
         :aria-valuenow="percent"
@@ -38,7 +38,7 @@ const percent = computed(() => Math.round(shown.value));
       </div>
 
       <div class="flex items-center justify-between text-sm">
-        <span class="text-muted-color">Loading fleet data</span>
+        <span class="text-muted-color">Carregando dados da frota</span>
         <span class="font-semibold tabular-nums text-color">{{ percent }}%</span>
       </div>
     </div>

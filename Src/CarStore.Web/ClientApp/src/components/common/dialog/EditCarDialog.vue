@@ -72,7 +72,7 @@ function onUpdateVisible(value: boolean) {
 
 function onSave() {
   if (!form.model.trim() || !form.brandId) {
-    validationError.value = "Model and Brand are required.";
+    validationError.value = "Modelo e marca são obrigatórios.";
     return;
   }
   validationError.value = null;
@@ -104,50 +104,50 @@ const dialogPt = dialogShellPt("w-[765px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Edit car</span>
+      <span class="text-[21px] font-bold text-color">Editar carro</span>
     </template>
 
-    <FormField label="Model">
+    <FormField label="Modelo">
       <InputText v-model="form.model" class="w-full" />
     </FormField>
 
-    <FormField label="VIN">
+    <FormField label="Chassi (VIN)">
       <InputText v-model="form.vin" class="w-full" />
     </FormField>
 
     <div class="flex w-full items-start gap-[21px]">
-      <FormField label="Brand">
+      <FormField label="Marca">
         <Select
           v-model="form.brandId"
           :options="props.brands"
           option-label="name"
           option-value="id"
-          placeholder="Select a brand"
+          placeholder="Selecione uma marca"
           class="w-full"
         />
       </FormField>
-      <FormField label="Body type">
+      <FormField label="Carroceria">
         <InputText v-model="form.bodyType" class="w-full" />
       </FormField>
-      <FormField label="Model year">
+      <FormField label="Ano do modelo">
         <InputNumber v-model="form.modelYear" :use-grouping="false" class="w-full" />
       </FormField>
     </div>
 
     <div class="flex w-full items-start gap-[21px]">
-      <FormField label="Price">
+      <FormField label="Preço">
         <InputNumber v-model="form.price" mode="currency" currency="BRL" locale="pt-BR" class="w-full" />
       </FormField>
-      <FormField label="Stock">
+      <FormField label="Estoque">
         <InputNumber v-model="form.stock" :min="0" class="w-full" />
       </FormField>
-      <FormField label="Mileage">
+      <FormField label="Quilometragem">
         <InputNumber v-model="form.mileage" :min="0" disabled class="w-full opacity-50" />
       </FormField>
     </div>
 
     <div class="flex h-[138px] w-full flex-col gap-1.75">
-      <label class="text-sm font-semibold text-color">Description</label>
+      <label class="text-sm font-semibold text-color">Descrição</label>
       <Textarea v-model="form.description" class="h-[110px] w-full resize-none" />
     </div>
 
@@ -157,7 +157,7 @@ const dialogPt = dialogShellPt("w-[765px]");
 
     <template #footer>
       <Button
-        label="Cancel"
+        label="Cancelar"
         severity="secondary"
         outlined
         :disabled="loading"
@@ -165,7 +165,7 @@ const dialogPt = dialogShellPt("w-[765px]");
         @click="onUpdateVisible(false)"
       />
       <Button
-        label="Save"
+        label="Salvar"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"

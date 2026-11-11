@@ -6,6 +6,7 @@ import CreateCustomerDialog, { type CreateCustomerPayload } from "./common/dialo
 import Button from "primevue/button";
 import { primaryButtonClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
+import { customerLabel } from "../utils/entityLabel";
 import { Plus } from "@lucide/vue";
 
 const apiUrl = "/api/customers";
@@ -20,7 +21,7 @@ const {
   submit: onCreateSubmit,
 } = useCreateEntity<CreateCustomerPayload>({
   apiUrl,
-  entityLabel: "customer",
+  entityLabel: customerLabel,
   onCreated: () => customersTable.value?.reload(),
 });
 </script>
@@ -28,8 +29,8 @@ const {
 <template>
   <div class="flex flex-col gap-3">
     <PageHeader
-      title="Customers"
-      description="Manage the dealership's customers: browse full name, email, phone number and sign-up date, and create, edit or remove entries."
+      title="Clientes"
+      description="Gerencie os clientes da concessionária: consulte nome completo, e-mail, telefone e data de cadastro, e crie, edite ou remova registros."
     >
       <template #actions>
         <Button
@@ -37,7 +38,7 @@ const {
           @click="openCreate"
         >
           <Plus class="text-xs" />
-          New customer
+          Novo cliente
         </Button>
       </template>
     </PageHeader>

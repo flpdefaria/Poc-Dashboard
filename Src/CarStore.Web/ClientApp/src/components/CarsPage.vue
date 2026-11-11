@@ -6,6 +6,7 @@ import CreateCarDialog, { type CreateCarPayload } from "./common/dialog/CreateCa
 import Button from "primevue/button";
 import { primaryButtonClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
+import { carLabel } from "../utils/entityLabel";
 import type { BrandOption } from "../types";
 import { Plus } from "@lucide/vue";
 
@@ -28,7 +29,7 @@ const {
   submit: onCreateSubmit,
 } = useCreateEntity<CreateCarPayload>({
   apiUrl,
-  entityLabel: "car",
+  entityLabel: carLabel,
   onCreated: () => carsTable.value?.reload(),
 });
 
@@ -39,8 +40,8 @@ onMounted(loadBrandOptions);
 <template>
   <div class="flex flex-col gap-3">
     <PageHeader
-      title="Cars"
-      description="Manage the car inventory: browse model, brand, body type, price, stock and availability, and create, edit or remove entries."
+      title="Carros"
+      description="Gerencie o estoque de carros: consulte modelo, marca, carroceria, preço, estoque e disponibilidade, e crie, edite ou remova registros."
     >
       <template #actions>
         <Button
@@ -48,7 +49,7 @@ onMounted(loadBrandOptions);
           @click="openCreate"
         >
           <Plus class="text-xs" />
-          New car
+          Novo carro
         </Button>
       </template>
     </PageHeader>

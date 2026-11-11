@@ -10,6 +10,7 @@ import DetailsCarDialog from "./common/dialog/DetailsCarDialog.vue";
 import { usePagedFetch } from "../composables/usePagedFetch";
 import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatCurrency } from "../utils/format";
+import { carLabel } from "../utils/entityLabel";
 import type { BrandOption, CarDto } from "../types";
 
 const props = defineProps<{
@@ -22,13 +23,13 @@ const first = ref(0);
 const { items: cars, totalRecords, loading, error, load } = usePagedFetch<CarDto>(props.apiUrl);
 
 const columns: DataTableColumn[] = [
-  { field: "model", header: "Model", primary: true },
-  { field: "brandName", header: "Brand" },
-  { field: "bodyType", header: "Body type" },
-  { field: "price", header: "Price" },
-  { field: "stock", header: "Stock" },
-  { field: "mileage", header: "Mileage" },
-  { field: "isAvailable", header: "Available" },
+  { field: "model", header: "Modelo", primary: true },
+  { field: "brandName", header: "Marca" },
+  { field: "bodyType", header: "Carroceria" },
+  { field: "price", header: "Preço" },
+  { field: "stock", header: "Estoque" },
+  { field: "mileage", header: "Quilometragem" },
+  { field: "isAvailable", header: "Disponível" },
 ];
 
 function onPage(event: DataTablePageEvent) {
@@ -61,7 +62,7 @@ const {
   onDetailsRequest,
 } = useEntityCrud<CarDto, EditCarPayload>({
   apiUrl: props.apiUrl,
-  entityLabel: "car",
+  entityLabel: carLabel,
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
@@ -96,20 +97,20 @@ defineExpose({ reload: () => load(1, rows.value) });
       <span class="text-xs text-muted-color">{{ formatCurrency(data.price) }}</span>
     </template>
     <template #col-isAvailable="{ data }">
-      <Tag :value="data.isAvailable ? 'Yes' : 'No'" :severity="data.isAvailable ? 'success' : 'danger'" />
+      <Tag :value="data.isAvailable ? 'Sim' : 'Não'" :severity="data.isAvailable ? 'success' : 'danger'" />
     </template>
   </DataTableCommon>
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Delete Car"
-    message="Are you sure you want to delete this car?"
+    title="Excluir carro"
+    message="Tem certeza de que deseja excluir este carro?"
     :details="
       deleteTarget
         ? [
-            { label: 'Model', value: deleteTarget.model },
-            { label: 'Brand', value: deleteTarget.brandName },
-            { label: 'Price', value: formatCurrency(deleteTarget.price) },
+            { label: 'Modelo', value: deleteTarget.model },
+            { label: 'Marca', value: deleteTarget.brandName },
+            { label: 'Preço', value: formatCurrency(deleteTarget.price) },
           ]
         : []
     "
@@ -120,8 +121,8 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Delete Cars"
-    :message="`Are you sure you want to delete ${bulkDeleteTargets.length} car(s)?`"
+    title="Excluir carros"
+    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} carro(s)?`"
     :details="bulkDeleteTargets.map((car) => ({ label: car.model, value: car.brandName }))"
     :loading="bulkDeleteLoading"
     :error="bulkDeleteError"

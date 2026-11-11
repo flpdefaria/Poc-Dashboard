@@ -41,7 +41,7 @@ no longer reflected in the instructions.
 - Removed: `BooksController`, `AuthorsController`, `CustomersController`, `Views/Cars/`, `Views/Brands/`,
   `Views/Customers/`, `Views/Home/Privacy.cshtml`, `_ValidationScriptsPartial.cshtml`, `_Pagination.cshtml`,
   the jQuery `<script>` tag in `_Layout.cshtml`.
-- `Views/Home/Index.cshtml` is now the single SPA shell view: `<div id="app" class="flex h-full w-full gap-3 p-4"></div>`.
+- `Views/Home/Index.cshtml` is now the single SPA shell view: `<div id="app" class="flex h-full w-full"></div>` (the 40px page margin is `p-10` on `<main>` in `App.vue`, see [[Sidebar-Collapse-Expand]]).
 - `Program.cs`: added `app.MapFallbackToController("Index", "Home")` after the default MVC route, so a
   hard refresh or deep link on any vue-router path (e.g. `/cars`) still resolves to the shell.
 
@@ -61,6 +61,7 @@ Requested explicitly as an architecture change; the previous "never turn this in
 ## Related
 
 - [[Theme-Surface-Modes]]
+- [[UI-Language-pt-BR]]
 - [[Architecture-Overview]]
 - [[Controllers]]
 - [[Application-Services]]

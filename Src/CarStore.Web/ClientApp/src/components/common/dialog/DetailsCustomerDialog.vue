@@ -26,30 +26,30 @@ const dialogPt = detailsDialogPt("w-[480px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Details</span>
+      <span class="text-[21px] font-bold text-color">Detalhes</span>
     </template>
 
     <template v-if="customer">
-      <DetailField label="Full name">
+      <DetailField label="Nome completo">
         <p class="text-sm font-medium text-color">{{ customer.fullName }}</p>
       </DetailField>
 
-      <DetailField label="Email">
+      <DetailField label="E-mail">
         <p class="text-sm font-medium text-color">{{ customer.email }}</p>
       </DetailField>
 
-      <DetailField label="Phone number">
+      <DetailField label="Telefone">
         <p class="text-sm font-medium text-color">{{ customer.phoneNumber ?? "-" }}</p>
       </DetailField>
 
-      <DetailField label="Created at">
+      <DetailField label="Cadastrado em">
         <p class="text-sm font-medium text-color">{{ formatDate(customer.createdAt) }}</p>
       </DetailField>
     </template>
 
     <template #footer>
       <Button
-        label="Close"
+        label="Fechar"
         severity="secondary"
         outlined
         :class="dialogSecondaryButtonClass"

@@ -1,16 +1,13 @@
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import { flagRows } from "../utils/rowEffects";
-
-function capitalize(label: string): string {
-  return label.charAt(0).toUpperCase() + label.slice(1);
-}
+import { capitalize, genderSuffix, requestFailedMessage, type EntityLabel } from "../utils/entityLabel";
 
 interface UseCreateEntityOptions {
   /** REST endpoint to POST the new entity to, e.g. "/api/cars". */
   apiUrl: string;
-  /** Lower-case noun used in the fallback error message, e.g. "book". */
-  entityLabel: string;
+  /** pt-BR noun (with gender) used in the toast and fallback error message, e.g. `carLabel`. */
+  entityLabel: EntityLabel;
   /** Called after a successful create, typically to reload the table. */
   onCreated: () => Promise<void> | void;
 }
@@ -42,19 +39,19 @@ export function useCreateEntity<TPayload>(options: UseCreateEntityOptions) {
       });
       if (!response.ok) {
         const body = await response.json().catch(() => null);
-        throw new Error(body?.message ?? `Request failed with status ${response.status}`);
+        throw new Error(body?.message ?? requestFailedMessage(response.status));
       }
       const created = await response.json().catch(() => null);
       visible.value = false;
       toast.add({
         severity: "success",
-        summary: `${capitalize(options.entityLabel)} created`,
+        summary: `${capitalize(options.entityLabel.singular)} criad${genderSuffix(options.entityLabel)}`,
         life: 3000,
       });
       await options.onCreated();
       if (created?.id != null) flagRows(options.apiUrl, [created.id], "created", 2400);
     } catch (err) {
-      error.value = err instanceof Error ? err.message : `Failed to create the ${options.entityLabel}.`;
+      error.value = err instanceof Error ? err.message : `Não foi possível criar ${genderSuffix(options.entityLabel)} ${options.entityLabel.singular}.`;
     } finally {
       loading.value = false;
     }

@@ -14,7 +14,7 @@ import ShowroomLoader from "./common/loader/ShowroomLoader.vue";
 import { usePagedFetch } from "../composables/usePagedFetch";
 import { useTweenedNumber } from "../composables/useTweenedNumber";
 import { formatCurrency, formatCurrencyCompact, formatDate } from "../utils/format";
-import { primaryButtonClass } from "../styles/buttonStyles";
+import { primaryButtonClass, primarySmallButtonClass } from "../styles/buttonStyles";
 import type { BrandDto, CarDto, CustomerDto } from "../types";
 import { ArrowRight, Car, CircleCheck, IdCard, Wallet } from "@lucide/vue";
 
@@ -48,8 +48,8 @@ const {
 
 const recentColumns: DataTableColumn[] = [
   { field: "fullName", header: "Cliente", primary: true },
-  { field: "email", header: "E-mail" },
-  { field: "createdAt", header: "Cadastrado em" },
+  { field: "email", header: "E-mail", sortable: false },
+  { field: "createdAt", header: "Cadastrado em", sortable: false },
 ];
 
 // Full-screen showroom loader: plays once per session, on the first visit to Home. Later visits
@@ -362,7 +362,7 @@ let introPlayed = false;
           search-placeholder="Buscar nesta página…"
         >
           <template #toolbar>
-            <Button :as="RouterLink" to="/customers" :class="primaryButtonClass + ' shrink-0'">
+            <Button :as="RouterLink" to="/customers" :class="primarySmallButtonClass + ' shrink-0'">
               Ver todos
               <ArrowRight />
             </Button>

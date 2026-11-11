@@ -30,53 +30,53 @@ const dialogPt = detailsDialogPt("w-[520px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Details</span>
+      <span class="text-[21px] font-bold text-color">Detalhes</span>
     </template>
 
     <template v-if="brand">
-      <DetailField label="Name">
+      <DetailField label="Nome">
         <p class="text-sm font-medium text-color">{{ brand.name }}</p>
       </DetailField>
 
       <div class="h-px w-full bg-surface-300 my-3.5" />
 
       <div class="flex w-full items-start gap-1.75">
-        <DetailField label="Country">
+        <DetailField label="País">
           <p class="text-sm font-medium text-color">{{ brand.country }}</p>
         </DetailField>
-        <DetailField label="Years in business">
+        <DetailField label="Anos de atuação">
           <p class="text-sm font-medium text-color">{{ brand.yearsInBusiness }}</p>
         </DetailField>
       </div>
 
       <div class="flex w-full items-start gap-1.75">
-        <DetailField label="Founded date">
+        <DetailField label="Data de fundação">
           <p class="text-sm font-medium text-color">{{ formatIsoDate(brand.foundedDate) }}</p>
         </DetailField>
-        <DetailField label="Number of cars">
+        <DetailField label="Número de carros">
           <p class="text-sm font-medium text-color">{{ brand.carsCount }}</p>
         </DetailField>
       </div>
 
-      <DetailField label="Cars">
+      <DetailField label="Carros">
         <ul v-if="brand.cars.length" class="ml-[21px] list-disc text-sm font-medium text-color">
           <li v-for="car in brand.cars" :key="car.model">
             {{ car.model }} <span class="text-muted-color">({{ car.modelYear }})</span>
           </li>
         </ul>
-        <p v-else class="text-sm font-medium text-muted-color">No cars yet.</p>
+        <p v-else class="text-sm font-medium text-muted-color">Nenhum carro cadastrado.</p>
       </DetailField>
 
       <div class="h-px w-full bg-surface-300 my-3.5" />
 
-      <DetailField label="Description">
+      <DetailField label="Descrição">
         <p class="text-sm font-medium text-color">{{ brand.description }}</p>
       </DetailField>
     </template>
 
     <template #footer>
       <Button
-        label="Close"
+        label="Fechar"
         severity="secondary"
         outlined
         :class="dialogSecondaryButtonClass"

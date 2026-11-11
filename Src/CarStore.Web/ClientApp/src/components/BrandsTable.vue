@@ -9,6 +9,7 @@ import DetailsBrandDialog from "./common/dialog/DetailsBrandDialog.vue";
 import { usePagedFetch } from "../composables/usePagedFetch";
 import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatDate } from "../utils/format";
+import { brandLabel } from "../utils/entityLabel";
 import type { BrandDto } from "../types";
 
 const props = defineProps<{
@@ -20,11 +21,11 @@ const first = ref(0);
 const { items: brands, totalRecords, loading, error, load } = usePagedFetch<BrandDto>(props.apiUrl);
 
 const columns: DataTableColumn[] = [
-  { field: "name", header: "Name", primary: true },
-  { field: "country", header: "Country" },
-  { field: "foundedDate", header: "Founded" },
-  { field: "yearsInBusiness", header: "Years in business" },
-  { field: "carsCount", header: "Cars" },
+  { field: "name", header: "Nome", primary: true },
+  { field: "country", header: "País" },
+  { field: "foundedDate", header: "Fundação" },
+  { field: "yearsInBusiness", header: "Anos de atuação" },
+  { field: "carsCount", header: "Carros" },
 ];
 
 function onPage(event: DataTablePageEvent) {
@@ -57,7 +58,7 @@ const {
   onDetailsRequest,
 } = useEntityCrud<BrandDto, EditBrandPayload>({
   apiUrl: props.apiUrl,
-  entityLabel: "brand",
+  entityLabel: brandLabel,
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
@@ -96,21 +97,21 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Delete Brand"
-    message="Are you sure you want to delete this brand?"
+    title="Excluir marca"
+    message="Tem certeza de que deseja excluir esta marca?"
     :details="
       deleteTarget
         ? [
-            { label: 'Name', value: deleteTarget.name },
-            { label: 'Country', value: deleteTarget.country },
-            { label: 'Cars', value: String(deleteTarget.carsCount) },
+            { label: 'Nome', value: deleteTarget.name },
+            { label: 'País', value: deleteTarget.country },
+            { label: 'Carros', value: String(deleteTarget.carsCount) },
           ]
         : []
     "
     :confirm-disabled="!!deleteTarget && deleteTarget.carsCount > 0"
     :warning="
       deleteTarget && deleteTarget.carsCount > 0
-        ? `This brand has ${deleteTarget.carsCount} car(s) registered. Remove or reassign them before deleting the brand.`
+        ? `Esta marca tem ${deleteTarget.carsCount} carro(s) cadastrado(s). Remova-os ou transfira-os antes de excluir a marca.`
         : null
     "
     :loading="deleteLoading"
@@ -120,13 +121,13 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Delete Brands"
-    :message="`Are you sure you want to delete ${bulkDeleteTargets.length} brand(s)?`"
-    :details="bulkDeleteTargets.map((brand) => ({ label: brand.name, value: `${brand.carsCount} car(s)` }))"
+    title="Excluir marcas"
+    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} marca(s)?`"
+    :details="bulkDeleteTargets.map((brand) => ({ label: brand.name, value: `${brand.carsCount} carro(s)` }))"
     :confirm-disabled="bulkDeleteBlockedBrands.length > 0"
     :warning="
       bulkDeleteBlockedBrands.length > 0
-        ? `${bulkDeleteBlockedBrands.map((brand) => brand.name).join(', ')} still ${bulkDeleteBlockedBrands.length === 1 ? 'has' : 'have'} cars registered. Remove or reassign them before deleting.`
+        ? `${bulkDeleteBlockedBrands.map((brand) => brand.name).join(', ')} ainda ${bulkDeleteBlockedBrands.length === 1 ? 'tem' : 'têm'} carros cadastrados. Remova-os ou transfira-os antes de excluir.`
         : null
     "
     :loading="bulkDeleteLoading"

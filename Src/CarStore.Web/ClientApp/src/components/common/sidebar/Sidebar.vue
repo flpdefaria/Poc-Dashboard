@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
+import { computed, onBeforeUnmount, ref } from "vue";
+import { RouterLink, useRoute } from "vue-router";
 import Avatar from "primevue/avatar";
+import Tooltip from "primevue/tooltip";
 import { useTheme } from "../../../composables/useTheme";
 import ThemeSettingsDialog from "../dialog/ThemeSettingsDialog.vue";
-import { Building2, Car, House, IdCard, Moon, Palette, Sun, User } from "@lucide/vue";
+import { Building, Car, House, IdCard, Moon, Palette, Sun, User } from "@lucide/vue";
+
+const vTooltip = Tooltip;
+
+// Figma "nav-rail" (file EOvtzuJAvw1UnoH9tsYmiO, node 2005:5267), IconOnly layout: a 72px rail with
+// 48px items. Hovering ~300ms expands it to 240px OVER the content (the 72px slot stays in the
+// layout), it closes ~300ms after the pointer leaves, and Esc closes it. Keyboard focus never
+// expands it: collapsed items show their label as a tooltip on hover and focus instead.
 
 const route = useRoute();
 
 const navItems = [
-  { key: "home", label: "Home", icon: House, to: "/" },
-  { key: "cars", label: "Cars", icon: Car, to: "/cars" },
-  { key: "brands", label: "Brands", icon: Building2, to: "/brands" },
-  { key: "customers", label: "Customers", icon: IdCard, to: "/customers" },
+  { key: "home", label: "Início", icon: House, to: "/" },
+  { key: "cars", label: "Carros", icon: Car, to: "/cars" },
+  { key: "brands", label: "Marcas", icon: Building, to: "/brands" },
+  { key: "customers", label: "Clientes", icon: IdCard, to: "/customers" },
 ];
 
 const activeKey = computed(() => route.name as string);
@@ -20,96 +28,129 @@ const activeKey = computed(() => route.name as string);
 const { theme, toggle: toggleTheme } = useTheme();
 const themeSettingsVisible = ref(false);
 
-// collapsed by default; hovering the rail expands it back to the full layout
 const expanded = ref(false);
+const HOVER_DELAY = 300;
+let hoverTimer: ReturnType<typeof setTimeout> | undefined;
+
+function scheduleExpanded(value: boolean) {
+  clearTimeout(hoverTimer);
+  hoverTimer = setTimeout(() => (expanded.value = value), HOVER_DELAY);
+}
+
+function collapseNow() {
+  clearTimeout(hoverTimer);
+  expanded.value = false;
+}
+
+onBeforeUnmount(() => clearTimeout(hoverTimer));
+
+const tooltipFor = (label: string) => ({ value: label, disabled: expanded.value });
+
+// One row style for links and buttons: a 48px icon cell plus a label that only shows when expanded.
+const rowClass =
+  "flex h-12 w-full shrink-0 cursor-pointer items-center overflow-hidden rounded-md border-0 bg-transparent p-0 text-sm text-color no-underline transition-colors duration-150 hover:bg-surface-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+// Selected: the monochrome primary fill (Figma "Solid" emphasis) plus a stronger label weight.
+const selectedRowClass =
+  "flex h-12 w-full shrink-0 items-center overflow-hidden rounded-md bg-primary p-0 text-sm font-semibold text-primary-contrast no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 </script>
 
 <template>
-  <aside
-    class="flex h-full shrink-0 flex-col gap-1.75 overflow-hidden rounded-xl bg-surface-100 px-[17.5px] py-[17.5px] transition-[width] duration-200 ease-in-out"
-    :class="expanded ? 'w-[278px]' : 'w-[78px]'"
-    @mouseenter="expanded = true"
-    @mouseleave="expanded = false"
-  >
-    <div class="flex h-10 w-full items-center gap-1.75 overflow-hidden py-[17.5px]">
-      <div class="size-10 shrink-0 overflow-hidden rounded-xl">
-        <img :src="'/images/sidebar/minicar.gif'" alt="CarStore" class="size-full object-cover" />
-      </div>
-      <div v-show="expanded" class="flex min-w-0 flex-1 flex-col">
-        <p class="truncate whitespace-nowrap text-[22px] font-black leading-none text-surface-700">CarStore</p>
-        <p class="truncate whitespace-nowrap text-xs text-muted-color">Premium dealership</p>
-      </div>
-    </div>
-
-    <nav class="flex w-full flex-col gap-3 py-[17.5px]">
-      <router-link
-        v-for="item in navItems"
-        :key="item.key"
-        :to="item.to"
-        class="flex h-10 w-full items-center gap-1.75 overflow-hidden rounded-lg py-[10.5px] pl-[14.5px] pr-[10.5px] text-sm font-medium no-underline"
-        :class="item.key === activeKey ? 'bg-surface-800 text-surface-0' : 'bg-surface-100 text-color hover:bg-surface-50'"
-      >
-        <component :is="item.icon" class="text-sm" />
-        <span v-show="expanded" class="truncate whitespace-nowrap">{{ item.label }}</span>
-      </router-link>
-    </nav>
-
-    <div class="flex-1"></div>
-
-    <!-- Appearance (theme + surface mode, Atlas-style settings dialog): same nav-row styling as the switch below. -->
-    <button
-      type="button"
-      class="flex h-10 w-full shrink-0 cursor-pointer items-center gap-1.75 overflow-hidden rounded-lg border-0 bg-transparent py-[10.5px] pl-[14.5px] pr-[10.5px] text-sm font-medium text-color transition-colors duration-150 hover:bg-surface-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      aria-label="Appearance"
-      aria-haspopup="dialog"
-      @click="themeSettingsVisible = true"
+  <!-- The 72px slot keeps the content in place; the rail itself overlays it when expanded. -->
+  <div class="relative h-full w-[72px] shrink-0">
+    <aside
+      class="absolute inset-y-0 left-0 z-40 flex flex-col gap-2 overflow-hidden bg-surface-50 pb-3 transition-[width] duration-200 ease-in-out motion-reduce:transition-none"
+      :class="expanded ? 'w-60 border-r border-surface-200 shadow-lg' : 'w-[72px]'"
+      @mouseenter="scheduleExpanded(true)"
+      @mouseleave="scheduleExpanded(false)"
+      @keydown.esc="collapseNow"
     >
-      <Palette class="text-sm" />
-      <span v-show="expanded" class="truncate whitespace-nowrap">Appearance</span>
-    </button>
-    <ThemeSettingsDialog v-model:visible="themeSettingsVisible" />
-
-    <!-- Theme switch: styled as a nav row so it reads as part of the rail, not a floating control. -->
-    <button
-      type="button"
-      class="flex h-10 w-full shrink-0 cursor-pointer items-center gap-1.75 overflow-hidden rounded-lg border-0 bg-transparent py-[10.5px] pl-[14.5px] pr-[10.5px] text-sm font-medium text-color transition-colors duration-150 hover:bg-surface-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      aria-label="Dark theme"
-      :aria-pressed="theme === 'dark'"
-      @click="toggleTheme"
-    >
-      <component :is="theme === 'dark' ? Sun : Moon" class="text-sm" />
-      <span v-show="expanded" class="flex min-w-0 flex-1 items-center justify-between gap-2">
-        <span class="truncate whitespace-nowrap">Dark theme</span>
-        <!-- Switch track mirrors aria-pressed for sighted users. -->
-        <span
-          class="relative h-4 w-7 shrink-0 rounded-full transition-colors duration-200"
-          :class="theme === 'dark' ? 'bg-surface-700' : 'bg-surface-300'"
-          aria-hidden="true"
+      <!-- Header: 64px, 48px logo linking home. -->
+      <div class="flex h-16 shrink-0 items-center px-3">
+        <RouterLink
+          to="/"
+          aria-label="CarStore – início"
+          class="flex min-w-0 items-center gap-3 rounded-xl no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          <span
-            class="absolute top-0.5 left-0.5 size-3 rounded-full bg-surface-0 transition-transform duration-200"
-            :class="theme === 'dark' ? 'translate-x-3' : ''"
-          ></span>
-        </span>
-      </span>
-    </button>
-
-    <div
-      class="flex h-19 w-full items-center gap-1.75 overflow-hidden rounded-xl p-[17.5px]"
-      :class="expanded ? 'justify-start border border-surface-300 bg-surface-50' : 'justify-center'"
-    >
-      <Avatar
-        shape="circle"
-        class="shrink-0 bg-surface-300! text-surface-700!"
-        :class="expanded ? 'size-10' : 'size-[35px]'"
-      >
-        <template #icon><User /></template>
-      </Avatar>
-      <div v-show="expanded" class="flex min-w-0 flex-1 flex-col">
-        <p class="truncate whitespace-nowrap text-sm font-semibold text-color">Felipe Faria</p>
-        <p class="truncate whitespace-nowrap text-xs text-muted-color">felipe@email.com</p>
+          <img :src="'/images/sidebar/minicar.gif'" alt="" class="size-12 shrink-0 rounded-xl object-cover" />
+          <span v-show="expanded" class="truncate whitespace-nowrap text-lg font-semibold text-color">CarStore</span>
+        </RouterLink>
       </div>
-    </div>
-  </aside>
-</template>
 
+      <nav aria-label="Navegação principal" class="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden px-3 py-0.5">
+        <RouterLink
+          v-for="item in navItems"
+          :key="item.key"
+          v-tooltip.right="tooltipFor(item.label)"
+          :to="item.to"
+          :aria-label="item.label"
+          :class="item.key === activeKey ? selectedRowClass : rowClass"
+        >
+          <span class="flex size-12 shrink-0 items-center justify-center">
+            <component :is="item.icon" class="size-6" :stroke-width="1.5" />
+          </span>
+          <span v-show="expanded" class="truncate whitespace-nowrap pr-3">{{ item.label }}</span>
+        </RouterLink>
+      </nav>
+
+      <!-- Footer items: appearance settings and the light/dark quick switch. -->
+      <div class="flex shrink-0 flex-col gap-2 px-3">
+        <button
+          v-tooltip.right="tooltipFor('Aparência')"
+          type="button"
+          :class="rowClass"
+          aria-label="Aparência"
+          aria-haspopup="dialog"
+          @click="themeSettingsVisible = true"
+        >
+          <span class="flex size-12 shrink-0 items-center justify-center">
+            <Palette class="size-6" :stroke-width="1.5" />
+          </span>
+          <span v-show="expanded" class="truncate whitespace-nowrap pr-3">Aparência</span>
+        </button>
+
+        <button
+          v-tooltip.right="tooltipFor('Tema escuro')"
+          type="button"
+          :class="rowClass"
+          aria-label="Tema escuro"
+          :aria-pressed="theme === 'dark'"
+          @click="toggleTheme"
+        >
+          <span class="flex size-12 shrink-0 items-center justify-center">
+            <component :is="theme === 'dark' ? Sun : Moon" class="size-6" :stroke-width="1.5" />
+          </span>
+          <span v-show="expanded" class="flex min-w-0 flex-1 items-center justify-between gap-2 pr-3">
+            <span class="truncate whitespace-nowrap">Tema escuro</span>
+            <!-- Switch track mirrors aria-pressed for sighted users. -->
+            <span
+              class="relative h-4 w-7 shrink-0 rounded-full transition-colors duration-200"
+              :class="theme === 'dark' ? 'bg-primary' : 'bg-surface-300'"
+              aria-hidden="true"
+            >
+              <span
+                class="absolute top-0.5 left-0.5 size-3 rounded-full bg-surface-0 transition-transform duration-200"
+                :class="theme === 'dark' ? 'translate-x-3' : ''"
+              ></span>
+            </span>
+          </span>
+        </button>
+      </div>
+      <ThemeSettingsDialog v-model:visible="themeSettingsVisible" />
+
+      <div class="mx-4 h-px shrink-0 bg-surface-200" role="separator"></div>
+
+      <!-- Account: 32px avatar in a 48px slot; name and e-mail only when expanded. -->
+      <div class="flex h-12 shrink-0 items-center px-3">
+        <span class="flex size-12 shrink-0 items-center justify-center">
+          <Avatar shape="circle" class="size-8! bg-surface-200! text-surface-700!" aria-label="Conta">
+            <template #icon><User class="size-4" /></template>
+          </Avatar>
+        </span>
+        <div v-show="expanded" class="flex min-w-0 flex-1 flex-col pr-3">
+          <p class="truncate whitespace-nowrap text-sm font-semibold text-color">Felipe Faria</p>
+          <p class="truncate whitespace-nowrap text-xs text-muted-color">felipe@email.com</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</template>

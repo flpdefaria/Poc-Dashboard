@@ -16,16 +16,16 @@ const emit = defineEmits<{ "update:visible": [value: boolean] }>();
 const { theme, surface, setTheme, setSurface } = useTheme();
 
 const THEME_OPTIONS: { value: Theme; label: string; icon: typeof Sun }[] = [
-  { value: "light", label: "Light", icon: Sun },
-  { value: "dark", label: "Dark", icon: Moon },
+  { value: "light", label: "Claro", icon: Sun },
+  { value: "dark", label: "Escuro", icon: Moon },
 ];
 
 const SURFACE_LABELS: Record<SurfaceMode, string> = {
-  gray: "Gray",
-  neutral: "Neutral",
-  slate: "Slate",
-  stone: "Stone",
-  zinc: "Zinc",
+  gray: "Cinza",
+  neutral: "Neutro",
+  slate: "Ardósia",
+  stone: "Pedra",
+  zinc: "Zinco",
 };
 
 // Shades in each swatch strip, light to dark. Primitive variables (`--p-gray-50`, ...) are static,
@@ -52,11 +52,11 @@ const dialogPt = dialogShellPt("w-[520px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Appearance</span>
+      <span class="text-[21px] font-bold text-color">Aparência</span>
     </template>
 
     <fieldset class="m-0 min-w-0 border-0 p-0">
-      <legend class="mb-3 p-0 text-sm font-semibold text-color">Theme</legend>
+      <legend class="mb-3 p-0 text-sm font-semibold text-color">Tema</legend>
       <div class="grid grid-cols-2 gap-3">
         <label v-for="option in THEME_OPTIONS" :key="option.value" :class="optionClass(theme === option.value)">
           <input
@@ -75,8 +75,8 @@ const dialogPt = dialogShellPt("w-[520px]");
     </fieldset>
 
     <fieldset class="m-0 min-w-0 border-0 p-0">
-      <legend class="mb-1 p-0 text-sm font-semibold text-color">Surface</legend>
-      <p class="mb-3 text-xs text-muted-color">Neutral palette behind backgrounds, borders, text and the primary action.</p>
+      <legend class="mb-1 p-0 text-sm font-semibold text-color">Superfície</legend>
+      <p class="mb-3 text-xs text-muted-color">Paleta neutra usada em fundos, bordas, textos e na ação principal.</p>
       <div class="flex flex-col gap-2">
         <label v-for="mode in SURFACE_MODES" :key="mode" :class="optionClass(surface === mode)">
           <input
@@ -103,7 +103,7 @@ const dialogPt = dialogShellPt("w-[520px]");
     </fieldset>
 
     <template #footer>
-      <Button label="Close" severity="secondary" outlined :class="dialogSecondaryButtonClass" @click="emit('update:visible', false)" />
+      <Button label="Fechar" severity="secondary" outlined :class="dialogSecondaryButtonClass" @click="emit('update:visible', false)" />
     </template>
   </Dialog>
 </template>

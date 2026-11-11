@@ -60,7 +60,7 @@ function onUpdateVisible(value: boolean) {
 
 function onSave() {
   if (!form.name.trim() || !form.foundedDate) {
-    validationError.value = "Name and Founded date are required.";
+    validationError.value = "Nome e data de fundação são obrigatórios.";
     return;
   }
   validationError.value = null;
@@ -87,23 +87,23 @@ const dialogPt = dialogShellPt("w-[480px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Edit brand</span>
+      <span class="text-[21px] font-bold text-color">Editar marca</span>
     </template>
 
-    <FormField label="Name">
+    <FormField label="Nome">
       <InputText v-model="form.name" class="w-full" />
     </FormField>
 
-    <FormField label="Country">
+    <FormField label="País">
       <InputText v-model="form.country" class="w-full" />
     </FormField>
 
-    <FormField label="Founded date">
+    <FormField label="Data de fundação">
       <DatePicker v-model="form.foundedDate" date-format="dd/mm/yy" show-icon class="w-full" />
     </FormField>
 
     <div class="flex h-[138px] w-full flex-col gap-1.75">
-      <label class="text-sm font-semibold text-color">Description</label>
+      <label class="text-sm font-semibold text-color">Descrição</label>
       <Textarea v-model="form.description" class="h-[110px] w-full resize-none" />
     </div>
 
@@ -113,7 +113,7 @@ const dialogPt = dialogShellPt("w-[480px]");
 
     <template #footer>
       <Button
-        label="Cancel"
+        label="Cancelar"
         severity="secondary"
         outlined
         :disabled="loading"
@@ -121,7 +121,7 @@ const dialogPt = dialogShellPt("w-[480px]");
         @click="onUpdateVisible(false)"
       />
       <Button
-        label="Save"
+        label="Salvar"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"

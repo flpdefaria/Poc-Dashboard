@@ -1,23 +1,20 @@
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import { flagRows, playRowExit } from "../utils/rowEffects";
-
-function capitalize(label: string): string {
-  return label.charAt(0).toUpperCase() + label.slice(1);
-}
+import { capitalize, genderSuffix, requestFailedMessage, type EntityLabel } from "../utils/entityLabel";
 
 interface UseEntityCrudOptions {
   /** Base REST endpoint for the entity, e.g. "/api/cars". */
   apiUrl: string;
-  /** Lower-case noun used in fallback error messages, e.g. "book". */
-  entityLabel: string;
+  /** pt-BR noun (with gender/plural) used in toasts and fallback error messages, e.g. `carLabel`. */
+  entityLabel: EntityLabel;
   /** Reloads the current page of the table after a successful delete/edit. */
   reload: () => Promise<void> | void;
 }
 
 async function parseErrorMessage(response: Response): Promise<string> {
   const body = await response.json().catch(() => null);
-  return body?.message ?? `Request failed with status ${response.status}`;
+  return body?.message ?? requestFailedMessage(response.status);
 }
 
 /**
@@ -30,6 +27,8 @@ export function useEntityCrud<TEntity extends { id: number }, TEditPayload>(
 ) {
   const { apiUrl, entityLabel, reload } = options;
   const toast = useToast();
+  const o = genderSuffix(entityLabel);
+  const os = genderSuffix(entityLabel, true);
 
   const deleteDialogVisible = ref(false);
   const deleteTarget = ref<TEntity | null>(null);
@@ -52,13 +51,13 @@ export function useEntityCrud<TEntity extends { id: number }, TEditPayload>(
       deleteDialogVisible.value = false;
       toast.add({
         severity: "success",
-        summary: `${capitalize(entityLabel)} deleted`,
+        summary: `${capitalize(entityLabel.singular)} excluíd${o}`,
         life: 3000,
       });
       await playRowExit(apiUrl, [deleteTarget.value.id]);
       await reload();
     } catch (err) {
-      deleteError.value = err instanceof Error ? err.message : `Failed to delete the ${entityLabel}.`;
+      deleteError.value = err instanceof Error ? err.message : `Não foi possível excluir ${o} ${entityLabel.singular}.`;
     } finally {
       deleteLoading.value = false;
     }
@@ -93,8 +92,8 @@ export function useEntityCrud<TEntity extends { id: number }, TEditPayload>(
     if (failedCount > 0) {
       bulkDeleteError.value =
         failedCount === targets.length
-          ? `Failed to delete the selected ${entityLabel}s.`
-          : `${failedCount} of ${targets.length} ${entityLabel}s could not be deleted.`;
+          ? `Não foi possível excluir ${os} ${entityLabel.plural} selecionad${os}.`
+          : `${failedCount} de ${targets.length} ${entityLabel.plural} não puderam ser excluíd${os}.`;
       if (deletedIds.length) await playRowExit(apiUrl, deletedIds);
       await reload();
       return;
@@ -102,7 +101,10 @@ export function useEntityCrud<TEntity extends { id: number }, TEditPayload>(
     bulkDeleteDialogVisible.value = false;
     toast.add({
       severity: "success",
-      summary: `${targets.length} ${entityLabel}${targets.length === 1 ? "" : "s"} deleted`,
+      summary:
+        targets.length === 1
+          ? `1 ${entityLabel.singular} excluíd${o}`
+          : `${targets.length} ${entityLabel.plural} excluíd${os}`,
       life: 3000,
     });
     await playRowExit(apiUrl, deletedIds);
@@ -134,13 +136,13 @@ export function useEntityCrud<TEntity extends { id: number }, TEditPayload>(
       editDialogVisible.value = false;
       toast.add({
         severity: "success",
-        summary: `${capitalize(entityLabel)} updated`,
+        summary: `${capitalize(entityLabel.singular)} atualizad${o}`,
         life: 3000,
       });
       await reload();
       flagRows(apiUrl, [editTarget.value.id], "updated", 2000);
     } catch (err) {
-      editError.value = err instanceof Error ? err.message : `Failed to update the ${entityLabel}.`;
+      editError.value = err instanceof Error ? err.message : `Não foi possível atualizar ${o} ${entityLabel.singular}.`;
     } finally {
       editLoading.value = false;
     }

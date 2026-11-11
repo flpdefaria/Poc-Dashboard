@@ -50,7 +50,7 @@ function onUpdateVisible(value: boolean) {
 
 function onSave() {
   if (!form.fullName.trim() || !form.email.trim()) {
-    validationError.value = "Full name and Email are required.";
+    validationError.value = "Nome completo e e-mail são obrigatórios.";
     return;
   }
   validationError.value = null;
@@ -76,18 +76,18 @@ const dialogPt = dialogShellPt("w-[480px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Create customer</span>
+      <span class="text-[21px] font-bold text-color">Novo cliente</span>
     </template>
 
-    <FormField label="Full name">
+    <FormField label="Nome completo">
       <InputText v-model="form.fullName" class="w-full" />
     </FormField>
 
-    <FormField label="Email">
+    <FormField label="E-mail">
       <InputText v-model="form.email" class="w-full" />
     </FormField>
 
-    <FormField label="Phone number">
+    <FormField label="Telefone">
       <InputText v-model="form.phoneNumber" class="w-full" />
     </FormField>
 
@@ -97,7 +97,7 @@ const dialogPt = dialogShellPt("w-[480px]");
 
     <template #footer>
       <Button
-        label="Cancel"
+        label="Cancelar"
         severity="secondary"
         outlined
         :disabled="loading"
@@ -105,7 +105,7 @@ const dialogPt = dialogShellPt("w-[480px]");
         @click="onUpdateVisible(false)"
       />
       <Button
-        label="Save"
+        label="Salvar"
         :loading="loading"
         :class="dialogPrimaryButtonClass"
         @click="onSave"

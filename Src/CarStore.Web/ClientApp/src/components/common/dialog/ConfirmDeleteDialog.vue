@@ -64,7 +64,7 @@ const dialogPt = dialogShellPt("w-[765px]");
 
     <template #footer>
       <Button
-        label="Cancel"
+        label="Cancelar"
         severity="secondary"
         outlined
         :disabled="loading"
@@ -72,7 +72,7 @@ const dialogPt = dialogShellPt("w-[765px]");
         @click="onUpdateVisible(false)"
       />
       <Button
-        label="Delete"
+        label="Excluir"
         severity="danger"
         :loading="loading"
         :disabled="confirmDisabled"

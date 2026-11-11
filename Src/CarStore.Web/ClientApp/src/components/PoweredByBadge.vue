@@ -14,7 +14,7 @@ const logoParts = [
 
 <template>
   <div class="flex h-14 items-center gap-2 rounded-xl bg-surface-100 px-3">
-    <span class="text-[15px] text-surface-700">Powered by</span>
+    <span class="text-[15px] text-surface-700">Desenvolvido por</span>
     <div class="relative h-[34px] w-[136px] shrink-0">
       <img
         v-for="part in logoParts"
