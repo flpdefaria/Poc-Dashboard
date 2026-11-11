@@ -258,7 +258,7 @@ let introPlayed = false;
 
     <!-- KPIs (Figma 2007:102) -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-      <Card v-for="(kpi, index) in kpis" :key="kpi.label" class="reveal" :style="{ '--i': index + 1 }" :pt="panelPt">
+      <Card v-for="(kpi, index) in kpis" :key="kpi.label" class="reveal icon-motion" :style="{ '--i': index + 1 }" :pt="panelPt">
         <template #content>
           <div class="flex items-center gap-2">
             <span class="min-w-0 flex-1 truncate text-sm text-muted-color">{{ kpi.label }}</span>

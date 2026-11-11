@@ -1,4 +1,6 @@
 import "./style.css";
+// Lucide hover/focus gestures (ported from Atlas); opt in with the `icon-motion` host class.
+import "./styles/icon-motion.css";
 import { createApp } from "vue";
 import PrimeVue from "primevue/config";
 import ToastService from "primevue/toastservice";

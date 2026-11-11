@@ -50,5 +50,6 @@ Figma **nav-rail** in IconOnly layout (file `EOvtzuJAvw1UnoH9tsYmiO`, instance `
 ## Related
 
 - [[Sidebar-Logo-Icon]]
+- [[Icon-Motion]]
 - [[Frontend-SPA]]
 - [[Theme-Surface-Modes]]

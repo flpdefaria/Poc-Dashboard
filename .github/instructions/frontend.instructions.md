@@ -60,7 +60,8 @@ Src/CarStore.Web/ClientApp/
         table/               # DataTableCommon.vue (generic lazy paged DataTable)
     composables/             # usePagedFetch, useEntityCrud, useCreateEntity (data); useTheme (light/dark + surface mode);
                              # useTweenedNumber (animated counters)
-    styles/                  # buttonStyles.ts - shared Tailwind class-string constants
+    styles/                  # buttonStyles.ts - shared Tailwind class-string constants;
+                             # icon-motion.css - Lucide hover/focus gestures (ported from Atlas), imported by main.ts
     utils/                   # format.ts - formatCurrency (BRL), formatDate (pt-BR);
                              # rowEffects.ts - per-row created/updated/leaving animation flags
 ```
@@ -202,6 +203,7 @@ Rules:
 | `common/form/FormField.vue` / `DetailField.vue` | Editable label + input slot / read-only label + value. |
 | `common/pageheader/PageHeader.vue` | `title`, optional `description`, `#actions` slot (used for the "New X" button). |
 | `common/sidebar/Sidebar.vue` | Global nav, mounted once inside `App.vue`, highlights the active route via `vue-router`'s `useRoute()`/`RouterLink`. |
+| `styles/icon-motion.css` | Per-icon hover/focus gesture for Lucide icons, same file and keyframes (`sbi-*`) as Atlas. Opt in with the `icon-motion` class on the element whose hover should animate the icons inside it. Already on: sidebar rows, the shared button classes, `modalDialogPt` close button, `DataTableCommon` search/sort headers/kebab/row menu, Home KPI cards. A new icon gets its gesture in that file, keyed on `.lucide-<name>`; reduced motion turns all of it off. |
 | `utils/format.ts` | `formatCurrency` (pt-BR / BRL) and `formatDate` (pt-BR). Use these, never inline `Intl` calls. |
 
 ## Working from Figma

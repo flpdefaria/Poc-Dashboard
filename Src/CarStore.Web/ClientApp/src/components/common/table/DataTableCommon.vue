@@ -29,7 +29,7 @@ type MenuItem = { label?: string; lucideIcon?: Component; command?: () => void }
 const menuPt = {
   root: { class: "min-w-[140px] rounded-xl border border-surface-300 bg-surface-0 p-0" },
   list: { class: "flex flex-col gap-0.5 px-1 py-2" },
-  itemLink: { class: "gap-1.75 rounded-md px-[10.5px] py-[7px] text-sm font-normal text-color" },
+  itemLink: { class: "icon-motion gap-1.75 rounded-md px-[10.5px] py-[7px] text-sm font-normal text-color" },
   itemIcon: { class: "text-sm" },
 };
 
@@ -61,7 +61,7 @@ const paginatorPt = {
 // Header content spans the cell with the title growing, so the sort icon sits at the right edge 8px after
 // it (Figma table-header-cell, node I2009:212;553:9757;2009:414;553:987;2009:409).
 const flushColumnPt = {
-  headerCell: { class: "px-3.5! py-[9.5px]!" },
+  headerCell: { class: "icon-motion px-3.5! py-[9.5px]!" },
   bodyCell: { class: "truncate px-3.5! py-[9.5px]!" },
   columnHeaderContent: { class: "w-full gap-2!" },
   columnTitle: { class: "min-w-0 flex-1 truncate" },
@@ -80,7 +80,7 @@ const flushSearchInputClass =
 // 1px bottom border, 18px cell inset, 14px text-color body. Text cells: 20px line + 2 x 13.5px + 1px = 48px; the
 // row grows to the tallest cell, so the 32px actions button gets its own 7.5px inset (column below).
 const cardColumnPt = {
-  headerCell: { class: "px-[18px]! py-[13.5px]!" },
+  headerCell: { class: "icon-motion px-[18px]! py-[13.5px]!" },
   bodyCell: { class: "truncate px-[18px]! py-[13.5px]!" },
   columnHeaderContent: { class: "w-full gap-2!" },
   columnTitle: { class: "min-w-0 flex-1 truncate font-semibold" },
@@ -156,7 +156,7 @@ const cardPaginatorPt = {
 const cardMenuPt = {
   root: { class: "min-w-[175px]! rounded-md! border border-surface-200 bg-surface-0 p-0 shadow-md" },
   list: { class: "flex flex-col gap-1! p-[3px]!" },
-  itemLink: { class: "gap-2! rounded-sm px-3! py-2! text-sm leading-none font-normal text-color" },
+  itemLink: { class: "icon-motion gap-2! rounded-sm px-3! py-2! text-sm leading-none font-normal text-color" },
   itemIcon: { class: "size-3.5! text-sm text-muted-color!" },
 };
 // Figma places the menu 4px under the trigger with its right edge on the trigger's right edge (menu x 1194..1369,
@@ -396,7 +396,7 @@ function toggleMenu(event: Event, data: any) {
   <div class="flex flex-col" :class="flush ? 'gap-0' : card ? 'gap-4' : 'gap-2'">
     <div class="flex items-center justify-between gap-3" :class="{ 'min-h-10 px-4 py-1': flush }">
       <div class="flex w-full items-center gap-2">
-        <IconField :class="flush || card ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
+        <IconField class="icon-motion" :class="flush || card ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
           <InputIcon :class="flush ? flushSearchIconClass : card ? cardSearchIconClass : undefined">
             <!-- absoluteStrokeWidth scales by the `size` prop, not the CSS size: card passes the real 14px. -->
             <Search v-bind="card ? cardSearchIconProps : {}" />
@@ -516,6 +516,7 @@ function toggleMenu(event: Event, data: any) {
               severity="secondary"
               aria-haspopup="true"
               aria-label="Ações da linha"
+              class="icon-motion"
               :class="[card ? cardMenuTriggerClass : undefined, card && menuRowKey === data[dataKey] ? 'bg-surface-50!' : undefined]"
               :aria-expanded="card ? menuRowKey === data[dataKey] : undefined"
               @click="toggleMenu($event, data)"

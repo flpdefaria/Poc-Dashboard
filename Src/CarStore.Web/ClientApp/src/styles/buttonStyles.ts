@@ -1,13 +1,13 @@
 // Shared action-button classes (Figma contrast primary action + neutral secondary/outlined),
 // reused by dialog footers, page header "New X" buttons, and the Home page CTAs.
-const buttonBaseClass = "gap-1.75! rounded-md! px-[11.5px]! py-2! text-sm! font-medium!";
+const buttonBaseClass = "icon-motion gap-1.75! rounded-md! px-[11.5px]! py-2! text-sm! font-medium!";
 // Figma "button-small" (dashboard node 2009:385): 32px tall, 12px label, 12px side padding (+1px border),
 // 16px icon (`--p-button-sm-icon-size`; the `.lucide` 1em rule alone would make it 12px).
-const buttonSmallBaseClass = "h-8! gap-2! rounded-md! px-3! py-0! text-xs! font-medium! [&_.lucide]:size-4!";
+const buttonSmallBaseClass = "icon-motion h-8! gap-2! rounded-md! px-3! py-0! text-xs! font-medium! [&_.lucide]:size-4!";
 // Figma "button" default size (Prometheus node 2005:2857, Cars frame 2063:4): 40px tall = 1px border +
 // 8.5px padding + 21px line (14px label at 1.5), 16px side padding inside the border, 8px gap, 16px icon.
 const buttonMdBaseClass =
-  "h-10! gap-2! rounded-md! px-4! py-0! text-sm! leading-[21px]! font-medium! [&_.lucide]:size-4!";
+  "icon-motion h-10! gap-2! rounded-md! px-4! py-0! text-sm! leading-[21px]! font-medium! [&_.lucide]:size-4!";
 
 // Figma's near-black contrast fill (#0a0a0a) is the preset's monochrome primary (`primary.950`,
 // see plugins/primevue-preset.ts): near-black in light, the white end of the inverted ramp in

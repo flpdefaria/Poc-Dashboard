@@ -31,7 +31,7 @@ export function modalDialogPt(width: string, contentClass = "flex flex-col gap-4
   return {
     root: { class: `${width} max-w-[92vw] rounded-xl border border-surface-200 bg-surface-0 p-0 shadow-xl overflow-hidden` },
     header: { class: "items-center gap-2 p-[18px]!" },
-    pcCloseButton: { root: { class: "size-8! rounded-md! text-color! [&_.lucide]:size-4!" } },
+    pcCloseButton: { root: { class: "icon-motion size-8! rounded-md! text-color! [&_.lucide]:size-4!" } },
     content: { class: `${contentClass} px-[18px]! pb-[18px]! pt-0!` },
     footer: { class: "gap-1.5! justify-end px-[18px]! pb-[18px]! pt-0!" },
   };

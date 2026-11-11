@@ -1,0 +1,1470 @@
+/*
+ * Lucide icon motion, ported from the Atlas app (`src/ClientApp/src/assets/icon-motion.css`).
+ *
+ * Each Lucide icon plays one short, icon-specific gesture when its host is
+ * hovered or keyboard-focused. The gesture explains what the icon is (a door
+ * swinging, a key turning, a car pulling away) and runs once per interaction,
+ * so it acknowledges the pointer without becoming ambient noise.
+ *
+ * Host: `.icon-motion`, an opt-in class for any element that contains Lucide
+ * icons. Add it to the element whose hover/focus should trigger the icons
+ * inside it. In CarStore it is on the sidebar rows, the shared button classes
+ * (`styles/buttonStyles.ts`), the modal close button (`modalDialogPt`), the
+ * DataTableCommon search box, sortable headers, kebab button and row menu
+ * items, and the Home KPI cards.
+ *
+ * The gestures and keyframes (`sbi-*`) are kept identical to Atlas so both
+ * apps feel the same; Atlas-only icons are kept too, so any of them used here
+ * later animates for free. CarStore-only icons (car, id-card, palette, the
+ * sort arrows, the Figma trash) are in their own section near the end.
+ *
+ * Why this file is not scoped: the animated nodes are the <path>/<circle>/
+ * <rect>/<polyline> children Lucide renders inside each <svg>, which a scoped
+ * block cannot reach. Everything is keyed on the `.lucide-<name>` class that
+ * every Lucide icon carries plus the host class, so nothing leaks to icons
+ * outside a host.
+ *
+ * Units: `px` on the <svg> element itself is a CSS pixel; `px` on a child
+ * <path> is a viewBox unit (the icon is 24 units wide), so on a 16px icon a
+ * child offset is ~0.67 CSS px per unit, on a 24px sidebar icon 1:1.
+ */
+
+.icon-motion {
+  /* Settling curve shared by every gesture: fast arrival, long deceleration. */
+  --sbi-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Children need their own box to rotate/scale around their own geometry. */
+.icon-motion .lucide :is(path, circle, rect, polyline, line) {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ------------------------------------------------------------------ */
+/* Início: the door swings open while the house hops.                  */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-house {
+  animation: sbi-hop 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-house path:nth-child(1) {
+  transform-origin: left center;
+  animation: sbi-door 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-hop {
+  35% {
+    transform: translateY(-1.5px);
+  }
+}
+
+@keyframes sbi-door {
+  40% {
+    transform: scaleX(0.3);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Oportunidades: the bolt charges up, jolts, and discharges.          */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-zap {
+  animation: sbi-jolt 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-zap path {
+  animation: sbi-charge 0.6s ease-out;
+}
+
+@keyframes sbi-jolt {
+  20% {
+    transform: rotate(-10deg) scale(1.18);
+  }
+  40% {
+    transform: rotate(8deg) scale(1.12);
+  }
+  60% {
+    transform: rotate(-4deg) scale(1.05);
+  }
+}
+
+@keyframes sbi-charge {
+  0%,
+  100% {
+    fill: currentColor;
+    fill-opacity: 0;
+  }
+  20%,
+  55% {
+    fill: currentColor;
+    fill-opacity: 0.9;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Empresas: the tower stretches up and its windows light bottom-up.   */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-building {
+  transform-origin: 50% 100%;
+  animation: sbi-grow 0.6s var(--sbi-ease);
+}
+
+/* Windows are the nine zero-length "h.01" dots: children 1-9. */
+.icon-motion:is(:hover, :focus-visible) .lucide-building path:nth-child(-n + 9) {
+  animation: sbi-window 0.5s var(--sbi-ease) both;
+}
+
+/* Lower row first (y=14), then y=10, then y=6. */
+.icon-motion:is(:hover, :focus-visible) .lucide-building path:is(:nth-child(2), :nth-child(5), :nth-child(8)) {
+  animation-delay: 0s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-building path:is(:nth-child(1), :nth-child(4), :nth-child(7)) {
+  animation-delay: 0.09s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-building path:is(:nth-child(3), :nth-child(6), :nth-child(9)) {
+  animation-delay: 0.18s;
+}
+
+@keyframes sbi-grow {
+  35% {
+    transform: scaleY(1.07);
+  }
+}
+
+@keyframes sbi-window {
+  0% {
+    opacity: 0.1;
+    stroke-width: 0.5;
+  }
+  45% {
+    opacity: 1;
+    stroke-width: 3.4;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Contratos: the pen signs the page.                                  */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-file-pen path:nth-child(3) {
+  animation: sbi-sign 0.85s var(--sbi-ease);
+}
+
+@keyframes sbi-sign {
+  15% {
+    transform: translate(1.4px, -1.4px);
+  }
+  35% {
+    transform: translate(-1.1px, 0.7px);
+  }
+  55% {
+    transform: translate(1.1px, -0.9px);
+  }
+  75% {
+    transform: translate(-0.6px, 0.4px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Leads: the sync loop makes a half turn (the glyph is 180° symmetric */
+/* so it lands seamlessly).                                            */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-refresh-cw {
+  animation: sbi-half-turn 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-half-turn {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Propostas: the book closes a little, then opens wider and settles.  */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-book-open {
+  animation: sbi-book 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-book {
+  20% {
+    transform: scaleX(0.78);
+  }
+  55% {
+    transform: scaleX(1.1);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Minhas Tarefas: bullets pop, rules slide out of them row by row.    */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-list path:nth-child(-n + 3) {
+  animation: sbi-bullet 0.45s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-list path:nth-child(n + 4) {
+  transform-origin: left center;
+  animation: sbi-rule 0.5s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-list path:is(:nth-child(2), :nth-child(5)) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-list path:is(:nth-child(3), :nth-child(6)) {
+  animation-delay: 0.14s;
+}
+
+@keyframes sbi-bullet {
+  0% {
+    stroke-width: 0.5;
+  }
+  50% {
+    stroke-width: 3.6;
+  }
+}
+
+@keyframes sbi-rule {
+  0% {
+    transform: scaleX(0.25);
+    opacity: 0.35;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tendência do Portfólio: bars grow from the baseline, left to right. */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-chart-column path:nth-child(n + 2) {
+  transform-origin: 50% 100%;
+  animation: sbi-bar 0.6s var(--sbi-ease) both;
+}
+
+/* Children 4, 3, 2 are the bars at x=8, 13, 18. */
+.icon-motion:is(:hover, :focus-visible) .lucide-chart-column path:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-chart-column path:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+@keyframes sbi-bar {
+  0% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Marketing: the megaphone aims, shouts and recoils.                  */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-megaphone {
+  transform-origin: 20% 60%;
+  animation: sbi-shout 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-shout {
+  20% {
+    transform: rotate(-16deg) scale(1.08);
+  }
+  45% {
+    transform: rotate(8deg);
+  }
+  65% {
+    transform: rotate(-4deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Links: the two halves pull apart, then snap back together.          */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-link path:nth-child(1) {
+  animation: sbi-link-a 0.65s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-link path:nth-child(2) {
+  animation: sbi-link-b 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-link-a {
+  35% {
+    transform: translate(2px, -2px);
+  }
+  70% {
+    transform: translate(-0.6px, 0.6px);
+  }
+}
+
+@keyframes sbi-link-b {
+  35% {
+    transform: translate(-2px, 2px);
+  }
+  70% {
+    transform: translate(0.6px, -0.6px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Whatsapp: the bubble squeezes and pops out from its tail corner.    */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-message-circle {
+  transform-origin: 15% 85%;
+  animation: sbi-bubble 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-bubble {
+  20% {
+    transform: scale(0.82);
+  }
+  50% {
+    transform: scale(1.14) rotate(-6deg);
+  }
+  75% {
+    transform: scale(0.97);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Métricas: the trend line draws itself.                              */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-chart-line path:nth-child(2) {
+  animation: sbi-draw 0.7s var(--sbi-ease);
+}
+
+/* 18 is just over the polyline's ~17 viewBox units of length. */
+@keyframes sbi-draw {
+  from {
+    stroke-dasharray: 18;
+    stroke-dashoffset: 18;
+  }
+  to {
+    stroke-dasharray: 18;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Configurações: the gear turns a quarter (8-fold symmetric, so it    */
+/* lands seamlessly).                                                  */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-settings {
+  animation: sbi-quarter-turn 0.8s var(--sbi-ease);
+}
+
+@keyframes sbi-quarter-turn {
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Perfis: the second person slides in beside the first, who nods.    */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-users path:is(:nth-child(2), :nth-child(3)) {
+  animation: sbi-join 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-users circle {
+  animation: sbi-nod 0.55s var(--sbi-ease);
+}
+
+@keyframes sbi-join {
+  0% {
+    transform: translateX(3px);
+    opacity: 0.15;
+  }
+}
+
+@keyframes sbi-nod {
+  35% {
+    transform: translateY(-1.2px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Produtos: the box hops and lands with a squash.                     */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-box {
+  transform-origin: 50% 100%;
+  animation: sbi-box 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-box {
+  30% {
+    transform: translateY(-2px) scale(0.96, 1.04);
+  }
+  60% {
+    transform: translateY(0) scale(1.06, 0.9);
+  }
+  80% {
+    transform: scale(0.99, 1.02);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Ofertas: the tag swings from its hole.                              */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-tags {
+  transform-origin: 44% 27%;
+  animation: sbi-swing 0.8s var(--sbi-ease);
+}
+
+@keyframes sbi-swing {
+  25% {
+    transform: rotate(-14deg);
+  }
+  55% {
+    transform: rotate(9deg);
+  }
+  78% {
+    transform: rotate(-4deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Catálogo de Licenças: the key turns in the lock.                    */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-key {
+  transform-origin: 65% 31%;
+  animation: sbi-key 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-key {
+  30% {
+    transform: rotate(-22deg);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Modelos de Outreach: the envelope flap opens as the mail lifts.     */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-mail {
+  animation: sbi-lift 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-mail path:nth-child(1) {
+  transform-origin: 50% 0;
+  animation: sbi-flap 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-lift {
+  40% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes sbi-flap {
+  40% {
+    transform: scaleY(-0.7);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tags: the bookmark drops into place and is briefly "saved" (filled).*/
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-bookmark {
+  animation: sbi-drop 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-bookmark path {
+  animation: sbi-saved 0.7s ease-out;
+}
+
+@keyframes sbi-drop {
+  0% {
+    transform: translateY(-2.5px);
+  }
+  40% {
+    transform: translateY(0.6px);
+  }
+  70% {
+    transform: translateY(-0.2px);
+  }
+}
+
+@keyframes sbi-saved {
+  0%,
+  100% {
+    fill: currentColor;
+    fill-opacity: 0;
+  }
+  40% {
+    fill: currentColor;
+    fill-opacity: 0.85;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Extratos de Repasse: the wallet's flap lifts to show what's inside. */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-wallet {
+  animation: sbi-tilt 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-wallet path:nth-child(1) {
+  animation: sbi-flap-up 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-tilt {
+  35% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes sbi-flap-up {
+  35% {
+    transform: translateY(-1.6px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tema: the sun spins its rays, the moon rocks.                       */
+/* ------------------------------------------------------------------ */
+
+.icon-motion:is(:hover, :focus-visible) .lucide-sun {
+  animation: sbi-quarter-turn 0.8s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-sun circle {
+  animation: sbi-sun-core 0.8s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-moon {
+  animation: sbi-rock 0.8s var(--sbi-ease);
+}
+
+@keyframes sbi-sun-core {
+  35% {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes sbi-rock {
+  30% {
+    transform: rotate(-20deg) scale(1.06);
+  }
+  60% {
+    transform: rotate(10deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Dashboard-only icons. (`list`, `zap` and `refresh-cw` reuse the     */
+/* sidebar gestures above.)                                            */
+/* ------------------------------------------------------------------ */
+
+/* Download: the arrow dips into the tray, which stays put. Children 1 and 3
+   are the stem and the arrowhead. */
+.icon-motion:is(:hover, :focus-visible) .lucide-download path:is(:nth-child(1), :nth-child(3)) {
+  animation: sbi-dip 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-dip {
+  35% {
+    transform: translateY(2.4px);
+  }
+  60% {
+    transform: translateY(-0.5px);
+  }
+}
+
+/* Calendar: the binder rings hop one after the other, the header rule
+   redraws from the left. */
+.icon-motion:is(:hover, :focus-visible) .lucide-calendar path:is(:nth-child(1), :nth-child(2)) {
+  animation: sbi-ring 0.5s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-calendar path:nth-child(2) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-calendar path:nth-child(4) {
+  transform-origin: left center;
+  animation: sbi-rule 0.55s var(--sbi-ease) 0.1s both;
+}
+
+@keyframes sbi-ring {
+  35% {
+    transform: translateY(-1.6px);
+  }
+}
+
+/* Hourglass: it flips over (the glyph is 180° symmetric, so it lands
+   seamlessly). */
+.icon-motion:is(:hover, :focus-visible) .lucide-hourglass {
+  animation: sbi-half-turn 0.9s var(--sbi-ease);
+}
+
+/* Send: the plane flies off toward the upper right and re-enters from the
+   lower left. */
+.icon-motion:is(:hover, :focus-visible) .lucide-send {
+  animation: sbi-fly 0.75s linear;
+}
+
+@keyframes sbi-fly {
+  0% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.5);
+  }
+  40% {
+    transform: translate(5px, -5px);
+    opacity: 0;
+  }
+  41% {
+    transform: translate(-5px, 5px);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Inbox: the tray's slot dips as if receiving an item and the box settles. */
+.icon-motion:is(:hover, :focus-visible) .lucide-inbox {
+  transform-origin: 50% 100%;
+  animation: sbi-settle 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-inbox polyline {
+  animation: sbi-tray 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-settle {
+  40% {
+    transform: scaleY(0.93);
+  }
+}
+
+@keyframes sbi-tray {
+  35% {
+    transform: translateY(1.8px);
+  }
+}
+
+/* Triangle alert: a warning wobble that decays, the dot pops. */
+.icon-motion:is(:hover, :focus-visible) .lucide-triangle-alert {
+  transform-origin: 50% 85%;
+  animation: sbi-alert 0.75s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-triangle-alert path:nth-child(3) {
+  animation: sbi-bullet 0.5s var(--sbi-ease);
+}
+
+@keyframes sbi-alert {
+  15% {
+    transform: rotate(-9deg);
+  }
+  35% {
+    transform: rotate(7deg);
+  }
+  55% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Notification bell and user menu.                                    */
+/* ------------------------------------------------------------------ */
+
+/* Bell: it rings from its top, the clapper swings against the body. The
+   muted bell (empty state) rings the same way. */
+.icon-motion:is(:hover, :focus-visible) :is(.lucide-bell, .lucide-bell-off) {
+  transform-origin: 50% 8%;
+  animation: sbi-bell 0.9s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) :is(.lucide-bell, .lucide-bell-off) path:nth-child(1) {
+  animation: sbi-clapper 0.9s var(--sbi-ease);
+}
+
+@keyframes sbi-bell {
+  12% {
+    transform: rotate(-14deg);
+  }
+  30% {
+    transform: rotate(11deg);
+  }
+  48% {
+    transform: rotate(-8deg);
+  }
+  64% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes sbi-clapper {
+  12% {
+    transform: translateX(1.2px);
+  }
+  30% {
+    transform: translateX(-1px);
+  }
+  48% {
+    transform: translateX(0.8px);
+  }
+  64% {
+    transform: translateX(-0.5px);
+  }
+}
+
+/* Funnel (filter): it squeezes from the rim as if narrowing the flow. */
+.icon-motion:is(:hover, :focus-visible) .lucide-funnel {
+  transform-origin: 50% 0;
+  animation: sbi-squeeze 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-squeeze {
+  40% {
+    transform: scale(0.78, 1.06);
+  }
+}
+
+/* Kebab: the three dots ripple sideways, top to bottom. Children 2, 1, 3 are
+   the dots at y=5, 12, 19. */
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis-vertical circle {
+  animation: sbi-wave 0.55s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis-vertical circle:nth-child(1) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis-vertical circle:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+@keyframes sbi-wave {
+  40% {
+    transform: translateX(2.6px);
+  }
+  70% {
+    transform: translateX(-0.6px);
+  }
+}
+
+/* Eye: a quick blink. */
+.icon-motion:is(:hover, :focus-visible) .lucide-eye {
+  animation: sbi-blink 0.5s var(--sbi-ease);
+}
+
+@keyframes sbi-blink {
+  40% {
+    transform: scaleY(0.12);
+  }
+}
+
+/* Severity icons (notification cards). Info: the icon swells and its dot
+   pops. Success: the check draws itself. Critical: the cross turns a quarter
+   (symmetric, so it lands seamlessly). Warning reuses `triangle-alert`. */
+.icon-motion:is(:hover, :focus-visible) :is(.lucide-info, .lucide-circle-check, .lucide-circle-x) circle {
+  animation: sbi-pop 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-info path:nth-child(3) {
+  animation: sbi-bullet 0.5s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-circle-check path {
+  animation: sbi-check 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-circle-x path {
+  animation: sbi-quarter-turn 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-pop {
+  35% {
+    transform: scale(1.14);
+  }
+}
+
+/* 12 is just over the check's ~11.3 viewBox units of length. */
+@keyframes sbi-check {
+  from {
+    stroke-dasharray: 12;
+    stroke-dashoffset: 12;
+  }
+  to {
+    stroke-dasharray: 12;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* User: the head nods while the shoulders widen. */
+.icon-motion:is(:hover, :focus-visible) .lucide-user circle {
+  animation: sbi-nod 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-user path {
+  transform-origin: 50% 100%;
+  animation: sbi-shoulders 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-shoulders {
+  40% {
+    transform: scaleX(1.1);
+  }
+}
+
+/* Log out: the arrow slides out through the door and settles back. Children
+   1 and 2 are the arrowhead and the shaft; the door (3) stays. */
+.icon-motion:is(:hover, :focus-visible) .lucide-log-out path:is(:nth-child(1), :nth-child(2)) {
+  animation: sbi-exit 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-exit {
+  35% {
+    transform: translateX(2.8px);
+  }
+  70% {
+    transform: translateX(-0.5px);
+  }
+}
+
+/* Chevron (language row): a nudge toward where the flyout opens. */
+.icon-motion:is(:hover, :focus-visible) .lucide-chevron-right {
+  animation: sbi-nudge 0.45s var(--sbi-ease);
+}
+
+@keyframes sbi-nudge {
+  35% {
+    transform: translateX(2.2px);
+  }
+  65% {
+    transform: translateX(-0.3px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Settings pages (Perfis, Produtos, Ofertas, Catálogo de Licenças,    */
+/* Modelos de Outreach, Tags): toolbar search, row actions and dialog  */
+/* buttons. `ellipsis-vertical` reuses the kebab ripple above.         */
+/* ------------------------------------------------------------------ */
+
+/* Search: the lens sweeps across, as if scanning the list. */
+.icon-motion:is(:hover, :focus-visible) .lucide-search {
+  animation: sbi-scan 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-scan {
+  30% {
+    transform: translate(-1px, -1px) rotate(-12deg);
+  }
+  60% {
+    transform: translate(0.8px, 0.4px) rotate(6deg);
+  }
+}
+
+/* Pencil (Edit): it scribbles, reusing the signing zig-zag of `file-pen`. */
+.icon-motion:is(:hover, :focus-visible) .lucide-pencil {
+  animation: sbi-sign 0.75s var(--sbi-ease);
+}
+
+/* Ban (Deactivate): a short decaying "no" shake. */
+.icon-motion:is(:hover, :focus-visible) .lucide-ban {
+  animation: sbi-shake 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-shake {
+  15% {
+    transform: translateX(-1.6px);
+  }
+  35% {
+    transform: translateX(1.4px);
+  }
+  55% {
+    transform: translateX(-0.9px);
+  }
+  75% {
+    transform: translateX(0.4px);
+  }
+}
+
+/* Rotate counter-clockwise (Reactivate): one full turn backwards, the
+   "undo" direction. A full turn lands seamlessly on the asymmetric glyph. */
+.icon-motion:is(:hover, :focus-visible) .lucide-rotate-ccw {
+  animation: sbi-rewind 0.8s var(--sbi-ease);
+}
+
+@keyframes sbi-rewind {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Check (Save): the tick draws itself. 23 is just over the check's ~22.6
+   viewBox units of length. */
+.icon-motion:is(:hover, :focus-visible) .lucide-check path {
+  animation: sbi-tick 0.55s var(--sbi-ease);
+}
+
+@keyframes sbi-tick {
+  from {
+    stroke-dasharray: 23;
+    stroke-dashoffset: 23;
+  }
+  to {
+    stroke-dasharray: 23;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Plus (Add) and X (Cancel): a quarter turn (4-fold symmetric, so it lands
+   seamlessly), like the `circle-x` cross. */
+.icon-motion:is(:hover, :focus-visible) :is(.lucide-plus, .lucide-x) {
+  animation: sbi-quarter-turn 0.6s var(--sbi-ease);
+}
+
+/* Trash (Delete): the lid (paths 4 and 5, the rim and the handle) lifts
+   off the can and drops back. */
+.icon-motion:is(:hover, :focus-visible) .lucide-trash path:is(:nth-child(4), :nth-child(5)) {
+  animation: sbi-lid 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-lid {
+  35% {
+    transform: translateY(-2.2px);
+  }
+  65% {
+    transform: translateY(0.4px);
+  }
+}
+
+/* Network (Manage plans): the two child nodes (rects 1 and 2) branch out
+   from the parent one after the other while the parent (rect 3) nods. */
+.icon-motion:is(:hover, :focus-visible) .lucide-network rect:nth-child(-n + 2) {
+  animation: sbi-branch 0.55s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-network rect:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-network rect:nth-child(3) {
+  animation: sbi-nod 0.55s var(--sbi-ease);
+}
+
+@keyframes sbi-branch {
+  0% {
+    transform: translateY(-3px);
+    opacity: 0.2;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Portfolio Trend (Tendência de Consumo do Portfólio): KPI cards,     */
+/* insight rows, bucket tabs, empty states and the table note button.  */
+/* `users`, `triangle-alert`, `calendar`, `chart-line`, `info` and     */
+/* `circle-check` reuse the gestures above.                            */
+/* ------------------------------------------------------------------ */
+
+/* Trending up / down: the trend line redraws from its origin (the path
+   starts at the arrow tip, so the dash runs backwards from the far end),
+   then the arrowhead lands on it from behind. 29 is just over the line's
+   ~28.3 viewBox units of length. */
+.icon-motion:is(:hover, :focus-visible) :is(.lucide-trending-up, .lucide-trending-down) path:nth-child(2) {
+  animation: sbi-trend 0.7s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-trending-up path:nth-child(1) {
+  animation: sbi-head-up 0.7s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-trending-down path:nth-child(1) {
+  animation: sbi-head-down 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-trend {
+  from {
+    stroke-dasharray: 29;
+    stroke-dashoffset: -29;
+  }
+  to {
+    stroke-dasharray: 29;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sbi-head-up {
+  0%,
+  45% {
+    transform: translate(-2px, 2px);
+    opacity: 0.15;
+  }
+}
+
+@keyframes sbi-head-down {
+  0%,
+  45% {
+    transform: translate(-2px, -2px);
+    opacity: 0.15;
+  }
+}
+
+/* Arrow up-right / down-right: the arrow takes one step in its direction
+   and settles back, a short "moving this way". */
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-up-right {
+  animation: sbi-step-up 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-down-right {
+  animation: sbi-step-down 0.55s var(--sbi-ease);
+}
+
+@keyframes sbi-step-up {
+  35% {
+    transform: translate(1.5px, -1.5px);
+  }
+  65% {
+    transform: translate(-0.3px, 0.3px);
+  }
+}
+
+@keyframes sbi-step-down {
+  35% {
+    transform: translate(1.5px, 1.5px);
+  }
+  65% {
+    transform: translate(-0.3px, -0.3px);
+  }
+}
+
+/* Equal (flat bucket): the two bars slide against each other like a
+   balance finding level, then rest aligned. */
+.icon-motion:is(:hover, :focus-visible) .lucide-equal line:nth-child(1) {
+  animation: sbi-balance-a 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-equal line:nth-child(2) {
+  animation: sbi-balance-b 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-balance-a {
+  30% {
+    transform: translateX(-2.5px);
+  }
+  60% {
+    transform: translateX(0.8px);
+  }
+}
+
+@keyframes sbi-balance-b {
+  30% {
+    transform: translateX(2.5px);
+  }
+  60% {
+    transform: translateX(-0.8px);
+  }
+}
+
+/* Minus (flat tag): the dash contracts and evens out, "no change". */
+.icon-motion:is(:hover, :focus-visible) .lucide-minus path {
+  animation: sbi-level 0.55s var(--sbi-ease);
+}
+
+@keyframes sbi-level {
+  35% {
+    transform: scaleX(0.55);
+  }
+  70% {
+    transform: scaleX(1.08);
+  }
+}
+
+/* Receipt (no recent billing): the slip feeds down out of the printer and
+   its "$" stroke is printed again (reuses `sbi-drop` and the 23-unit
+   `sbi-tick` draw; the S curve is ~22.3 units long). */
+.icon-motion:is(:hover, :focus-visible) .lucide-receipt {
+  animation: sbi-drop 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-receipt path:nth-child(2) {
+  animation: sbi-tick 0.65s var(--sbi-ease) 0.05s both;
+}
+
+/* Dollar sign: one coin flip around its vertical axis. */
+.icon-motion:is(:hover, :focus-visible) .lucide-dollar-sign {
+  animation: sbi-coin 0.8s var(--sbi-ease);
+}
+
+@keyframes sbi-coin {
+  from {
+    transform: perspective(40px) rotateY(0);
+  }
+  to {
+    transform: perspective(40px) rotateY(360deg);
+  }
+}
+
+/* Lightbulb (insights empty state): the bulb lights up (a soft fill) and
+   swells slightly, "an idea". */
+.icon-motion:is(:hover, :focus-visible) .lucide-lightbulb {
+  animation: sbi-pop 0.6s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-lightbulb path:nth-child(1) {
+  animation: sbi-glow 0.8s ease-out;
+}
+
+@keyframes sbi-glow {
+  0%,
+  100% {
+    fill: currentColor;
+    fill-opacity: 0;
+  }
+  35%,
+  60% {
+    fill: currentColor;
+    fill-opacity: 0.35;
+  }
+}
+
+/* Message square (note preview button): the bubble squeezes and pops from
+   its tail corner, like `message-circle`. */
+.icon-motion:is(:hover, :focus-visible) .lucide-message-square {
+  transform-origin: 10% 90%;
+  animation: sbi-bubble 0.6s var(--sbi-ease);
+}
+
+/* ------------------------------------------------------------------ */
+/* CRM list screens (Empresas, Contratos, Leads, Propostas, Minhas     */
+/* Tarefas, Oportunidades list and board): toolbars, row menus, row    */
+/* actions, dialogs. Everything else they use (`search`, `pencil`,     */
+/* `ban`, `rotate-ccw`, `check`, `plus`, `x`, `trash`, `eye`, `info`,  */
+/* `ellipsis-vertical`, `building`, `mail`, `users`, `refresh-cw`,     */
+/* `circle-check`, `circle-x`, `triangle-alert`, `receipt`, `list`,    */
+/* `download`, `funnel`, the trend arrows) reuses the gestures above.  */
+/* ------------------------------------------------------------------ */
+
+/* Arrow right (Advance stage, Next page): a nudge forward, the chevron's
+   `sbi-nudge`. Arrow left (Regress stage, Previous page): the same nudge
+   backwards. */
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-right {
+  animation: sbi-nudge 0.45s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-left {
+  animation: sbi-nudge-back 0.45s var(--sbi-ease);
+}
+
+@keyframes sbi-nudge-back {
+  35% {
+    transform: translateX(-2.2px);
+  }
+  65% {
+    transform: translateX(0.3px);
+  }
+}
+
+/* Upload (Import leads) and file-up (choose the CSV): the arrow rises out
+   of the tray/page and settles back, the inverse of `download`'s dip.
+   Upload: children 1-2 are stem and head; file-up: children 3-4. */
+.icon-motion:is(:hover, :focus-visible) .lucide-upload path:nth-child(-n + 2),
+.icon-motion:is(:hover, :focus-visible) .lucide-file-up path:nth-child(n + 3) {
+  animation: sbi-rise 0.65s var(--sbi-ease);
+}
+
+@keyframes sbi-rise {
+  35% {
+    transform: translateY(-2.4px);
+  }
+  60% {
+    transform: translateY(0.5px);
+  }
+}
+
+/* File text (contracts section heading): the text lines are written again
+   from the left, top to bottom (children 3-5, reusing `sbi-rule`). */
+.icon-motion:is(:hover, :focus-visible) .lucide-file-text path:nth-child(n + 3) {
+  transform-origin: left center;
+  animation: sbi-rule 0.5s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-file-text path:nth-child(4) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-file-text path:nth-child(5) {
+  animation-delay: 0.14s;
+}
+
+/* Copy (Clone proposal): the front sheet (the rect) slides off the one
+   behind it, showing there are two, and snaps back onto it. */
+.icon-motion:is(:hover, :focus-visible) .lucide-copy rect {
+  animation: sbi-duplicate 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-duplicate {
+  40% {
+    transform: translate(1.8px, 1.8px);
+  }
+  70% {
+    transform: translate(-0.4px, -0.4px);
+  }
+}
+
+/* Layout grid (Board view): the four tiles pop clockwise from the top
+   left, as if the board laid out its columns. Node order is TL, TR, BR, BL. */
+.icon-motion:is(:hover, :focus-visible) .lucide-layout-grid rect {
+  animation: sbi-pop 0.45s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-layout-grid rect:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-layout-grid rect:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-layout-grid rect:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+/* Horizontal ellipsis (board card and drawer menus): the kebab ripple
+   turned on its side, the dots hop left to right. Children 3, 1, 2 are
+   the dots at x=5, 12, 19. */
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis circle {
+  animation: sbi-wave-up 0.55s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis circle:nth-child(1) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-ellipsis circle:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+@keyframes sbi-wave-up {
+  40% {
+    transform: translateY(-2.6px);
+  }
+  70% {
+    transform: translateY(0.6px);
+  }
+}
+
+/* Star (Make primary contact): it twinkles (a small turn and swell) and is
+   briefly filled, a preview of "this one is the primary" (reuses the
+   bookmark's `sbi-saved` fill). */
+.icon-motion:is(:hover, :focus-visible) .lucide-star {
+  animation: sbi-twinkle 0.65s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-star path {
+  animation: sbi-saved 0.7s ease-out;
+}
+
+@keyframes sbi-twinkle {
+  35% {
+    transform: rotate(18deg) scale(1.15);
+  }
+  65% {
+    transform: rotate(-4deg) scale(0.98);
+  }
+}
+
+/* Trophy (Mark as won): the cup is raised in celebration, a lift with a
+   tilt one way and the other, pivoting on its base. */
+.icon-motion:is(:hover, :focus-visible) .lucide-trophy {
+  transform-origin: 50% 100%;
+  animation: sbi-cheer 0.7s var(--sbi-ease);
+}
+
+@keyframes sbi-cheer {
+  30% {
+    transform: translateY(-2px) rotate(-8deg);
+  }
+  55% {
+    transform: translateY(-1px) rotate(6deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* User pen (Reassign task): the pen writes the new owner's name (the
+   signing zig-zag on child 2) while the person nods (`sbi-nod`). */
+.icon-motion:is(:hover, :focus-visible) .lucide-user-pen path:nth-child(2) {
+  animation: sbi-sign 0.75s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-user-pen circle {
+  animation: sbi-nod 0.55s var(--sbi-ease);
+}
+
+/* ------------------------------------------------------------------ */
+/* CarStore-only icons (not in Atlas). Same vocabulary: one short      */
+/* gesture per interaction, `--sbi-ease`, decaying overshoots.         */
+/* ------------------------------------------------------------------ */
+
+/* Carros: the car pulls forward with the body squatting back on its
+   wheels (child 1 is the body, 2 and 4 the wheels, 3 the axle line). */
+.icon-motion:is(:hover, :focus-visible) .lucide-car {
+  animation: sbi-nudge 0.55s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-car path:nth-child(1) {
+  transform-origin: 0% 100%;
+  animation: sbi-squat 0.6s var(--sbi-ease);
+}
+
+@keyframes sbi-squat {
+  30% {
+    transform: rotate(-5deg) translateY(-0.6px);
+  }
+  65% {
+    transform: rotate(1.5deg);
+  }
+}
+
+/* Clientes (id-card): the holder nods while the two text lines are
+   written again from the left (children 2-3, reusing `sbi-rule`). */
+.icon-motion:is(:hover, :focus-visible) .lucide-id-card path:is(:nth-child(2), :nth-child(3)) {
+  transform-origin: left center;
+  animation: sbi-rule 0.5s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-id-card path:nth-child(3) {
+  animation-delay: 0.07s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-id-card :is(circle, path:nth-child(1)) {
+  animation: sbi-nod 0.55s var(--sbi-ease);
+}
+
+/* Aparência (palette): the palette rocks like the moon, and its four paint
+   dots (circles 1-4) pop one after the other. */
+.icon-motion:is(:hover, :focus-visible) .lucide-palette {
+  animation: sbi-rock 0.8s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-palette circle {
+  animation: sbi-dab 0.5s var(--sbi-ease) both;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-palette circle:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-palette circle:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-palette circle:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+/* The dots are r=0.5 with a 2-unit stroke: growing the stroke reads as a dab. */
+@keyframes sbi-dab {
+  45% {
+    stroke-width: 4;
+  }
+}
+
+/* Sort header (arrow-up-down): the two arrows trade places, the up one rises
+   (children 3-4) while the down one dips (children 1-2). Sorted states take
+   one step in their direction (`sbi-rise` / `sbi-dip`). */
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-up-down path:nth-child(-n + 2),
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-down {
+  animation: sbi-dip 0.65s var(--sbi-ease);
+}
+
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-up-down path:nth-child(n + 3),
+.icon-motion:is(:hover, :focus-visible) .lucide-arrow-up {
+  animation: sbi-rise 0.65s var(--sbi-ease);
+}
+
+/* Figma trash (`common/icons/TrashIcon.vue`): Lucide's trash without the two
+   inner lines, so it has 3 children and the rim and handle are 2 and 3, not
+   4 and 5 as in Lucide's own trash above. Same lid lift. */
+.icon-motion:is(:hover, :focus-visible) .lucide-trash:not(:has(> :nth-child(4))) path:nth-child(n + 2) {
+  animation: sbi-lid 0.6s var(--sbi-ease);
+}
+
+/* ------------------------------------------------------------------ */
+/* Arrival (one-shot, on mount): `.icon-arrive` on a wrapper around an */
+/* icon. Used by the list-view empty state (`EmptyState.vue`): the     */
+/* inbox drops a few px into place and the box squashes as it lands,   */
+/* the same settle the hover gesture plays. It starts from a faint but */
+/* visible state, so a skipped animation never hides the icon. Put it  */
+/* on a wrapper, not on the svg: the hover gesture owns the svg's      */
+/* `animation` and would otherwise replay the arrival on mouse-out.    */
+/* ------------------------------------------------------------------ */
+
+.icon-arrive {
+  transform-origin: 50% 100%;
+  animation: sbi-arrive 0.7s var(--sbi-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+@keyframes sbi-arrive {
+  0% {
+    opacity: 0.25;
+    transform: translateY(-8px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scaleY(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sbi-arrive-fade {
+  from {
+    opacity: 0.25;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion: no icon gestures. Color changes on hover/active    */
+/* (defined by each host) still give feedback.                        */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-motion .lucide,
+  .icon-motion .lucide :is(path, circle, rect, polyline, line) {
+    animation: none !important;
+  }
+
+  /* The arrival keeps its fade (it still marks "the list resolved empty")
+     but loses the drop and squash. */
+  .icon-arrive {
+    animation: sbi-arrive-fade 0.2s ease-out both;
+  }
+}
