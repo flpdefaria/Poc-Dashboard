@@ -10,7 +10,7 @@ Read `.github/instructions/frontend.instructions.md` for the shared styling and 
 
 ## Current state (verify before relying on it)
 
-- The shell is **desktop-only today**. `App.vue` renders `Sidebar.vue` next to `<main>` at every width. The sidebar is a fixed-width rail (`w-[78px]` collapsed / `w-[278px]` expanded), and there is no mobile header or drawer.
+- The shell is **desktop-only today**. `App.vue` renders `Sidebar.vue` next to `<main>` at every width. The sidebar is a 72px nav rail (`w-[72px]`) that expands on hover to 240px (`w-60`) as an overlay above `<main>`, without pushing the page. There is no mobile header or drawer.
 - Breakpoint utilities are almost unused in the app (only a few `sm:` / `xl:`). There is no `useIsMobile` composable and no custom breakpoint.
 - Dialogs built with `dialogShellPt(width)` / `detailsDialogPt(width)` (`components/common/dialog/dialogStyles.ts`) already cap at `max-w-[92vw]`.
 - `DataTableCommon.vue` has no phone strategy: all columns render at every width.

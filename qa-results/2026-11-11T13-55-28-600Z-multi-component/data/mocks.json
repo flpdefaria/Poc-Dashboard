@@ -1,0 +1,899 @@
+{
+  "generatedAt": "2026-11-11T13:57:11.247Z",
+  "perScenario": [
+    {
+      "scenarioId": "customers-page-light",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/customers\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 1,
+                "fullName": "Alice Johnson",
+                "email": "alice.johnson@example.com",
+                "phoneNumber": "555-0101",
+                "createdAt": "2021-03-15T09:30:00Z",
+                "carId": 1,
+                "carName": "Toyota Corolla"
+              },
+              {
+                "id": 2,
+                "fullName": "Bob Smith",
+                "email": "bob.smith@example.com",
+                "phoneNumber": "555-0102",
+                "createdAt": "2021-09-02T14:15:00Z",
+                "carId": 34,
+                "carName": "Ford Ranger"
+              },
+              {
+                "id": 3,
+                "fullName": "Carol Williams",
+                "email": "carol.williams@example.com",
+                "phoneNumber": null,
+                "createdAt": "2022-02-18T11:00:00Z",
+                "carId": 7,
+                "carName": "BMW 3 Series"
+              },
+              {
+                "id": 4,
+                "fullName": "David Brown",
+                "email": "david.brown@example.com",
+                "phoneNumber": "555-0104",
+                "createdAt": "2022-07-30T16:45:00Z",
+                "carId": 10,
+                "carName": "Honda Civic"
+              },
+              {
+                "id": 5,
+                "fullName": "Eva Garcia",
+                "email": "eva.garcia@example.com",
+                "phoneNumber": "555-0105",
+                "createdAt": "2022-11-09T08:00:00Z",
+                "carId": 20,
+                "carName": "Audi A4"
+              },
+              {
+                "id": 6,
+                "fullName": "Frank Miller",
+                "email": "frank.miller@example.com",
+                "phoneNumber": "555-0106",
+                "createdAt": "2023-01-22T10:20:00Z",
+                "carId": 4,
+                "carName": "Ford Mustang"
+              },
+              {
+                "id": 7,
+                "fullName": "Grace Lee",
+                "email": "grace.lee@example.com",
+                "phoneNumber": "555-0107",
+                "createdAt": "2023-06-14T13:50:00Z",
+                "carId": 17,
+                "carName": "Tesla Model 3"
+              },
+              {
+                "id": 8,
+                "fullName": "Henry Wilson",
+                "email": "henry.wilson@example.com",
+                "phoneNumber": null,
+                "createdAt": "2023-10-03T15:10:00Z",
+                "carId": null,
+                "carName": null
+              },
+              {
+                "id": 9,
+                "fullName": "Isabella Martin",
+                "email": "isabella.martin@example.com",
+                "phoneNumber": "555-0109",
+                "createdAt": "2024-02-25T09:05:00Z",
+                "carId": 3,
+                "carName": "Toyota RAV4"
+              },
+              {
+                "id": 10,
+                "fullName": "Jack Thompson",
+                "email": "jack.thompson@example.com",
+                "phoneNumber": "555-0110",
+                "createdAt": "2024-08-11T12:40:00Z",
+                "carId": 15,
+                "carName": "Volkswagen Golf"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 15,
+            "totalPages": 2,
+            "hasPrevious": false,
+            "hasNext": true
+          }
+        },
+        {
+          "urlPattern": "/api/cars/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 20,
+              "name": "Audi A4"
+            },
+            {
+              "id": 22,
+              "name": "Audi e-tron GT"
+            },
+            {
+              "id": 21,
+              "name": "Audi Q5"
+            },
+            {
+              "id": 7,
+              "name": "BMW 3 Series"
+            },
+            {
+              "id": 35,
+              "name": "BMW 5 Series"
+            },
+            {
+              "id": 9,
+              "name": "BMW M4"
+            },
+            {
+              "id": 36,
+              "name": "BMW X3"
+            },
+            {
+              "id": 8,
+              "name": "BMW X5"
+            },
+            {
+              "id": 14,
+              "name": "Chevrolet Camaro"
+            },
+            {
+              "id": 13,
+              "name": "Chevrolet Silverado"
+            },
+            {
+              "id": 33,
+              "name": "Ford Bronco"
+            },
+            {
+              "id": 32,
+              "name": "Ford Escape"
+            },
+            {
+              "id": 6,
+              "name": "Ford Explorer"
+            },
+            {
+              "id": 5,
+              "name": "Ford F-150"
+            },
+            {
+              "id": 4,
+              "name": "Ford Mustang"
+            },
+            {
+              "id": 34,
+              "name": "Ford Ranger"
+            },
+            {
+              "id": 11,
+              "name": "Honda Accord"
+            },
+            {
+              "id": 10,
+              "name": "Honda Civic"
+            },
+            {
+              "id": 12,
+              "name": "Honda CR-V"
+            },
+            {
+              "id": 37,
+              "name": "Honda Pilot"
+            },
+            {
+              "id": 23,
+              "name": "Hyundai Elantra"
+            },
+            {
+              "id": 24,
+              "name": "Hyundai Tucson"
+            },
+            {
+              "id": 26,
+              "name": "Mazda CX-5"
+            },
+            {
+              "id": 25,
+              "name": "Mazda Mazda3"
+            },
+            {
+              "id": 27,
+              "name": "Mazda MX-5 Miata"
+            },
+            {
+              "id": 17,
+              "name": "Tesla Model 3"
+            },
+            {
+              "id": 19,
+              "name": "Tesla Model S"
+            },
+            {
+              "id": 18,
+              "name": "Tesla Model Y"
+            },
+            {
+              "id": 2,
+              "name": "Toyota Camry"
+            },
+            {
+              "id": 1,
+              "name": "Toyota Corolla"
+            },
+            {
+              "id": 28,
+              "name": "Toyota Corolla Cross"
+            },
+            {
+              "id": 29,
+              "name": "Toyota Highlander"
+            },
+            {
+              "id": 30,
+              "name": "Toyota Prius"
+            },
+            {
+              "id": 3,
+              "name": "Toyota RAV4"
+            },
+            {
+              "id": 31,
+              "name": "Toyota Tacoma"
+            },
+            {
+              "id": 15,
+              "name": "Volkswagen Golf"
+            },
+            {
+              "id": 16,
+              "name": "Volkswagen Tiguan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "customers-page-dark",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/customers\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 1,
+                "fullName": "Alice Johnson",
+                "email": "alice.johnson@example.com",
+                "phoneNumber": "555-0101",
+                "createdAt": "2021-03-15T09:30:00Z",
+                "carId": 1,
+                "carName": "Toyota Corolla"
+              },
+              {
+                "id": 2,
+                "fullName": "Bob Smith",
+                "email": "bob.smith@example.com",
+                "phoneNumber": "555-0102",
+                "createdAt": "2021-09-02T14:15:00Z",
+                "carId": 34,
+                "carName": "Ford Ranger"
+              },
+              {
+                "id": 3,
+                "fullName": "Carol Williams",
+                "email": "carol.williams@example.com",
+                "phoneNumber": null,
+                "createdAt": "2022-02-18T11:00:00Z",
+                "carId": 7,
+                "carName": "BMW 3 Series"
+              },
+              {
+                "id": 4,
+                "fullName": "David Brown",
+                "email": "david.brown@example.com",
+                "phoneNumber": "555-0104",
+                "createdAt": "2022-07-30T16:45:00Z",
+                "carId": 10,
+                "carName": "Honda Civic"
+              },
+              {
+                "id": 5,
+                "fullName": "Eva Garcia",
+                "email": "eva.garcia@example.com",
+                "phoneNumber": "555-0105",
+                "createdAt": "2022-11-09T08:00:00Z",
+                "carId": 20,
+                "carName": "Audi A4"
+              },
+              {
+                "id": 6,
+                "fullName": "Frank Miller",
+                "email": "frank.miller@example.com",
+                "phoneNumber": "555-0106",
+                "createdAt": "2023-01-22T10:20:00Z",
+                "carId": 4,
+                "carName": "Ford Mustang"
+              },
+              {
+                "id": 7,
+                "fullName": "Grace Lee",
+                "email": "grace.lee@example.com",
+                "phoneNumber": "555-0107",
+                "createdAt": "2023-06-14T13:50:00Z",
+                "carId": 17,
+                "carName": "Tesla Model 3"
+              },
+              {
+                "id": 8,
+                "fullName": "Henry Wilson",
+                "email": "henry.wilson@example.com",
+                "phoneNumber": null,
+                "createdAt": "2023-10-03T15:10:00Z",
+                "carId": null,
+                "carName": null
+              },
+              {
+                "id": 9,
+                "fullName": "Isabella Martin",
+                "email": "isabella.martin@example.com",
+                "phoneNumber": "555-0109",
+                "createdAt": "2024-02-25T09:05:00Z",
+                "carId": 3,
+                "carName": "Toyota RAV4"
+              },
+              {
+                "id": 10,
+                "fullName": "Jack Thompson",
+                "email": "jack.thompson@example.com",
+                "phoneNumber": "555-0110",
+                "createdAt": "2024-08-11T12:40:00Z",
+                "carId": 15,
+                "carName": "Volkswagen Golf"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 15,
+            "totalPages": 2,
+            "hasPrevious": false,
+            "hasNext": true
+          }
+        },
+        {
+          "urlPattern": "/api/cars/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 20,
+              "name": "Audi A4"
+            },
+            {
+              "id": 22,
+              "name": "Audi e-tron GT"
+            },
+            {
+              "id": 21,
+              "name": "Audi Q5"
+            },
+            {
+              "id": 7,
+              "name": "BMW 3 Series"
+            },
+            {
+              "id": 35,
+              "name": "BMW 5 Series"
+            },
+            {
+              "id": 9,
+              "name": "BMW M4"
+            },
+            {
+              "id": 36,
+              "name": "BMW X3"
+            },
+            {
+              "id": 8,
+              "name": "BMW X5"
+            },
+            {
+              "id": 14,
+              "name": "Chevrolet Camaro"
+            },
+            {
+              "id": 13,
+              "name": "Chevrolet Silverado"
+            },
+            {
+              "id": 33,
+              "name": "Ford Bronco"
+            },
+            {
+              "id": 32,
+              "name": "Ford Escape"
+            },
+            {
+              "id": 6,
+              "name": "Ford Explorer"
+            },
+            {
+              "id": 5,
+              "name": "Ford F-150"
+            },
+            {
+              "id": 4,
+              "name": "Ford Mustang"
+            },
+            {
+              "id": 34,
+              "name": "Ford Ranger"
+            },
+            {
+              "id": 11,
+              "name": "Honda Accord"
+            },
+            {
+              "id": 10,
+              "name": "Honda Civic"
+            },
+            {
+              "id": 12,
+              "name": "Honda CR-V"
+            },
+            {
+              "id": 37,
+              "name": "Honda Pilot"
+            },
+            {
+              "id": 23,
+              "name": "Hyundai Elantra"
+            },
+            {
+              "id": 24,
+              "name": "Hyundai Tucson"
+            },
+            {
+              "id": 26,
+              "name": "Mazda CX-5"
+            },
+            {
+              "id": 25,
+              "name": "Mazda Mazda3"
+            },
+            {
+              "id": 27,
+              "name": "Mazda MX-5 Miata"
+            },
+            {
+              "id": 17,
+              "name": "Tesla Model 3"
+            },
+            {
+              "id": 19,
+              "name": "Tesla Model S"
+            },
+            {
+              "id": 18,
+              "name": "Tesla Model Y"
+            },
+            {
+              "id": 2,
+              "name": "Toyota Camry"
+            },
+            {
+              "id": 1,
+              "name": "Toyota Corolla"
+            },
+            {
+              "id": 28,
+              "name": "Toyota Corolla Cross"
+            },
+            {
+              "id": 29,
+              "name": "Toyota Highlander"
+            },
+            {
+              "id": 30,
+              "name": "Toyota Prius"
+            },
+            {
+              "id": 3,
+              "name": "Toyota RAV4"
+            },
+            {
+              "id": 31,
+              "name": "Toyota Tacoma"
+            },
+            {
+              "id": 15,
+              "name": "Volkswagen Golf"
+            },
+            {
+              "id": 16,
+              "name": "Volkswagen Tiguan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "customers-page-empty-light",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/customers\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 0,
+            "totalPages": 1,
+            "hasPrevious": false,
+            "hasNext": false
+          }
+        },
+        {
+          "urlPattern": "/api/cars/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 20,
+              "name": "Audi A4"
+            },
+            {
+              "id": 22,
+              "name": "Audi e-tron GT"
+            },
+            {
+              "id": 21,
+              "name": "Audi Q5"
+            },
+            {
+              "id": 7,
+              "name": "BMW 3 Series"
+            },
+            {
+              "id": 35,
+              "name": "BMW 5 Series"
+            },
+            {
+              "id": 9,
+              "name": "BMW M4"
+            },
+            {
+              "id": 36,
+              "name": "BMW X3"
+            },
+            {
+              "id": 8,
+              "name": "BMW X5"
+            },
+            {
+              "id": 14,
+              "name": "Chevrolet Camaro"
+            },
+            {
+              "id": 13,
+              "name": "Chevrolet Silverado"
+            },
+            {
+              "id": 33,
+              "name": "Ford Bronco"
+            },
+            {
+              "id": 32,
+              "name": "Ford Escape"
+            },
+            {
+              "id": 6,
+              "name": "Ford Explorer"
+            },
+            {
+              "id": 5,
+              "name": "Ford F-150"
+            },
+            {
+              "id": 4,
+              "name": "Ford Mustang"
+            },
+            {
+              "id": 34,
+              "name": "Ford Ranger"
+            },
+            {
+              "id": 11,
+              "name": "Honda Accord"
+            },
+            {
+              "id": 10,
+              "name": "Honda Civic"
+            },
+            {
+              "id": 12,
+              "name": "Honda CR-V"
+            },
+            {
+              "id": 37,
+              "name": "Honda Pilot"
+            },
+            {
+              "id": 23,
+              "name": "Hyundai Elantra"
+            },
+            {
+              "id": 24,
+              "name": "Hyundai Tucson"
+            },
+            {
+              "id": 26,
+              "name": "Mazda CX-5"
+            },
+            {
+              "id": 25,
+              "name": "Mazda Mazda3"
+            },
+            {
+              "id": 27,
+              "name": "Mazda MX-5 Miata"
+            },
+            {
+              "id": 17,
+              "name": "Tesla Model 3"
+            },
+            {
+              "id": 19,
+              "name": "Tesla Model S"
+            },
+            {
+              "id": 18,
+              "name": "Tesla Model Y"
+            },
+            {
+              "id": 2,
+              "name": "Toyota Camry"
+            },
+            {
+              "id": 1,
+              "name": "Toyota Corolla"
+            },
+            {
+              "id": 28,
+              "name": "Toyota Corolla Cross"
+            },
+            {
+              "id": 29,
+              "name": "Toyota Highlander"
+            },
+            {
+              "id": 30,
+              "name": "Toyota Prius"
+            },
+            {
+              "id": 3,
+              "name": "Toyota RAV4"
+            },
+            {
+              "id": 31,
+              "name": "Toyota Tacoma"
+            },
+            {
+              "id": 15,
+              "name": "Volkswagen Golf"
+            },
+            {
+              "id": 16,
+              "name": "Volkswagen Tiguan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "customers-page-empty-dark",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/customers\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 0,
+            "totalPages": 1,
+            "hasPrevious": false,
+            "hasNext": false
+          }
+        },
+        {
+          "urlPattern": "/api/cars/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 20,
+              "name": "Audi A4"
+            },
+            {
+              "id": 22,
+              "name": "Audi e-tron GT"
+            },
+            {
+              "id": 21,
+              "name": "Audi Q5"
+            },
+            {
+              "id": 7,
+              "name": "BMW 3 Series"
+            },
+            {
+              "id": 35,
+              "name": "BMW 5 Series"
+            },
+            {
+              "id": 9,
+              "name": "BMW M4"
+            },
+            {
+              "id": 36,
+              "name": "BMW X3"
+            },
+            {
+              "id": 8,
+              "name": "BMW X5"
+            },
+            {
+              "id": 14,
+              "name": "Chevrolet Camaro"
+            },
+            {
+              "id": 13,
+              "name": "Chevrolet Silverado"
+            },
+            {
+              "id": 33,
+              "name": "Ford Bronco"
+            },
+            {
+              "id": 32,
+              "name": "Ford Escape"
+            },
+            {
+              "id": 6,
+              "name": "Ford Explorer"
+            },
+            {
+              "id": 5,
+              "name": "Ford F-150"
+            },
+            {
+              "id": 4,
+              "name": "Ford Mustang"
+            },
+            {
+              "id": 34,
+              "name": "Ford Ranger"
+            },
+            {
+              "id": 11,
+              "name": "Honda Accord"
+            },
+            {
+              "id": 10,
+              "name": "Honda Civic"
+            },
+            {
+              "id": 12,
+              "name": "Honda CR-V"
+            },
+            {
+              "id": 37,
+              "name": "Honda Pilot"
+            },
+            {
+              "id": 23,
+              "name": "Hyundai Elantra"
+            },
+            {
+              "id": 24,
+              "name": "Hyundai Tucson"
+            },
+            {
+              "id": 26,
+              "name": "Mazda CX-5"
+            },
+            {
+              "id": 25,
+              "name": "Mazda Mazda3"
+            },
+            {
+              "id": 27,
+              "name": "Mazda MX-5 Miata"
+            },
+            {
+              "id": 17,
+              "name": "Tesla Model 3"
+            },
+            {
+              "id": 19,
+              "name": "Tesla Model S"
+            },
+            {
+              "id": 18,
+              "name": "Tesla Model Y"
+            },
+            {
+              "id": 2,
+              "name": "Toyota Camry"
+            },
+            {
+              "id": 1,
+              "name": "Toyota Corolla"
+            },
+            {
+              "id": 28,
+              "name": "Toyota Corolla Cross"
+            },
+            {
+              "id": 29,
+              "name": "Toyota Highlander"
+            },
+            {
+              "id": 30,
+              "name": "Toyota Prius"
+            },
+            {
+              "id": 3,
+              "name": "Toyota RAV4"
+            },
+            {
+              "id": 31,
+              "name": "Toyota Tacoma"
+            },
+            {
+              "id": 15,
+              "name": "Volkswagen Golf"
+            },
+            {
+              "id": 16,
+              "name": "Volkswagen Tiguan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

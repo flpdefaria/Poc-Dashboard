@@ -36,20 +36,21 @@ config changes, MCP server changes, new API controller/DTO, changes to how the b
 
 - `Src/CarStore.Web/ClientApp/` - standalone Vite 8 + Vue 3.5 + TypeScript 6 project. NOT part of `CarStore.slnx`, NOT built by `dotnet build`.
   - deps: `vue`, `vue-router` (5), `primevue` (4.5), `@primeuix/themes` (1, Aura preset), `@lucide/vue` (icons; `lucide-vue-next` is deprecated - do not use it). devDeps: `vite`, `@vitejs/plugin-vue`, `tailwindcss` (v4), `@tailwindcss/vite`, `tailwindcss-primeui`, `typescript`, `vue-tsc`.
-  - deps also include `echarts` (6, tree-shaken via `echarts/core`); it is the only charting library.
-  - `src/style.css`: `@import "tailwindcss"; @import "tailwindcss-primeui";` plus `@source "../../Views";`, the `--color-paint-*` palette, the `html.app-dark` dark-theme remap, a `.lucide` rule that sizes icons to `1em`, and a legacy `@layer components` shim (`.btn*`, `.form-*`, `.alert-danger`) that is dead code - safe to remove as a follow-up, never add dependents. Tailwind v4 is CSS-config based - there is no `tailwind.config.js`.
+  - deps also include `echarts` (6, tree-shaken via `echarts/core`), the only charting library, and `@fontsource/inter` (5, self-hosted Inter: Latin + Latin Extended, weights 400-700, imported in `style.css`).
+  - devDeps for the QA visual harness (`ClientApp/visual/`, `playwright.config.ts`, `tsconfig.visual.json`; owned by QA-Specialist): `@playwright/test`, `pixelmatch`, `pngjs`, `@types/pngjs`. It also needs `npx playwright install chromium`. Scripts are `visual:*`; never wire them into `npm run build`.
+  - `src/style.css`: `@import "tailwindcss"; @import "tailwindcss-primeui";` plus `@source "../../Views";` and `@source not "../visual";` (the harness must never add utilities to the shipped CSS), Inter as `--font-sans`, the `--color-paint-*` palette and `--color-sunken`, the `html.app-dark` dark-theme remap, a `.lucide` rule that sizes icons to `1em`. The legacy `@layer components` Razor shim was removed on 2026-11-11. Tailwind v4 is CSS-config based - there is no `tailwind.config.js`.
   - `src/main.ts`: single entry point. Mounts one `App` instance on the single `#app` element, wired with `vue-router` (`.use(router)`) and PrimeVue (Aura preset, `darkModeSelector: false` **on purpose** - dark theme is the `html.app-dark` surface remap, see `frontend.instructions.md`). There is no per-feature mount point.
   - `src/router/index.ts`: `vue-router` `createWebHistory()` config; routes map `/`, `/cars`, `/brands`, `/customers` to `<Feature>Page.vue` components. Adding a page = add a route here + a `Sidebar.vue` nav item, not a new mount point.
   - `vite.config.ts`: `base: "/dist/"`, plugins `vue()` + `tailwindcss()`, `build.outDir` -> `../wwwroot/dist`, `emptyOutDir`, input `src/main.ts`, fixed `entryFileNames: "main.js"` and a CSS asset renamed to `main.css`; dev server pinned to `5173` with `strictPort`.
   - `wwwroot/dist/` is generated **and committed** - `dotnet publish` / `deploy.sh` never run npm. `ClientApp/node_modules` and `ClientApp/dist` stay gitignored.
 - `Views/Shared/_Layout.cshtml` loads the SPA **globally, once**, gated by `<environment>`: in Development the Vite dev server (`http://localhost:5173/@vite/client` + `/src/main.ts`, needs `npm run dev`), elsewhere `~/dist/main.css` + `~/dist/main.js` (`type="module"`, `asp-append-version="true"`). `Views/Home/Index.cshtml` is the only page and holds the sole mount point, a single `<div id="app">`; `Program.cs` maps `app.MapFallbackToController("Index", "Home")` so any unmatched path (owned by `vue-router`) still resolves to this shell. Never move the bundle into a per-view `@section Scripts`.
-- Bootstrap is fully removed (no `wwwroot/lib/bootstrap/`, no CDN tags, no `bi-*` icons). jQuery is also fully removed - Customers was the last Razor CRUD form and it has been migrated to Vue dialogs; `_Layout.cshtml` no longer loads jQuery. Leftover `wwwroot/lib/jquery*` folders on disk are unreferenced dead weight, safe to delete as a follow-up.
-- `Controllers/Api/*ApiController.cs` + `Models/Api/*Dto.cs` - thin `[ApiController]` JSON endpoints (`api/cars`, `api/brands`, `api/customers`, `api/brands/options`) that reuse the existing application services and map to DTOs, avoiding circular navigation properties (`Car.Brand` / `Brand.Cars`). `DomainException` -> `BadRequest(new { message })`.
+- Bootstrap is fully removed (no `wwwroot/lib/bootstrap/`, no CDN tags, no `bi-*` icons). jQuery is also fully removed - Customers was the last Razor CRUD form and it has been migrated to Vue dialogs; `_Layout.cshtml` no longer loads jQuery. The leftover `wwwroot/lib/jquery*` folders were deleted on 2026-11-11.
+- `Controllers/Api/*ApiController.cs` + `Models/Api/*Dto.cs` - thin `[ApiController]` JSON endpoints (`api/cars`, `api/brands`, `api/customers`, `api/brands/options`, `api/cars/options`) that reuse the existing application services and map to DTOs, avoiding circular navigation properties (`Car.Brand` / `Brand.Cars`). `DomainException` -> `BadRequest(new { message })`.
 - MCP servers are declared twice, with the same three servers, and both files are committed:
   - `.vscode/mcp.json` (VS Code/Copilot, root key `"servers"`) and `.mcp.json` (Claude Code, root key `"mcpServers"`).
   - `primevue`: stdio, `npx -y @primevue/mcp` (needs network the first time).
   - `figma-mcp`: remote HTTP `https://mcp.figma.com/mcp`, which needs the Figma OAuth prompt. On auth errors, tell the user to re-authenticate; never work around it.
-  - `playwright`: stdio, `npx -y @playwright/mcp@<pinned>` with `--browser chrome --ignore-https-errors --user-data-dir .playwright-mcp/profile --output-dir .playwright-mcp/output` (`.playwright-mcp/` is gitignored). Used by QA-Specialist / `qa-agent`.
+  - `playwright`: stdio, `npx -y @playwright/mcp@<pinned>` with `--browser chrome --ignore-https-errors --user-data-dir .playwright-mcp/profile --output-dir .playwright-mcp/output` (`.playwright-mcp/` is gitignored). Optional for QA-Specialist / `qa-agent` live-app checks; their primary capture tool is the committed harness (`npm run visual:compare`).
 
   Any change to one file must be mirrored in the other. Read the current files instead of trusting this summary.
 
@@ -58,9 +59,10 @@ config changes, MCP server changes, new API controller/DTO, changes to how the b
 1. `node -v` / `npm -v` - Node 20+ required (verified on Node 24) for Tailwind v4 / Vite 8.
 2. `cd Src/CarStore.Web/ClientApp && npm install`.
 3. `npm run build` -> `wwwroot/dist/main.js` + `main.css`. Re-run after every ClientApp change; it is NOT wired into `dotnet build`.
-4. Verify `.mcp.json` and `.vscode/mcp.json` (both committed) list the same servers.
-5. `dotnet build Src/CarStore.slnx` from the repo root.
-6. `dotnet run --project Src/CarStore.Web` and load `http://localhost:5045` to confirm the bundle is served.
+4. For QA: `npx playwright install chromium` (the harness browser).
+5. Verify `.mcp.json` and `.vscode/mcp.json` (both committed) list the same servers.
+6. `dotnet build Src/CarStore.slnx` from the repo root.
+7. `dotnet run --project Src/CarStore.Web` and load `http://localhost:5045` to confirm the bundle is served.
 
 ## Migrating a classic MVC + Razor + Bootstrap project (the playbook)
 

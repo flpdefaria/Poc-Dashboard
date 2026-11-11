@@ -17,8 +17,12 @@ const carsTable = ref<InstanceType<typeof CarsTable> | null>(null);
 const brandOptions = ref<BrandOption[]>([]);
 
 async function loadBrandOptions() {
-  const response = await fetch(`${brandsUrl}/options`);
-  if (response.ok) brandOptions.value = await response.json();
+  try {
+    const response = await fetch(`${brandsUrl}/options`);
+    if (response.ok) brandOptions.value = await response.json();
+  } catch {
+    // Network failure: the brand Select stays empty instead of raising an unhandled rejection on mount.
+  }
 }
 
 const {

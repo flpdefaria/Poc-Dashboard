@@ -7,6 +7,8 @@ tags:
   - type/guide
   - area/engineering
   - component/tests
+  - entity/brand
+  - entity/car
   - entity/customer
 ---
 
@@ -30,19 +32,33 @@ xUnit test strategy for the CarStore domain layer.
 
 ## Test files
 
-- `Src/CarStore.Tests/AuthorTests.cs`
-- `Src/CarStore.Tests/BookTests.cs`
+- `Src/CarStore.Tests/BrandTests.cs`
+- `Src/CarStore.Tests/CarTests.cs`
 - `Src/CarStore.Tests/CustomerTests.cs`
 
 ## What is covered
 
-- `Brand.Create` happy path and validation (empty name, future birth date).
-- `Brand.Age` computed property.
-- `Brand.EnsureCanBeDeleted` when the brand has cars.
-- `Car.Create` and `Car.Update` with valid `Mileage`.
-- `Car.Create` validation for `Mileage` <= 0.
-- `Customer.Create` happy path and `Update` applying changes.
-- `Customer.Create` validation: empty/whitespace full name, full name > 150 characters, empty/whitespace email, invalid email format.
+- **Brand:**
+  - `Create`: happy path, empty/whitespace name, future `FoundedDate`
+  - `YearsInBusiness`, exactly 30 years
+  - `EnsureCanBeDeleted` throws when the brand has cars
+- **Car:**
+  - `Create` / `Update` with valid mileage
+  - mileage 0 is allowed; negative mileage throws
+  - model year too far in the future throws
+- **Customer:**
+  - `Create`: happy path, empty/whitespace full name, full name over 150 characters, empty/whitespace email,
+    invalid email format
+  - `Update` applies the changes
+- **Customer car link** (2026-11-11, see [[Customer]]):
+  - no car (`CarId` null)
+  - valid car id
+  - non-positive id throws `"Customer car id is invalid."` on `Create` and `Update`
+  - changing the car
+  - clearing it with `null`
+
+Whether the car exists (`"Car does not exist."`) is checked in `CustomerService`. No service or API tests exist
+yet, so that rule is verified only through the API (see [[Visual-QA-Harness]] for the frontend QA harness).
 
 ## Run tests
 
@@ -56,4 +72,5 @@ dotnet test Src/CarStore.Tests/CarStore.Tests.csproj
 - [[Engineering-Overview]]
 - [[Brand]]
 - [[Car]]
+- [[Customer]]
 - [[Operations-Overview]]

@@ -109,6 +109,11 @@ downgrades PASS to BLOCKED until `references/<id>.png` and `.figma.json` exist.
 - **PASS needs whole-screen comparison:** data-driven sections make a scenario `partial`, which blocks PASS.
   Prefer a whole-screen comparison with a prototype-content fixture (`scenarios/fixtures-figma.ts`), then
   classify the residual pixel diff in the verdict.
+- **New endpoint, every scenario:** when a page starts calling a new endpoint, update the mocks of **every**
+  scenario of that page. On 2026-11-11, `CustomersPage` began loading `/api/cars/options`; the older
+  `customers-page-*` scenarios had no mock for it, the call was aborted and the page reported a render error.
+  That run also showed an app bug: the option loaders did not catch a failed `fetch`, now fixed in
+  `CustomersPage` and `CarsPage`.
 - **API tests port:** API contract tests must use a separate port (`--urls http://localhost:5046`). Port 5045
   may be the developer's own running instance.
 

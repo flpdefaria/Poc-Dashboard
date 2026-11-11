@@ -14,6 +14,6 @@ The instructions above are shared with GitHub Copilot. Copilot loads the path-sp
 | Paged lists (services, API, `usePagedFetch`, `DataTableCommon`) | `.github/instructions/pagination.instructions.md` |
 | `Docs/Vault/CarStore/**` | `.github/instructions/vault.instructions.md` |
 
-- Agents: `.claude/agents/` (`frontend-agent`, `qa-agent`). The Copilot agents in `.github/agents/` (Developer, Tester, Tooling) are useful references for backend, test and tooling tasks.
+- Agents: `.claude/agents/` (`frontend-agent`, `qa-agent`). The Copilot agents in `.github/agents/` (Developer, Tester, Tooling) are useful references for backend, test and tooling tasks. The four `impeccable-*` agents exist for Copilot only. In Claude Code the `impeccable` skill falls back to its in-thread `reference/degraded/*.md` procedures.
 - Skills: `.claude/skills/` entries are symlinks into `.github/skills/`. Edit the files under `.github/skills/`, never replace a symlink with a copy.
 - MCP: `.mcp.json` here mirrors `.vscode/mcp.json` for Copilot. Change both together.

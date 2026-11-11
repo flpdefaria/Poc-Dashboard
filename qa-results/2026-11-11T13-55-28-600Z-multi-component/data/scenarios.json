@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-11-11T13:57:11.247Z",
+  "attempt": 2,
+  "scenarios": [
+    {
+      "id": "customers-page-light",
+      "label": "Clientes — tabela paginada, claro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/customers"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Título da página",
+          "selector": "h1",
+          "text": "Clientes"
+        },
+        {
+          "label": "Botão de criação",
+          "selector": "button:has-text(\"Novo cliente\")",
+          "count": 1
+        },
+        {
+          "label": "Primeiro cliente do seed",
+          "selector": ".p-datatable-tbody > tr",
+          "text": "Alice Johnson"
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-light"
+    },
+    {
+      "id": "customers-page-dark",
+      "label": "Clientes — tabela paginada, escuro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/customers"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Título da página",
+          "selector": "h1",
+          "text": "Clientes"
+        },
+        {
+          "label": "Botão de criação",
+          "selector": "button:has-text(\"Novo cliente\")",
+          "count": 1
+        },
+        {
+          "label": "Primeiro cliente do seed",
+          "selector": ".p-datatable-tbody > tr",
+          "text": "Alice Johnson"
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-dark"
+    },
+    {
+      "id": "customers-page-empty-light",
+      "label": "Clientes — lista vazia, claro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/customers"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actions": [],
+      "baselineActions": [],
+      "renderChecks": [
+        {
+          "label": "Título da página",
+          "selector": "h1",
+          "text": "Clientes"
+        },
+        {
+          "label": "Nenhuma linha de dados",
+          "selector": ".p-datatable-tbody > tr:not(.p-datatable-empty-message)",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-empty-light"
+    },
+    {
+      "id": "customers-page-empty-dark",
+      "label": "Clientes — lista vazia, escuro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/customers"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actions": [],
+      "baselineActions": [],
+      "renderChecks": [
+        {
+          "label": "Título da página",
+          "selector": "h1",
+          "text": "Clientes"
+        },
+        {
+          "label": "Nenhuma linha de dados",
+          "selector": ".p-datatable-tbody > tr:not(.p-datatable-empty-message)",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-empty-dark"
+    }
+  ]
+}

@@ -34,7 +34,8 @@ the new-entity file set, composables, styling rules, light/dark themes, the defi
 | `/carstore-mobile-responsive` | Tablet/phone scope or a Figma tablet/phone frame. |
 
 Visual validation (Playwright, screenshots, `qa-results/`) is NOT yours: it belongs to QA-Specialist via
-`/frontend-visual-check`. Return the delivery summary below so QA can validate.
+`/frontend-visual-check`. The test-only harness in `ClientApp/visual/` (scenarios, fixtures, Figma references) is also
+QA-owned: never edit it. If a change breaks a scenario's selectors, report it in `lacunas`. Return the delivery summary below so QA can validate.
 
 ## Workflow
 

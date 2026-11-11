@@ -124,8 +124,7 @@ Conventions:
 
 - `wwwroot/dist/` - Vite output (`main.js`, `main.css`). **Generated, but committed**: `dotnet build`/`publish` never runs npm, so the deployed app would otherwise ship no front-end. Never hand-edit.
 - `wwwroot/images/` - Figma-exported assets, referenced by absolute path from Vue (`/images/home/cars.jpg`).
-- `wwwroot/lib/` - leftover jquery/jquery-validation packages from the pre-SPA Customers forms; no longer
-  referenced by any view. **No bootstrap folder** - do not reintroduce one.
+- `wwwroot/lib/` - removed (2026-11-11): the leftover jquery/jquery-validation packages from the pre-SPA Customers forms are gone. Do not reintroduce client libraries there; front-end dependencies come from `ClientApp/package.json`.
 - `wwwroot/css/site.css` - base font sizing only; app styling belongs to Tailwind/PrimeVue.
 - `Program.cs` uses `app.MapStaticAssets()` + `.WithStaticAssets()` (ASP.NET Core 10 static asset pipeline), so fingerprinting/compression is handled for files present at build time.
 

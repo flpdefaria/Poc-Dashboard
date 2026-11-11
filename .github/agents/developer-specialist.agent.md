@@ -20,7 +20,7 @@ contract lives in `.github/instructions/web.instructions.md`. Follow the vault w
 |---|---|---|---|
 | `Brand` | `Src/CarStore.Domain/Entities/Brand.cs` | `Create`, `Update`, `EnsureCanBeDeleted` | name required, ≤150 chars; founded date not in the future; cannot delete with cars |
 | `Car` | `Src/CarStore.Domain/Entities/Car.cs` | `Create`, `Update` | model required; price, stock and mileage ≥ 0; model year not in the future |
-| `Customer` | `Src/CarStore.Domain/Entities/Customer.cs` | `Create`, `Update` | full name required, ≤150 chars; email required and valid |
+| `Customer` | `Src/CarStore.Domain/Entities/Customer.cs` | `Create`, `Update` | full name required, ≤150 chars; email required and valid; optional `CarId` > 0, and `CustomerService` checks the car exists |
 
 Read the entity before editing. This table is a map, not the source of truth.
 

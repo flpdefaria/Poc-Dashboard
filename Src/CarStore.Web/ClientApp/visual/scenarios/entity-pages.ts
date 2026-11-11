@@ -1,5 +1,6 @@
 import type { VisualScenario } from '../types'
 import { DESKTOP, brandOptions, cars, customers, jsonMock, pageWidth, pagedMock } from './fixtures'
+import carOptionsJson from './fixtures/car-options.json' with { type: 'json' }
 
 const themeLabel = (theme: 'light' | 'dark') => (theme === 'light' ? 'claro' : 'escuro')
 
@@ -27,7 +28,7 @@ function carsPage(theme: 'light' | 'dark'): VisualScenario {
   }
 }
 
-/** `/customers`: `CustomersPage.vue` loads page 1 (10 rows). */
+/** `/customers`: `CustomersPage.vue` loads page 1 (10 rows) and the car options for the create/edit dialogs. */
 function customersPage(theme: 'light' | 'dark'): VisualScenario {
   return {
     id: `customers-page-${theme}`,
@@ -41,7 +42,7 @@ function customersPage(theme: 'light' | 'dark'): VisualScenario {
     locale: 'pt-BR',
     device: 'desktop',
     captureSelector: '#preview-root > div',
-    mocks: [pagedMock('/api/customers', customers, 10)],
+    mocks: [pagedMock('/api/customers', customers, 10), jsonMock('/api/cars/options', carOptionsJson)],
     actions: [{ type: 'expect-count', selector: '.p-datatable-tbody > tr', count: 10 }],
     renderChecks: [
       { label: 'Título da página', selector: 'h1', text: 'Clientes' },
@@ -58,7 +59,7 @@ function customersEmpty(theme: 'light' | 'dark'): VisualScenario {
     id: `customers-page-empty-${theme}`,
     label: `Clientes — lista vazia, ${themeLabel(theme)}, desktop`,
     state: 'vazio',
-    mocks: [pagedMock('/api/customers', [], 10)],
+    mocks: [pagedMock('/api/customers', [], 10), jsonMock('/api/cars/options', carOptionsJson)],
     actions: [],
     renderChecks: [
       { label: 'Título da página', selector: 'h1', text: 'Clientes' },

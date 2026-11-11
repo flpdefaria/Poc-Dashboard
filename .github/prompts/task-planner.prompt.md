@@ -78,7 +78,7 @@ of a hand-made plan.
 
 ### Subtask 4: Visual QA
 - **Assigned to**: QA-Specialist
-- **Boundary**: `/cars` table and car dialogs, 1440 and 390 widths, light and dark. Excludes code changes.
+- **Boundary**: `/cars` table and car dialogs at 1440 (the shell is desktop-only), light and dark, through the visual harness. Excludes production code changes.
 - **Dependencies**: Subtask 3
 - **Action**: "Validate the Color field in the cars table and dialogs using the delivery summary."
 

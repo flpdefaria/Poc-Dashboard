@@ -31,8 +31,12 @@ const {
 const carOptions = ref<CarOption[]>([]);
 
 async function loadCarOptions() {
-  const response = await fetch(`${carsUrl}/options`);
-  if (response.ok) carOptions.value = await response.json();
+  try {
+    const response = await fetch(`${carsUrl}/options`);
+    if (response.ok) carOptions.value = await response.json();
+  } catch {
+    // Network failure: the "Carro" field stays empty ("Sem carro") instead of breaking the page.
+  }
 }
 
 onMounted(loadCarOptions);

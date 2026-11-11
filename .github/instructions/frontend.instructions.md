@@ -25,6 +25,7 @@ Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` b
 | Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
 | Bootstrap / jQuery | **Removed** | No Razor forms remain; every CRUD flow is a Vue dialog. Do not reintroduce either. |
 | Charts | Apache ECharts 6, tree-shaken (`echarts/core`) | Only via `components/common/chart/` and the `/echarts-chart-build` skill. |
+| Typography | Inter via `@fontsource/inter` (self-hosted, Latin + Latin Extended, 400-700) | `--font-sans` in `src/style.css`; `html` uses grayscale smoothing (`antialiased`) like the Figma frames. No CDN fonts. |
 
 ## Folder layout (do not deviate)
 
@@ -161,13 +162,13 @@ Rules:
 
 ## Styling rules
 
-1. **Design tokens, not hex.** Use the `tailwindcss-primeui` token utilities: `surface-0`, `surface-50`, `surface-100`, `surface-300`, `surface-500`, `surface-700`, `surface-800`, `text-color`, `text-muted-color`, `border-surface-300`, `bg-primary`, `text-primary-contrast`. Never a raw hex or an arbitrary gray when a token matches.
+1. **Design tokens, not hex.** Use the `tailwindcss-primeui` token utilities: `surface-0`, `surface-50`, `surface-100`, `surface-200`, `surface-300`, `surface-400`, `surface-500`, `surface-700`, `surface-800`, `text-color` (surface-800), `text-muted-color` (surface-500), `border-surface-200/300`, `bg-sunken` (inset box inside a card), `bg-primary`, `text-primary-contrast`. Never a raw hex or an arbitrary gray when a token matches.
 2. **Style PrimeVue through `pt` (passthrough) sections** (`root`, `header`, `content`, `footer`, `list`, `itemLink`, `page`, ...) rather than a bare `class`, matching `DataTableCommon.vue` and `dialogStyles.ts`.
-3. **`!important` is postfix in Tailwind v4**: `bg-surface-700!`, `text-color!`. (A few prefix usages survive in `Home.vue`; do not copy them.) Only add `!` when overriding a PrimeVue theme-colored state class (`.p-paginator-page-selected`, default Button primary) - PrimeVue injects its stylesheet after Tailwind, so equal-specificity utilities lose silently. Plain layout/spacing `pt` classes never need it.
+3. **`!important` is postfix in Tailwind v4**: `bg-surface-700!`, `text-color!`. Only add `!` when overriding a PrimeVue theme-colored state class (`.p-paginator-page-selected`, default Button primary) - PrimeVue injects its stylesheet after Tailwind, so equal-specificity utilities lose silently. Plain layout/spacing `pt` classes never need it.
 4. **Arbitrary values are fine and expected** when the design does not land on Tailwind's scale: `rounded-[21px]`, `gap-1.75`, `px-[11.5px]`, `w-69.5`.
 5. **Reuse the shared class strings**: `styles/buttonStyles.ts` (`primaryButtonClass`, `secondaryButtonClass`, `dangerButtonClass`) and `common/dialog/dialogStyles.ts` (`dialogShellPt(width, contentClass?)`, `detailsDialogPt(width)`). If a new combination appears in 2+ places, extract it there.
 6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
-7. **The `@layer components` block in `style.css` (`.btn*`, `.form-*`, `.alert-danger`) is dead code.** It was a Tailwind shim for the Razor forms that no longer exist, and nothing references it. Never use those classes in new markup; removing the block is a pending cleanup.
+7. **No component-class shim.** The Razor-era `@layer components` block (`.btn*`, `.form-*`, `.alert-danger`) was removed on 2026-11-11. Never reintroduce Bootstrap-style class names. Use PrimeVue components, `pt` and the shared class strings.
 
 ### Light and dark themes (mandatory for every screen)
 
@@ -179,23 +180,23 @@ The app ships both themes ("Showroom After Hours" dark theme, see `DESIGN.md`). 
 | `Views/Shared/_Layout.cshtml` inline script | Before first paint: `app-dark` on `<html>` (saved `localStorage["carstore-theme"]`, else OS `prefers-color-scheme`) and `data-surface` (saved `localStorage["carstore-surface"]`, else `gray`). |
 | `composables/useTheme.ts` | `useTheme()` -> `{ theme, surface, toggle, setTheme, setSurface }`. Applies the class/attribute, persists both choices, plays the circular View Transition reveal on theme changes (instant under reduced motion). |
 | `common/sidebar/Sidebar.vue` | "Appearance" row (opens `common/dialog/ThemeSettingsDialog.vue`: light/dark + surface mode `gray`/`neutral`/`slate`/`stone`/`zinc`) and the "Dark theme" quick switch. |
-| `src/style.css` -> `html[data-surface]` + `html.app-dark { ... }` | `data-surface` picks the Aura primitive palette behind `--sm-*`. Dark inverts `--p-surface-0...950` from the same `--sm-*` (canvas = mode 950, body text = mode 200, `surface-950` = white), plus card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens and the primary scale resolve through the surface scale, so PrimeVue components, Tailwind `surface-*`/`primary` utilities and the primary accent flip together. |
+| `src/style.css` -> `html[data-surface]` + `html.app-dark { ... }` | `data-surface` picks the Aura primitive palette behind `--sm-*`. Dark inverts `--p-surface-0...950` from the same `--sm-*` (canvas = mode 950, body text `surface-800` = mode 100, `surface-950` = white), plus card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens and the primary scale resolve through the surface scale, so PrimeVue components, Tailwind `surface-*`/`primary` utilities and the primary accent flip together. |
 
 Rules:
 
 1. **Use tokens and the theme follows for free.** `surface-*`, `text-color`, `text-muted-color`, `border-surface-*` and `--color-paint-*` all flip under `html.app-dark`. A raw hex, `bg-white`, `text-black` or a fixed `gray-*`/`slate-*` utility does not: it is a dark-theme bug.
-2. **Surfaces are inverted, not "dark versions".** In dark, `surface-0` is the darkest canvas and `surface-700/800` are light. So the slate primary action (`bg-surface-700` + `text-surface-0`) becomes a light fill with dark text. Use `primaryButtonClass`, never `text-white` on a `surface-*` fill.
+2. **Surfaces are inverted, not "dark versions".** In dark, `surface-0` is the darkest canvas and `surface-700/800` are light. So the near-black primary action (`bg-primary` = `primary.950` + `text-primary-contrast`) becomes a light fill with dark text. Use `primaryButtonClass`, never `text-white` on a `surface-*` fill. For the same reason, an inset box inside a card uses `bg-sunken`, not `bg-surface-50`, because in dark `surface-50` is the card itself.
 3. **Keep `darkModeSelector: false`.** Enabling PrimeVue's dark mode would apply Aura's own dark palette on top of the inverted ramp. New surface modes go into `SURFACE_MODES` (preset), the `html[data-surface]` blocks in `style.css`, and the `_Layout.cshtml` list together. New dark-specific values go into the `html.app-dark` block in `style.css`, overriding the matching `--p-*` component token, never as per-component `.app-dark ...` selectors.
 4. **Canvas consumers (ECharts) read CSS tokens at option-build time** and must rebuild on theme or surface change: watch `useTheme().theme` and `useTheme().surface` and call `setOption(buildOption())`, as `common/chart/BarChart.vue` does. Dark `--p-surface-50`/`-200` are `color-mix()` strings that a canvas cannot parse; read the plain steps (0, 100, 300, ...) instead.
 5. **Elevation:** light-theme shadows vanish on dark, so cards and the sidebar sit one surface step above the canvas (`--p-card-background: var(--p-surface-50)`). Do not rely on a shadow alone to separate a panel.
-6. **Contrast:** body text must stay at least 4.5:1 and large text/icons at least 3:1 in both themes. The existing ramp is tuned for this (muted `surface-500` 5.9:1, body `surface-700` 14:1 on the canvas). Status colors use the tinted fill + light ink tokens already defined.
+6. **Contrast:** body text must stay at least 4.5:1 and large text/icons at least 3:1 in both themes. The existing ramp is tuned for this (muted `surface-500` 5.9:1; body text `surface-800` is above 14:1 on the canvas). Status colors use the tinted fill + light ink tokens already defined.
 7. **Figma usually covers light only.** Derive dark from these existing tokens, never invent per-screen dark colors.
 
 ### Shared building blocks
 
 | Piece | What it gives you |
 |---|---|
-| `common/table/DataTableCommon.vue` | Lazy paged `DataTable` + Figma-matched paginator/menu `pt`, `columns: DataTableColumn[]` (`field`, `header`, `primary`), per-column `#col-<field>` slots, and a row-actions `Menu`. Row actions emit via `confirmDetails`/`confirmEdit`/`confirmDelete` -> `details`/`edit`/`delete` events. The `detailsUrl`/`editUrl`/`deleteUrl` navigate props are legacy: never use them. |
+| `common/table/DataTableCommon.vue` | Lazy paged `DataTable` + Figma-matched paginator/menu `pt`, `columns: DataTableColumn[]` (`field`, `header`, `primary`, `sortable`, `width`), `flush` mode (Figma table: 40px rows including the border, fixed layout), per-column `#col-<field>` slots, and a row-actions `Menu`. Row actions emit via `confirmDetails`/`confirmEdit`/`confirmDelete` -> `details`/`edit`/`delete` events. The `detailsUrl`/`editUrl`/`deleteUrl` navigate props are legacy: never use them. |
 | `common/chart/BarChart.vue` | Generic ECharts bar (`labels`, `values`, optional `colorVar`); rebuilds on theme change. New chart types follow `/echarts-chart-build`. |
 | `common/dialog/*` | `Create/Edit/Details<Car|Brand|Customer>Dialog`, and `ConfirmDeleteDialog`. Copy the closest one's `pt` wiring instead of hand-rolling spacing. |
 | `common/form/FormField.vue` / `DetailField.vue` | Editable label + input slot / read-only label + value. |

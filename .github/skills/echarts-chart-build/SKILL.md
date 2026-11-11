@@ -54,8 +54,8 @@ verbatim.
 - `chart.setOption(buildOption())` right after init, and again inside a `watch` over the component's data
   props (`{ deep: true }`) so the chart updates when the data changes - never call `echarts.init()` more than
   once for the same element; always `setOption` on data change, not re-init.
-- Include `useTheme().theme` in that `watch` source, so a light/dark switch rebuilds the option with the
-  re-read CSS tokens (canvas colors do not follow CSS on their own).
+- Include `useTheme().theme` and `useTheme().surface` in that `watch` source, so a light/dark or surface-mode
+  switch rebuilds the option with the re-read CSS tokens (canvas colors do not follow CSS on their own).
 - A `ResizeObserver` on the container element calling `chart.resize()`, so the chart adapts to its `Card`/grid
   cell resizing (PrimeVue `Card`s here are inside a responsive Tailwind grid).
 - `chart.dispose()` + `resizeObserver.disconnect()` in `onBeforeUnmount` - required, ECharts instances leak
@@ -65,13 +65,16 @@ verbatim.
 
 - **Color:** read live CSS tokens at option-build time (`getComputedStyle(document.documentElement)
   .getPropertyValue(name).trim()`), never a hardcoded hex. Series colors come from the data palette in
-  `src/style.css` (`--color-paint-gulf`, `--color-paint-green`, `--color-paint-bronze`, `--color-paint-burgundy`,
-  `--color-paint-graphite`), which has lifted dark-theme variants; pass the token name via the `colorVar`
+  `src/style.css` (`--color-paint-violet`, `--color-paint-rust`, `--color-paint-teal`, `--color-paint-gulf`, `--color-paint-green`,
+  `--color-paint-bronze`, `--color-paint-burgundy`, `--color-paint-graphite`), which has lifted dark-theme variants; pass the token name via the `colorVar`
   prop as `Home.vue` does. Axes, grid, labels and tooltip use `--p-surface-*` / `--p-text-*` tokens. A hex
   appears only as the fallback argument when a token is missing (see `themeColor()` in `BarChart.vue`).
-- **Axes/grid:** thin gray axis line, light gray split lines, small muted axis-label text - matches
-  `BarChart.vue`'s `buildOption()`. Keep `grid` tight (`left/right: 8`, `top: 16`, `bottom: 24`,
-  `containLabel: true`) so the chart sits flush inside its `Card`.
+- **Axes/grid** (Figma dataviz structure, chart node 2035:268), as in `BarChart.vue`'s `buildOption()`:
+  - axis line `--p-surface-400`, split lines `--p-surface-200`
+  - axis labels Inter 12px in `--p-text-muted-color`. ECharts draws on canvas and does not inherit the page
+    font, so name the family explicitly.
+  - bars with a 2px `borderRadius`
+  - `grid` flush with the `Card` (`left/right: 0`, `top: 8`, `bottom: 0`, `containLabel: true`)
 - **Tooltip:** always enable `tooltip: { trigger: "axis" }` (or `"item"` for a pie) with a `valueFormatter` -
   reuse `utils/format.ts` (`formatCurrency`/`formatDate`) inside it when the value is currency or a date,
   instead of raw numbers.

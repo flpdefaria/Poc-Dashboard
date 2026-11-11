@@ -19,7 +19,7 @@ Read the entity before writing tests; this list is a map, not the source of trut
 
 - **Brand** (`Brand.cs`): `Create()`, `Update()`, `EnsureCanBeDeleted()`. Throws for an empty name, a name over 150 chars, `FoundedDate` in the future, and deleting a brand that has cars.
 - **Car** (`Car.cs`): `Create()`, `Update()`, computed `IsAvailable` (`Stock > 0`). Throws for an empty `Model`, and for a negative price, stock or mileage, and for a `ModelYear` in the future.
-- **Customer** (`Customer.cs`): `Create()`, `Update()`. Throws for an empty/whitespace full name, a full name over 150 chars, and an empty or invalid email.
+- **Customer** (`Customer.cs`): `Create()`, `Update()`. Throws for an empty/whitespace full name, a full name over 150 chars, an empty or invalid email, and a non-positive `CarId` (`"Customer car id is invalid."`). `CarId` is optional (`null` = no car). Whether the car exists is checked by `CustomerService`, which is not unit-tested here.
 - `DomainException` lives in `CarStore.Domain.Exceptions`. Assert with `act.Should().Throw<DomainException>().WithMessage("...")`.
 
 ## Test project

@@ -164,37 +164,6 @@ html.app-dark {
 ::view-transition-new(root) {
   z-index: 1;
 }
-
-/* Basic Tailwind styling for the plain Razor forms (Create/Edit/Delete/Details),
-   replacing the removed Bootstrap component classes with PrimeVue design tokens. */
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-border px-4 py-2 text-sm font-medium no-underline cursor-pointer transition-colors;
-  }
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-border px-4 py-2 text-sm font-medium no-underline cursor-pointer transition-colors bg-primary text-primary-contrast hover:bg-primary-emphasis;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-border px-4 py-2 text-sm font-medium no-underline cursor-pointer transition-colors border border-surface bg-surface-0 text-color hover:bg-surface-100;
-  }
-  .btn-danger {
-    @apply inline-flex items-center justify-center gap-2 rounded-border px-4 py-2 text-sm font-medium no-underline cursor-pointer transition-colors bg-red-500 text-white hover:bg-red-600;
-  }
-  .form-label {
-    @apply block text-sm font-medium text-color mb-1;
-  }
-  .form-control,
-  .form-select {
-    @apply w-full rounded-border border border-surface bg-surface-0 px-3 py-2 text-sm text-color focus:outline-none focus:ring-2 focus:ring-primary-400;
-  }
-  .alert-danger {
-    @apply rounded-border border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700;
-  }
-  .alert-danger:empty {
-    @apply hidden;
-  }
-}
-
 /* Motion. Exponential ease-out; entrances start from an already-visible resting state so a
    failed script never hides content. */
 :root {
