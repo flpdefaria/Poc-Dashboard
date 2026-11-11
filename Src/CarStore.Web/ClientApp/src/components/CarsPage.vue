@@ -4,7 +4,7 @@ import PageHeader from "./common/pageheader/PageHeader.vue";
 import CarsTable from "./CarsTable.vue";
 import CreateCarDialog, { type CreateCarPayload } from "./common/dialog/CreateCarDialog.vue";
 import Button from "primevue/button";
-import { primaryButtonClass } from "../styles/buttonStyles";
+import { primaryButtonMdClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
 import { carLabel } from "../utils/entityLabel";
 import type { BrandOption } from "../types";
@@ -42,18 +42,15 @@ onMounted(loadBrandOptions);
 
 
 <template>
-  <div class="flex flex-col gap-3">
+  <!-- Figma "Tela · Carros" main (2063:6): 24px between the page header and the content. -->
+  <div class="flex flex-col gap-6">
     <PageHeader
       title="Carros"
       description="Gerencie o estoque de carros: consulte modelo, marca, carroceria, preço, estoque e disponibilidade, e crie, edite ou remova registros."
     >
       <template #actions>
-        <Button
-          :class="primaryButtonClass"
-          @click="openCreate"
-        >
-          <Plus class="text-xs" />
-          Novo carro
+        <Button label="Novo carro" :class="primaryButtonMdClass" @click="openCreate">
+          <template #icon><Plus /></template>
         </Button>
       </template>
     </PageHeader>

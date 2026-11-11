@@ -1,0 +1,22 @@
+{
+  "scenario": "customers-delete-dialog-light",
+  "checks": [
+    {
+      "label": "Botão Excluir",
+      "selector": ".p-dialog button:has-text(\"Excluir\")",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Excluir",
+        "value": null,
+        "box": {
+          "x": 1011.58,
+          "y": 508.5,
+          "width": 69.92,
+          "height": 38
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

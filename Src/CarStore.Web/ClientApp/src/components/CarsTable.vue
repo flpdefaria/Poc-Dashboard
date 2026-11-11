@@ -11,7 +11,9 @@ import { usePagedFetch } from "../composables/usePagedFetch";
 import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatCurrency } from "../utils/format";
 import { carLabel } from "../utils/entityLabel";
+import { tagPt } from "../styles/tagStyles";
 import type { BrandOption, CarDto } from "../types";
+import type { ConfirmDeleteItem } from "./common/dialog/ConfirmDeleteDialog.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -66,6 +68,21 @@ const {
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
+// Delete dialogs (Figma 2072:2729): one list row per car, "Brand · Body" subtitle and the price.
+function toDeleteItem(car: CarDto): ConfirmDeleteItem {
+  return { key: car.id, title: car.model, subtitle: `${car.brandName} · ${car.bodyType}`, meta: formatCurrency(car.price) };
+}
+
+function carsCount(count: number) {
+  return count === 1 ? "1 carro" : `${count} carros`;
+}
+
+// Details "Editar" (Figma 2074:3820) hands the car straight to the edit dialog.
+function onDetailsEdit(car: CarDto) {
+  detailsDialogVisible.value = false;
+  onEditRequest(car);
+}
+
 onMounted(() => load(1, rows.value));
 
 defineExpose({ reload: () => load(1, rows.value) });
@@ -87,6 +104,7 @@ defineExpose({ reload: () => load(1, rows.value) });
     confirm-delete
     confirm-edit
     bulk-delete
+    card
     @page="onPage"
     @delete="onDeleteRequest"
     @edit="onEditRequest"
@@ -94,26 +112,19 @@ defineExpose({ reload: () => load(1, rows.value) });
     @bulk-delete="onBulkDeleteRequest"
   >
     <template #col-price="{ data }">
-      <span class="text-xs text-muted-color">{{ formatCurrency(data.price) }}</span>
+      <span>{{ formatCurrency(data.price) }}</span>
     </template>
     <template #col-isAvailable="{ data }">
-      <Tag :value="data.isAvailable ? 'Sim' : 'Não'" :severity="data.isAvailable ? 'success' : 'danger'" />
+      <Tag :value="data.isAvailable ? 'Sim' : 'Não'" :severity="data.isAvailable ? 'success' : 'danger'" :pt="tagPt" />
     </template>
   </DataTableCommon>
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Excluir carro"
-    message="Tem certeza de que deseja excluir este carro?"
-    :details="
-      deleteTarget
-        ? [
-            { label: 'Modelo', value: deleteTarget.model },
-            { label: 'Marca', value: deleteTarget.brandName },
-            { label: 'Preço', value: formatCurrency(deleteTarget.price) },
-          ]
-        : []
-    "
+    title="Excluir carro?"
+    message="O carro abaixo será removido do estoque:"
+    :items="deleteTarget ? [toDeleteItem(deleteTarget)] : []"
+    confirm-label="Excluir carro"
     :loading="deleteLoading"
     :error="deleteError"
     @confirm="onDeleteConfirm"
@@ -121,9 +132,14 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Excluir carros"
-    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} carro(s)?`"
-    :details="bulkDeleteTargets.map((car) => ({ label: car.model, value: car.brandName }))"
+    :title="`Excluir ${carsCount(bulkDeleteTargets.length)}?`"
+    :message="
+      bulkDeleteTargets.length === 1
+        ? 'O carro abaixo será removido do estoque:'
+        : 'Os carros abaixo serão removidos do estoque:'
+    "
+    :items="bulkDeleteTargets.map(toDeleteItem)"
+    :confirm-label="`Excluir ${carsCount(bulkDeleteTargets.length)}`"
     :loading="bulkDeleteLoading"
     :error="bulkDeleteError"
     @confirm="onBulkDeleteConfirm"
@@ -138,6 +154,6 @@ defineExpose({ reload: () => load(1, rows.value) });
     @submit="onEditSubmit"
   />
 
-  <DetailsCarDialog v-model:visible="detailsDialogVisible" :car="detailsTarget" />
+  <DetailsCarDialog v-model:visible="detailsDialogVisible" :car="detailsTarget" @edit="onDetailsEdit" />
 </template>
 

@@ -1,0 +1,34 @@
+{
+  "scenario": "cars-delete-success-dark",
+  "checks": [
+    {
+      "label": "Diálogo fechado",
+      "selector": ".p-dialog",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Toast de sucesso",
+      "selector": ".p-toast-message-success",
+      "text": "Carro excluído",
+      "observed": {
+        "count": 1,
+        "text": "Carro excluído",
+        "value": null,
+        "box": {
+          "x": 1020,
+          "y": 814,
+          "width": 400,
+          "height": 50
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

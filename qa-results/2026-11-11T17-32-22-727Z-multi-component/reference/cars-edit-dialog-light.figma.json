@@ -1,0 +1,243 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2073-3806",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2075:4909",
+    "nodeName": "form-dialog (Tela · Carros · Editar carro 2073:3806)",
+    "retrievedAt": "2026-11-11T16:00:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs",
+      "primevue:get_component"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 694,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2075:4909",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2075:4921",
+      "component": "InputText",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2075:4944",
+      "component": "Select",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2075:4988",
+      "component": "InputNumber (disabled)",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2075:5025",
+      "component": "Textarea",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2075:4909",
+      "nodeName": "form-dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 694,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2075:4910",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2075:4911",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Editar carro",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2075:4912",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2075:4918",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2075:5031",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2075:5032",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2075:5040",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Salvar alterações",
+      "props": {
+        "width": 150,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2075:4919",
+      "nodeName": "field · Modelo",
+      "selector": ":scope .p-dialog-content > div:nth-child(1)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2075:4920",
+      "nodeName": "label Modelo",
+      "selector": ":scope label[for=\"edit-car-model\"]",
+      "text": "Modelo",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2075:4921",
+      "nodeName": "inputtext Modelo",
+      "selector": ":scope #edit-car-model",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "color": "#374151",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2075:4941",
+      "nodeName": "row Marca + Carroceria",
+      "selector": ":scope .p-dialog-content > div:nth-child(3)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2075:4944",
+      "nodeName": "select Marca",
+      "selector": ":scope .p-dialog-content .p-select",
+      "props": {
+        "width": 173,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af"
+      }
+    },
+    {
+      "nodeId": "2075:4965",
+      "nodeName": "inputtext Carroceria",
+      "selector": ":scope #edit-car-body",
+      "props": {
+        "width": 173,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2075:4988",
+      "nodeName": "inputtext Quilometragem",
+      "selector": ":scope #edit-car-mileage",
+      "props": {
+        "width": 173,
+        "height": 40,
+        "backgroundColor": "#e5e7eb",
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2075:5025",
+      "nodeName": "textarea Descrição",
+      "selector": ":scope #edit-car-description",
+      "props": {
+        "width": 362,
+        "height": 124,
+        "borderRadius": 6,
+        "paddingLeft": 16,
+        "fontSize": 14
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2073:3806 (1440x814 @1x) recortado em x520 y60 400x694 (bounds do get_metadata), sem a nav-rail/margem do shell e sem sombra externa.",
+    "Cores = valores resolvidos por get_variable_defs (modo de superfície gray: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712). Os hex do código gerado (#262626, #737373, #a3a3a3) são fallbacks.",
+    "inputtext/color resolvido = #374151; disabled = fundo #e5e7eb, texto #6b7280.",
+    "Dados = primeira página do protótipo: seed sem \"Corolla\" (o frame lista Corolla Cross e CR-V nas linhas 9 e 10) e a descrição do 3 Series em português, como no frame."
+  ]
+}

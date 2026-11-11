@@ -1,0 +1,708 @@
+{
+ "light": {
+  "rootHeight": 735,
+  "card": {
+   "x": 0,
+   "y": 136,
+   "w": 1288,
+   "h": 599,
+   "right": 1288,
+   "bottom": 735
+  },
+  "row1": {
+   "x": 1,
+   "y": 185,
+   "w": 1286,
+   "h": 48,
+   "right": 1287,
+   "bottom": 233
+  },
+  "trigger2Closed": {
+   "rect": {
+    "x": 1225,
+    "y": 240.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 272.5
+   },
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(17, 24, 39)",
+   "ariaExpanded": "false"
+  },
+  "row2Closed": {
+   "backgroundColor": "rgb(255, 255, 255)"
+  },
+  "paginator": {
+   "rect": {
+    "x": 1,
+    "y": 665,
+    "w": 1286,
+    "h": 68,
+    "right": 1287,
+    "bottom": 733
+   },
+   "justifyContent": "center",
+   "gap": "4px",
+   "paddingTop": "14px",
+   "paddingBottom": "14px",
+   "borderBottomWidth": "0px",
+   "card": {
+    "x": 0,
+    "y": 136,
+    "w": 1288,
+    "h": 599,
+    "right": 1288,
+    "bottom": 735
+   },
+   "children": [
+    [
+     "p-paginator-content",
+     439.734375,
+     848.265625
+    ]
+   ],
+   "centreOffset": 0,
+   "pageReport": 0
+  },
+  "activePage": {
+   "rect": {
+    "x": 519.734375,
+    "y": 681,
+    "w": 36,
+    "h": 36,
+    "right": 555.734375,
+    "bottom": 717
+   },
+   "backgroundColor": "rgb(229, 231, 235)",
+   "color": "rgb(17, 24, 39)",
+   "fontWeight": "600",
+   "fontSize": "14px",
+   "borderRadius": "50%"
+  },
+  "idlePage": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(107, 114, 128)",
+   "fontWeight": "400"
+  },
+  "navIcons": [
+   {
+    "cls": "p-icon p-paginator-first-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(107, 114, 128)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-prev-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(107, 114, 128)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-next-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(107, 114, 128)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-last-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(107, 114, 128)",
+    "paths": 1
+   }
+  ],
+  "navButton": {
+   "rect": {
+    "x": 679.734375,
+    "y": 681,
+    "w": 36,
+    "h": 36,
+    "right": 715.734375,
+    "bottom": 717
+   }
+  },
+  "rppLabel": {
+   "color": "rgb(107, 114, 128)",
+   "fontSize": "14px"
+  },
+  "rppChevron": [
+   {
+    "cls": "p-icon p-select-dropdown-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(156, 163, 175)",
+    "paths": 1
+   }
+  ],
+  "rppSelect": {
+   "x": 759.734375,
+   "y": 679,
+   "w": 88.53125,
+   "h": 40,
+   "right": 848.265625,
+   "bottom": 719
+  },
+  "idlePageHover": {
+   "backgroundColor": "rgb(243, 244, 246)",
+   "color": "rgb(31, 41, 55)"
+  },
+  "activePageHover": {
+   "backgroundColor": "rgb(229, 231, 235)",
+   "color": "rgb(17, 24, 39)"
+  },
+  "idlePageAfterHover": {
+   "backgroundColor": "rgba(0, 0, 0, 0)"
+  },
+  "menuOpen": {
+   "menu": {
+    "x": 1082,
+    "y": 276.5,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 382.5
+   },
+   "trigger": {
+    "backgroundColor": "rgb(249, 250, 251)",
+    "color": "rgb(17, 24, 39)",
+    "aria": "true"
+   },
+   "rightEdgeDelta": 0,
+   "gapBelow": 4,
+   "menuStyle": {
+    "borderTopColor": "rgb(229, 231, 235)",
+    "backgroundColor": "rgb(255, 255, 255)",
+    "borderRadius": "6px",
+    "boxShadow": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+   },
+   "list": {
+    "paddingTop": "3px",
+    "paddingLeft": "3px",
+    "gap": "4px"
+   },
+   "items": [
+    {
+     "text": "Detalhes",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(31, 41, 55)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    },
+    {
+     "text": "Editar",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(31, 41, 55)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    },
+    {
+     "text": "Excluir",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(31, 41, 55)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    }
+   ],
+   "itemTops": [
+    280.5,
+    314.5,
+    348.5
+   ],
+   "icons": [
+    {
+     "cls": "lucide lucide-eye p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(107, 114, 128)",
+     "paths": 2
+    },
+    {
+     "cls": "lucide lucide-pencil p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(107, 114, 128)",
+     "paths": 2
+    },
+    {
+     "cls": "lucide lucide-trash lucide-trash-2 p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(107, 114, 128)",
+     "paths": 5
+    }
+   ],
+   "iconClasses": [
+    "lucide lucide-eye p-menu-item-icon size-3.5! text-sm text-muted-color!",
+    "lucide lucide-pencil p-menu-item-icon size-3.5! text-sm text-muted-color!",
+    "lucide lucide-trash lucide-trash-2 p-menu-item-icon size-3.5! text-sm text-muted-color!"
+   ],
+   "row2": {
+    "backgroundColor": "rgb(243, 244, 246)",
+    "color": "rgb(31, 41, 55)"
+   },
+   "row1": {
+    "backgroundColor": "rgb(255, 255, 255)"
+   },
+   "triggerIcon": [
+    {
+     "cls": "lucide lucide-ellipsis-vertical lucide-more-vertical",
+     "size": "16x16",
+     "attr": 1.5,
+     "effectivePx": 1,
+     "color": "rgb(17, 24, 39)",
+     "paths": 3
+    }
+   ],
+   "expandedCount": 1
+  },
+  "afterToggleClose": {
+   "menus": 0,
+   "aria": "false",
+   "row2": {
+    "backgroundColor": "rgb(243, 244, 246)"
+   },
+   "trigger": {
+    "backgroundColor": "rgb(249, 250, 251)"
+   }
+  },
+  "switchRow": {
+   "menus": 1,
+   "expanded": [
+    6
+   ],
+   "row2": {
+    "backgroundColor": "rgb(255, 255, 255)"
+   },
+   "row6": {
+    "backgroundColor": "rgb(243, 244, 246)"
+   },
+   "rightEdgeDelta": 0
+  },
+  "afterOutsideClose": {
+   "menus": 0,
+   "expanded": 0,
+   "row2": {
+    "backgroundColor": "rgb(255, 255, 255)"
+   },
+   "row6": {
+    "backgroundColor": "rgb(255, 255, 255)"
+   }
+  },
+  "escape": {
+   "menus": 0,
+   "aria": "false",
+   "focusOnTrigger": "Ações da linha"
+  },
+  "selectedClosed": {
+   "backgroundColor": "rgb(229, 231, 235)",
+   "color": "rgb(17, 24, 39)"
+  },
+  "selectedOpen": {
+   "row": {
+    "backgroundColor": "rgb(229, 231, 235)",
+    "color": "rgb(17, 24, 39)"
+   },
+   "trigger": {
+    "backgroundColor": "rgb(249, 250, 251)"
+   }
+  },
+  "errors": [],
+  "flip": {
+   "viewportH": 720,
+   "menu": {
+    "x": 1082,
+    "y": 522.5,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 628.5
+   },
+   "trigger": {
+    "x": 1225,
+    "y": 624.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 656.5
+   },
+   "opensAbove": false,
+   "gapAbove": -4,
+   "rightEdgeDelta": 0,
+   "withinViewport": true
+  }
+ },
+ "dark": {
+  "rootHeight": 735,
+  "card": {
+   "x": 0,
+   "y": 136,
+   "w": 1288,
+   "h": 599,
+   "right": 1288,
+   "bottom": 735
+  },
+  "row1": {
+   "x": 1,
+   "y": 185,
+   "w": 1286,
+   "h": 48,
+   "right": 1287,
+   "bottom": 233
+  },
+  "trigger2Closed": {
+   "rect": {
+    "x": 1225,
+    "y": 240.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 272.5
+   },
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(249, 250, 251)",
+   "ariaExpanded": "false"
+  },
+  "row2Closed": {
+   "backgroundColor": "rgb(3, 7, 18)"
+  },
+  "paginator": {
+   "rect": {
+    "x": 1,
+    "y": 665,
+    "w": 1286,
+    "h": 68,
+    "right": 1287,
+    "bottom": 733
+   },
+   "justifyContent": "center",
+   "gap": "4px",
+   "paddingTop": "14px",
+   "paddingBottom": "14px",
+   "borderBottomWidth": "0px",
+   "card": {
+    "x": 0,
+    "y": 136,
+    "w": 1288,
+    "h": 599,
+    "right": 1288,
+    "bottom": 735
+   },
+   "children": [
+    [
+     "p-paginator-content",
+     439.734375,
+     848.265625
+    ]
+   ],
+   "centreOffset": 0,
+   "pageReport": 0
+  },
+  "activePage": {
+   "rect": {
+    "x": 519.734375,
+    "y": 681,
+    "w": 36,
+    "h": 36,
+    "right": 555.734375,
+    "bottom": 717
+   },
+   "backgroundColor": "color(srgb 0.0968627 0.130784 0.187451)",
+   "color": "rgb(249, 250, 251)",
+   "fontWeight": "600",
+   "fontSize": "14px",
+   "borderRadius": "50%"
+  },
+  "idlePage": {
+   "backgroundColor": "rgba(0, 0, 0, 0)",
+   "color": "rgb(156, 163, 175)",
+   "fontWeight": "400"
+  },
+  "navIcons": [
+   {
+    "cls": "p-icon p-paginator-first-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(156, 163, 175)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-prev-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(156, 163, 175)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-next-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(156, 163, 175)",
+    "paths": 1
+   },
+   {
+    "cls": "p-icon p-paginator-last-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(156, 163, 175)",
+    "paths": 1
+   }
+  ],
+  "navButton": {
+   "rect": {
+    "x": 679.734375,
+    "y": 681,
+    "w": 36,
+    "h": 36,
+    "right": 715.734375,
+    "bottom": 717
+   }
+  },
+  "rppLabel": {
+   "color": "rgb(156, 163, 175)",
+   "fontSize": "14px"
+  },
+  "rppChevron": [
+   {
+    "cls": "p-icon p-select-dropdown-icon size-3.5!",
+    "size": "14x14",
+    "attr": null,
+    "effectivePx": null,
+    "color": "rgb(75, 85, 99)",
+    "paths": 1
+   }
+  ],
+  "rppSelect": {
+   "x": 759.734375,
+   "y": 679,
+   "w": 88.53125,
+   "h": 40,
+   "right": 848.265625,
+   "bottom": 719
+  },
+  "idlePageHover": {
+   "backgroundColor": "rgb(17, 24, 39)",
+   "color": "rgb(243, 244, 246)"
+  },
+  "activePageHover": {
+   "backgroundColor": "color(srgb 0.0968627 0.130784 0.187451)",
+   "color": "rgb(249, 250, 251)"
+  },
+  "idlePageAfterHover": {
+   "backgroundColor": "rgba(0, 0, 0, 0)"
+  },
+  "menuOpen": {
+   "menu": {
+    "x": 1082,
+    "y": 276.5,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 382.5
+   },
+   "trigger": {
+    "backgroundColor": "color(srgb 0.0364706 0.057451 0.107647)",
+    "color": "rgb(249, 250, 251)",
+    "aria": "true"
+   },
+   "rightEdgeDelta": 0,
+   "gapBelow": 4,
+   "menuStyle": {
+    "borderTopColor": "color(srgb 0.0968627 0.130784 0.187451)",
+    "backgroundColor": "rgb(3, 7, 18)",
+    "borderRadius": "6px",
+    "boxShadow": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px"
+   },
+   "list": {
+    "paddingTop": "3px",
+    "paddingLeft": "3px",
+    "gap": "4px"
+   },
+   "items": [
+    {
+     "text": "Detalhes",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(243, 244, 246)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    },
+    {
+     "text": "Editar",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(243, 244, 246)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    },
+    {
+     "text": "Excluir",
+     "h": 30,
+     "w": 167,
+     "padding": "8px 12px",
+     "gap": "8px",
+     "color": "rgb(243, 244, 246)",
+     "fontWeight": "400",
+     "fontSize": "14px"
+    }
+   ],
+   "itemTops": [
+    280.5,
+    314.5,
+    348.5
+   ],
+   "icons": [
+    {
+     "cls": "lucide lucide-eye p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(156, 163, 175)",
+     "paths": 2
+    },
+    {
+     "cls": "lucide lucide-pencil p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(156, 163, 175)",
+     "paths": 2
+    },
+    {
+     "cls": "lucide lucide-trash lucide-trash-2 p-menu-item-icon size-3.5! text-sm text-muted-color!",
+     "size": "14x14",
+     "attr": 1.5,
+     "effectivePx": 0.875,
+     "color": "rgb(156, 163, 175)",
+     "paths": 5
+    }
+   ],
+   "iconClasses": [
+    "lucide lucide-eye p-menu-item-icon size-3.5! text-sm text-muted-color!",
+    "lucide lucide-pencil p-menu-item-icon size-3.5! text-sm text-muted-color!",
+    "lucide lucide-trash lucide-trash-2 p-menu-item-icon size-3.5! text-sm text-muted-color!"
+   ],
+   "row2": {
+    "backgroundColor": "rgb(17, 24, 39)",
+    "color": "rgb(243, 244, 246)"
+   },
+   "row1": {
+    "backgroundColor": "rgb(3, 7, 18)"
+   },
+   "triggerIcon": [
+    {
+     "cls": "lucide lucide-ellipsis-vertical lucide-more-vertical",
+     "size": "16x16",
+     "attr": 1.5,
+     "effectivePx": 1,
+     "color": "rgb(249, 250, 251)",
+     "paths": 3
+    }
+   ],
+   "expandedCount": 1
+  },
+  "afterToggleClose": {
+   "menus": 0,
+   "aria": "false",
+   "row2": {
+    "backgroundColor": "rgb(17, 24, 39)"
+   },
+   "trigger": {
+    "backgroundColor": "color(srgb 0.0364706 0.057451 0.107647)"
+   }
+  },
+  "switchRow": {
+   "menus": 1,
+   "expanded": [
+    6
+   ],
+   "row2": {
+    "backgroundColor": "rgb(3, 7, 18)"
+   },
+   "row6": {
+    "backgroundColor": "rgb(17, 24, 39)"
+   },
+   "rightEdgeDelta": 0
+  },
+  "afterOutsideClose": {
+   "menus": 0,
+   "expanded": 0,
+   "row2": {
+    "backgroundColor": "rgb(3, 7, 18)"
+   },
+   "row6": {
+    "backgroundColor": "rgb(3, 7, 18)"
+   }
+  },
+  "escape": {
+   "menus": 0,
+   "aria": "false",
+   "focusOnTrigger": "Ações da linha"
+  },
+  "selectedClosed": {
+   "backgroundColor": "color(srgb 0.0968627 0.130784 0.187451)",
+   "color": "rgb(249, 250, 251)"
+  },
+  "selectedOpen": {
+   "row": {
+    "backgroundColor": "color(srgb 0.0968627 0.130784 0.187451)",
+    "color": "rgb(249, 250, 251)"
+   },
+   "trigger": {
+    "backgroundColor": "color(srgb 0.0364706 0.057451 0.107647)"
+   }
+  },
+  "errors": [],
+  "flip": {
+   "viewportH": 720,
+   "menu": {
+    "x": 1082,
+    "y": 522.5,
+    "w": 175,
+    "h": 106,
+    "right": 1257,
+    "bottom": 628.5
+   },
+   "trigger": {
+    "x": 1225,
+    "y": 624.5,
+    "w": 32,
+    "h": 32,
+    "right": 1257,
+    "bottom": 656.5
+   },
+   "opensAbove": false,
+   "gapAbove": -4,
+   "rightEdgeDelta": 0,
+   "withinViewport": true
+  }
+ }
+}

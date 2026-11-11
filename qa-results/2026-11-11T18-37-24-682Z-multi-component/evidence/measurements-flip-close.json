@@ -1,0 +1,42 @@
+{
+ "720": {
+  "transformOrigin": "center bottom",
+  "marginTop": "4px",
+  "top": "518.5px",
+  "insetInlineStart": "1082px",
+  "menuTop": 522.5,
+  "menuBottom": 628.5,
+  "trigTop": 624.5,
+  "trigBottom": 656.5,
+  "afterToggleCloseMouseAway": {
+   "row": "rgb(255, 255, 255)",
+   "trig": "rgba(0, 0, 0, 0)",
+   "aria": "false"
+  },
+  "paginatorWrapper": {
+   "h": 69,
+   "borderBottom": "1px rgb(229, 231, 235)",
+   "cls": "p-datatable-paginator-bottom"
+  }
+ },
+ "900": {
+  "transformOrigin": "center top",
+  "marginTop": "4px",
+  "top": "272.5px",
+  "insetInlineStart": "1082px",
+  "menuTop": 276.5,
+  "menuBottom": 382.5,
+  "trigTop": 240.5,
+  "trigBottom": 272.5,
+  "afterToggleCloseMouseAway": {
+   "row": "rgb(255, 255, 255)",
+   "trig": "rgba(0, 0, 0, 0)",
+   "aria": "false"
+  },
+  "paginatorWrapper": {
+   "h": 69,
+   "borderBottom": "1px rgb(229, 231, 235)",
+   "cls": "p-datatable-paginator-bottom"
+  }
+ }
+}

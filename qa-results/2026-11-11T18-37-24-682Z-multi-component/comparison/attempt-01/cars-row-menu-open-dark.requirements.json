@@ -1,0 +1,73 @@
+{
+  "scenario": "cars-row-menu-open-dark",
+  "checks": [
+    {
+      "label": "Menu aberto com 3 ações",
+      "selector": ".p-menu-overlay .p-menu-item",
+      "count": 3,
+      "observed": {
+        "count": 3,
+        "text": "Detalhes",
+        "value": null,
+        "box": {
+          "x": 1086,
+          "y": 280.5,
+          "width": 167,
+          "height": 30
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Gatilho da linha 2 com aria-expanded=true",
+      "selector": ".p-datatable-tbody > tr:nth-child(2) button[aria-label=\"Ações da linha\"][aria-expanded=\"true\"]",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "",
+        "value": null,
+        "box": {
+          "x": 1225,
+          "y": 240.5,
+          "width": 32,
+          "height": 32
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Só um gatilho expandido",
+      "selector": "button[aria-label=\"Ações da linha\"][aria-expanded=\"true\"]",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "",
+        "value": null,
+        "box": {
+          "x": 1225,
+          "y": 240.5,
+          "width": 32,
+          "height": 32
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Linha aberta = 5 Series",
+      "selector": ".p-datatable-tbody > tr:nth-child(2)",
+      "text": "5 Series",
+      "observed": {
+        "count": 1,
+        "text": "5 Series BMW Sedan R$ 58.500,00 16 5 Sim",
+        "value": null,
+        "box": {
+          "x": 1,
+          "y": 233,
+          "width": 1286,
+          "height": 48
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

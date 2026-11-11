@@ -1,0 +1,75 @@
+{
+  "scenario": "cars-delete-success-light",
+  "checks": [
+    {
+      "label": "Diálogo fechado",
+      "selector": ".p-dialog",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Toast de sucesso",
+      "selector": ".p-toast-message-success",
+      "text": "Carro excluído",
+      "observed": {
+        "count": 1,
+        "text": "Carro excluído",
+        "value": null,
+        "box": {
+          "x": 1020,
+          "y": 814,
+          "width": 400,
+          "height": 50
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Lista recarregada sem o carro excluído",
+      "selector": ".p-datatable-tbody > tr",
+      "count": 9,
+      "observed": {
+        "count": 10,
+        "text": "5 Series BMW Sedan R$ 58.500,00 16 5 Sim",
+        "value": null,
+        "box": {
+          "x": 1,
+          "y": 185,
+          "width": 1286,
+          "height": 48
+        }
+      },
+      "status": "fail"
+    },
+    {
+      "label": "3 Series removido da lista",
+      "selector": ".p-datatable-tbody > tr:has-text(\"3 Series\")",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Nenhuma linha presa no estado de saída",
+      "selector": ".p-datatable-tbody > tr.row-fx-leaving",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    }
+  ]
+}

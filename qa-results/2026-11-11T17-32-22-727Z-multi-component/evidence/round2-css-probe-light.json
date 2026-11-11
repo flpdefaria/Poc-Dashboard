@@ -1,0 +1,37 @@
+{
+  "mutedVar": [
+    "--p-text-muted-color=#6b7280",
+    "--p-inputtext-focus-border-color=#030712",
+    "--p-form-field-focus-border-color=#030712",
+    "--p-primary-color=#030712",
+    "--p-surface-400=#9ca3af",
+    "--p-inputtext-hover-border-color=#9ca3af",
+    "--p-select-focus-border-color=#030712"
+  ],
+  "icon": {
+    "cls": "lucide lucide-eye p-menu-item-icon",
+    "computed": "rgb(156, 163, 175)",
+    "focus": false,
+    "rules": [
+      " .p-menu-item-icon { color: var(--p-menu-item-icon-color)  }"
+    ]
+  },
+  "inputFocus": {
+    "cls": "p-inputtext p-component w-full h-10! px-4! py-0! text-sm! leading-[21px]! not-focus:border-surface-400!",
+    "computed": "rgb(156, 163, 175)",
+    "focus": true,
+    "rules": [
+      "@base *, ::after, ::before, ::backdrop, ::file-selector-button { border-color: currentcolor  }",
+      " .p-inputtext:enabled:hover { border-color: var(--p-inputtext-hover-border-color)  }",
+      " .p-inputtext:enabled:focus { border-color: var(--p-inputtext-focus-border-color)  }"
+    ]
+  },
+  "inputFocusTop": {
+    "cls": "p-inputtext p-component w-full h-10! px-4! py-0! text-sm! leading-[21px]! not-focus:border-surface-400!",
+    "computed": "rgb(156, 163, 175)",
+    "focus": true,
+    "rules": [
+      "@base *, ::after, ::before, ::backdrop, ::file-selector-button { border-top-color: currentcolor  }"
+    ]
+  }
+}

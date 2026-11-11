@@ -8,9 +8,17 @@ import InputNumber from "primevue/inputnumber";
 import Textarea from "primevue/textarea";
 import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
-import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
+import {
+  modalDialogPt,
+  modalDialogTitleClass,
+  modalInputClass,
+  modalInputNumberPt,
+  modalSelectPt,
+  modalTextareaClass,
+} from "./dialogStyles";
+import { primaryButtonMdClass, secondaryButtonMdClass } from "../../../styles/buttonStyles";
 import type { BrandOption, CarDto } from "../../../types";
-import { Check } from "@lucide/vue";
+import { X } from "@lucide/vue";
 
 export interface EditCarPayload {
   model: string;
@@ -89,7 +97,9 @@ function onSave() {
   });
 }
 
-const dialogPt = dialogShellPt("w-[765px]");
+// Figma form-dialog (2075:4909 edit / 2075:5049 create): 400px.
+const dialogPt = modalDialogPt("w-[400px]");
+const idPrefix = "edit-car";
 </script>
 
 <template>
@@ -104,52 +114,89 @@ const dialogPt = dialogShellPt("w-[765px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Editar carro</span>
+      <span :class="modalDialogTitleClass">Editar carro</span>
     </template>
+    <template #closeicon><X /></template>
 
-    <FormField label="Modelo">
-      <InputText v-model="form.model" class="w-full" />
+    <FormField label="Modelo" :input-id="`${idPrefix}-model`" compact>
+      <InputText :id="`${idPrefix}-model`" v-model="form.model" class="w-full" :class="modalInputClass" />
     </FormField>
 
-    <FormField label="Chassi (VIN)">
-      <InputText v-model="form.vin" class="w-full" />
+    <FormField label="Chassi (VIN)" :input-id="`${idPrefix}-vin`" compact>
+      <InputText :id="`${idPrefix}-vin`" v-model="form.vin" class="w-full" :class="modalInputClass" />
     </FormField>
 
-    <div class="flex w-full items-start gap-[21px]">
-      <FormField label="Marca">
+    <div class="flex w-full items-start gap-4">
+      <FormField label="Marca" :input-id="`${idPrefix}-brand`" compact>
         <Select
           v-model="form.brandId"
+          :input-id="`${idPrefix}-brand`"
           :options="props.brands"
           option-label="name"
           option-value="id"
-          placeholder="Selecione uma marca"
-          class="w-full"
+          placeholder="Marca"
+          fluid
+          :pt="modalSelectPt"
         />
       </FormField>
-      <FormField label="Carroceria">
-        <InputText v-model="form.bodyType" class="w-full" />
-      </FormField>
-      <FormField label="Ano do modelo">
-        <InputNumber v-model="form.modelYear" :use-grouping="false" class="w-full" />
+      <FormField label="Carroceria" :input-id="`${idPrefix}-body`" compact>
+        <InputText :id="`${idPrefix}-body`" v-model="form.bodyType" class="w-full" :class="modalInputClass" />
       </FormField>
     </div>
 
-    <div class="flex w-full items-start gap-[21px]">
-      <FormField label="Preço">
-        <InputNumber v-model="form.price" mode="currency" currency="BRL" locale="pt-BR" class="w-full" />
+    <div class="flex w-full items-start gap-4">
+      <FormField label="Ano do modelo" :input-id="`${idPrefix}-year`" compact>
+        <InputNumber
+          v-model="form.modelYear"
+          :input-id="`${idPrefix}-year`"
+          :use-grouping="false"
+          fluid
+          :pt="modalInputNumberPt"
+        />
       </FormField>
-      <FormField label="Estoque">
-        <InputNumber v-model="form.stock" :min="0" class="w-full" />
-      </FormField>
-      <FormField label="Quilometragem">
-        <InputNumber v-model="form.mileage" :min="0" disabled class="w-full opacity-50" />
+      <FormField label="Quilometragem" :input-id="`${idPrefix}-mileage`" compact>
+        <InputNumber
+          v-model="form.mileage"
+          :input-id="`${idPrefix}-mileage`"
+          :min="0"
+          disabled
+          fluid
+          :pt="modalInputNumberPt"
+        />
       </FormField>
     </div>
 
-    <div class="flex h-[138px] w-full flex-col gap-1.75">
-      <label class="text-sm font-semibold text-color">Descrição</label>
-      <Textarea v-model="form.description" class="h-[110px] w-full resize-none" />
+    <div class="flex w-full items-start gap-4">
+      <FormField label="Preço" :input-id="`${idPrefix}-price`" compact>
+        <InputNumber
+          v-model="form.price"
+          :input-id="`${idPrefix}-price`"
+          mode="currency"
+          currency="BRL"
+          locale="pt-BR"
+          fluid
+          :pt="modalInputNumberPt"
+        />
+      </FormField>
+      <FormField label="Estoque" :input-id="`${idPrefix}-stock`" compact>
+        <InputNumber
+          v-model="form.stock"
+          :input-id="`${idPrefix}-stock`"
+          :min="0"
+          fluid
+          :pt="modalInputNumberPt"
+        />
+      </FormField>
     </div>
+
+    <FormField label="Descrição" :input-id="`${idPrefix}-description`" compact>
+      <Textarea
+        :id="`${idPrefix}-description`"
+        v-model="form.description"
+        class="w-full"
+        :class="modalTextareaClass"
+      />
+    </FormField>
 
     <Message v-if="validationError || props.error" severity="error" :closable="false">
       {{ validationError ?? props.error }}
@@ -161,17 +208,10 @@ const dialogPt = dialogShellPt("w-[765px]");
         severity="secondary"
         outlined
         :disabled="loading"
-        :class="dialogSecondaryButtonClass"
+        :class="secondaryButtonMdClass"
         @click="onUpdateVisible(false)"
       />
-      <Button
-        label="Salvar"
-        :loading="loading"
-        :class="dialogPrimaryButtonClass"
-        @click="onSave"
-      >
-        <template #icon><Check /></template>
-      </Button>
+      <Button label="Salvar alterações" :loading="loading" :class="primaryButtonMdClass" @click="onSave" />
     </template>
   </Dialog>
 </template>

@@ -1,0 +1,256 @@
+{
+ "cars": {
+  "light-720-row10": {
+   "styleTop": "515px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 515,
+    "w": 175,
+    "h": 106,
+    "bottom": 621,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 624.5,
+    "bottom": 656.5,
+    "right": 1257
+   },
+   "direction": "up",
+   "gap": 3.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "light-760-row10": {
+   "styleTop": "515px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 515,
+    "w": 175,
+    "h": 106,
+    "bottom": 621,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 624.5,
+    "bottom": 656.5,
+    "right": 1257
+   },
+   "direction": "up",
+   "gap": 3.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "light-900-row2": {
+   "styleTop": "277px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 277,
+    "w": 175,
+    "h": 106,
+    "bottom": 383,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 240.5,
+    "bottom": 272.5,
+    "right": 1257
+   },
+   "direction": "down",
+   "gap": 4.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "light-900-row9": {
+   "styleTop": "613px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 613,
+    "w": 175,
+    "h": 106,
+    "bottom": 719,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 576.5,
+    "bottom": 608.5,
+    "right": 1257
+   },
+   "direction": "down",
+   "gap": 4.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "dark-720-row10": {
+   "styleTop": "515px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 515,
+    "w": 175,
+    "h": 106,
+    "bottom": 621,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 624.5,
+    "bottom": 656.5,
+    "right": 1257
+   },
+   "direction": "up",
+   "gap": 3.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "dark-760-row10": {
+   "styleTop": "515px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 515,
+    "w": 175,
+    "h": 106,
+    "bottom": 621,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 624.5,
+    "bottom": 656.5,
+    "right": 1257
+   },
+   "direction": "up",
+   "gap": 3.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "dark-900-row2": {
+   "styleTop": "277px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 277,
+    "w": 175,
+    "h": 106,
+    "bottom": 383,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 240.5,
+    "bottom": 272.5,
+    "right": 1257
+   },
+   "direction": "down",
+   "gap": 4.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  },
+  "dark-900-row9": {
+   "styleTop": "613px",
+   "styleInsetInlineStart": "1082px",
+   "marginTop": "0px",
+   "menu": {
+    "x": 1082,
+    "y": 613,
+    "w": 175,
+    "h": 106,
+    "bottom": 719,
+    "right": 1257
+   },
+   "trigger": {
+    "top": 576.5,
+    "bottom": 608.5,
+    "right": 1257
+   },
+   "direction": "down",
+   "gap": 4.5,
+   "overlap": false,
+   "rightEdgeDelta": 0,
+   "wholePx": true,
+   "inViewport": true,
+   "errors": []
+  }
+ },
+ "brands": {
+  "light": [
+   {
+    "cls": "lucide lucide-eye p-menu-item-icon",
+    "paths": 2,
+    "sw": "2",
+    "size": 14
+   },
+   {
+    "cls": "lucide lucide-pencil p-menu-item-icon",
+    "paths": 2,
+    "sw": "2",
+    "size": 14
+   },
+   {
+    "cls": "lucide lucide-trash lucide-trash-2 p-menu-item-icon",
+    "paths": 5,
+    "sw": "2",
+    "size": 14
+   }
+  ],
+  "lightTrigger": {
+   "cls": "lucide lucide-ellipsis-vertical lucide-more-vertical",
+   "sw": "2",
+   "size": 16
+  },
+  "dark": [
+   {
+    "cls": "lucide lucide-eye p-menu-item-icon",
+    "paths": 2,
+    "sw": "2",
+    "size": 14
+   },
+   {
+    "cls": "lucide lucide-pencil p-menu-item-icon",
+    "paths": 2,
+    "sw": "2",
+    "size": 14
+   },
+   {
+    "cls": "lucide lucide-trash lucide-trash-2 p-menu-item-icon",
+    "paths": 5,
+    "sw": "2",
+    "size": 14
+   }
+  ],
+  "darkTrigger": {
+   "cls": "lucide lucide-ellipsis-vertical lucide-more-vertical",
+   "sw": "2",
+   "size": 16
+  }
+ }
+}

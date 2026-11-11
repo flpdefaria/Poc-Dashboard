@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2026-11-11T18:00:50.835Z",
+  "attempt": 4,
+  "scenarios": [
+    {
+      "id": "cars-row-menu-light",
+      "label": "Carros — menu de ações da linha, claro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": ".p-menu-overlay",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Três ações",
+          "selector": ".p-menu-overlay .p-menu-item",
+          "count": 3
+        },
+        {
+          "label": "Ação Detalhes",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=0",
+          "text": "Detalhes"
+        },
+        {
+          "label": "Ação Editar",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=1",
+          "text": "Editar"
+        },
+        {
+          "label": "Ação Excluir",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=2",
+          "text": "Excluir"
+        },
+        {
+          "label": "Ícones Lucide",
+          "selector": ".p-menu-overlay .p-menu-item svg.lucide",
+          "count": 3
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-row-menu-light"
+    },
+    {
+      "id": "cars-row-menu-dark",
+      "label": "Carros — menu de ações da linha, escuro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": ".p-menu-overlay",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Três ações",
+          "selector": ".p-menu-overlay .p-menu-item",
+          "count": 3
+        },
+        {
+          "label": "Ação Detalhes",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=0",
+          "text": "Detalhes"
+        },
+        {
+          "label": "Ação Editar",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=1",
+          "text": "Editar"
+        },
+        {
+          "label": "Ação Excluir",
+          "selector": ".p-menu-overlay .p-menu-item >> nth=2",
+          "text": "Excluir"
+        },
+        {
+          "label": "Ícones Lucide",
+          "selector": ".p-menu-overlay .p-menu-item svg.lucide",
+          "count": 3
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-row-menu-dark"
+    }
+  ]
+}

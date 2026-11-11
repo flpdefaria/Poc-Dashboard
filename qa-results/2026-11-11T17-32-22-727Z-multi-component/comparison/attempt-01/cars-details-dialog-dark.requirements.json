@@ -1,0 +1,158 @@
+{
+  "scenario": "cars-details-dialog-dark",
+  "checks": [
+    {
+      "label": "Título = modelo",
+      "selector": ".p-dialog-header",
+      "text": "3 Series",
+      "observed": {
+        "count": 1,
+        "text": "3 Series Disponível BMW · Sedan",
+        "value": null,
+        "box": {
+          "x": 521,
+          "y": 193,
+          "width": 398,
+          "height": 80
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Tag Disponível",
+      "selector": ".p-dialog-header .p-tag",
+      "text": "Disponível",
+      "observed": {
+        "count": 1,
+        "text": "Disponível",
+        "value": null,
+        "box": {
+          "x": 663.84,
+          "y": 216.5,
+          "width": 67.92,
+          "height": 17
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Subtítulo marca · carroceria",
+      "selector": ".p-dialog-header",
+      "text": "BMW · Sedan",
+      "observed": {
+        "count": 1,
+        "text": "3 Series Disponível BMW · Sedan",
+        "value": null,
+        "box": {
+          "x": 521,
+          "y": 193,
+          "width": 398,
+          "height": 80
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Preço em destaque",
+      "selector": ".p-dialog-content p.text-\\[32px\\]",
+      "text": "R$ 44.500,00",
+      "observed": {
+        "count": 1,
+        "text": "R$ 44.500,00",
+        "value": null,
+        "box": {
+          "x": 541,
+          "y": 289,
+          "width": 358,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Caixa de estatísticas",
+      "selector": ".p-dialog-content > dl",
+      "text": "50 un.",
+      "observed": {
+        "count": 1,
+        "text": "Estoque 50 un. Quilometragem 10 Ano do modelo 2024",
+        "value": null,
+        "box": {
+          "x": 541,
+          "y": 345,
+          "width": 358,
+          "height": 68
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Seção Especificações",
+      "selector": ".p-dialog-content h3:text-is(\"Especificações\")",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Especificações",
+        "value": null,
+        "box": {
+          "x": 541,
+          "y": 429,
+          "width": 358,
+          "height": 20
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "VIN em monoespaçada",
+      "selector": ".p-dialog-content dd.font-mono",
+      "text": "WBA5R1C0XLA123462",
+      "observed": {
+        "count": 1,
+        "text": "WBA5R1C0XLA123462",
+        "value": null,
+        "box": {
+          "x": 776.17,
+          "y": 539,
+          "width": 122.83,
+          "height": 16
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Botões Fechar + Editar",
+      "selector": ".p-dialog-footer button",
+      "count": 2,
+      "observed": {
+        "count": 2,
+        "text": "Fechar",
+        "value": null,
+        "box": {
+          "x": 714.33,
+          "y": 647,
+          "width": 79.84,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Botão Editar",
+      "selector": ".p-dialog .p-dialog-footer button:last-child",
+      "text": "Editar",
+      "observed": {
+        "count": 1,
+        "text": "Editar",
+        "value": null,
+        "box": {
+          "x": 802.17,
+          "y": 647,
+          "width": 96.83,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

@@ -321,3 +321,84 @@ The CLI enforces the evidence. It **downgrades** a requested PASS when any of th
 
 It returns FAIL when a defect or failed criterion is evidenced and nothing blocks. Read `qaFindings.status`
 in `report.json`, not the exit code.
+
+## Learnings (2026-11-11, Cars screen run)
+
+`scenarios/cars-figma.ts` covers the Cars screen against seven Figma frames and the CRUD flows. Lessons
+from that run:
+
+- **Spec selectors are CSS.** `.figma.json` `checks[].selector` goes through `querySelector`, so
+  Playwright-only syntax (`:has-text()`, `>> nth=`) reports `missing-element`. Use classes, `:nth-child`,
+  `:has()` or attributes. `renderChecks` and `actions` use Playwright selectors, so these work there.
+- **Checkbox selection.** With `selectionMode="multiple"`, PrimeVue adds `p-datatable-row-selected` only
+  when `highlightOnSelect` is set. Target `tr[data-p-selected="true"]` instead.
+- **Write mocks.** Mocks match the URL only, regardless of method. `/\/api\/cars$/` catches only the POST,
+  because the list GET carries a query string. `/\/api\/cars\/\d+$/` catches PUT and DELETE. A
+  `{ status: 400, body: { message } }` mock reproduces a `DomainException` response.
+- **Overlays.** Capture popups and dialogs by their own root (`.p-menu-overlay`, `.p-dialog`). Crop the
+  Figma frame at the overlay's `get_metadata` bounds. Toasts need a `body` capture.
+- **Prototype data.** A Figma frame's sample rows may skip seed rows. The Cars list drops "Corolla", for
+  example. Filter the fixture in the scenario so that the pixel diff measures layout, not data.
+- **Classifying ids.** `verdict.diferencas` can classify any generated id. Only padding, margin, gap,
+  radius and letter-spacing spec rows can go in `minimas`. A sub-pixel `width` row needs an explicit
+  category instead.
+
+## Learnings (2026-11-11, Cars screen round 2)
+
+- **Focus and hover colors need a settle delay.** Aura inputs and selects have a 0.2s `border-color`
+  transition, and `reducedMotion: 'reduce'` does not stop it. Wait about 600ms after `focus()`/`hover()`
+  before reading `getComputedStyle`, or you will read the previous color.
+- **A `pt` key can be dead when a slot replaces its element.** With the Menu `#itemicon` slot, PrimeVue passes
+  only `cx('itemIcon')` as `class`, so `pt.itemIcon` classes never reach the icon. Check the element's real
+  `class` attribute before trusting a `pt` fix.
+- **Figma strokes are outside auto layout.** A 175x78 Figma menu with a 1px stroke and 4px padding is
+  4px from the outer edge. In CSS the border adds 2px (80px), unless the padding drops to 3px.
+- **`dimension-mismatch` never goes in `minimas`.** A 1px capture rounding needs an explicit category, and
+  `artefato-harness` downgrades any verdict to BLOCKED.
+- `scenarios/legacy-dialogs.ts` guards the legacy dialog shell (`dialogShellPt`, `dangerButtonClass`) on
+  Brands create/delete and Customers delete against the base.
+
+## Learnings (2026-11-11, Cars second pass: menu + paginator)
+
+- **`strokeWidth` spec rows read viewBox units.** `getComputedStyle(svg).strokeWidth` returns the `stroke-width`
+  attribute in the icon's 24-unit viewBox, not rendered px. For a Figma "1.5px" icon stroke, measure
+  `stroke-width × renderedSize / 24` separately. Lucide's `absoluteStrokeWidth` divides by the `size` prop
+  (default 24), not by the CSS size, so a `size-3.5!` icon with `stroke-width 1.5` renders 0.875px.
+- **`@lucide/vue` 1.71: `Trash` is the old `Trash2`** (`aliases: ["trash-2"]`, 5 paths). Check the rendered
+  path count, not the import name.
+- **Popups close on scroll.** A `captureSelector` taller than the viewport makes the element screenshot scroll,
+  and PrimeVue closes the menu. Size the viewport so the capture fits (`cars-row-menu-flip` uses 1440x760).
+- **Move the pointer off the trigger** (`hover` on `h1`) after opening a row menu; otherwise the capture shows
+  the row hover ink, not the open state.
+- **Inline `transform-origin` is serialised.** PrimeVue writes `bottom`, Chromium reads back `center bottom`.
+- `scenarios/cars-second-pass.ts` covers the open/closed/selected/flip menu states, paginator hover, rows per page
+  and Brands/Customers menu guards. Menu-to-trigger geometry lives outside the capture root, so it is measured by
+  the bundle's `evidence/measure.cjs`.
+
+## Learnings (2026-11-11, Cars second pass, recheck)
+
+- **Rounded popup positions on a half-pixel trigger cannot give an exact gap.** The Cars table rows put the ⋮ trigger at
+  y = n.5, so `Math.round` on `trigger ± 4` yields 4.5px below (the same as Figma: trigger bottom 312.5, menu y317) and
+  3.5px above. Judge "4px" as ±0.5px when whole-pixel positions are also required, and check for overlap instead.
+- **Dimension fixes surface the pixel diff.** While a capture is 1px off, the harness emits no pixel diff. Once the size
+  matches, expect new `#preview-root` pixel rows (text anti-aliasing plus the accepted colour deviations) that need
+  classifying. Cluster the red pixels in `*.diff.png` before deciding between `minimas` and a category.
+- **`manual:` ids cannot go in `minimas`.** Record a sub-pixel geometry judgement as a criterion with the measured
+  values, or as a categorised `diferencas` entry.
+- **Regression check across attempts.** For pages that the delivery should not touch, a pixel diff of `actual/attempt-NN`
+  against the previous attempt (0 px expected) is a stronger guard than a diff against the base when the base differs
+  for known reasons (here, the 18px PageHeader).
+
+## Learnings (2026-11-11, Cars-only QA bundle)
+
+- **Delete flows need a list mock that drops the deleted rows.** `playRowExit` (`src/utils/rowEffects.ts`) flags the
+  deleted ids `row-fx-leaving` for 2s, keyed by id, then `reload()` runs. A static `pagedMock` sends the same ids back,
+  so the reloaded rows stay invisible and the capture shows a blank band at the top of the table (also at the base).
+  Use `responses: [before, after]` on the list mock (`listAfterDelete` in `scenarios/cars-figma.ts`). Then assert the
+  reloaded first row and `tr.row-fx-leaving` count 0. Remember that page 1 refills to `pageSize` from the next seed rows.
+- **The success toast appears before the reload.** Wait for the reloaded rows (`expect-text` on the new first row),
+  not for the toast alone.
+- **Search is current-page only.** `scenarios/cars-search.ts` covers a case-insensitive match and the no-result state.
+  With no `#empty` slot, the no-result state is a blank `.p-datatable-empty-message` row.
+- **Cars-only bundle:** `npm run visual:list | grep -oE "\bcars-[a-z0-9-]+-(light|dark)\b" | sort -u | paste -sd, -`
+  gives the id list for `visual:compare`.

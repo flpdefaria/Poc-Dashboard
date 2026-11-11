@@ -1,0 +1,2117 @@
+{
+  "generatedAt": "2026-11-11T19:27:28.380Z",
+  "perScenario": [
+    {
+      "scenarioId": "cars-delete-success-light",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/cars\\/\\d+$",
+          "urlPatternKind": "regexp",
+          "status": 204,
+          "contentType": "application/json",
+          "body": ""
+        },
+        {
+          "urlPattern": "\\/api\\/cars\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 7,
+                "model": "3 Series",
+                "vin": "WBA5R1C0XLA123462",
+                "description": "Sedã executivo compacto.",
+                "bodyType": "Sedan",
+                "price": 44500,
+                "stock": 50,
+                "mileage": 10,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 35,
+                "model": "5 Series",
+                "vin": "WBA53AF0XLC123490",
+                "description": "Midsize executive sedan.",
+                "bodyType": "Sedan",
+                "price": 58500,
+                "stock": 16,
+                "mileage": 5,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 20,
+                "model": "A4",
+                "vin": "WAUENAF40NN123475",
+                "description": "Compact executive sedan.",
+                "bodyType": "Sedan",
+                "price": 42000,
+                "stock": 24,
+                "mileage": 6,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 8,
+                "brandName": "Audi"
+              },
+              {
+                "id": 11,
+                "model": "Accord",
+                "vin": "1HGCV1F34NA123466",
+                "description": "Midsize sedan with spacious interior.",
+                "bodyType": "Sedan",
+                "price": 28500,
+                "stock": 14,
+                "mileage": 9,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 33,
+                "model": "Bronco",
+                "vin": "1FMEE5DP1PLA23488",
+                "description": "Off-road-focused midsize SUV.",
+                "bodyType": "SUV",
+                "price": 39500,
+                "stock": 6,
+                "mileage": 2,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 2,
+                "brandName": "Ford"
+              },
+              {
+                "id": 14,
+                "model": "Camaro",
+                "vin": "1G1FB1RS8N0123469",
+                "description": "American sports car.",
+                "bodyType": "Coupe",
+                "price": 36500,
+                "stock": 11,
+                "mileage": 4,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 5,
+                "brandName": "Chevrolet"
+              },
+              {
+                "id": 2,
+                "model": "Camry",
+                "vin": "4T1BF1FK5CU123457",
+                "description": "Midsize sedan with hybrid options.",
+                "bodyType": "Sedan",
+                "price": 27500,
+                "stock": 40,
+                "mileage": 8,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 10,
+                "model": "Civic",
+                "vin": "2HGFC2F59NH123465",
+                "description": "Compact car popular with first-time buyers.",
+                "bodyType": "Sedan",
+                "price": 24500,
+                "stock": 12,
+                "mileage": 20,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 28,
+                "model": "Corolla Cross",
+                "vin": "JTNB6RBX1P3123483",
+                "description": "Compact crossover built on the Corolla platform.",
+                "bodyType": "SUV",
+                "price": 24500,
+                "stock": 14,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 12,
+                "model": "CR-V",
+                "vin": "7FARW2H59NE123467",
+                "description": "Compact crossover SUV.",
+                "bodyType": "SUV",
+                "price": 30500,
+                "stock": 9,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 4,
+                "brandName": "Honda"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 36,
+            "totalPages": 4,
+            "hasPrevious": false,
+            "hasNext": true
+          },
+          "responses": [
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 7,
+                    "model": "3 Series",
+                    "vin": "WBA5R1C0XLA123462",
+                    "description": "Sedã executivo compacto.",
+                    "bodyType": "Sedan",
+                    "price": 44500,
+                    "stock": 50,
+                    "mileage": 10,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 36,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            },
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 26,
+                    "model": "CX-5",
+                    "vin": "JM3KFBCM0N0123481",
+                    "description": "Compact crossover with upscale interior.",
+                    "bodyType": "SUV",
+                    "price": 28500,
+                    "stock": 4,
+                    "mileage": 22,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 10,
+                    "brandName": "Mazda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 35,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            }
+          ]
+        },
+        {
+          "urlPattern": "/api/brands/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 8,
+              "name": "Audi"
+            },
+            {
+              "id": 3,
+              "name": "BMW"
+            },
+            {
+              "id": 5,
+              "name": "Chevrolet"
+            },
+            {
+              "id": 2,
+              "name": "Ford"
+            },
+            {
+              "id": 4,
+              "name": "Honda"
+            },
+            {
+              "id": 9,
+              "name": "Hyundai"
+            },
+            {
+              "id": 10,
+              "name": "Mazda"
+            },
+            {
+              "id": 7,
+              "name": "Tesla"
+            },
+            {
+              "id": 1,
+              "name": "Toyota"
+            },
+            {
+              "id": 6,
+              "name": "Volkswagen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "cars-delete-success-dark",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/cars\\/\\d+$",
+          "urlPatternKind": "regexp",
+          "status": 204,
+          "contentType": "application/json",
+          "body": ""
+        },
+        {
+          "urlPattern": "\\/api\\/cars\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 7,
+                "model": "3 Series",
+                "vin": "WBA5R1C0XLA123462",
+                "description": "Sedã executivo compacto.",
+                "bodyType": "Sedan",
+                "price": 44500,
+                "stock": 50,
+                "mileage": 10,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 35,
+                "model": "5 Series",
+                "vin": "WBA53AF0XLC123490",
+                "description": "Midsize executive sedan.",
+                "bodyType": "Sedan",
+                "price": 58500,
+                "stock": 16,
+                "mileage": 5,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 20,
+                "model": "A4",
+                "vin": "WAUENAF40NN123475",
+                "description": "Compact executive sedan.",
+                "bodyType": "Sedan",
+                "price": 42000,
+                "stock": 24,
+                "mileage": 6,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 8,
+                "brandName": "Audi"
+              },
+              {
+                "id": 11,
+                "model": "Accord",
+                "vin": "1HGCV1F34NA123466",
+                "description": "Midsize sedan with spacious interior.",
+                "bodyType": "Sedan",
+                "price": 28500,
+                "stock": 14,
+                "mileage": 9,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 33,
+                "model": "Bronco",
+                "vin": "1FMEE5DP1PLA23488",
+                "description": "Off-road-focused midsize SUV.",
+                "bodyType": "SUV",
+                "price": 39500,
+                "stock": 6,
+                "mileage": 2,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 2,
+                "brandName": "Ford"
+              },
+              {
+                "id": 14,
+                "model": "Camaro",
+                "vin": "1G1FB1RS8N0123469",
+                "description": "American sports car.",
+                "bodyType": "Coupe",
+                "price": 36500,
+                "stock": 11,
+                "mileage": 4,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 5,
+                "brandName": "Chevrolet"
+              },
+              {
+                "id": 2,
+                "model": "Camry",
+                "vin": "4T1BF1FK5CU123457",
+                "description": "Midsize sedan with hybrid options.",
+                "bodyType": "Sedan",
+                "price": 27500,
+                "stock": 40,
+                "mileage": 8,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 10,
+                "model": "Civic",
+                "vin": "2HGFC2F59NH123465",
+                "description": "Compact car popular with first-time buyers.",
+                "bodyType": "Sedan",
+                "price": 24500,
+                "stock": 12,
+                "mileage": 20,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 28,
+                "model": "Corolla Cross",
+                "vin": "JTNB6RBX1P3123483",
+                "description": "Compact crossover built on the Corolla platform.",
+                "bodyType": "SUV",
+                "price": 24500,
+                "stock": 14,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 12,
+                "model": "CR-V",
+                "vin": "7FARW2H59NE123467",
+                "description": "Compact crossover SUV.",
+                "bodyType": "SUV",
+                "price": 30500,
+                "stock": 9,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 4,
+                "brandName": "Honda"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 36,
+            "totalPages": 4,
+            "hasPrevious": false,
+            "hasNext": true
+          },
+          "responses": [
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 7,
+                    "model": "3 Series",
+                    "vin": "WBA5R1C0XLA123462",
+                    "description": "Sedã executivo compacto.",
+                    "bodyType": "Sedan",
+                    "price": 44500,
+                    "stock": 50,
+                    "mileage": 10,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 36,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            },
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 26,
+                    "model": "CX-5",
+                    "vin": "JM3KFBCM0N0123481",
+                    "description": "Compact crossover with upscale interior.",
+                    "bodyType": "SUV",
+                    "price": 28500,
+                    "stock": 4,
+                    "mileage": 22,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 10,
+                    "brandName": "Mazda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 35,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            }
+          ]
+        },
+        {
+          "urlPattern": "/api/brands/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 8,
+              "name": "Audi"
+            },
+            {
+              "id": 3,
+              "name": "BMW"
+            },
+            {
+              "id": 5,
+              "name": "Chevrolet"
+            },
+            {
+              "id": 2,
+              "name": "Ford"
+            },
+            {
+              "id": 4,
+              "name": "Honda"
+            },
+            {
+              "id": 9,
+              "name": "Hyundai"
+            },
+            {
+              "id": 10,
+              "name": "Mazda"
+            },
+            {
+              "id": 7,
+              "name": "Tesla"
+            },
+            {
+              "id": 1,
+              "name": "Toyota"
+            },
+            {
+              "id": 6,
+              "name": "Volkswagen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "cars-bulk-delete-success-light",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/cars\\/\\d+$",
+          "urlPatternKind": "regexp",
+          "status": 204,
+          "contentType": "application/json",
+          "body": ""
+        },
+        {
+          "urlPattern": "\\/api\\/cars\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 7,
+                "model": "3 Series",
+                "vin": "WBA5R1C0XLA123462",
+                "description": "Sedã executivo compacto.",
+                "bodyType": "Sedan",
+                "price": 44500,
+                "stock": 50,
+                "mileage": 10,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 35,
+                "model": "5 Series",
+                "vin": "WBA53AF0XLC123490",
+                "description": "Midsize executive sedan.",
+                "bodyType": "Sedan",
+                "price": 58500,
+                "stock": 16,
+                "mileage": 5,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 20,
+                "model": "A4",
+                "vin": "WAUENAF40NN123475",
+                "description": "Compact executive sedan.",
+                "bodyType": "Sedan",
+                "price": 42000,
+                "stock": 24,
+                "mileage": 6,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 8,
+                "brandName": "Audi"
+              },
+              {
+                "id": 11,
+                "model": "Accord",
+                "vin": "1HGCV1F34NA123466",
+                "description": "Midsize sedan with spacious interior.",
+                "bodyType": "Sedan",
+                "price": 28500,
+                "stock": 14,
+                "mileage": 9,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 33,
+                "model": "Bronco",
+                "vin": "1FMEE5DP1PLA23488",
+                "description": "Off-road-focused midsize SUV.",
+                "bodyType": "SUV",
+                "price": 39500,
+                "stock": 6,
+                "mileage": 2,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 2,
+                "brandName": "Ford"
+              },
+              {
+                "id": 14,
+                "model": "Camaro",
+                "vin": "1G1FB1RS8N0123469",
+                "description": "American sports car.",
+                "bodyType": "Coupe",
+                "price": 36500,
+                "stock": 11,
+                "mileage": 4,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 5,
+                "brandName": "Chevrolet"
+              },
+              {
+                "id": 2,
+                "model": "Camry",
+                "vin": "4T1BF1FK5CU123457",
+                "description": "Midsize sedan with hybrid options.",
+                "bodyType": "Sedan",
+                "price": 27500,
+                "stock": 40,
+                "mileage": 8,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 10,
+                "model": "Civic",
+                "vin": "2HGFC2F59NH123465",
+                "description": "Compact car popular with first-time buyers.",
+                "bodyType": "Sedan",
+                "price": 24500,
+                "stock": 12,
+                "mileage": 20,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 28,
+                "model": "Corolla Cross",
+                "vin": "JTNB6RBX1P3123483",
+                "description": "Compact crossover built on the Corolla platform.",
+                "bodyType": "SUV",
+                "price": 24500,
+                "stock": 14,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 12,
+                "model": "CR-V",
+                "vin": "7FARW2H59NE123467",
+                "description": "Compact crossover SUV.",
+                "bodyType": "SUV",
+                "price": 30500,
+                "stock": 9,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 4,
+                "brandName": "Honda"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 36,
+            "totalPages": 4,
+            "hasPrevious": false,
+            "hasNext": true
+          },
+          "responses": [
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 7,
+                    "model": "3 Series",
+                    "vin": "WBA5R1C0XLA123462",
+                    "description": "Sedã executivo compacto.",
+                    "bodyType": "Sedan",
+                    "price": 44500,
+                    "stock": 50,
+                    "mileage": 10,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 36,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            },
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 26,
+                    "model": "CX-5",
+                    "vin": "JM3KFBCM0N0123481",
+                    "description": "Compact crossover with upscale interior.",
+                    "bodyType": "SUV",
+                    "price": 28500,
+                    "stock": 4,
+                    "mileage": 22,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 10,
+                    "brandName": "Mazda"
+                  },
+                  {
+                    "id": 22,
+                    "model": "e-tron GT",
+                    "vin": "WAUZZZFY0N7123477",
+                    "description": "All-electric grand tourer.",
+                    "bodyType": "Sedan",
+                    "price": 104000,
+                    "stock": 0,
+                    "mileage": 1,
+                    "isAvailable": false,
+                    "modelYear": 2025,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 34,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            }
+          ]
+        },
+        {
+          "urlPattern": "/api/brands/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 8,
+              "name": "Audi"
+            },
+            {
+              "id": 3,
+              "name": "BMW"
+            },
+            {
+              "id": 5,
+              "name": "Chevrolet"
+            },
+            {
+              "id": 2,
+              "name": "Ford"
+            },
+            {
+              "id": 4,
+              "name": "Honda"
+            },
+            {
+              "id": 9,
+              "name": "Hyundai"
+            },
+            {
+              "id": 10,
+              "name": "Mazda"
+            },
+            {
+              "id": 7,
+              "name": "Tesla"
+            },
+            {
+              "id": 1,
+              "name": "Toyota"
+            },
+            {
+              "id": 6,
+              "name": "Volkswagen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "cars-bulk-delete-success-dark",
+      "apiBasePath": "/api",
+      "policy": "Declared mocks are fulfilled from these fixtures. Every other request under the API base path is aborted and recorded — the preview never reaches a real backend.",
+      "mocks": [
+        {
+          "urlPattern": "\\/api\\/cars\\/\\d+$",
+          "urlPatternKind": "regexp",
+          "status": 204,
+          "contentType": "application/json",
+          "body": ""
+        },
+        {
+          "urlPattern": "\\/api\\/cars\\?page=1&pageSize=10$",
+          "urlPatternKind": "regexp",
+          "status": 200,
+          "contentType": "application/json",
+          "body": {
+            "items": [
+              {
+                "id": 7,
+                "model": "3 Series",
+                "vin": "WBA5R1C0XLA123462",
+                "description": "Sedã executivo compacto.",
+                "bodyType": "Sedan",
+                "price": 44500,
+                "stock": 50,
+                "mileage": 10,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 35,
+                "model": "5 Series",
+                "vin": "WBA53AF0XLC123490",
+                "description": "Midsize executive sedan.",
+                "bodyType": "Sedan",
+                "price": 58500,
+                "stock": 16,
+                "mileage": 5,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 3,
+                "brandName": "BMW"
+              },
+              {
+                "id": 20,
+                "model": "A4",
+                "vin": "WAUENAF40NN123475",
+                "description": "Compact executive sedan.",
+                "bodyType": "Sedan",
+                "price": 42000,
+                "stock": 24,
+                "mileage": 6,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 8,
+                "brandName": "Audi"
+              },
+              {
+                "id": 11,
+                "model": "Accord",
+                "vin": "1HGCV1F34NA123466",
+                "description": "Midsize sedan with spacious interior.",
+                "bodyType": "Sedan",
+                "price": 28500,
+                "stock": 14,
+                "mileage": 9,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 33,
+                "model": "Bronco",
+                "vin": "1FMEE5DP1PLA23488",
+                "description": "Off-road-focused midsize SUV.",
+                "bodyType": "SUV",
+                "price": 39500,
+                "stock": 6,
+                "mileage": 2,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 2,
+                "brandName": "Ford"
+              },
+              {
+                "id": 14,
+                "model": "Camaro",
+                "vin": "1G1FB1RS8N0123469",
+                "description": "American sports car.",
+                "bodyType": "Coupe",
+                "price": 36500,
+                "stock": 11,
+                "mileage": 4,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 5,
+                "brandName": "Chevrolet"
+              },
+              {
+                "id": 2,
+                "model": "Camry",
+                "vin": "4T1BF1FK5CU123457",
+                "description": "Midsize sedan with hybrid options.",
+                "bodyType": "Sedan",
+                "price": 27500,
+                "stock": 40,
+                "mileage": 8,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 10,
+                "model": "Civic",
+                "vin": "2HGFC2F59NH123465",
+                "description": "Compact car popular with first-time buyers.",
+                "bodyType": "Sedan",
+                "price": 24500,
+                "stock": 12,
+                "mileage": 20,
+                "isAvailable": true,
+                "modelYear": 2024,
+                "brandId": 4,
+                "brandName": "Honda"
+              },
+              {
+                "id": 28,
+                "model": "Corolla Cross",
+                "vin": "JTNB6RBX1P3123483",
+                "description": "Compact crossover built on the Corolla platform.",
+                "bodyType": "SUV",
+                "price": 24500,
+                "stock": 14,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 1,
+                "brandName": "Toyota"
+              },
+              {
+                "id": 12,
+                "model": "CR-V",
+                "vin": "7FARW2H59NE123467",
+                "description": "Compact crossover SUV.",
+                "bodyType": "SUV",
+                "price": 30500,
+                "stock": 9,
+                "mileage": 0,
+                "isAvailable": true,
+                "modelYear": 2025,
+                "brandId": 4,
+                "brandName": "Honda"
+              }
+            ],
+            "pageNumber": 1,
+            "pageSize": 10,
+            "totalItems": 36,
+            "totalPages": 4,
+            "hasPrevious": false,
+            "hasNext": true
+          },
+          "responses": [
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 7,
+                    "model": "3 Series",
+                    "vin": "WBA5R1C0XLA123462",
+                    "description": "Sedã executivo compacto.",
+                    "bodyType": "Sedan",
+                    "price": 44500,
+                    "stock": 50,
+                    "mileage": 10,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 35,
+                    "model": "5 Series",
+                    "vin": "WBA53AF0XLC123490",
+                    "description": "Midsize executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 58500,
+                    "stock": 16,
+                    "mileage": 5,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 3,
+                    "brandName": "BMW"
+                  },
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 36,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            },
+            {
+              "status": 200,
+              "contentType": "application/json",
+              "body": {
+                "items": [
+                  {
+                    "id": 20,
+                    "model": "A4",
+                    "vin": "WAUENAF40NN123475",
+                    "description": "Compact executive sedan.",
+                    "bodyType": "Sedan",
+                    "price": 42000,
+                    "stock": 24,
+                    "mileage": 6,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  },
+                  {
+                    "id": 11,
+                    "model": "Accord",
+                    "vin": "1HGCV1F34NA123466",
+                    "description": "Midsize sedan with spacious interior.",
+                    "bodyType": "Sedan",
+                    "price": 28500,
+                    "stock": 14,
+                    "mileage": 9,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 33,
+                    "model": "Bronco",
+                    "vin": "1FMEE5DP1PLA23488",
+                    "description": "Off-road-focused midsize SUV.",
+                    "bodyType": "SUV",
+                    "price": 39500,
+                    "stock": 6,
+                    "mileage": 2,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 2,
+                    "brandName": "Ford"
+                  },
+                  {
+                    "id": 14,
+                    "model": "Camaro",
+                    "vin": "1G1FB1RS8N0123469",
+                    "description": "American sports car.",
+                    "bodyType": "Coupe",
+                    "price": 36500,
+                    "stock": 11,
+                    "mileage": 4,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 5,
+                    "brandName": "Chevrolet"
+                  },
+                  {
+                    "id": 2,
+                    "model": "Camry",
+                    "vin": "4T1BF1FK5CU123457",
+                    "description": "Midsize sedan with hybrid options.",
+                    "bodyType": "Sedan",
+                    "price": 27500,
+                    "stock": 40,
+                    "mileage": 8,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 10,
+                    "model": "Civic",
+                    "vin": "2HGFC2F59NH123465",
+                    "description": "Compact car popular with first-time buyers.",
+                    "bodyType": "Sedan",
+                    "price": 24500,
+                    "stock": 12,
+                    "mileage": 20,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 28,
+                    "model": "Corolla Cross",
+                    "vin": "JTNB6RBX1P3123483",
+                    "description": "Compact crossover built on the Corolla platform.",
+                    "bodyType": "SUV",
+                    "price": 24500,
+                    "stock": 14,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 1,
+                    "brandName": "Toyota"
+                  },
+                  {
+                    "id": 12,
+                    "model": "CR-V",
+                    "vin": "7FARW2H59NE123467",
+                    "description": "Compact crossover SUV.",
+                    "bodyType": "SUV",
+                    "price": 30500,
+                    "stock": 9,
+                    "mileage": 0,
+                    "isAvailable": true,
+                    "modelYear": 2025,
+                    "brandId": 4,
+                    "brandName": "Honda"
+                  },
+                  {
+                    "id": 26,
+                    "model": "CX-5",
+                    "vin": "JM3KFBCM0N0123481",
+                    "description": "Compact crossover with upscale interior.",
+                    "bodyType": "SUV",
+                    "price": 28500,
+                    "stock": 4,
+                    "mileage": 22,
+                    "isAvailable": true,
+                    "modelYear": 2024,
+                    "brandId": 10,
+                    "brandName": "Mazda"
+                  },
+                  {
+                    "id": 22,
+                    "model": "e-tron GT",
+                    "vin": "WAUZZZFY0N7123477",
+                    "description": "All-electric grand tourer.",
+                    "bodyType": "Sedan",
+                    "price": 104000,
+                    "stock": 0,
+                    "mileage": 1,
+                    "isAvailable": false,
+                    "modelYear": 2025,
+                    "brandId": 8,
+                    "brandName": "Audi"
+                  }
+                ],
+                "pageNumber": 1,
+                "pageSize": 10,
+                "totalItems": 34,
+                "totalPages": 4,
+                "hasPrevious": false,
+                "hasNext": true
+              }
+            }
+          ]
+        },
+        {
+          "urlPattern": "/api/brands/options",
+          "urlPatternKind": "substring",
+          "status": 200,
+          "contentType": "application/json",
+          "body": [
+            {
+              "id": 8,
+              "name": "Audi"
+            },
+            {
+              "id": 3,
+              "name": "BMW"
+            },
+            {
+              "id": 5,
+              "name": "Chevrolet"
+            },
+            {
+              "id": 2,
+              "name": "Ford"
+            },
+            {
+              "id": 4,
+              "name": "Honda"
+            },
+            {
+              "id": 9,
+              "name": "Hyundai"
+            },
+            {
+              "id": 10,
+              "name": "Mazda"
+            },
+            {
+              "id": 7,
+              "name": "Tesla"
+            },
+            {
+              "id": 1,
+              "name": "Toyota"
+            },
+            {
+              "id": 6,
+              "name": "Volkswagen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

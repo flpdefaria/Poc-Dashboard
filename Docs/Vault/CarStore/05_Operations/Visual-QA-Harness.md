@@ -91,9 +91,18 @@ The harness needs neither `dotnet run` nor the normal dev server.
 - `cars-page-{light,dark}`
 - `customers-page-{light,dark}`
 - `customers-page-empty-{light,dark}`: the "Outros estados" example
+- `customer-create-car-select-*`, `customer-edit-car-*` (`scenarios/customer-dialogs.ts`)
+- `scenarios/cars-figma.ts` (2026-11-11), with a light and a dark variant of each:
+  - Figma-compared, captured at DPR 1: `cars-list`, `cars-row-menu`, `cars-row-selected`,
+    `cars-bulk-delete-dialog`, `cars-details-dialog`, `cars-edit-dialog`, `cars-create-dialog`
+  - Functional flows: `cars-pagination`, `cars-create-{success,error-400,validation}`,
+    `cars-edit-{success,error-400}`, `cars-delete-{dialog,success,error-400}`,
+    `cars-bulk-delete-{success,error}`, `cars-details-to-edit`
+  - `brands-page`, for the PageHeader regression check
 
-None declares `figmaNode`: declaring one makes Figma evidence required, and `visual:verdict` then
-downgrades PASS to BLOCKED until `references/<id>.png` and `.figma.json` exist.
+`home-dashboard-light` and the light Figma-compared Cars scenarios declare `figmaNode`. Declaring one makes
+Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `references/<id>.png` and
+`.figma.json` exist.
 
 ### Learnings (2026-11-11, Home Figma parity)
 
@@ -117,6 +126,22 @@ downgrades PASS to BLOCKED until `references/<id>.png` and `.figma.json` exist.
 - **API tests port:** API contract tests must use a separate port (`--urls http://localhost:5046`). Port 5045
   may be the developer's own running instance.
 
+### Learnings (2026-11-11, Cars screen QA)
+
+- **PrimeVue styles beat Tailwind.** PrimeVue injects its component CSS outside any `@layer`. Tailwind v4
+  utilities live in `@layer utilities`, so a `pt` class without `!` loses whenever the theme sets the same
+  property. On the Cars run this left the dialogs at 20px insets, the row menu at 200px and the paginator
+  buttons at 40px, and the Figma spec rows exposed all three. Suspect this first when a measured value equals
+  the PrimeVue default.
+- **Spec selectors are CSS.** `.figma.json` selectors go through `querySelector`, so Playwright-only
+  syntax such as `:has-text()` reports `missing-element`.
+- **Selected rows.** PrimeVue checkbox selection marks a row with `data-p-selected="true"`. The
+  `p-datatable-row-selected` class needs `highlightOnSelect`.
+- **Write mocks.** Mocks match the URL regardless of method. `/api/cars$` catches only the POST,
+  `/api/cars/\d+$` catches PUT and DELETE, and `{ status: 400, body: { message } }` reproduces a
+  `DomainException` response.
+- Full list: "Learnings (2026-11-11, Cars screen run)" in `visual/README.md`.
+
 ### Git
 
 | Path | Status |
@@ -125,6 +150,45 @@ downgrades PASS to BLOCKED until `references/<id>.png` and `.figma.json` exist.
 | `qa-results/index.html`, `qa-results/.current-run` | Ignored |
 | `.visual-baseline/` | Ignored |
 | `Src/CarStore.Web/ClientApp/test-results/` | Ignored |
+
+### Measurement caveats (Cars round 2)
+
+- Aura inputs and selects have a 0.2s `border-color` transition that `reducedMotion` does not stop. Wait about
+  600ms after a focus or hover before reading computed colors.
+- A `pt` key is dead when a slot replaces its element, as with the Menu `#itemicon` slot. Check the element's
+  real `class`.
+- `visual/scenarios/legacy-dialogs.ts` guards the legacy dialog shell (`dialogShellPt`, `dangerButtonClass`)
+  on Brands create/delete and Customers delete against the base, in both themes.
+
+### Measurement caveats (Cars second pass)
+
+- A spec `strokeWidth` row reads the SVG `stroke-width` in viewBox units (24), not rendered px. Measure the
+  rendered stroke as `stroke-width x size / 24`.
+- An element screenshot taller than the viewport scrolls the page, and PrimeVue closes an open popup menu. Size the
+  viewport so the capture fits.
+- After opening a row menu, hover elsewhere (`h1`) before capturing, or the row hover ink replaces the open state.
+- `visual/scenarios/cars-second-pass.ts` covers the Cars menu states and paginator, plus Brands/Customers menu
+  guards against the base. Findings are in [[Cars-Page]].
+- `dimension-mismatch` cannot go in `minimas`, and `artefato-harness` turns any verdict into BLOCKED.
+
+### Measurement caveats (Cars second pass, recheck)
+
+- The Cars row trigger sits on a half pixel, so a rounded popup position gives 4.5px below (the same as Figma) and
+  3.5px above. Judge a "4px" gap as ±0.5px when whole-pixel positions are also required, and check for overlap.
+- Fixing a 1px `dimension-mismatch` makes the pixel diff appear. Expect new text anti-aliasing rows to classify.
+- `manual:` ids cannot go in `minimas`.
+- For pages the delivery should not touch, diff `actual/attempt-NN` against the previous attempt (0 px expected).
+- Full list: "Learnings (2026-11-11, Cars second pass, recheck)" in `visual/README.md`.
+
+### Caveats (Cars-only QA bundle)
+
+- Delete flows: `playRowExit` (`src/utils/rowEffects.ts`) hides the deleted ids (`row-fx-leaving`, 2s, keyed by id)
+  and then reloads. A static list mock returns those ids again, so the capture shows a blank band. Give the list mock
+  `responses: [before, after]` (`listAfterDelete` in `visual/scenarios/cars-figma.ts`), then wait for the reloaded
+  first row, not just the toast.
+- `visual/scenarios/cars-search.ts` covers the current-page search (match plus no result).
+- Run: `qa-results/2026-11-11T19-20-27-011Z-cars-page/` (56 `cars-*` scenarios, PASS). See [[Cars-Page]].
+- Full list: "Learnings (2026-11-11, Cars-only QA bundle)" in `visual/README.md`.
 
 ## Related
 

@@ -1,0 +1,124 @@
+{
+  "scenario": "home-dashboard-light",
+  "checks": [
+    {
+      "label": "Título da página",
+      "selector": "h1",
+      "text": "Central da frota",
+      "observed": {
+        "count": 1,
+        "text": "Central da frota",
+        "value": null,
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1288,
+          "height": 32
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Quatro cartões de KPI",
+      "selector": ".grid.xl\\:grid-cols-4 > .p-card",
+      "count": 4,
+      "observed": {
+        "count": 4,
+        "text": "Valor da frota R$ 20,8 mi",
+        "value": null,
+        "box": {
+          "x": 0,
+          "y": 80,
+          "width": 304,
+          "height": 163
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Gráfico de novos clientes",
+      "selector": "h2:text-is(\"Novos clientes\")",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Novos clientes",
+        "value": null,
+        "box": {
+          "x": 19,
+          "y": 294,
+          "width": 128.19,
+          "height": 24
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Ranking de frota por marca",
+      "selector": "h2:text-is(\"Frota por marca\")",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Frota por marca",
+        "value": null,
+        "box": {
+          "x": 907,
+          "y": 286,
+          "width": 362,
+          "height": 24
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Tabela de clientes recentes com 5 linhas",
+      "selector": ".p-datatable-tbody > tr",
+      "count": 5,
+      "observed": {
+        "count": 5,
+        "text": "Ana Paula Ribeiro ana.ribeiro@email.com Toyota Corolla XEi 2.0 08/11/2026",
+        "value": null,
+        "box": {
+          "x": 1,
+          "y": 874,
+          "width": 1286,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Coluna Carro na tabela",
+      "selector": ".p-datatable-thead th:nth-child(3)",
+      "text": "Carro",
+      "observed": {
+        "count": 1,
+        "text": "Carro",
+        "value": null,
+        "box": {
+          "x": 643.98,
+          "y": 834,
+          "width": 468.22,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Carro do primeiro cliente",
+      "selector": ".p-datatable-tbody > tr:first-child > td:nth-child(3)",
+      "text": "Toyota Corolla XEi 2.0",
+      "observed": {
+        "count": 1,
+        "text": "Toyota Corolla XEi 2.0",
+        "value": null,
+        "box": {
+          "x": 643.98,
+          "y": 874,
+          "width": 468.22,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

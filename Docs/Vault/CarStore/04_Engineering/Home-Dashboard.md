@@ -64,7 +64,9 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
   `border-primary`, `text-primary-contrast`, `hover:bg-primary-emphasis` (near-black in light, white end of the
   inverted ramp in dark) instead of `surface-700`. New `primarySmallButtonClass` (`h-8` = 32px, `py-0`, `text-xs`, `px-[13px]`), the same height as the flush search box.
 - Home "Clientes recentes" header is `p-4` (Figma 56px header) and the card content has no gap.
-- `common/pageheader/PageHeader.vue` (app-wide): title `font-semibold` (Figma 600) instead of `font-black`.
+- `common/pageheader/PageHeader.vue` (app-wide): title `font-semibold` (Figma 600) instead of `font-black`. On
+  2026-11-11 its actions moved beside the heading block, vertically centered (see [[Cars-Page]]).
+- KPI `tagPt` now lives in `styles/tagStyles.ts` (shared with the Cars table and details dialog).
 - `utils/format.ts`: `formatCurrencyCompact` (pt-BR compact BRL).
 - `common/chart/BarChart.vue`: optional `height` (px, default 160) and `ariaLabel` props, `minInterval: 1`,
   24px square bars, tight grid.
@@ -105,6 +107,7 @@ Fixes made in that round:
 
 ## Related
 
+- [[Cars-Page]]
 - [[Customer]]
 - [[Visual-QA-Harness]]
 - [[Frontend-SPA]]

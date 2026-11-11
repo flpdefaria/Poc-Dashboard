@@ -1,0 +1,90 @@
+{
+  "scenario": "cars-row-menu-dark",
+  "checks": [
+    {
+      "label": "Três ações",
+      "selector": ".p-menu-overlay .p-menu-item",
+      "count": 3,
+      "observed": {
+        "count": 3,
+        "text": "Detalhes",
+        "value": null,
+        "box": {
+          "x": 1230,
+          "y": 231.5,
+          "width": 165,
+          "height": 22
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Ação Detalhes",
+      "selector": ".p-menu-overlay .p-menu-item >> nth=0",
+      "text": "Detalhes",
+      "observed": {
+        "count": 1,
+        "text": "Detalhes",
+        "value": null,
+        "box": {
+          "x": 1230,
+          "y": 231.5,
+          "width": 165,
+          "height": 22
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Ação Editar",
+      "selector": ".p-menu-overlay .p-menu-item >> nth=1",
+      "text": "Editar",
+      "observed": {
+        "count": 1,
+        "text": "Editar",
+        "value": null,
+        "box": {
+          "x": 1230,
+          "y": 255.5,
+          "width": 165,
+          "height": 22
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Ação Excluir",
+      "selector": ".p-menu-overlay .p-menu-item >> nth=2",
+      "text": "Excluir",
+      "observed": {
+        "count": 1,
+        "text": "Excluir",
+        "value": null,
+        "box": {
+          "x": 1230,
+          "y": 279.5,
+          "width": 165,
+          "height": 22
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Ícones Lucide",
+      "selector": ".p-menu-overlay .p-menu-item svg.lucide",
+      "count": 3,
+      "observed": {
+        "count": 3,
+        "text": "",
+        "value": null,
+        "box": {
+          "x": 1240,
+          "y": 235.5,
+          "width": 14,
+          "height": 14
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

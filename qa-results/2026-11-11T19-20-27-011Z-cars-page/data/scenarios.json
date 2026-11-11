@@ -1,0 +1,696 @@
+{
+  "generatedAt": "2026-11-11T19:27:28.380Z",
+  "attempt": 4,
+  "scenarios": [
+    {
+      "id": "cars-delete-success-light",
+      "label": "Carros — excluir carro (204) mostra toast e fecha, claro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "click",
+          "selector": ".p-menu-overlay .p-menu-item:has-text(\"Excluir\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "Carro excluído"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "5 Series"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "click",
+          "selector": ".p-menu-overlay .p-menu-item:has-text(\"Excluir\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "Carro excluído"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "5 Series"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Diálogo fechado",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "label": "Toast de sucesso",
+          "selector": ".p-toast-message-success",
+          "text": "Carro excluído"
+        },
+        {
+          "label": "Página 1 recarregada e recompletada com 10 linhas",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "label": "Primeira linha agora = 5 Series",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "text": "5 Series"
+        },
+        {
+          "label": "Próximo carro do seed sobe para a página (CX-5)",
+          "selector": ".p-datatable-tbody > tr:last-child",
+          "text": "CX-5"
+        },
+        {
+          "label": "3 Series removido da lista",
+          "selector": ".p-datatable-tbody > tr:has-text(\"3 Series\")",
+          "count": 0
+        },
+        {
+          "label": "Nenhuma linha presa no estado de saída",
+          "selector": ".p-datatable-tbody > tr.row-fx-leaving",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-delete-success-light"
+    },
+    {
+      "id": "cars-delete-success-dark",
+      "label": "Carros — excluir carro (204) mostra toast e fecha, escuro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "click",
+          "selector": ".p-menu-overlay .p-menu-item:has-text(\"Excluir\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "Carro excluído"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "5 Series"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-menu-overlay",
+          "count": 1
+        },
+        {
+          "type": "click",
+          "selector": ".p-menu-overlay .p-menu-item:has-text(\"Excluir\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "Carro excluído"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "5 Series"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Diálogo fechado",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "label": "Toast de sucesso",
+          "selector": ".p-toast-message-success",
+          "text": "Carro excluído"
+        },
+        {
+          "label": "Página 1 recarregada e recompletada com 10 linhas",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "label": "Primeira linha agora = 5 Series",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "text": "5 Series"
+        },
+        {
+          "label": "Próximo carro do seed sobe para a página (CX-5)",
+          "selector": ".p-datatable-tbody > tr:last-child",
+          "text": "CX-5"
+        },
+        {
+          "label": "3 Series removido da lista",
+          "selector": ".p-datatable-tbody > tr:has-text(\"3 Series\")",
+          "count": 0
+        },
+        {
+          "label": "Nenhuma linha presa no estado de saída",
+          "selector": ".p-datatable-tbody > tr.row-fx-leaving",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-delete-success-dark"
+    },
+    {
+      "id": "cars-bulk-delete-success-light",
+      "label": "Carros — excluir 2 selecionados (204) mostra toast, claro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(2) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": "button:has-text(\"Excluir selecionados\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "2 carros excluídos"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "A4"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(2) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": "button:has-text(\"Excluir selecionados\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "2 carros excluídos"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "A4"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Diálogo fechado",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "label": "Toast de sucesso no plural",
+          "selector": ".p-toast-message-success",
+          "text": "2 carros excluídos"
+        },
+        {
+          "label": "Página 1 recarregada e recompletada com 10 linhas",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "label": "Primeira linha agora = A4",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "text": "A4"
+        },
+        {
+          "label": "Próximo carro do seed sobe para a página (e-tron GT)",
+          "selector": ".p-datatable-tbody > tr:last-child",
+          "text": "e-tron GT"
+        },
+        {
+          "label": "3 Series e 5 Series removidos",
+          "selector": ".p-datatable-tbody > tr:has-text(\"Series\")",
+          "count": 0
+        },
+        {
+          "label": "Nenhuma linha presa no estado de saída",
+          "selector": ".p-datatable-tbody > tr.row-fx-leaving",
+          "count": 0
+        },
+        {
+          "label": "Seleção limpa após recarregar",
+          "selector": ".p-datatable-tbody > tr[data-p-selected=\"true\"]",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-bulk-delete-success-light"
+    },
+    {
+      "id": "cars-bulk-delete-success-dark",
+      "label": "Carros — excluir 2 selecionados (204) mostra toast, escuro",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "props": {},
+      "localStorageSeed": {},
+      "route": {
+        "path": "/cars"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "body",
+      "actions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(2) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": "button:has-text(\"Excluir selecionados\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "2 carros excluídos"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "A4"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "baselineActions": [
+        {
+          "type": "expect-count",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(1) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": ".p-datatable-tbody > tr:nth-child(2) .p-checkbox"
+        },
+        {
+          "type": "click",
+          "selector": "button:has-text(\"Excluir selecionados\")"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 1
+        },
+        {
+          "type": "wait",
+          "ms": 300
+        },
+        {
+          "type": "click",
+          "selector": ".p-dialog .p-dialog-footer button:last-child"
+        },
+        {
+          "type": "expect-count",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-toast",
+          "value": "2 carros excluídos"
+        },
+        {
+          "type": "expect-text",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "value": "A4"
+        },
+        {
+          "type": "hover",
+          "selector": "h1"
+        },
+        {
+          "type": "wait",
+          "ms": 400
+        }
+      ],
+      "renderChecks": [
+        {
+          "label": "Diálogo fechado",
+          "selector": ".p-dialog",
+          "count": 0
+        },
+        {
+          "label": "Toast de sucesso no plural",
+          "selector": ".p-toast-message-success",
+          "text": "2 carros excluídos"
+        },
+        {
+          "label": "Página 1 recarregada e recompletada com 10 linhas",
+          "selector": ".p-datatable-tbody > tr",
+          "count": 10
+        },
+        {
+          "label": "Primeira linha agora = A4",
+          "selector": ".p-datatable-tbody > tr:first-child",
+          "text": "A4"
+        },
+        {
+          "label": "Próximo carro do seed sobe para a página (e-tron GT)",
+          "selector": ".p-datatable-tbody > tr:last-child",
+          "text": "e-tron GT"
+        },
+        {
+          "label": "3 Series e 5 Series removidos",
+          "selector": ".p-datatable-tbody > tr:has-text(\"Series\")",
+          "count": 0
+        },
+        {
+          "label": "Nenhuma linha presa no estado de saída",
+          "selector": ".p-datatable-tbody > tr.row-fx-leaving",
+          "count": 0
+        },
+        {
+          "label": "Seleção limpa após recarregar",
+          "selector": ".p-datatable-tbody > tr[data-p-selected=\"true\"]",
+          "count": 0
+        }
+      ],
+      "sections": [],
+      "now": "2026-11-10T12:00:00Z",
+      "notes": null,
+      "previewUrl": "/visual/preview.html?scenario=cars-bulk-delete-success-dark"
+    }
+  ]
+}

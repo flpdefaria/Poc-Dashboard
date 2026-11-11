@@ -15,6 +15,7 @@ import { usePagedFetch } from "../composables/usePagedFetch";
 import { useTweenedNumber } from "../composables/useTweenedNumber";
 import { formatCurrency, formatCurrencyCompact, formatDate } from "../utils/format";
 import { primaryButtonClass, primarySmallButtonClass } from "../styles/buttonStyles";
+import { tagPt } from "../styles/tagStyles";
 import type { BrandDto, CarDto, CustomerDto } from "../types";
 import { ArrowRight, Car, CircleCheck, IdCard, Wallet } from "@lucide/vue";
 
@@ -89,12 +90,6 @@ const panelPt = {
   root: { class: "rounded-xl! border border-surface-200 shadow-sm!" },
   body: { class: "h-full p-[18px]! gap-0!" },
   content: { class: "flex h-full flex-col" },
-};
-// Figma tag (I2007:127;2007:97): 11px / 500, 0.11px tracking, 2px 6px padding, 17px tall (the node's
-// "normal" line height, measured as 13px in the frame; 1.21 x 11px would leave a fractional 17.3px).
-const tagPt = {
-  root: { class: "self-start rounded-md! px-1.5! py-0.5! text-[11px]! font-medium! leading-[13px]! tracking-[0.11px]!" },
-  label: { class: "leading-[13px]!" },
 };
 
 // Figma selectbutton 2008:3755: 40px tall = 1px border + 4px padding + 30px content (10/4.5px, 14px/21px label).

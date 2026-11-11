@@ -1,0 +1,133 @@
+{
+  "result": "PASS",
+  "criteria": [
+    {
+      "text": "Escopo: só a tela Carros (/cars). 56 cenários cars-* (28 claro + 28 escuro), desktop 1440, sem Marcas, Clientes, Home ou diálogos legados no bundle",
+      "status": "pass",
+      "evidence": ["data/scenarios.json", "report.json"]
+    },
+    {
+      "text": "Lista: título, descrição, Novo carro, busca acima do card, 10 linhas, colunas e tag Disponível conforme o Figma 2063:4 (mesmo tamanho 1288x734); escuro legível",
+      "status": "pass",
+      "evidence": ["comparison/attempt-01/cars-list-light.triptych.png", "actual/attempt-01/cars-list-dark.png", "actual/attempt-01/cars-page-light.png", "actual/attempt-01/cars-page-dark.png"]
+    },
+    {
+      "text": "Busca (novo cenário cars-search): 'HONDA' filtra a página atual sem diferenciar maiúsculas (Accord, Civic, CR-V; nenhuma linha Toyota) e mantém o paginador; termo sem resultado deixa 0 linhas de dados e a linha de vazio do DataTable; claro e escuro",
+      "status": "pass",
+      "evidence": ["actual/attempt-01/cars-search-light.png", "actual/attempt-01/cars-search-dark.png", "actual/attempt-01/cars-search-empty-light.png", "actual/attempt-01/cars-search-empty-dark.png", "comparison/attempt-01/cars-search-light.requirements.json", "comparison/attempt-01/cars-search-empty-dark.requirements.json"]
+    },
+    {
+      "text": "Paginador e linhas por página: página 2 carrega CR-V primeiro com a página ativa = 2; hover na página 2; 20 linhas por página mostra 20 linhas e 2 páginas; página ativa com tint soft (desvio aceito)",
+      "status": "pass",
+      "evidence": ["actual/attempt-01/cars-pagination-light.png", "actual/attempt-01/cars-pagination-dark.png", "actual/attempt-01/cars-paginator-hover-light.png", "actual/attempt-01/cars-paginator-hover-dark.png", "actual/attempt-01/cars-rows-per-page-light.png", "actual/attempt-01/cars-rows-per-page-dark.png"]
+    },
+    {
+      "text": "Menu da linha: 3 ações (Detalhes, Editar, Excluir), aberto na linha 2 igual ao frame 2069:2759, fechado de novo sem resíduo, aberto em linha selecionada, invertido para cima na última linha. Remedido nesta execução (evidence/menu-geometry.json): 175x106 nos dois temas, 4,5px abaixo do gatilho (linha 2) e 3,5px acima (linha 10, viewport 760), sem sobreposição, dentro da viewport, 0 erros de console",
+      "status": "pass",
+      "evidence": ["comparison/attempt-01/cars-row-menu-light.triptych.png", "comparison/attempt-01/cars-row-menu-open-light.triptych.png", "actual/attempt-01/cars-row-menu-dark.png", "actual/attempt-01/cars-row-menu-open-dark.png", "actual/attempt-01/cars-row-menu-closed-light.png", "actual/attempt-01/cars-row-menu-selected-open-dark.png", "actual/attempt-01/cars-row-menu-flip-light.png", "actual/attempt-01/cars-row-menu-flip-dark.png", "evidence/menu-geometry.json", "evidence/measure-menu.cjs"]
+    },
+    {
+      "text": "Seleção de linhas e exclusão em massa: checkbox marca a linha, botão 'Excluir selecionados (N)' aparece; diálogo 'Excluir 10 carros?' com banner, lista e botão vermelho (frame 2071:1663)",
+      "status": "pass",
+      "evidence": ["comparison/attempt-01/cars-row-selected-light.triptych.png", "actual/attempt-01/cars-row-selected-dark.png", "comparison/attempt-01/cars-bulk-delete-dialog-light.triptych.png", "actual/attempt-01/cars-bulk-delete-dialog-dark.png"]
+    },
+    {
+      "text": "Diálogos Novo, Editar, Detalhes e Excluir (um carro): estrutura, textos e campos conforme os frames 2073:4133, 2073:3806 e 2073:3479 (Quilometragem desabilitada na edição como no Figma); escuro legível",
+      "status": "pass",
+      "evidence": ["comparison/attempt-01/cars-create-dialog-light.triptych.png", "actual/attempt-01/cars-create-dialog-dark.png", "comparison/attempt-01/cars-edit-dialog-light.triptych.png", "actual/attempt-01/cars-edit-dialog-dark.png", "comparison/attempt-01/cars-details-dialog-light.triptych.png", "actual/attempt-01/cars-details-dialog-dark.png", "actual/attempt-01/cars-delete-dialog-light.png", "actual/attempt-01/cars-delete-dialog-dark.png"]
+    },
+    {
+      "text": "Fluxos criar/editar: 201/200 fecham o diálogo e mostram toast; validação local 'Modelo e marca são obrigatórios.'; 400 da API mostra a mensagem do servidor dentro do diálogo; Detalhes -> Editar abre só o diálogo de edição com o carro carregado",
+      "status": "pass",
+      "evidence": ["actual/attempt-01/cars-create-success-light.png", "actual/attempt-01/cars-create-success-dark.png", "actual/attempt-01/cars-create-validation-light.png", "actual/attempt-01/cars-create-error-400-dark.png", "actual/attempt-01/cars-create-error-400-light.png", "actual/attempt-01/cars-edit-success-light.png", "actual/attempt-01/cars-edit-error-400-light.png", "actual/attempt-01/cars-edit-error-400-dark.png", "actual/attempt-01/cars-details-to-edit-light.png", "actual/attempt-01/cars-details-to-edit-dark.png"]
+    },
+    {
+      "text": "Fluxos excluir/excluir em massa (attempt-04): 204 fecha o diálogo, toast 'Carro excluído' / '2 carros excluídos', a lista recarrega sem os carros excluídos e a página 1 é recompletada (5 Series..CX-5 / A4..e-tron GT), nenhuma linha presa em row-fx-leaving, seleção limpa; 400 mantém o diálogo com a mensagem de erro",
+      "status": "pass",
+      "evidence": ["actual/attempt-04/cars-delete-success-light.png", "actual/attempt-04/cars-delete-success-dark.png", "actual/attempt-04/cars-bulk-delete-success-light.png", "actual/attempt-04/cars-bulk-delete-success-dark.png", "comparison/attempt-04/cars-bulk-delete-success-dark.requirements.json", "comparison/attempt-04/cars-delete-success-light.requirements.json", "actual/attempt-01/cars-delete-error-400-light.png", "actual/attempt-01/cars-delete-error-400-dark.png", "actual/attempt-01/cars-bulk-delete-error-light.png", "actual/attempt-01/cars-bulk-delete-error-dark.png"]
+    },
+    {
+      "text": "Requisitos (renderChecks): 226/226 aprovados na attempt-01 e 30/30 nos 4 cenários de exclusão refeitos na attempt-04; 0 requisições bloqueadas; 0 erros de console",
+      "status": "pass",
+      "evidence": ["report.json"]
+    },
+    {
+      "text": "Temas claro e escuro: todos os 28 estados têm irmão escuro, revisados visualmente; texto, bordas, banners vermelhos, toasts e tags legíveis sobre o fundo escuro",
+      "status": "pass",
+      "evidence": ["actual/attempt-01/cars-list-dark.png", "actual/attempt-01/cars-create-error-400-dark.png", "actual/attempt-01/cars-delete-dialog-dark.png", "actual/attempt-04/cars-bulk-delete-success-dark.png"]
+    },
+    {
+      "text": "Desvios aceitos continuam como antes: tint soft/primary na linha selecionada e na página ativa, checkbox primário de 20px, vermelho PrimeVue no botão em massa, VIN em mono do sistema, glifo Trash2 com linhas internas (5 paths, aguardando decisão de design), preenchimento de foco padrão do PrimeVue no item do menu, gap do menu 3,5px acima e 4,5px abaixo",
+      "status": "pass",
+      "evidence": ["actual/attempt-01/cars-row-selected-light.png", "actual/attempt-01/cars-details-dialog-light.png", "comparison/attempt-01/cars-row-menu-light.triptych.png", "evidence/menu-geometry.json"]
+    }
+  ],
+  "diferencas": [
+    {
+      "id": "cars-bulk-delete-dialog-light:6ec9c2b0eb14",
+      "categoria": "intencional",
+      "imagem": "comparison/attempt-01/cars-bulk-delete-dialog-light.triptych.png",
+      "motivo": "Captura 400x488 contra Figma 400x487 (nesta execução): a altura do diálogo é fracionária e a captura arredonda para cima; o tríptico mostra a mesma estrutura do frame. Mesma classificação dos bundles anteriores (a CLI não aceita dimension-mismatch em minimas)."
+    },
+    {
+      "id": "cars-details-dialog-light:06a0193342ff",
+      "categoria": "intencional",
+      "imagem": "actual/attempt-01/cars-details-dialog-light.png",
+      "motivo": "Botão Editar com 96,83px contra 98px nesta execução: largura do texto Inter no Chromium (sub-pixel). Mesma classificação anterior; a CLI não aceita width em minimas."
+    },
+    {
+      "id": "cars-list-light:3ed3c3900571",
+      "categoria": "conteudo-dinamico",
+      "imagem": "actual/attempt-01/cars-list-light.png",
+      "motivo": "Select de linhas por página com 88,53px contra 90px nesta execução: o select acompanha o conteúdo ('10'); a diferença é a largura renderizada do texto. Mesma classificação do bundle 18-37-24."
+    },
+    {
+      "id": "cars-row-menu-light:6ec9c2b0eb14",
+      "categoria": "intencional",
+      "imagem": "comparison/attempt-01/cars-row-menu-light.triptych.png",
+      "motivo": "175x106 igual ao Figma; 237 px (1,28%) nesta execução = linhas internas do glifo Trash2 (desvio aceito, aguardando decisão de design; 5 paths remedidos em evidence/menu-geometry.json) mais anti-aliasing dos rótulos."
+    }
+  ],
+  "minimas": [
+    {
+      "id": "cars-list-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-list-light.diff.png",
+      "motivo": "Mesmo tamanho do Figma (1288x734). 8469 px (0,90%) nesta execução: anti-aliasing do Inter em cada texto mais os desvios aceitos já classificados (tint da página ativa, checkbox de 20px, largura do select). Sem deslocamento de layout."
+    },
+    {
+      "id": "cars-row-menu-open-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-row-menu-open-light.triptych.png",
+      "motivo": "Mesmo tamanho do Figma (1288x734). 8704 px (0,92%) nesta execução: o anti-aliasing da lista e os desvios aceitos, mais o dos rótulos do menu; linha aberta, gatilho e posição do menu iguais ao frame."
+    },
+    {
+      "id": "cars-row-selected-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-row-selected-light.diff.png",
+      "motivo": "Mesmo tamanho do Figma (1288x734). 9654 px (1,02%) nesta execução; o mapa de diferenças mostra só bordas de glifos e os checkboxes de 20px, mais o tint aceito da linha selecionada e o vermelho PrimeVue do botão em massa. Sem deslocamento de linhas ou colunas."
+    },
+    {
+      "id": "cars-create-dialog-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-create-dialog-light.diff.png",
+      "motivo": "1846 px (0,66%) nesta execução: anti-aliasing de texto e o anel de foco do botão fechar (padrão PrimeVue, também na base)."
+    },
+    {
+      "id": "cars-edit-dialog-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-edit-dialog-light.triptych.png",
+      "motivo": "2199 px (0,79%) nesta execução: anti-aliasing de texto e o anel de foco do botão fechar."
+    },
+    {
+      "id": "cars-details-dialog-light:6ec9c2b0eb14",
+      "imagem": "comparison/attempt-01/cars-details-dialog-light.triptych.png",
+      "motivo": "2293 px (1,13%) nesta execução: anti-aliasing, VIN em mono do sistema (desvio aceito) e anel de foco do botão fechar."
+    }
+  ],
+  "bloqueios": [],
+  "notes": [
+    "Bundle só da tela Carros. Base = HEAD 90c8f9d (VISUAL_BASELINE_REF=HEAD); as mudanças estão no working tree, sem commit. Desktop 1440, DPR 1, claro e escuro.",
+    "Classificações herdadas de qa-results/2026-11-11T17-32-22-727Z-multi-component/verdict.json (attempt-03) e qa-results/2026-11-11T18-37-24-682Z-multi-component (PASS, attempt-02). Atenção: o report.json do bundle 17-32-22 está BLOCKED (a attempt-04 foi capturada sem um veredito registrado depois); as classificações vieram do veredito da attempt-03 e do bundle 18-37-24. Todos os números citados aqui foram medidos de novo nesta execução.",
+    "Harness: novo visual/scenarios/cars-search.ts (cars-search, cars-search-empty, claro/escuro), registrado em scenarios/index.ts. Nenhum código de produção alterado.",
+    "Harness: cars-delete-success e cars-bulk-delete-success capturavam a lista com linhas em branco (attempt-01, igual à base e ao bundle 18-37-24, 0 px de diferença). Causa: o mock estático recarregava os carros excluídos e o flag row-fx-leaving (src/utils/rowEffects.ts, 2s, por id) os mantinha ocultos; a API real não devolve itens excluídos. A attempt-04 usa um mock sequencial (listAfterDelete) e confirma o recarregamento. Artefato do harness, sem defeito do produto.",
+    "Observação fora do escopo (backend, sem falhar a execução): as mensagens de 400 vêm das DomainException em inglês (ex.: Car.cs 'Model year cannot be in the future.'), então a UI pt-BR mostra texto em inglês. A UI repassa a mensagem do servidor como pedido.",
+    "Observação (preexistente, igual à base): a busca sem resultado mostra uma linha de vazio em branco, sem texto. Não há requisito pedindo mensagem de vazio; fica como sugestão de UX.",
+    "Limite de cobertura: o preview monta CarsPage sem App.vue (sem sidebar); mountWidth = pageWidth(1440). Os frames Figma só desenham o tema claro; o escuro foi revisado visualmente."
+  ]
+}

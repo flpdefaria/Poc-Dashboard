@@ -1,0 +1,94 @@
+{
+ "light:open-row-2": {
+  "trigger": {
+   "x": 1225,
+   "y": 240.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 272.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 277,
+   "bottom": 383
+  },
+  "opensUp": false,
+  "gapPx": 4.5,
+  "overlap": false,
+  "menuInsideViewport": true,
+  "trashPaths": 5,
+  "consoleErrors": []
+ },
+ "light:flip-row-10": {
+  "trigger": {
+   "x": 1225,
+   "y": 624.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 656.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 515,
+   "bottom": 621
+  },
+  "opensUp": true,
+  "gapPx": 3.5,
+  "overlap": false,
+  "menuInsideViewport": true,
+  "trashPaths": 5,
+  "consoleErrors": []
+ },
+ "dark:open-row-2": {
+  "trigger": {
+   "x": 1225,
+   "y": 240.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 272.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 277,
+   "bottom": 383
+  },
+  "opensUp": false,
+  "gapPx": 4.5,
+  "overlap": false,
+  "menuInsideViewport": true,
+  "trashPaths": 5,
+  "consoleErrors": []
+ },
+ "dark:flip-row-10": {
+  "trigger": {
+   "x": 1225,
+   "y": 624.5,
+   "w": 32,
+   "h": 32,
+   "right": 1257,
+   "bottom": 656.5
+  },
+  "menu": {
+   "w": 175,
+   "h": 106,
+   "x": 1082,
+   "y": 515,
+   "bottom": 621
+  },
+  "opensUp": true,
+  "gapPx": 3.5,
+  "overlap": false,
+  "menuInsideViewport": true,
+  "trashPaths": 5,
+  "consoleErrors": []
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "scenario": "cars-details-to-edit-dark",
+  "checks": [
+    {
+      "label": "Só o diálogo de edição aberto",
+      "selector": ".p-dialog",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "Editar carro Modelo Chassi (VIN) Marca BMW Carroceria Ano do modelo Quilometragem Preço Estoque Descrição Cancelar Salvar alterações",
+        "value": null,
+        "box": {
+          "x": 520,
+          "y": 99,
+          "width": 400,
+          "height": 702
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Título Editar carro",
+      "selector": ".p-dialog-header",
+      "text": "Editar carro",
+      "observed": {
+        "count": 1,
+        "text": "Editar carro",
+        "value": null,
+        "box": {
+          "x": 521,
+          "y": 100,
+          "width": 398,
+          "height": 72
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Carro carregado",
+      "selector": "#edit-car-model",
+      "value": "3 Series",
+      "observed": {
+        "count": 1,
+        "text": "",
+        "value": "3 Series",
+        "box": {
+          "x": 541,
+          "y": 196,
+          "width": 358,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

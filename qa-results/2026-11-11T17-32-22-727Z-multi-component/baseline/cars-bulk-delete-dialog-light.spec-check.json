@@ -1,0 +1,302 @@
+{
+  "selectors": [
+    ":scope",
+    ":scope .p-dialog-header",
+    ":scope .p-dialog-header > span",
+    ":scope .p-dialog-close-button",
+    ":scope .p-dialog-content",
+    ":scope .p-dialog-footer",
+    ":scope .p-dialog-footer button:first-child",
+    ":scope .p-dialog-footer button:last-child",
+    ":scope .p-message",
+    ":scope .p-message-text",
+    ":scope .p-dialog-content > p",
+    ":scope .p-dialog-content > ul",
+    ":scope ul > li:first-child",
+    ":scope ul > li:first-child p:nth-child(1)",
+    ":scope ul > li:first-child div p:nth-child(2)",
+    ":scope ul > li:first-child > p"
+  ],
+  "snapshot": {
+    "root": {
+      "found": true,
+      "width": 765,
+      "height": 451,
+      "text": "Excluir carros Tem certeza de que deseja excluir 10 carro(s)? 3 Series: BMW 5 Series: BMW A4: Audi Accord: Honda Bronco: Ford Camaro: Chevrolet Camry: Toyota Civic: Honda Corolla Cross: Toyota CR-V: Honda Cancelar Excluir"
+    },
+    "checks": [
+      {
+        "found": true,
+        "width": 765,
+        "height": 451,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "12px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(229, 231, 235)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Excluir carros Tem certeza de que deseja excluir 10 carro(s)? 3 Series: BMW 5 Series: BMW A4: Audi Accord: Honda Bronco: Ford Camaro: Chevrolet Camry: Toyota Civic: Honda Corolla Cross: Toyota CR-V: Honda Cancelar Excluir",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 763,
+        "height": 67,
+        "style": {
+          "paddingTop": "20px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Excluir carros",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 141,
+        "height": 31.5,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "31.5px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Excluir carros",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 40,
+        "height": 40,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "0px",
+          "paddingBottom": "8px",
+          "paddingLeft": "0px",
+          "gap": "0px",
+          "borderTopLeftRadius": "50%",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(107, 114, 128)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgba(0, 0, 0, 0)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 763,
+        "height": 324,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "21px",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Tem certeza de que deseja excluir 10 carro(s)? 3 Series: BMW 5 Series: BMW A4: Audi Accord: Honda Bronco: Ford Camaro: Chevrolet Camry: Toyota Civic: Honda Corolla Cross: Toyota CR-V: Honda",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 763,
+        "height": 58,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "8px",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Cancelar Excluir",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 84.84375,
+        "height": 38,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "11.5px",
+          "paddingBottom": "8px",
+          "paddingLeft": "11.5px",
+          "gap": "7px",
+          "borderTopLeftRadius": "6px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(107, 114, 128)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(209, 213, 219)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Cancelar",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 69.921875,
+        "height": 38,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "11.5px",
+          "paddingBottom": "8px",
+          "paddingLeft": "11.5px",
+          "gap": "7px",
+          "borderTopLeftRadius": "6px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "backgroundColor": "rgb(239, 68, 68)",
+          "borderTopColor": "rgb(239, 68, 68)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Excluir",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      }
+    ]
+  }
+}

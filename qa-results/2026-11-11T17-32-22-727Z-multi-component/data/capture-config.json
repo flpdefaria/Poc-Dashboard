@@ -1,0 +1,31 @@
+{
+  "tool": "playwright",
+  "browsers": [
+    "chromium"
+  ],
+  "baseUrl": "http://localhost:5175",
+  "previewPath": "/visual/preview.html",
+  "https": false,
+  "ignoreHttpsErrors": true,
+  "timezoneId": "UTC",
+  "fixedNow": "2026-11-10T12:00:00Z",
+  "localeHint": "pt-BR",
+  "defaultDeviceScaleFactor": 2,
+  "reducedMotion": "reduce",
+  "screenshotAnimations": "disabled",
+  "screenshotScope": "element",
+  "serviceWorkers": "blocked",
+  "apiBasePath": "/api",
+  "comparison": {
+    "algorithm": "pixelmatch",
+    "threshold": 0.1,
+    "mismatchRatioTolerance": 0.001,
+    "rescaling": "never"
+  },
+  "figmaSpecCheck": {
+    "source": "visual/references/<id>.figma.json",
+    "pxTolerance": 1,
+    "colorChannelTolerance": 2,
+    "measuredOn": "getBoundingClientRect + getComputedStyle inside captureSelector"
+  }
+}

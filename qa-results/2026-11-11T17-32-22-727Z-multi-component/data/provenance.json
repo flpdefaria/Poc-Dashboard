@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-11-11T18:00:50.837Z",
+  "attempt": 4,
+  "command": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp/node_modules/.bin/playwright test visual/capture.spec.ts",
+  "cwd": "/Users/felipefaria/projects/poc-dashboard/Src/CarStore.Web/ClientApp",
+  "repoRoot": "/Users/felipefaria/projects/poc-dashboard",
+  "git": {
+    "branch": "main",
+    "commit": "90c8f9d3b95459f046e6140f9635aa495ae365c8",
+    "dirty": true
+  },
+  "node": "v24.16.0",
+  "platform": "darwin arm64",
+  "harness": {
+    "previewEntry": "Src/CarStore.Web/ClientApp/visual/preview.html",
+    "previewScript": "Src/CarStore.Web/ClientApp/visual/preview.ts",
+    "spec": "Src/CarStore.Web/ClientApp/visual/capture.spec.ts",
+    "config": "Src/CarStore.Web/ClientApp/playwright.config.ts",
+    "preset": "Src/CarStore.Web/ClientApp/src/plugins/primevue-preset.ts"
+  },
+  "references": {
+    "cars-row-menu-light": {
+      "path": "reference/cars-row-menu-light.png",
+      "figmaSpec": {
+        "path": "reference/cars-row-menu-light.figma.json",
+        "nodeId": "2069:3601",
+        "retrievedAt": "2026-11-11T16:00:00Z"
+      }
+    },
+    "cars-row-menu-dark": {
+      "path": null,
+      "reason": "No reference image at visual/references/cars-row-menu-dark.png. Export the Figma frame at the scenario viewport and device scale factor and save it there.",
+      "figmaSpec": {
+        "path": null,
+        "reason": "No Figma spec at visual/references/cars-row-menu-dark.figma.json (qa-agent writes it from the Figma MCP)."
+      }
+    }
+  },
+  "baseline": {
+    "enabled": false,
+    "ref": null,
+    "commit": null,
+    "worktreePath": null,
+    "depsStrategy": null,
+    "url": null
+  }
+}

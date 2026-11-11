@@ -45,6 +45,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 - [[Sidebar-Logo-Icon]]
 - [[Sidebar-Collapse-Expand]]
 - [[Home-Dashboard]]
+- [[Cars-Page]]
 - [[Theme-Surface-Modes]]
 - [[UI-Language-pt-BR]]
 

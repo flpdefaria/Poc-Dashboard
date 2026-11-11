@@ -1,0 +1,95 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2069-2759",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2069:3601",
+    "nodeName": "menu (Tela · Carros · Menu de ações aberto 2069:2759)",
+    "retrievedAt": "2026-11-11T16:00:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs",
+      "primevue:get_component"
+    ]
+  },
+  "frame": {
+    "width": 175,
+    "height": 78,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2069:3601",
+      "component": "Menu (popup)",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2069:3601;608:40633",
+      "nodeName": "menu",
+      "selector": ":scope",
+      "props": {
+        "width": 175,
+        "height": 78,
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;6577:33851",
+      "nodeName": "list",
+      "selector": ":scope .p-menu-list",
+      "props": {
+        "paddingTop": 4,
+        "paddingLeft": 4,
+        "gap": 2
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40599",
+      "nodeName": "menu-item Detalhes",
+      "selector": ":scope .p-menu-item:nth-child(1) .p-menu-item-link",
+      "text": "Detalhes",
+      "props": {
+        "height": 22,
+        "paddingLeft": 10,
+        "paddingTop": 4,
+        "borderRadius": 4,
+        "gap": 8,
+        "fontSize": 14,
+        "fontWeight": 400,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40599;452:28239",
+      "nodeName": "eye",
+      "selector": ":scope .p-menu-item:nth-child(1) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40600",
+      "nodeName": "menu-item Editar",
+      "selector": ":scope .p-menu-item:nth-child(2)",
+      "text": "Editar"
+    },
+    {
+      "nodeId": "I2069:3601;608:40602",
+      "nodeName": "menu-item Excluir",
+      "selector": ":scope .p-menu-item:nth-child(3)",
+      "text": "Excluir"
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2069:2759 (1440x814 @1x) recortado em x1194 y317 175x78 (bounds do get_metadata), sem a nav-rail/margem do shell e sem sombra externa.",
+    "Cores do menu = get_variable_defs do nó 2069:3601 (menu/item/color #1f2937, ícone #6b7280, borda #e5e7eb)."
+  ]
+}

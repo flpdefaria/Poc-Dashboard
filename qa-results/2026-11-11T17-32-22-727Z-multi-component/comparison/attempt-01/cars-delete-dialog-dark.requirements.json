@@ -1,0 +1,107 @@
+{
+  "scenario": "cars-delete-dialog-dark",
+  "checks": [
+    {
+      "label": "Título singular",
+      "selector": ".p-dialog-header",
+      "text": "Excluir carro?",
+      "observed": {
+        "count": 1,
+        "text": "Excluir carro?",
+        "value": null,
+        "box": {
+          "x": 521,
+          "y": 301,
+          "width": 398,
+          "height": 72
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Introdução singular",
+      "selector": ".p-dialog-content",
+      "text": "O carro abaixo será removido do estoque:",
+      "observed": {
+        "count": 1,
+        "text": "Esta ação não pode ser desfeita. O carro abaixo será removido do estoque: 3 Series BMW · Sedan R$ 44.500,00",
+        "value": null,
+        "box": {
+          "x": 521,
+          "y": 373,
+          "width": 398,
+          "height": 166
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Banner de erro",
+      "selector": ".p-dialog .p-message-error",
+      "text": "Esta ação não pode ser desfeita.",
+      "observed": {
+        "count": 1,
+        "text": "Esta ação não pode ser desfeita.",
+        "value": null,
+        "box": {
+          "x": 541,
+          "y": 373,
+          "width": 358,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Um carro na lista",
+      "selector": ".p-dialog ul > li",
+      "count": 1,
+      "observed": {
+        "count": 1,
+        "text": "3 Series BMW · Sedan R$ 44.500,00",
+        "value": null,
+        "box": {
+          "x": 542,
+          "y": 466,
+          "width": 356,
+          "height": 52
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Linha do carro",
+      "selector": ".p-dialog ul > li",
+      "text": "BMW · Sedan",
+      "observed": {
+        "count": 1,
+        "text": "3 Series BMW · Sedan R$ 44.500,00",
+        "value": null,
+        "box": {
+          "x": 542,
+          "y": 466,
+          "width": 356,
+          "height": 52
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Botão Excluir carro",
+      "selector": ".p-dialog .p-dialog-footer button:last-child",
+      "text": "Excluir carro",
+      "observed": {
+        "count": 1,
+        "text": "Excluir carro",
+        "value": null,
+        "box": {
+          "x": 756.98,
+          "y": 539,
+          "width": 142.02,
+          "height": 40
+        }
+      },
+      "status": "pass"
+    }
+  ]
+}

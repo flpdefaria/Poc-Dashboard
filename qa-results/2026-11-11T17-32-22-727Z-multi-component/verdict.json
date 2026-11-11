@@ -1,0 +1,194 @@
+{
+ "result": "FAIL",
+ "criteria": [
+  {
+   "text": "R2-1 Diálogo de Carro (modalDialogPt): padding 18px, header 68px, conteúdo 362px, gap do rodapé 6px (claro e escuro)",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-create-dialog-light.png",
+    "actual/attempt-03/cars-create-dialog-dark.png",
+    "actual/attempt-03/cars-bulk-delete-dialog-light.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-measure-dark.json"
+   ]
+  },
+  {
+   "text": "R2-2 Menu da linha: 175px, itens de 22px, menu de 78px, ícones #6b7280",
+   "status": "fail",
+   "evidence": [
+    "actual/attempt-03/cars-row-menu-light.png",
+    "actual/attempt-03/cars-row-menu-dark.png",
+    "comparison/attempt-03/cars-row-menu-light.triptych.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-css-probe-light.json"
+   ]
+  },
+  {
+   "text": "R2-3 Paginador: botões de 36px, rodapé de 68px, card de 598px (±1)",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-list-light.png",
+    "actual/attempt-03/cars-list-dark.png",
+    "evidence/round2-measure-light.json"
+   ]
+  },
+  {
+   "text": "R2-4 Rótulos de Select (Marca e linhas por página) centralizados com leading-[38px]",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-create-dialog-light.png",
+    "actual/attempt-03/cars-list-light.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-measure-dark.json"
+   ]
+  },
+  {
+   "text": "R2-5 Banner de exclusão: 33px, borda real 1px #fecaca (sem outline), texto #b91c1c, legível no escuro",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-bulk-delete-dialog-light.png",
+    "actual/attempt-03/cars-bulk-delete-dialog-dark.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-measure-dark.json"
+   ]
+  },
+  {
+   "text": "R2-6 Bordas #9ca3af sem foco (input, select, textarea, busca, linhas por página); cor de foco preservada; escuro coerente",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-create-dialog-light.png",
+    "actual/attempt-03/cars-create-dialog-dark.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-focus-light.json",
+    "evidence/round2-focus-dark.json"
+   ]
+  },
+  {
+   "text": "R2-7 Botão \"Excluir N carros\" #dc2626, hover #b91c1c",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-bulk-delete-dialog-light.png",
+    "actual/attempt-03/cars-bulk-delete-dialog-dark.png",
+    "evidence/round2-measure-light.json",
+    "evidence/round2-measure-dark.json"
+   ]
+  },
+  {
+   "text": "Regressão: diálogos legados (Marcas criar/excluir, Clientes excluir) idênticos à base HEAD; dialogShellPt/dangerButtonClass sem alteração no diff",
+   "status": "pass",
+   "evidence": [
+    "comparison/attempt-03/brands-create-dialog-light.baseline.side-by-side.png",
+    "comparison/attempt-03/brands-delete-dialog-light.baseline.side-by-side.png",
+    "comparison/attempt-03/customers-delete-dialog-light.baseline.side-by-side.png",
+    "comparison/attempt-03/brands-delete-dialog-dark.baseline.side-by-side.png"
+   ]
+  },
+  {
+   "text": "Regressão: diálogos de Clientes (Novo/Editar com Carro) iguais à base; só o PageHeader ao fundo mudou (mudança intencional já aceita)",
+   "status": "pass",
+   "evidence": [
+    "comparison/attempt-03/customer-edit-car-light.baseline.side-by-side.png",
+    "comparison/attempt-03/customer-create-car-select-light.baseline.side-by-side.png"
+   ]
+  },
+  {
+   "text": "Fluxos: paginação, criar, editar, excluir, excluir em massa, validação e mensagens 400 da API, claro e escuro (todos os renderChecks passam, sem requisições bloqueadas)",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-pagination-light.png",
+    "actual/attempt-03/cars-create-success-light.png",
+    "actual/attempt-03/cars-create-error-400-dark.png",
+    "actual/attempt-03/cars-edit-error-400-light.png",
+    "actual/attempt-03/cars-delete-error-400-light.png",
+    "actual/attempt-03/cars-bulk-delete-success-dark.png",
+    "actual/attempt-03/cars-bulk-delete-error-light.png",
+    "actual/attempt-03/cars-details-to-edit-light.png"
+   ]
+  },
+  {
+   "text": "Desvios aceitos 1–5 (tint primary/soft, página atual em negrito, vermelho PrimeVue no botão em massa, VIN mono do sistema, checkbox 20px) continuam como antes",
+   "status": "pass",
+   "evidence": [
+    "actual/attempt-03/cars-row-selected-light.png",
+    "actual/attempt-03/cars-details-dialog-light.png"
+   ]
+  }
+ ],
+ "diferencas": [
+  {
+   "id": "cars-row-menu-light:396d11037a17",
+   "categoria": "defeito",
+   "imagem": "comparison/attempt-03/cars-row-menu-light.triptych.png",
+   "motivo": "[MÉDIA] NÃO CORRIGIDO. DataTableCommon.vue cardMenuPt.itemIcon (\"size-3.5! text-sm text-muted-color!\") nunca chega ao ícone: o template #itemicon do Menu recebe só cx('itemIcon') (primevue/menu/index.mjs:181), não o pt. O SVG fica com a classe \"lucide lucide-eye p-menu-item-icon\" e a cor --p-menu-item-icon-color = surface-400: #9ca3af no claro (Figma #6b7280) e #4b5563 sobre #030712 no escuro (ícones apagados). Os 3 ícones medidos iguais. Correção: aplicar as classes no próprio <component :is=item.lucideIcon> do slot (ex.: :class=[iconClass, card && 'size-3.5 text-muted-color!']) ou usar o pt no lugar do slot."
+  },
+  {
+   "id": "cars-row-menu-light:107ad6f20543",
+   "categoria": "defeito",
+   "imagem": "actual/attempt-03/cars-row-menu-light.png",
+   "motivo": "[BAIXA] NÃO CORRIGIDO (parcial). Menu tem 80px em vez de 78px. Largura 175 e itens 22 conferem; a lista tem 78px (4+3x22+2x2+4), mas a borda de 1px do .p-menu soma 2px. No Figma o stroke não entra no auto layout (175x78 com padding 4 medido da borda externa). Correção em cardMenuPt: list p-[3px]! (ou borda via outline/box-shadow inset)."
+  },
+  {
+   "id": "cars-row-menu-light:61ad29d7b649",
+   "categoria": "defeito",
+   "imagem": "actual/attempt-03/cars-row-menu-light.png",
+   "motivo": "Mesmo defeito do menu 80px vs 78px (linha frame.height do mesmo nó)."
+  },
+  {
+   "id": "cars-row-menu-light:6ec9c2b0eb14",
+   "categoria": "defeito",
+   "imagem": "comparison/attempt-03/cars-row-menu-light.triptych.png",
+   "motivo": "Consequência dos dois defeitos do menu (altura 80 vs 78 impede a sobreposição; ícones mais claros visíveis no tríptico)."
+  },
+  {
+   "id": "cars-details-dialog-light:06a0193342ff",
+   "categoria": "intencional",
+   "motivo": "Largura do botão Editar 96.83px vs 98px: métrica sub-pixel do texto (padding, altura, raio e fonte conferem). Mesmo julgamento da rodada 1 (a CLI não aceita width em minimas).",
+   "imagem": "actual/attempt-03/cars-details-dialog-light.png"
+  },
+  {
+   "id": "cars-bulk-delete-dialog-light:6ec9c2b0eb14",
+   "categoria": "intencional",
+   "imagem": "comparison/attempt-03/cars-bulk-delete-dialog-light.triptych.png",
+   "motivo": "Captura 400x488 vs Figma 400x487: a altura do diálogo é fracionária (conteúdo com line-heights sub-pixel) e a captura arredonda para cima; o spec mede 487px (±1) e passa 76/76. Visualmente igual ao frame; aceito como diferença mínima (a CLI não aceita dimension-mismatch em minimas)."
+  },
+  {
+   "id": "cars-list-light:6ec9c2b0eb14",
+   "categoria": "intencional",
+   "imagem": "comparison/attempt-03/cars-list-light.triptych.png",
+   "motivo": "Tela 1288x735 vs 734: card 599px vs 598px (dentro da tolerância ±1 do spec, que passa). Diferença de 1px imperceptível. Classificada fora de minimas porque a CLI não aceita dimension-mismatch como mínima."
+  },
+  {
+   "id": "cars-row-selected-light:6ec9c2b0eb14",
+   "categoria": "intencional",
+   "imagem": "comparison/attempt-03/cars-row-selected-light.triptych.png",
+   "motivo": "Mesmo 1px de altura do card (735 vs 734) e os desvios aceitos 1 e 5 (tint/checkbox). Classificada fora de minimas porque a CLI não aceita dimension-mismatch como mínima."
+  }
+ ],
+ "minimas": [
+  {
+   "id": "cars-create-dialog-light:6ec9c2b0eb14",
+   "imagem": "comparison/attempt-03/cars-create-dialog-light.diff.png",
+   "motivo": "0,66% de pixels: só anti-aliasing de texto e o anel de foco do botão fechar (padrão PrimeVue, também na base). Spec 76/76."
+  },
+  {
+   "id": "cars-edit-dialog-light:6ec9c2b0eb14",
+   "imagem": "comparison/attempt-03/cars-edit-dialog-light.triptych.png",
+   "motivo": "0,79% de pixels: anti-aliasing de texto e anel de foco do fechar. Spec 77/77."
+  },
+  {
+   "id": "cars-details-dialog-light:6ec9c2b0eb14",
+   "imagem": "comparison/attempt-03/cars-details-dialog-light.triptych.png",
+   "motivo": "1,1% de pixels: anti-aliasing, VIN em mono do sistema (desvio aceito 4) e anel de foco do fechar."
+  }
+ ],
+ "bloqueios": [],
+ "notes": [
+  "Rodada 2 (attempt-03) no mesmo bundle da rodada 1; base = HEAD 90c8f9d (VISUAL_BASELINE_REF=HEAD), mudanças não commitadas.",
+  "Medições diretas (getBoundingClientRect/getComputedStyle, DPR 1, 1440) em evidence/round2-*.json. Foco medido após 600ms: as bordas do Aura têm transition de 0,2s, então leituras imediatas mostram a cor anterior.",
+  "Foco: input/textarea/busca -> #030712 (claro) / #ffffff (escuro); Select/linhas por página -> #030712 / #ffffff. Sem foco: #9ca3af (claro) / #4b5563 (escuro, surface-400 do ramp invertido; visível no fundo #030712). Hover sem foco também fica surface-400 (o token de hover do preset já é surface-400).",
+  "Banner escuro: texto #fca5a5 sobre tint vermelho 14% em #030712, borda vermelha 35%: legível.",
+  "Botão Excluir N carros: #dc2626 / hover #b91c1c nos dois temas; texto branco.",
+  "Novos cenários de regressão em visual/scenarios/legacy-dialogs.ts (brands-create-dialog, brands-delete-dialog, customers-delete-dialog, claro/escuro): mismatch vs base < 0,03%.",
+  "Desvios aceitos 1–5 seguem classificados como intencional nas explanations dos specs (página atual em negrito/cor, tint de seleção, vermelho PrimeVue, VIN mono, checkbox 20px)."
+ ]
+}

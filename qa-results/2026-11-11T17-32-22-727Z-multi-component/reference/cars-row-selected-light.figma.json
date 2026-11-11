@@ -1,0 +1,221 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2070-1090",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2070:1090",
+    "nodeName": "Tela · Carros · Linha selecionada / main",
+    "retrievedAt": "2026-11-11T16:00:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs",
+      "primevue:get_component"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2070:1925",
+      "component": "Button (severity danger, outlined)",
+      "status": "verified"
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1951;552:983;2070:1130",
+      "component": "Checkbox",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2063:7;363:2790",
+      "nodeName": "title-row",
+      "selector": ":scope > div:nth-child(1)",
+      "props": {
+        "width": 1288,
+        "height": 56
+      }
+    },
+    {
+      "nodeId": "I2063:7;363:2793",
+      "nodeName": "title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Carros",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "color": "#1f2937",
+        "fontFamily": "Inter"
+      }
+    },
+    {
+      "nodeId": "I2063:7;363:2794",
+      "nodeName": "description",
+      "selector": ":scope > div:nth-child(1) p",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2063:7;363:2756;2064:7078",
+      "nodeName": "button Novo carro",
+      "selector": ":scope > div:nth-child(1) .p-button",
+      "text": "Novo carro",
+      "props": {
+        "width": 132,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2066:561",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2066:561",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield input",
+      "props": {
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2064:7106",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2070:1095",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2070:1925",
+      "nodeName": "button Excluir selecionados",
+      "selector": ":scope .p-button-danger.p-button-outlined",
+      "text": "Excluir selecionados (1)",
+      "props": {
+        "width": 216,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#fecaca",
+        "color": "#b91c1c",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109",
+      "nodeName": "table-row selecionada",
+      "selector": ":scope .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 48,
+        "backgroundColor": "#d7e6fe"
+      }
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1952",
+      "nodeName": "cell Modelo (selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+      "text": "3 Series",
+      "props": {
+        "fontSize": 14,
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1951;552:983;2070:1130",
+      "nodeName": "checkbox marcado",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox",
+      "props": {
+        "width": 18,
+        "height": 18
+      }
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1951;552:983;2070:1130",
+      "nodeName": "checkbox marcado (caixa)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "backgroundColor": "#2564cf"
+      }
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1110",
+      "nodeName": "table-row 2 (não selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2)",
+      "props": {
+        "height": 48
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2070:1090 (1440x814 @1x) recortado em x112 y40 1288x734 (bounds do get_metadata), sem a nav-rail/margem do shell e sem sombra externa.",
+    "Cores = valores resolvidos por get_variable_defs (modo de superfície gray: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712). Os hex do código gerado (#262626, #737373, #a3a3a3) são fallbacks.",
+    "Dados = primeira página do protótipo: seed sem \"Corolla\" (o frame lista Corolla Cross e CR-V nas linhas 9 e 10) e a descrição do 3 Series em português, como no frame."
+  ],
+  "explanations": [
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109",
+      "prop": "backgroundColor",
+      "category": "intencional",
+      "text": "Desvio aceito 1: linha selecionada usa --p-soft-background do app em vez do azul #d7e6fe do Figma."
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1952",
+      "prop": "color",
+      "category": "intencional",
+      "text": "Desvio aceito 1: tinta da linha selecionada = --p-soft-color do app em vez de #1046a0."
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1951;552:983;2070:1130",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox",
+      "category": "intencional",
+      "text": "Desvio aceito 5: checkbox Aura de 20px em vez de 18px."
+    },
+    {
+      "nodeId": "I2070:1097;553:9904;2070:1109;553:1055;2070:1951;552:983;2070:1130",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox-box",
+      "prop": "backgroundColor",
+      "category": "intencional",
+      "text": "Desvio aceito 1: checkbox marcado usa a cor primária do app em vez do azul #2564cf."
+    },
+    {
+      "nodeId": "2070:1925",
+      "prop": "color",
+      "category": "intencional",
+      "text": "Desvio aceito 3: texto do botão de exclusão em massa usa o vermelho padrão do PrimeVue (outlined danger) em vez de #b91c1c."
+    }
+  ]
+}

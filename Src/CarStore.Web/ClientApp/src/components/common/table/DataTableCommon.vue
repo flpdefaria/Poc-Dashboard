@@ -75,6 +75,109 @@ const flushSearchIconClass = "start-[13px]! size-3! -mt-1.5! text-xs!";
 const flushSearchInputClass =
   "h-8! rounded-md! py-0! ps-[32.75px]! pe-3! text-xs! leading-[18px]! not-focus:border-surface-400!";
 
+// `card` = Figma Cars table (frame 2063:4, card 2064:7106, density Large): 48px header and body rows INCLUDING the
+// 1px bottom border, 18px cell inset, 14px text-color body. Text cells: 20px line + 2 x 13.5px + 1px = 48px; the
+// row grows to the tallest cell, so the 32px actions button gets its own 7.5px inset (column below).
+const cardColumnPt = {
+  headerCell: { class: "px-[18px]! py-[13.5px]!" },
+  bodyCell: { class: "truncate px-[18px]! py-[13.5px]!" },
+  columnHeaderContent: { class: "w-full gap-2!" },
+  columnTitle: { class: "min-w-0 flex-1 truncate font-semibold" },
+};
+const cardSelectionColumnPt = {
+  headerCell: { class: "px-[18px]! py-[13.5px]!" },
+  bodyCell: { class: "px-[18px]! py-[13.5px]!" },
+};
+const cardActionsColumnPt = {
+  headerCell: { class: "px-[18px]! py-[13.5px]! text-left!" },
+  bodyCell: { class: "px-[18px]! py-[7.5px]!" },
+  columnTitle: { class: "font-semibold" },
+};
+
+// Selected row (Figma table-row Selected, 2070:1090): a light tint with darker ink rather than Aura's solid
+// highlight. The Figma file uses a blue theme (#d7e6fe / #1046a0); this app's monochrome preset maps that pair
+// to the Prometheus soft tokens (`--p-soft-background` = primary.200, `--p-soft-color` = primary.900), which
+// flip with the theme. `!` beats `.p-datatable-row-selected`.
+const cardBodyRowPt = ({ context }: { context: { selected: boolean } }) => ({
+  class: context.selected ? "bg-(--p-soft-background)! text-(--p-soft-color)!" : undefined,
+});
+
+// Figma paginator inside the card footer (I2069:2766;553:9905;2069:3083): centered, 4px gap, 14px x 6px padding
+// inside an 8px footer inset (so 14px top/bottom: 14 + 40px select + 14 = 68px footer), 36px round nav buttons,
+// no bottom border (the card border closes it). Nav glyphs are the PrimeOne angle icons, which are PrimeVue's own
+// built-in paginator SVGs, drawn at 14px (Aura renders `.p-icon` at 1rem). Page numbers are 14px regular muted;
+// the current page is 14px semibold on the selected fill. The Figma blue pair (#d7e6fe / #1046a0) maps to the
+// Prometheus soft tokens, as for the selected row. Hover only applies to idle pages (Aura's rule also skips the
+// selected one); disabled first/prev/next/last keep Aura's 0.6 opacity (Figma draws no disabled state).
+// `!` is required on every size and colour: `.p-paginator` padding, the nav buttons' `min-width`/`height` and the
+// selected-page colours come from PrimeVue CSS injected outside Tailwind's layers.
+const cardNavButtonPt = { class: "size-9! min-w-9! rounded-full bg-transparent! text-muted-color hover:bg-surface-100! hover:text-color!" };
+const cardNavIconPt = { class: "size-3.5!" };
+const cardPaginatorPt = {
+  // The outer <nav> gets DataTable's `.p-datatable-paginator-bottom` (1px bottom border); the card already has one.
+  paginatorContainer: { class: "border-0!" },
+  root: { class: "justify-center gap-1! rounded-none border-0! bg-transparent! px-3.5! py-3.5!" },
+  first: cardNavButtonPt,
+  firstIcon: cardNavIconPt,
+  prev: cardNavButtonPt,
+  prevIcon: cardNavIconPt,
+  next: cardNavButtonPt,
+  nextIcon: cardNavIconPt,
+  last: cardNavButtonPt,
+  lastIcon: cardNavIconPt,
+  page: ({ context }: { context: { active: boolean } }) => ({
+    class: [
+      "size-9! min-w-9! rounded-full text-sm",
+      context.active
+        ? "bg-(--p-soft-background)! font-semibold text-(--p-soft-color)!"
+        : "bg-transparent! font-normal text-muted-color! hover:bg-surface-100! hover:text-color!",
+    ],
+  }),
+  // Figma "select" (…;394:18797): 40px, surface-400 border, 16px label inset, 14px/1.5 value in the muted
+  // select colour (#6b7280), 40px dropdown with a 14px muted chevron (Aura's width matches; its chevron colour is
+  // surface-400, so it is forced to muted).
+  pcRowPerPageDropdown: {
+    root: { class: "h-10 rounded-md not-[.p-focus]:border-surface-400!" },
+    // 38px line = 40px - 2 x 1px border: centers the label, which `.p-select-label { display: block }` keeps from flexing.
+    label: { class: "px-4! py-0! text-sm! leading-[38px]! text-muted-color!" },
+    dropdownIcon: { class: "size-3.5! text-muted-color!" },
+  },
+};
+
+// Figma "menu" (Cars 2069:3601, refreshed): 175px, 6px radius, surface-200 border, menu shadow (= shadow-md),
+// 4px list padding, 4px item gap, 30px items (14px text, leading 1, 8px x 12px padding, 4px radius, 8px icon gap),
+// 14px icons in #6b7280 (muted; Aura's menu icon is surface-400) with Figma's 1.5px icon stroke. Every item,
+// "Excluir" included, uses the plain menu ink (#1f2937 -> text-color): no destructive colour, no separators.
+// 1 + 3 + 3 x 30 + 2 x 4 + 3 + 1 = 106px tall (Figma's stroke sits outside the auto layout, so list padding is
+// 3px). Hover/focus is not drawn in Figma and keeps Aura's surface-100 item focus fill.
+// `!` beats `.p-menu { min-width: 12.5rem }`, `.p-menu-item-link` padding and `.p-menu-item-icon` color
+// (PrimeVue CSS is unlayered). The #itemicon slot only receives cx('itemIcon'), so `itemIcon` is applied by the
+// template, not by PrimeVue's pt.
+const cardMenuPt = {
+  root: { class: "min-w-[175px]! rounded-md! border border-surface-200 bg-surface-0 p-0 shadow-md" },
+  list: { class: "flex flex-col gap-1! p-[3px]!" },
+  itemLink: { class: "gap-2! rounded-sm px-3! py-2! text-sm leading-none font-normal text-color" },
+  itemIcon: { class: "size-3.5! text-sm text-muted-color!" },
+};
+// Figma places the menu 4px under the trigger with its right edge on the trigger's right edge (menu x 1194..1369,
+// button 1337..1369). PrimeVue aligns popups to the trigger's left edge with a 2px gutter, so card mode realigns it.
+const cardMenuGap = 4;
+
+// Trigger while its menu is open (Figma row I2069:2766;553:9904;2069:2779): the row keeps the hover fill and the
+// button shows the text-secondary hover fill (#f9fafb -> surface-50) with the #111827 (surface-900) glyph.
+const cardMenuTriggerClass =
+  "size-8! rounded-md! p-0! text-surface-900! hover:bg-surface-50! [&_.lucide]:size-4!";
+const cardMenuOpenRowClass = "bg-(--p-datatable-row-hover-background)!";
+
+// Figma search "inputtext" above the card (2066:561): 216x40, 14px icon 17px from the edge, text 41.5px from
+// the edge (14px icon + 10.5px gap); CSS padding = Figma offset minus the 1px border. Border #9ca3af -> surface-400
+// (Aura's default is surface-300), dropped while focused so the focus color still shows.
+const cardSearchIconClass = "start-[17px]! size-3.5! -mt-[7px]! text-sm!";
+const cardSearchInputClass = "h-10! py-0! ps-[40.5px]! pe-4! text-sm! leading-[21px]! not-focus:border-surface-400!";
+
+// Figma "Excluir selecionados (N)" (2070:1925): 40px outlined danger button.
+const cardBulkButtonClass = "h-10! gap-2! rounded-md! px-4! py-0! text-sm! leading-[21px]! font-medium! [&_.lucide]:size-4!";
+
 const props = withDefaults(
   defineProps<{
     value: any[];
@@ -106,6 +209,12 @@ const props = withDefaults(
     stripedRows?: boolean;
     /** Edge-to-edge variant for a table that is itself the card body: no outer border, padded toolbar, 40px rows. */
     flush?: boolean;
+    /**
+     * Figma Cars table (2064:7106): search box above a 12px-radius bordered card with a light shadow, 48px rows,
+     * 56px checkbox and 80px actions columns, equal data columns (fixed layout), centered paginator, tinted
+     * selected rows and the 175px row menu. Do not combine with `flush`.
+     */
+    card?: boolean;
   }>(),
   {
     rowsPerPageOptions: () => [10, 20, 50],
@@ -191,8 +300,45 @@ const hasActions = !!(
 
 const menu = ref();
 const menuItems = ref<MenuItem[]>([]);
+// Row whose actions menu is open, and its trigger: card mode keeps both in their open state (Figma 2069:2759).
+const menuRowKey = ref<unknown>(null);
+let menuTrigger: HTMLElement | null = null;
+
+function rowClass(row: any) {
+  const effect = rowEffectClass(props.effectScope, row[props.dataKey]);
+  const key = row[props.dataKey];
+  const menuOpen =
+    props.card &&
+    menuRowKey.value != null &&
+    menuRowKey.value === key &&
+    !selectedRows.value.some((selected) => selected[props.dataKey] === key); // selection dominates hover
+  return menuOpen ? [effect, cardMenuOpenRowClass] : effect;
+}
+
+// Runs after PrimeVue's own `absolutePosition` (Menu emits `show` at the end of onEnter). Keeps PrimeVue's
+// vertical flip and only swaps the horizontal anchor and the gap. The flip is read from geometry (menu above the
+// trigger), not from `transformOrigin`, which browsers normalise ("bottom" reads back as "center bottom").
+// Positions are rounded so the menu lands on whole pixels.
+function onMenuShow() {
+  if (!props.card) return;
+  const el: HTMLElement | undefined = menu.value?.container;
+  if (!el || !menuTrigger) return;
+  const rect = menuTrigger.getBoundingClientRect();
+  el.style.marginTop = "0px";
+  const openedAbove = el.getBoundingClientRect().top < rect.top;
+  const top = openedAbove ? rect.top - cardMenuGap - el.offsetHeight : rect.bottom + cardMenuGap;
+  el.style.top = `${Math.round(top + window.scrollY)}px`;
+  el.style.insetInlineStart = `${Math.round(Math.max(0, rect.right + window.scrollX - el.offsetWidth))}px`;
+}
+
+function onMenuHide() {
+  menuRowKey.value = null;
+  menuTrigger = null;
+}
 
 function toggleMenu(event: Event, data: any) {
+  menuRowKey.value = data[props.dataKey];
+  menuTrigger = event.currentTarget as HTMLElement | null;
   menuItems.value = [
     ...(props.detailsUrl || props.confirmDetails
       ? [
@@ -222,6 +368,8 @@ function toggleMenu(event: Event, data: any) {
       ? [
           {
             label: "Excluir",
+            // Figma's card menu draws a trash glyph without inner lines, but no Lucide icon matches it (in
+            // @lucide/vue, `Trash` is an alias of `Trash2`). Pending a design decision, every table uses Trash2.
             lucideIcon: Trash2,
             command: () => {
               if (props.confirmDelete) emit("delete", data);
@@ -236,24 +384,35 @@ function toggleMenu(event: Event, data: any) {
 </script>
 
 <template>
-  <div class="flex flex-col" :class="flush ? 'gap-0' : 'gap-2'">
+  <div class="flex flex-col" :class="flush ? 'gap-0' : card ? 'gap-4' : 'gap-2'">
     <div class="flex items-center justify-between gap-3" :class="{ 'min-h-10 px-4 py-1': flush }">
       <div class="flex w-full items-center gap-2">
-        <IconField :class="flush ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
-          <InputIcon :class="flush ? flushSearchIconClass : undefined"><Search /></InputIcon>
+        <IconField :class="flush || card ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
+          <InputIcon :class="flush ? flushSearchIconClass : card ? cardSearchIconClass : undefined"><Search /></InputIcon>
           <InputText
             v-model="searchTerm"
             :placeholder="searchPlaceholder"
             :aria-label="searchPlaceholder"
             class="w-full"
-            :class="flush ? flushSearchInputClass : undefined"
+            :class="flush ? flushSearchInputClass : card ? cardSearchInputClass : undefined"
           />
         </IconField>
         <!-- Extra toolbar actions next to the search box (e.g. a "View all" link). -->
         <slot name="toolbar" />
       </div>
       <Button
-        v-if="bulkDelete && selectedRows.length"
+        v-if="bulkDelete && selectedRows.length && card"
+        :label="`Excluir selecionados (${selectedRows.length})`"
+        severity="danger"
+        outlined
+        :class="cardBulkButtonClass"
+        class="shrink-0"
+        @click="onBulkDeleteClick"
+      >
+        <template #icon><Trash2 /></template>
+      </Button>
+      <Button
+        v-else-if="bulkDelete && selectedRows.length"
         label="Excluir selecionados"
         severity="danger"
         outlined
@@ -268,7 +427,15 @@ function toggleMenu(event: Event, data: any) {
     <!-- Flush: the table is the bottom of a 12px-radius, 1px-bordered card, so its own bottom corners
          use the 11px inner radius and clip the last (striped) row. The row menu is a popup appended to
          <body>, so this clipping never cuts it. -->
-    <div :class="flush ? 'overflow-hidden rounded-b-[11px]' : 'rounded-xl border border-surface-300 overflow-hidden'">
+    <div
+      :class="
+        flush
+          ? 'overflow-hidden rounded-b-[11px]'
+          : card
+            ? 'overflow-hidden rounded-xl border border-surface-200 shadow-sm'
+            : 'rounded-xl border border-surface-300 overflow-hidden'
+      "
+    >
       <DataTable
         v-model:selection="selectedRows"
         :value="displayValue"
@@ -282,16 +449,21 @@ function toggleMenu(event: Event, data: any) {
         :totalRecords="totalRecords"
         :first="first"
         :dataKey="dataKey"
-        :row-class="(row: any) => rowEffectClass(effectScope, row[dataKey])"
+        :row-class="rowClass"
         :sortField="sortField ?? undefined"
         :sortOrder="sortOrder ?? undefined"
         class="text-sm"
-        :pt="{ pcPaginator: paginatorPt }"
-        :table-style="flush ? 'table-layout: fixed' : undefined"
+        :pt="card ? { pcPaginator: cardPaginatorPt, bodyRow: cardBodyRowPt } : { pcPaginator: paginatorPt }"
+        :table-style="flush || card ? 'table-layout: fixed' : undefined"
         @page="(e) => $emit('page', e)"
         @sort="onSort"
       >
-        <Column v-if="bulkDelete" selectionMode="multiple" header-style="width: 3rem" />
+        <Column
+          v-if="bulkDelete"
+          selectionMode="multiple"
+          :header-style="card ? 'width: 56px' : 'width: 3rem'"
+          :pt="card ? cardSelectionColumnPt : undefined"
+        />
         <Column
           v-for="col in columns"
           :key="col.field"
@@ -299,33 +471,65 @@ function toggleMenu(event: Event, data: any) {
           :header="col.header"
           :sortable="col.sortable ?? true"
           :header-style="col.width ? { width: col.width } : undefined"
-          :pt="flush ? flushColumnPt : undefined"
+          :pt="flush ? flushColumnPt : card ? cardColumnPt : undefined"
         >
           <!-- Flush sort icon = Figma "sortIcon": Lucide arrow-up-down, 12px, 1.5px stroke, gray-500 (muted).
                Figma only draws the neutral state; asc/desc use arrow-up/arrow-down at the same size and inherit
                the sorted header's highlight colour. PrimeVue still sets aria-sort on the <th>. -->
-          <template v-if="flush" #sorticon="{ sorted, sortOrder: order }">
+          <template v-if="flush || card" #sorticon="{ sorted, sortOrder: order }">
             <ArrowUpDown v-if="!sorted" class="size-3 shrink-0 text-muted-color" :stroke-width="1.5" absolute-stroke-width />
             <ArrowUp v-else-if="order === 1" class="size-3 shrink-0" :stroke-width="1.5" absolute-stroke-width />
             <ArrowDown v-else class="size-3 shrink-0" :stroke-width="1.5" absolute-stroke-width />
           </template>
           <template #body="{ data }">
             <slot :name="`col-${col.field}`" :data="data">
-              <span :class="col.primary ? 'font-semibold text-color' : 'text-xs text-muted-color'">{{ data[col.field] }}</span>
+              <!-- Card: every column is Figma body/md (14px) and inherits the row ink, so selected rows tint it. -->
+              <span v-if="card">{{ data[col.field] }}</span>
+              <span v-else :class="col.primary ? 'font-semibold text-color' : 'text-xs text-muted-color'">{{ data[col.field] }}</span>
             </slot>
           </template>
         </Column>
-        <Column v-if="hasActions" header="Ações" class="text-center" style="width: 4rem">
+        <Column
+          v-if="hasActions"
+          header="Ações"
+          :class="card ? undefined : 'text-center'"
+          :style="card ? 'width: 80px' : 'width: 4rem'"
+          :pt="card ? cardActionsColumnPt : undefined"
+        >
           <template #body="{ data }">
-            <Button text rounded severity="secondary" aria-haspopup="true" aria-label="Ações da linha" @click="toggleMenu($event, data)">
-              <EllipsisVertical />
+            <!-- Card: Figma button-small icon-only (32px, 6px radius, 16px icon). -->
+            <Button
+              text
+              :rounded="!card"
+              severity="secondary"
+              aria-haspopup="true"
+              aria-label="Ações da linha"
+              :class="[card ? cardMenuTriggerClass : undefined, card && menuRowKey === data[dataKey] ? 'bg-surface-50!' : undefined]"
+              :aria-expanded="card ? menuRowKey === data[dataKey] : undefined"
+              @click="toggleMenu($event, data)"
+            >
+              <!-- absoluteStrokeWidth scales by the `size` prop (default 24), not the CSS size: pass the real 16px. -->
+              <EllipsisVertical v-if="card" :size="16" :stroke-width="1.5" absolute-stroke-width />
+              <EllipsisVertical v-else />
             </Button>
           </template>
         </Column>
       </DataTable>
-      <Menu ref="menu" :model="menuItems" :popup="true" :pt="menuPt">
+      <Menu
+        ref="menu"
+        :model="menuItems"
+        :popup="true"
+        :pt="card ? cardMenuPt : menuPt"
+        @show="onMenuShow"
+        @hide="onMenuHide"
+      >
         <template #itemicon="{ item, class: iconClass }">
-          <component :is="item.lucideIcon" v-if="item.lucideIcon" :class="iconClass" />
+          <component
+            :is="item.lucideIcon"
+            v-if="item.lucideIcon"
+            :class="[iconClass, card ? cardMenuPt.itemIcon.class : null]"
+            v-bind="card ? { size: 14, strokeWidth: 1.5, absoluteStrokeWidth: true } : {}"
+          />
         </template>
       </Menu>
     </div>

@@ -1,0 +1,8 @@
+{
+  "searchFocused": "rgb(3, 7, 18) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s",
+  "#create-car-model:focus": "rgb(3, 7, 18) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s",
+  "#create-car-price:focus": "rgb(3, 7, 18) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s",
+  "#create-car-description:focus": "rgb(3, 7, 18) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s",
+  "model:blurred": "rgb(156, 163, 175) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s",
+  "model:hover(unfocused)": "rgb(156, 163, 175) / transition=0.2s, 0.2s, 0.2s, 0.2s, 0.2s"
+}
