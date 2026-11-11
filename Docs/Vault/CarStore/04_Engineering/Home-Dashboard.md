@@ -55,13 +55,19 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
   `bg-primary`/`text-primary-contrast` (the preset's monochrome `primary.950`), used by `primaryButtonClass`.
 - `styles/buttonStyles.ts` (2026-11-11, app-wide): `primaryButtonClass` now uses `bg-primary`,
   `border-primary`, `text-primary-contrast`, `hover:bg-primary-emphasis` (near-black in light, white end of the
-  inverted ramp in dark) instead of `surface-700`. New `primarySmallButtonClass` (32px, `text-xs`, `px-[13px]`).
+  inverted ramp in dark) instead of `surface-700`. New `primarySmallButtonClass` (`h-8` = 32px, `py-0`, `text-xs`, `px-[13px]`), the same height as the flush search box.
+- Home "Clientes recentes" header is `p-4` (Figma 56px header) and the card content has no gap.
 - `common/pageheader/PageHeader.vue` (app-wide): title `font-semibold` (Figma 600) instead of `font-black`.
 - `utils/format.ts`: `formatCurrencyCompact` (pt-BR compact BRL).
 - `common/chart/BarChart.vue`: optional `height` (px, default 160) and `ariaLabel` props, `minInterval: 1`,
   24px square bars, tight grid.
 - `common/table/DataTableCommon.vue`: optional `searchPlaceholder`, `paginator` (default `true`),
-  `stripedRows`, `flush` (no outer border, padded toolbar, small 216px search, 40px rows) and a `#toolbar` slot;
+  `stripedRows`, `flush` (no outer border; 40px toolbar `min-h-10 px-4 py-1` with no gap above the table;
+  Figma search box `I2009:212;553:9756;2009:398` at 216x32: `flushSearchInputClass` = `h-8 rounded-md py-0
+  ps-[32.75px] pe-3 text-xs leading-[18px] not-focus:border-surface-400`, `flushSearchIconClass` = 12px icon at
+  `start-[13px]`; 40px rows; `rounded-b-[11px]`
+  `overflow-hidden` wrapper so the last striped row follows the card's 12px corner inside its 1px border; the
+  row `Menu` is appended to `<body>`, so it is not clipped) and a `#toolbar` slot;
   `DataTableColumn.sortable` (default `true`) makes sorting per column. The defaults leave the
   Cars/Brands/Customers tables unchanged.
 

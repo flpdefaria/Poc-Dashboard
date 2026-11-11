@@ -49,9 +49,10 @@ const tooltipFor = (label: string) => ({ value: label, disabled: expanded.value 
 // One row style for links and buttons: a 48px icon cell plus a label that only shows when expanded.
 const rowClass =
   "flex h-12 w-full shrink-0 cursor-pointer items-center overflow-hidden rounded-md border-0 bg-transparent p-0 text-sm text-color no-underline transition-colors duration-150 hover:bg-surface-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
-// Selected: the monochrome primary fill (Figma "Solid" emphasis) plus a stronger label weight.
+// Selected: Figma's blue fill (`--color-navrail-selected`, "Solid" emphasis) with `surface-0` ink, plus a
+// stronger label weight so the state does not rely on colour alone.
 const selectedRowClass =
-  "flex h-12 w-full shrink-0 items-center overflow-hidden rounded-md bg-primary p-0 text-sm font-semibold text-primary-contrast no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+  "flex h-12 w-full shrink-0 items-center overflow-hidden rounded-md bg-navrail-selected p-0 text-sm font-semibold text-surface-0 no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 </script>
 
 <template>

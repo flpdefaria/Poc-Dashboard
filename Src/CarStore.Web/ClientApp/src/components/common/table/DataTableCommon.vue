@@ -59,6 +59,15 @@ const flushColumnPt = {
   bodyCell: { class: "px-3.5! py-2.5!" },
 };
 
+// `flush` search box = Figma "inputtext" sm (node I2009:212;553:9756;2009:398, inside 2037:268): 216x32,
+// 1px border (`#a3a3a3` -> surface-400) with radius 6, 12px search icon 13px from the left edge, text
+// 12px/18px starting 33.75px from the edge (12px icon + 8.75px gap). Figma strokes sit inside the frame, so
+// the CSS (border-box) padding is the Figma offset minus the 1px border. The shadow is Aura's default.
+// `!` beats PrimeVue's `.p-iconfield .p-inputicon:first-child` / `.p-iconfield .p-inputtext` rules.
+const flushSearchIconClass = "start-[13px]! size-3! -mt-1.5! text-xs!";
+const flushSearchInputClass =
+  "h-8! rounded-md! py-0! ps-[32.75px]! pe-3! text-xs! leading-[18px]! not-focus:border-surface-400!";
+
 const props = withDefaults(
   defineProps<{
     value: any[];
@@ -220,17 +229,17 @@ function toggleMenu(event: Event, data: any) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
-    <div class="flex items-center justify-between gap-3" :class="{ 'px-4': flush }">
+  <div class="flex flex-col" :class="flush ? 'gap-0' : 'gap-2'">
+    <div class="flex items-center justify-between gap-3" :class="{ 'min-h-10 px-4 py-1': flush }">
       <div class="flex w-full items-center gap-2">
-        <IconField class="w-full" :class="flush ? 'max-w-[216px]' : 'max-w-[280px]'">
-          <InputIcon><Search /></InputIcon>
+        <IconField :class="flush ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
+          <InputIcon :class="flush ? flushSearchIconClass : undefined"><Search /></InputIcon>
           <InputText
             v-model="searchTerm"
             :placeholder="searchPlaceholder"
             :aria-label="searchPlaceholder"
-            :size="flush ? 'small' : undefined"
             class="w-full"
+            :class="flush ? flushSearchInputClass : undefined"
           />
         </IconField>
         <!-- Extra toolbar actions next to the search box (e.g. a "View all" link). -->
@@ -249,7 +258,10 @@ function toggleMenu(event: Event, data: any) {
       </Button>
     </div>
 
-    <div :class="flush ? 'overflow-hidden' : 'rounded-xl border border-surface-300 overflow-hidden'">
+    <!-- Flush: the table is the bottom of a 12px-radius, 1px-bordered card, so its own bottom corners
+         use the 11px inner radius and clip the last (striped) row. The row menu is a popup appended to
+         <body>, so this clipping never cuts it. -->
+    <div :class="flush ? 'overflow-hidden rounded-b-[11px]' : 'rounded-xl border border-surface-300 overflow-hidden'">
       <DataTable
         v-model:selection="selectedRows"
         :value="displayValue"

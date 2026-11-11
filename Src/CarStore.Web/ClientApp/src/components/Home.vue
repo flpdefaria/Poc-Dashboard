@@ -345,11 +345,12 @@ let introPlayed = false;
     <Card
       class="reveal"
       style="--i: 7"
-      :pt="{ ...panelPt, body: { class: 'p-0! gap-0!' }, content: { class: 'flex flex-col gap-2' } }"
+      :pt="{ ...panelPt, body: { class: 'p-0! gap-0!' }, content: { class: 'flex flex-col' } }"
     >
       <template #content>
-        <h2 class="px-4 pt-4 text-base font-semibold text-color">Clientes recentes</h2>
-        <Message v-if="recentError" severity="error" :closable="false" class="mx-4">{{ recentError }}</Message>
+        <!-- Figma table header: 56px (16px above and below the 24px title). -->
+        <h2 class="p-4 text-base font-semibold text-color">Clientes recentes</h2>
+        <Message v-if="recentError" severity="error" :closable="false" class="mx-4 mb-2">{{ recentError }}</Message>
         <DataTableCommon
           :value="recentCustomers"
           :columns="recentColumns"

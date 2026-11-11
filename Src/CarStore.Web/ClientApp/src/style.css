@@ -21,6 +21,9 @@
   --color-paint-violet: #6b3fe2;
   --color-paint-rust: #c14624;
   --color-paint-teal: #05817c;
+  /* Nav rail selected item fill (Figma navrail/item/selected/background, node 2005:5267). The label and
+     icon use `surface-0` on it: white in light (5.5:1), the dark canvas in dark. */
+  --color-navrail-selected: #2564cf;
 }
 
 /* Surface modes (Atlas / Prometheus): `data-surface` on <html> picks the Aura primitive palette
@@ -120,6 +123,8 @@ html.app-dark {
   --color-paint-violet: #a991f5;
   --color-paint-rust: #ee9475;
   --color-paint-teal: #4cc6be;
+  /* Lighter blue under the inverted ramp: dark `surface-0` ink >= 8:1, fill >= 7:1 against the rail. */
+  --color-navrail-selected: #7aa7f5;
 }
 
 /* Theme switch: the new theme is revealed by a circle clip (useTheme.ts), so the default

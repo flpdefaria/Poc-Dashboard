@@ -25,8 +25,11 @@ Figma **nav-rail** in IconOnly layout (file `EOvtzuJAvw1UnoH9tsYmiO`, instance `
   `aria-label="CarStore – início"`.
 - Items: `<nav aria-label="Navegação principal">`, `px-3 gap-2`. Each row is `h-12` with a 48px icon cell and
   a 24px Lucide icon (`stroke-width` 1.5): `House`, `Car`, `Building`, `IdCard`.
-- Selected: `bg-primary text-primary-contrast font-semibold` (the monochrome primary; Figma uses its blue
-  primary with the "Solid" emphasis). Others: `text-color`, `hover:bg-surface-100`.
+- Selected (2026-11-11, round 3): `bg-navrail-selected text-surface-0 font-semibold`, the Figma blue fill
+  (`--p-navrail-item-selected-background`, "Solid" emphasis). Token `--color-navrail-selected` in
+  `src/style.css`: `#2564cf` in light (white ink 5.5:1, fill 5.3:1 vs the `#f9fafb` rail), `#7aa7f5` under
+  `html.app-dark` (dark `surface-0` ink about 8.3:1, fill about 7.9:1 vs the rail). Others: `text-color`,
+  `hover:bg-surface-100`.
 - Footer: "Aparência" (opens `ThemeSettingsDialog`) and the "Tema escuro" switch (`aria-pressed`), then a
   `bg-surface-200` divider and the account row (32px `Avatar`, `bg-surface-200`; name/e-mail only when expanded).
 
