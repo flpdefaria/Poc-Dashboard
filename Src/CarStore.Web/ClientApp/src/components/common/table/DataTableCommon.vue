@@ -172,7 +172,10 @@ const cardMenuOpenRowClass = "bg-(--p-datatable-row-hover-background)!";
 // Figma search "inputtext" above the card (2066:561): 216x40, 14px icon 17px from the edge, text 41.5px from
 // the edge (14px icon + 10.5px gap); CSS padding = Figma offset minus the 1px border. Border #9ca3af -> surface-400
 // (Aura's default is surface-300), dropped while focused so the focus color still shows.
-const cardSearchIconClass = "start-[17px]! size-3.5! -mt-[7px]! text-sm!";
+// Icon (content 2066:560 re-read): `iconfield/icon/color` #6b7280 -> text-muted-color (Aura's
+// `--p-iconfield-icon-color` is surface-400, so `!`), drawn with the 1.5px `--p-icon-stroke-width` at 14px.
+const cardSearchIconClass = "start-[17px]! size-3.5! -mt-[7px]! text-sm! text-muted-color!";
+const cardSearchIconProps = { size: 14, strokeWidth: 1.5, absoluteStrokeWidth: true };
 const cardSearchInputClass = "h-10! py-0! ps-[40.5px]! pe-4! text-sm! leading-[21px]! not-focus:border-surface-400!";
 
 // Figma "Excluir selecionados (N)" (2070:1925): 40px outlined danger button.
@@ -388,7 +391,10 @@ function toggleMenu(event: Event, data: any) {
     <div class="flex items-center justify-between gap-3" :class="{ 'min-h-10 px-4 py-1': flush }">
       <div class="flex w-full items-center gap-2">
         <IconField :class="flush || card ? 'w-[216px] shrink-0' : 'w-full max-w-[280px]'">
-          <InputIcon :class="flush ? flushSearchIconClass : card ? cardSearchIconClass : undefined"><Search /></InputIcon>
+          <InputIcon :class="flush ? flushSearchIconClass : card ? cardSearchIconClass : undefined">
+            <!-- absoluteStrokeWidth scales by the `size` prop, not the CSS size: card passes the real 14px. -->
+            <Search v-bind="card ? cardSearchIconProps : {}" />
+          </InputIcon>
           <InputText
             v-model="searchTerm"
             :placeholder="searchPlaceholder"

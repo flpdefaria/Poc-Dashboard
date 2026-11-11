@@ -22,7 +22,7 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
 | `2063:4` "Tela · Carros", main `2063:6` (24px gap) | `components/CarsPage.vue` (`flex-col gap-6`) |
 | page-header `2063:7` (title-row `I2063:7;363:2790`) | `common/pageheader/PageHeader.vue`: heading block and actions side by side, vertically centered (app-wide) |
 | "Novo carro" button `I2063:7;363:2756;2064:7078` | `primaryButtonMdClass` + Lucide `Plus` in the `#icon` slot |
-| search `2066:561` + card `2064:7106` (table `2064:7107`) | `common/table/DataTableCommon.vue` with the new `card` prop, used by `CarsTable.vue` |
+| content `2066:560` = search `2066:561` + card `2064:7106` (table `2064:7107`) | `common/table/DataTableCommon.vue` with the new `card` prop, used by `CarsTable.vue` |
 | "Menu de ações aberto" `2069:2759`, menu `2069:3601`, open-row trigger `…;2069:2779;…;2069:2843` | `cardMenuPt`, `onMenuShow`, `cardMenuTriggerClass`, `cardMenuOpenRowClass` in `DataTableCommon.vue` |
 | paginator `I2069:2766;553:9905;2069:3083`, rows-per-page select `…;394:18797` | `cardPaginatorPt` / `cardNavButtonPt` / `cardNavIconPt` in `DataTableCommon.vue` |
 | "Linha selecionada" `2070:1090`, bulk button `2070:1925` | `cardBodyRowPt` (selected tint) + "Excluir selecionados (N)" outlined danger button |
@@ -33,7 +33,9 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
 ## Table (`DataTableCommon` `card` mode)
 
 - Opt-in: Brands, Customers and Home keep their current table. Do not combine `card` with `flush`.
-- Search box 216x40 above the card (16px gap); card `rounded-xl border-surface-200 shadow-sm`.
+- Search box 216x40 above the card (16px gap); card `rounded-xl border-surface-200 shadow-sm`. Search icon 14px
+  in `text-muted-color!` (Figma `iconfield/icon/color` #6b7280; Aura's `--p-iconfield-icon-color` is surface-400)
+  with a 1.5px absolute stroke (`cardSearchIconProps`, card only).
 - 48px header and body rows including the 1px border: cells `px-[18px] py-[13.5px]`; the actions cell uses
   `py-[7.5px]` for its 32px icon button. Checkbox column 56px, actions column 80px, data columns equal (fixed layout).
 - Every body cell is 14px and inherits the row ink (no muted/xs secondary columns, no bold "Modelo").
@@ -195,6 +197,17 @@ and dark): PASS. The accepted deviations are unchanged. Open observations, with 
 
 - 400 messages come from English `DomainException` texts (e.g. `Car.cs`), so the pt-BR UI shows English.
 - A search with no result shows a blank empty row: `DataTableCommon` has no `#empty` slot. This matches the base.
+
+## Content node re-read 2026-11-11 (`2066:560`)
+
+The Figma "content" frame (search `2066:561` + card `2064:7106`, 1288x654) was compared property by property
+with card mode. Layout, sizes, spacing, typography, placeholder ("Buscar nesta página…"), table, tag, row button
+and paginator all still match; there are no new filters, counters or toolbar actions (the table's Header and
+Toolbar slots are hidden). The only deltas were the search icon colour (#9ca3af -> #6b7280) and stroke
+(1.17px -> 1.5px), fixed in `DataTableCommon.vue`. Token mapping added: `iconfield/icon/color` #6b7280 ->
+`text-muted-color`. The inputtext main component (`2004:11640`) is not readable through the MCP, so the filled,
+hover and focus states keep Aura's (text surface-700, hover border surface-400, focus border primary). The table
+component description asks for an accessible table name (`aria-label`); `DataTableCommon` has none yet (open).
 
 ## Related
 
