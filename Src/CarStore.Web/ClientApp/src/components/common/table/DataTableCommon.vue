@@ -8,7 +8,7 @@ import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
 import InputText from "primevue/inputtext";
 import { rowEffectClass } from "../../../utils/rowEffects";
-import { EllipsisVertical, Eye, Pencil, Search, Trash2 } from "@lucide/vue";
+import { ArrowDown, ArrowUp, ArrowUpDown, EllipsisVertical, Eye, Pencil, Search, Trash2 } from "@lucide/vue";
 
 export interface DataTableColumn {
   field: string;
@@ -54,9 +54,13 @@ const paginatorPt = {
 
 // `flush` rows follow the Figma table component (dashboard node 2009:212): 40px rows, 14px cell inset.
 // `!` is needed because PrimeVue's `.p-datatable-tbody > tr > td` padding outranks a utility class.
+// Header content spans the cell with the title growing, so the sort icon sits at the right edge 8px after
+// it (Figma table-header-cell, node I2009:212;553:9757;2009:414;553:987;2009:409).
 const flushColumnPt = {
   headerCell: { class: "px-3.5! py-2.5!" },
   bodyCell: { class: "px-3.5! py-2.5!" },
+  columnHeaderContent: { class: "w-full gap-2!" },
+  columnTitle: { class: "min-w-0 flex-1 truncate" },
 };
 
 // `flush` search box = Figma "inputtext" sm (node I2009:212;553:9756;2009:398, inside 2037:268): 216x32,
@@ -292,6 +296,14 @@ function toggleMenu(event: Event, data: any) {
           :sortable="col.sortable ?? true"
           :pt="flush ? flushColumnPt : undefined"
         >
+          <!-- Flush sort icon = Figma "sortIcon": Lucide arrow-up-down, 12px, 1.5px stroke, gray-500 (muted).
+               Figma only draws the neutral state; asc/desc use arrow-up/arrow-down at the same size and inherit
+               the sorted header's highlight colour. PrimeVue still sets aria-sort on the <th>. -->
+          <template v-if="flush" #sorticon="{ sorted, sortOrder: order }">
+            <ArrowUpDown v-if="!sorted" class="size-3 shrink-0 text-muted-color" :stroke-width="1.5" absolute-stroke-width />
+            <ArrowUp v-else-if="order === 1" class="size-3 shrink-0" :stroke-width="1.5" absolute-stroke-width />
+            <ArrowDown v-else class="size-3 shrink-0" :stroke-width="1.5" absolute-stroke-width />
+          </template>
           <template #body="{ data }">
             <slot :name="`col-${col.field}`" :data="data">
               <span :class="col.primary ? 'font-semibold text-color' : 'text-xs text-muted-color'">{{ data[col.field] }}</span>

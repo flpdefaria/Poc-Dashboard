@@ -65,7 +65,9 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
   `stripedRows`, `flush` (no outer border; 40px toolbar `min-h-10 px-4 py-1` with no gap above the table;
   Figma search box `I2009:212;553:9756;2009:398` at 216x32: `flushSearchInputClass` = `h-8 rounded-md py-0
   ps-[32.75px] pe-3 text-xs leading-[18px] not-focus:border-surface-400`, `flushSearchIconClass` = 12px icon at
-  `start-[13px]`; 40px rows; `rounded-b-[11px]`
+  `start-[13px]`; 40px rows; header title `flex-1` with a `#sorticon` slot: Lucide `ArrowUpDown` 12px,
+  `absolute-stroke-width` 1.5, `text-muted-color` (Figma sortIcon `#6b7280`) when unsorted, `ArrowUp`/`ArrowDown`
+  (inheriting the sorted header colour) for asc/desc, which Figma does not draw; `rounded-b-[11px]`
   `overflow-hidden` wrapper so the last striped row follows the card's 12px corner inside its 1px border; the
   row `Menu` is appended to `<body>`, so it is not clipped) and a `#toolbar` slot;
   `DataTableColumn.sortable` (default `true`) makes sorting per column. The defaults leave the
