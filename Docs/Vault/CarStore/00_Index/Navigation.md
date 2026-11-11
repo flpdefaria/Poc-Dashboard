@@ -32,6 +32,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 - [[Domain-Overview]]
 - [[Brand]]
 - [[Car]]
+- [[Customer]]
 
 ## 04_Engineering
 

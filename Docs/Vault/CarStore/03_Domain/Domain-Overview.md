@@ -1,13 +1,14 @@
 ---
 type: overview
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-11-11
 tags:
   - note
   - type/overview
   - area/domain
   - entity/brand
   - entity/car
+  - entity/customer
 ---
 
 # Domain Overview
@@ -22,6 +23,7 @@ All business rules are owned by `CarStore.Domain`. Services and controllers may 
 
 - [[Brand]] — brand aggregate with name, description, country, founded date, years in business, and car collection.
 - [[Car]] — car aggregate with model, VIN, body type, price, stock, availability, mileage, and brand reference.
+- [[Customer]] — customer with full name, email, phone, creation date and an optional car link (`CarId`).
 
 ## Relationship
 
@@ -29,6 +31,7 @@ All business rules are owned by `CarStore.Domain`. Services and controllers may 
 - Each car belongs to one brand (`Car.BrandId` → `Brand`).
 - EF Core mapping uses `OnDelete(DeleteBehavior.Restrict)` in `CarStoreContext.OnModelCreating`.
 - Domain-level guard: `Brand.EnsureCanBeDeleted()` throws `DomainException` when the brand still has cars.
+- A customer optionally links to one car (`Customer.CarId` → `Car`, `SetNull` on car delete, no inverse collection); see [[Customer]].
 
 ## Error model
 

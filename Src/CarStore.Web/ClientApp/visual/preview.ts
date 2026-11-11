@@ -19,6 +19,7 @@ import { createRouter, createMemoryHistory } from 'vue-router'
 
 import { CarStorePreset } from '../src/plugins/primevue-preset'
 import { primeVueLocalePtBr } from '../src/plugins/primevue-locale-pt-br'
+import { DEFAULT_SURFACE_MODE } from '../src/plugins/primevue-preset'
 import { getScenario, scenarioIds } from './scenarios'
 import type { VisualScenario } from './types'
 
@@ -45,7 +46,8 @@ function renderError(message: string): void {
  * reads the same values instead of resetting them.
  */
 function applyChrome(scenario: VisualScenario): void {
-  const surface = scenario.localStorageSeed?.[SURFACE_KEY] ?? 'gray'
+  // The app's own default (the baseline worktree resolves its own value), unless the scenario seeds one.
+  const surface = scenario.localStorageSeed?.[SURFACE_KEY] ?? DEFAULT_SURFACE_MODE
   try {
     localStorage.setItem(THEME_KEY, scenario.theme)
     localStorage.setItem(SURFACE_KEY, surface)

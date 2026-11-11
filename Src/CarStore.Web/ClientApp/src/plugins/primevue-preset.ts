@@ -13,6 +13,7 @@ import Aura from "@primeuix/themes/aura";
  */
 export const SURFACE_MODES = ["gray", "neutral", "slate", "stone", "zinc"] as const;
 export type SurfaceMode = (typeof SURFACE_MODES)[number];
+/** Gray = the surface mode the Figma frames resolve to (`get_variable_defs`: text #1f2937, borders #e5e7eb). */
 export const DEFAULT_SURFACE_MODE: SurfaceMode = "gray";
 
 export function isSurfaceMode(value: unknown): value is SurfaceMode {
@@ -48,6 +49,13 @@ export const CarStorePreset = definePreset(Aura, {
     colorScheme: {
       light: {
         surface: surfacePalette,
+        // Figma `text/color` resolves to surface 800 (#1f2937 in gray); Aura defaults to 700. Muted stays 500 (#6b7280).
+        text: {
+          color: "{surface.800}",
+          hoverColor: "{surface.900}",
+          mutedColor: "{surface.500}",
+          hoverMutedColor: "{surface.600}",
+        },
         primary: {
           color: "{primary.950}",
           contrastColor: "{surface.0}",
@@ -59,6 +67,38 @@ export const CarStorePreset = definePreset(Aura, {
           focusBackground: "{primary.700}",
           color: "{surface.0}",
           focusColor: "{surface.0}",
+        },
+      },
+    },
+  },
+  components: {
+    // Figma tag/info = cyan 100 fill with cyan 700 ink (#cffafe / #0e7490); Aura's default is sky.
+    // Figma togglebutton (Prometheus, resolved): track = sunken surface (#f9fafb), idle label 600, checked
+    // label 950, 10px / 4.5px content padding. Aura uses surface 100 / 500 / 900 and 12px / 4px. The track
+    // uses the `--color-sunken` token (style.css): surface 50 in light, one step above the card in dark,
+    // where surface 50 IS the card background and the track would vanish.
+    togglebutton: {
+      content: { padding: "0.28125rem 0.625rem" },
+      colorScheme: {
+        light: {
+          root: {
+            background: "var(--color-sunken)",
+            checkedBackground: "var(--color-sunken)",
+            hoverBackground: "var(--color-sunken)",
+            borderColor: "var(--color-sunken)",
+            checkedBorderColor: "var(--color-sunken)",
+            color: "{surface.600}",
+            hoverColor: "{surface.800}",
+            checkedColor: "{surface.950}",
+          },
+          icon: { color: "{surface.600}", hoverColor: "{surface.800}", checkedColor: "{surface.950}" },
+        },
+      },
+    },
+    tag: {
+      colorScheme: {
+        light: {
+          info: { background: "{cyan.100}", color: "{cyan.700}" },
         },
       },
     },

@@ -73,6 +73,9 @@ public class CarService : ICarService
         if (existing is null)
             return false;
 
+        // Loading the linked customers lets EF apply the optional relationship's SetNull: the in-memory
+        // provider has no database FK, so untracked customers would keep a dangling CarId.
+        await _db.Customers.Where(c => c.CarId == id).LoadAsync();
         _db.Cars.Remove(existing);
         await _db.SaveChangesAsync();
         return true;

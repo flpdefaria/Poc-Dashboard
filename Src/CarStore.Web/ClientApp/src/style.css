@@ -1,5 +1,15 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+/* Inter, the Prometheus/Figma typeface, self-hosted (no CDN): the weights the UI uses, Latin and Latin
+   Extended only (pt-BR UI), so the bundle ships no Cyrillic/Greek/Vietnamese files. */
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-ext-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-ext-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-ext-600.css";
+@import "@fontsource/inter/latin-700.css";
+@import "@fontsource/inter/latin-ext-700.css";
 
 /* Tailwind v4's automatic content detection only scans files inside the Vite
    project root (this ClientApp folder). Razor views live outside of it
@@ -14,6 +24,11 @@
    metric identity only; the monochrome surface-700/800 stays the single "act here" color. Every swatch
    holds >= 4.5:1 on white and >= 3:1 on its own 12% tint, so it works as text, icon or bar. */
 @theme {
+  /* Figma typography: every text style is Inter. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  /* Figma `--p-content-sunken-background` (#f9fafb, KPI icon box): surface-50 in light; one step up in dark
+     (below), where surface-50 is the card background itself. */
+  --color-sunken: var(--p-surface-50);
   --color-paint-gulf: #2f6f9f;
   --color-paint-green: #2e6b4f;
   --color-paint-bronze: #9a6a1c;
@@ -28,12 +43,20 @@
   --color-navrail-selected: #2564cf;
 }
 
+/* Grayscale text smoothing (Tailwind `antialiased`): matches how the Figma frames rasterize Inter; macOS
+   subpixel smoothing would otherwise draw every label noticeably heavier. */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Surface modes (Atlas / Prometheus): `data-surface` on <html> picks the Aura primitive palette
    behind the surface scale. The preset (src/plugins/primevue-preset.ts) sets `--p-surface-N` to
    `var(--sm-N)`, and `primary.N` aliases `surface.N`, so a mode switch recolors PrimeVue
    components, the Tailwind surface/primary utilities and the monochrome primary together.
-   Gray is the default (no attribute). Applied before first paint by _Layout.cshtml, then by
-   useTheme.ts. */
+   Gray is the default (no attribute): it is the mode the Figma frames resolve to (text #1f2937,
+   muted #6b7280, borders #e5e7eb, sunken #f9fafb). Applied before first paint by _Layout.cshtml,
+   then by useTheme.ts. */
 :root,
 html[data-surface="gray"] {
   --sm-0: #ffffff;
@@ -73,7 +96,7 @@ html[data-surface="zinc"] {
    the Tailwind surface utilities and the primary accent together. The ramp is built from the
    active surface mode and tuned for elevation, not a mechanical inversion: canvas 0 (mode 950),
    sidebar/cards 50-100, borders 200-300, muted text 500 (mode 400, >= 7:1 on canvas), body text
-   700 (mode 200, >= 14:1); primary 950 becomes the white end, so solid primary fills and the
+   700 (mode 200, >= 14:1) and the default text 800 (mode 100); primary 950 becomes the white end, so solid primary fills and the
    highlight turn into light fills with dark text.
    `html.app-dark` outranks PrimeVue's runtime `:root` block regardless of injection order. */
 html.app-dark {
@@ -95,12 +118,14 @@ html.app-dark {
 
   /* Elevation: cards sit one step above the canvas, since light-theme shadows vanish on dark. */
   --p-card-background: var(--p-surface-50);
+  /* Sunken boxes inside a card must stay distinct from the card (surface-50) itself. */
+  --color-sunken: var(--p-surface-100);
 
   /* Status tags and messages: tinted fills with light ink instead of Aura's pastel fills. */
   --p-tag-success-background: color-mix(in srgb, var(--p-green-400) 16%, transparent);
   --p-tag-success-color: var(--p-green-300);
-  --p-tag-info-background: color-mix(in srgb, var(--p-sky-400) 16%, transparent);
-  --p-tag-info-color: var(--p-sky-300);
+  --p-tag-info-background: color-mix(in srgb, var(--p-cyan-400) 16%, transparent);
+  --p-tag-info-color: var(--p-cyan-300);
   --p-tag-warn-background: color-mix(in srgb, var(--p-orange-400) 16%, transparent);
   --p-tag-warn-color: var(--p-orange-300);
   --p-tag-danger-background: color-mix(in srgb, var(--p-red-400) 16%, transparent);

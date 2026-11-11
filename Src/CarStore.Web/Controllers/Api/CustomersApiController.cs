@@ -44,7 +44,8 @@ public class CustomersApiController : ControllerBase
             {
                 FullName = request.FullName,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+                PhoneNumber = request.PhoneNumber,
+                CarId = request.CarId
             };
             var created = await _customerService.CreateAsync(customer);
             return CreatedAtAction(nameof(Index), new { id = created.Id }, ToDto(created));
@@ -64,7 +65,8 @@ public class CustomersApiController : ControllerBase
             {
                 FullName = request.FullName,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+                PhoneNumber = request.PhoneNumber,
+                CarId = request.CarId
             };
             var updated = await _customerService.UpdateAsync(id, customer);
             if (updated is null) return NotFound();
@@ -91,6 +93,8 @@ public class CustomersApiController : ControllerBase
         FullName = c.FullName,
         Email = c.Email,
         PhoneNumber = c.PhoneNumber,
-        CreatedAt = c.CreatedAt
+        CreatedAt = c.CreatedAt,
+        CarId = c.CarId,
+        CarName = c.Car is null ? null : $"{c.Car.Brand?.Name} {c.Car.Model}".Trim()
     };
 }

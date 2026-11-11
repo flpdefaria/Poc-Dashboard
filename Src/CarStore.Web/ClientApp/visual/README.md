@@ -261,6 +261,19 @@ A baseline difference is reported as "visual change vs base" and never fails the
 `baselineStatus` values: `captured`, `reused` (from an earlier attempt), `absent-at-base`, `blocked` or
 `disabled`.
 
+A baseline is reused only for the same capture geometry (viewport, DPR, `mountWidth`, theme and
+`captureSelector`), which is recorded in `baseline/<id>.capture.json`. When a correction round changes any
+of these, the old baseline is moved to `baseline/history/<id>.before-attempt-NN.*` and the base is captured
+again.
+
+## Figma exports at 1x
+
+The Figma MCP `get_screenshot` exports at the node's natural size (1x) and does not upscale. A scenario
+compared with Figma therefore captures at `deviceScaleFactor: 1`; `home-dashboard-light` is the example.
+
+Exports of a card node can carry 3–6px of drop shadow beyond the node's bounds. Export the parent frame
+instead and crop each section at its node's `get_metadata` bounds. Record the crop in the spec `notes`.
+
 ## QA judgement and findings.md
 
 Every capture writes `findings.md` with status **BLOCKED** until QA records a review.

@@ -1,0 +1,34 @@
+{
+  "scenario": "customers-page-empty-dark",
+  "checks": [
+    {
+      "label": "Título da página",
+      "selector": "h1",
+      "text": "Clientes",
+      "observed": {
+        "count": 1,
+        "text": "Clientes",
+        "value": null,
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1288,
+          "height": 32
+        }
+      },
+      "status": "pass"
+    },
+    {
+      "label": "Nenhuma linha de dados",
+      "selector": ".p-datatable-tbody > tr:not(.p-datatable-empty-message)",
+      "count": 0,
+      "observed": {
+        "count": 0,
+        "text": null,
+        "value": null,
+        "box": null
+      },
+      "status": "pass"
+    }
+  ]
+}

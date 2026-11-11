@@ -42,6 +42,13 @@ public class CarStoreContext : DbContext
             entity.Property(c => c.FullName).IsRequired().HasMaxLength(150);
             entity.Property(c => c.Email).IsRequired().HasMaxLength(256);
             entity.Property(c => c.PhoneNumber).HasMaxLength(50);
+
+            // Optional link: deleting a car keeps the customer and clears the link.
+            entity.HasOne(c => c.Car)
+                .WithMany()
+                .HasForeignKey(c => c.CarId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
         });
     }
 }

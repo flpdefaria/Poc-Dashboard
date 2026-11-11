@@ -50,9 +50,16 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
 - `src/style.css` `@theme`: new data swatches `--color-paint-violet` (`#6b3fe2`), `--color-paint-rust`
   (`#c14624`), `--color-paint-teal` (`#05817c`) with lifted `html.app-dark` variants. Figma `#a07307` -> existing
   `paint-bronze`, `#8a3658` -> `paint-burgundy`, gray "Outros" -> `paint-graphite`.
-- Figma neutrals: `#e5e5e5` -> `border-surface-200` / `bg-surface-200`, `#262626` -> `text-color`,
-  `#737373` -> `text-muted-color`, sunken `#fafafa` -> `bg-surface-100`, contrast button `#0a0a0a` ->
-  `bg-primary`/`text-primary-contrast` (the preset's monochrome `primary.950`), used by `primaryButtonClass`.
+- Figma colors (corrected 2026-11-11). The frame resolves to the **gray** surface mode: `get_variable_defs` on
+  2005:5301 returns text `#1f2937`, muted `#6b7280`, border `#e5e7eb`, sunken `#f9fafb` and contrast
+  `#030712`. The neutral hexes in `get_design_context` code (`#262626`, `#737373`…) are only variable
+  fallbacks. Mapping:
+  - `text-color` = surface-800 (preset `text.color`)
+  - `text-muted-color` = surface-500
+  - borders and databar track: `surface-200`
+  - KPI icon box: `bg-sunken` (new token)
+  - contrast button: `bg-primary` (`primary.950`)
+  - "Outros" databar: `bg-surface-500`
 - `styles/buttonStyles.ts` (2026-11-11, app-wide): `primaryButtonClass` now uses `bg-primary`,
   `border-primary`, `text-primary-contrast`, `hover:bg-primary-emphasis` (near-black in light, white end of the
   inverted ramp in dark) instead of `surface-700`. New `primarySmallButtonClass` (`h-8` = 32px, `py-0`, `text-xs`, `px-[13px]`), the same height as the flush search box.
@@ -73,13 +80,32 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
   `DataTableColumn.sortable` (default `true`) makes sorting per column. The defaults leave the
   Cars/Brands/Customers tables unchanged.
 
-## Known gaps
+## Figma parity pass (2026-11-11)
 
-- Figma column "Carro" has no data source: `CustomerDto` has no car. It is omitted.
+QA bundle `qa-results/2026-11-11T12-39-34-926Z-home` is **PASS** at attempt-09:
+- Figma spec 140/140.
+- Whole screen 1288x1075; the 1.03% pixel diff is Inter rasterization plus 4 fixture dates.
+
+Fixes made in that round:
+
+| Area | Change |
+|---|---|
+| Card titles | `text-lg leading-6`, 18/24 (Figma heading/sm) |
+| SelectButton | 40px with 14px/21px labels (`periodSelectPt` + preset `togglebutton` tokens) |
+| KPI tags | 17px (`leading-[13px]`), cyan info tone |
+| "Ver marcas" | `mt-6` gap; 40px button with `px-4` and a 16px icon |
+| Recent table | rows 40px including the border (`flush` `py-[9.5px]`), fixed layout at 3:1:3:1 |
+| "Carro" column | `CustomerDto.carName` (see [[Customer]]); a car-less customer shows "—" |
+| Digits | No `tabular-nums` on KPI values, percentages or dates: Figma draws proportional digits |
+| Chart | Inter 12px axis labels, axis surface-400, grid surface-200, 2px bar radius |
+
+## Known gaps
 - "Clientes recentes" lists the first page ordered by `FullName` (`CustomerService`), not by `CreatedAt`.
 - Aggregates use `pageSize=100` loads, so they undercount past 100 rows.
 
 ## Related
 
+- [[Customer]]
+- [[Visual-QA-Harness]]
 - [[Frontend-SPA]]
 - [[Pagination]]

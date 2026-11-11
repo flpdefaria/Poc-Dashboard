@@ -1,7 +1,7 @@
 ---
 type: reference
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-11-11
 tags:
   - note
   - type/reference
@@ -73,5 +73,6 @@ modelBuilder.Entity<Car>(entity =>
 ## Related
 
 - [[Brand]]
+- [[Customer]] — customers may link to a car; deleting a car clears those links (`CarService.DeleteAsync`).
 - [[Domain-Overview]]
 - [[Architecture-Overview]]

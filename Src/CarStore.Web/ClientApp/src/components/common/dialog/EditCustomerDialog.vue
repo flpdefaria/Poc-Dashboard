@@ -13,6 +13,8 @@ export interface EditCustomerPayload {
   fullName: string;
   email: string;
   phoneNumber: string | null;
+  /** Linked car, passed through unchanged: this dialog does not edit it, and PUT replaces every field. */
+  carId: number | null;
 }
 
 const props = defineProps<{
@@ -64,6 +66,7 @@ function onSave() {
     fullName: form.fullName.trim(),
     email: form.email.trim(),
     phoneNumber: form.phoneNumber.trim() || null,
+    carId: props.customer?.carId ?? null,
   });
 }
 

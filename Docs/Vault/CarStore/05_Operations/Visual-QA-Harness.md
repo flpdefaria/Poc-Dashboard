@@ -95,6 +95,23 @@ The harness needs neither `dotnet run` nor the normal dev server.
 None declares `figmaNode`: declaring one makes Figma evidence required, and `visual:verdict` then
 downgrades PASS to BLOCKED until `references/<id>.png` and `.figma.json` exist.
 
+### Learnings (2026-11-11, Home Figma parity)
+
+- **Baseline geometry:** a baseline is reused only when the capture geometry is the same (viewport, DPR,
+  mount width, theme and capture root, stored in `baseline/<id>.capture.json`). Otherwise it is archived
+  to `baseline/history/` and recaptured. Attempt-02 of the Home run had compared a DPR 2 baseline with a
+  DPR 1 capture.
+- **Surface mode:** the preview defaults to the app's `DEFAULT_SURFACE_MODE`, not a hardcoded mode.
+- **Figma export size:** `get_screenshot` exports at 1x. Figma-compared scenarios capture at DPR 1. Crop the
+  parent frame at the child bounds to avoid shadow bleed.
+- **Spec colors:** take them from `get_variable_defs`, which returns resolved values. The hexes in
+  `get_design_context` code are fallbacks.
+- **PASS needs whole-screen comparison:** data-driven sections make a scenario `partial`, which blocks PASS.
+  Prefer a whole-screen comparison with a prototype-content fixture (`scenarios/fixtures-figma.ts`), then
+  classify the residual pixel diff in the verdict.
+- **API tests port:** API contract tests must use a separate port (`--urls http://localhost:5046`). Port 5045
+  may be the developer's own running instance.
+
 ### Git
 
 | Path | Status |

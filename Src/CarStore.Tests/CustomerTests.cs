@@ -101,4 +101,79 @@ public class CustomerTests
         customer.Email.Should().Be("john.smith@example.com");
         customer.PhoneNumber.Should().Be("555-9876");
     }
+
+    // ── Customer car link ─────────────────────────────────────────────────────
+
+    [Fact]
+    public void Create_WithoutCar_LeavesCarIdNull()
+    {
+        // Arrange & Act
+        var customer = ValidCustomer();
+
+        // Assert
+        customer.CarId.Should().BeNull();
+    }
+
+    [Fact]
+    public void Create_WithCarId_SetsCarId()
+    {
+        // Arrange & Act
+        var customer = Customer.Create("Jane Doe", "jane.doe@example.com", null, 7);
+
+        // Assert
+        customer.CarId.Should().Be(7);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void Create_WithNonPositiveCarId_ThrowsDomainException(int carId)
+    {
+        // Arrange & Act
+        var act = () => Customer.Create("Jane Doe", "jane.doe@example.com", null, carId);
+
+        // Assert
+        act.Should().Throw<DomainException>()
+            .WithMessage("Customer car id is invalid.");
+    }
+
+    [Fact]
+    public void Update_WithCarId_ChangesCar()
+    {
+        // Arrange
+        var customer = Customer.Create("Jane Doe", "jane.doe@example.com", null, 3);
+
+        // Act
+        customer.Update("Jane Doe", "jane.doe@example.com", null, 5);
+
+        // Assert
+        customer.CarId.Should().Be(5);
+    }
+
+    [Fact]
+    public void Update_WithNullCarId_ClearsCar()
+    {
+        // Arrange
+        var customer = Customer.Create("Jane Doe", "jane.doe@example.com", null, 3);
+
+        // Act
+        customer.Update("Jane Doe", "jane.doe@example.com", null, null);
+
+        // Assert
+        customer.CarId.Should().BeNull();
+    }
+
+    [Fact]
+    public void Update_WithNonPositiveCarId_ThrowsDomainException()
+    {
+        // Arrange
+        var customer = ValidCustomer();
+
+        // Act
+        var act = () => customer.Update("Jane Doe", "jane.doe@example.com", null, 0);
+
+        // Assert
+        act.Should().Throw<DomainException>()
+            .WithMessage("Customer car id is invalid.");
+    }
 }

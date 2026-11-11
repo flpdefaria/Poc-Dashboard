@@ -50,4 +50,8 @@ export interface CustomerDto {
   email: string;
   phoneNumber: string | null;
   createdAt: string;
+  /** Linked car (`Customer.CarId`), or null. */
+  carId: number | null;
+  /** Brand + model of the linked car, e.g. "Toyota Corolla"; null without a car. */
+  carName: string | null;
 }

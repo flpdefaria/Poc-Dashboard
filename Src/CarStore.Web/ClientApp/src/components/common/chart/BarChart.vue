@@ -33,9 +33,13 @@ function primaryColor(): string {
 }
 
 function buildOption() {
-  const axisLineColor = themeColor("--p-surface-300", "#e5e7eb");
-  const splitLineColor = themeColor("--p-surface-100", "#f3f4f6");
+  // Figma dataviz structure (chart node 2035:268): axis surface 400 (#9ca3af), grid surface 200 (#e5e7eb).
+  const axisLineColor = themeColor("--p-surface-400", "#9ca3af");
+  const splitLineColor = themeColor("--p-surface-200", "#e5e7eb");
   const axisLabelColor = themeColor("--p-text-muted-color", "#6b7280");
+  // Figma caption/md (chart node 2035:268): Inter 12px in the muted color. ECharts draws on a canvas and
+  // does not inherit the page font, so the family is named explicitly.
+  const axisLabel = { color: axisLabelColor, fontSize: 12, fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif" };
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -57,21 +61,22 @@ function buildOption() {
       data: props.labels,
       axisLine: { lineStyle: { color: axisLineColor } },
       axisTick: { show: false },
-      axisLabel: { color: axisLabelColor, fontSize: 11 },
+      axisLabel,
     },
     yAxis: {
       type: "value" as const,
       // Counts are whole numbers: never show fractional ticks.
       minInterval: 1,
       splitLine: { lineStyle: { color: splitLineColor } },
-      axisLabel: { color: axisLabelColor, fontSize: 11 },
+      axisLabel,
     },
     series: [
       {
         type: "bar" as const,
         data: props.values,
         barMaxWidth: 24,
-        itemStyle: { color: primaryColor() },
+        // Figma bars (chart node 2035:268, series vectors) have 2px rounded corners.
+        itemStyle: { color: primaryColor(), borderRadius: 2 },
       },
     ],
   };

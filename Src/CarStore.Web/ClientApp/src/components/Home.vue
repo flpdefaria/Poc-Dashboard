@@ -46,10 +46,12 @@ const {
   load: loadRecentCustomers,
 } = usePagedFetch<CustomerDto>(customersApiUrl);
 
+// Figma table 2009:212 columns: flex 3 : 1 : 3 : 1 (468.25 / 174.75 px of 1286).
 const recentColumns: DataTableColumn[] = [
-  { field: "fullName", header: "Cliente", primary: true },
-  { field: "email", header: "E-mail", sortable: false },
-  { field: "createdAt", header: "Cadastrado em", sortable: false },
+  { field: "fullName", header: "Cliente", primary: true, width: "36.41%" },
+  { field: "email", header: "E-mail", sortable: false, width: "13.59%" },
+  { field: "carName", header: "Carro", sortable: false, width: "36.41%" },
+  { field: "createdAt", header: "Cadastrado em", sortable: false, width: "13.59%" },
 ];
 
 // Full-screen showroom loader: plays once per session, on the first visit to Home. Later visits
@@ -88,7 +90,21 @@ const panelPt = {
   body: { class: "h-full p-[18px]! gap-0!" },
   content: { class: "flex h-full flex-col" },
 };
-const tagPt = { root: { class: "self-start rounded-md! px-1.5! py-0.5! text-[11px]! font-medium!" } };
+// Figma tag (I2007:127;2007:97): 11px / 500, 0.11px tracking, 2px 6px padding, 17px tall (the node's
+// "normal" line height, measured as 13px in the frame; 1.21 x 11px would leave a fractional 17.3px).
+const tagPt = {
+  root: { class: "self-start rounded-md! px-1.5! py-0.5! text-[11px]! font-medium! leading-[13px]! tracking-[0.11px]!" },
+  label: { class: "leading-[13px]!" },
+};
+
+// Figma selectbutton 2008:3755: 40px tall = 1px border + 4px padding + 30px content (10/4.5px, 14px/21px label).
+const periodSelectPt = {
+  pcToggleButton: {
+    root: { class: "text-sm!" },
+    content: { class: "px-2.5! py-[4.5px]!" },
+    label: { class: "text-sm! leading-[21px]!" },
+  },
+};
 
 // KPI cards - real aggregates from the fetched fleet, no fabricated deltas or history.
 const carsInStock = computed(() => cars.value.reduce((sum, c) => sum + c.stock, 0));
@@ -156,7 +172,7 @@ const brandRows = computed(() => {
   }));
   const otherCount = sorted.slice(5).reduce((sum, b) => sum + b.carsCount, 0);
   if (otherCount > 0) {
-    rows.push({ key: "others", name: "Outros", percent: sharePercent(otherCount), fillClass: "bg-paint-graphite" });
+    rows.push({ key: "others", name: "Outros", percent: sharePercent(otherCount), fillClass: "bg-surface-500" });
   }
   return rows;
 });
@@ -251,7 +267,7 @@ let introPlayed = false;
         <template #content>
           <div class="flex items-center gap-2">
             <span class="min-w-0 flex-1 truncate text-sm text-muted-color">{{ kpi.label }}</span>
-            <div class="flex shrink-0 items-center justify-center rounded-md bg-surface-100 p-2">
+            <div class="flex shrink-0 items-center justify-center rounded-md bg-sunken p-2">
               <component :is="kpi.icon" class="size-5 text-color" />
             </div>
           </div>
@@ -259,12 +275,12 @@ let introPlayed = false;
             v-if="kpi.tooltip"
             v-tooltip.top="kpi.tooltip"
             tabindex="0"
-            class="mt-2 truncate text-[48px] font-semibold leading-14 tracking-[-0.96px] text-color tabular-nums"
+            class="mt-2 truncate text-[48px] font-semibold leading-14 tracking-[-0.96px] text-color"
             :aria-label="`${kpi.label}: ${kpi.tooltip}`"
           >
             {{ kpi.value }}
           </p>
-          <p v-else class="mt-2 truncate text-[48px] font-semibold leading-14 tracking-[-0.96px] text-color tabular-nums">
+          <p v-else class="mt-2 truncate text-[48px] font-semibold leading-14 tracking-[-0.96px] text-color">
             {{ kpi.value }}
           </p>
           <Tag v-if="kpi.tag" :value="kpi.tag.value" :severity="kpi.tag.severity" class="mt-2" :pt="tagPt" />
@@ -278,7 +294,7 @@ let introPlayed = false;
       <Card class="reveal" style="--i: 5" :pt="panelPt">
         <template #content>
           <div class="flex flex-wrap items-center justify-between gap-4">
-            <h2 class="text-base font-semibold text-color">Novos clientes</h2>
+            <h2 class="text-lg leading-6 font-semibold text-color">Novos clientes</h2>
             <SelectButton
               v-model="period"
               :options="periodOptions"
@@ -286,6 +302,7 @@ let introPlayed = false;
               option-value="value"
               :allow-empty="false"
               aria-label="Período"
+              :pt="periodSelectPt"
             />
           </div>
           <div class="mt-6">
@@ -309,12 +326,12 @@ let introPlayed = false;
       <!-- Fleet by brand (Figma 2008:3784) -->
       <Card class="reveal" style="--i: 6" :pt="panelPt">
         <template #content>
-          <h2 class="text-base font-semibold text-color">Frota por marca</h2>
+          <h2 class="text-lg leading-6 font-semibold text-color">Frota por marca</h2>
           <ul class="mt-6 flex flex-col gap-4">
             <li v-for="(row, index) in brandRows" :key="row.key" class="flex flex-col gap-2 text-sm">
               <div class="flex items-center gap-2">
                 <span class="min-w-0 flex-1 truncate text-color">{{ row.name }}</span>
-                <span class="shrink-0 text-muted-color tabular-nums">{{ row.percent }}%</span>
+                <span class="shrink-0 text-muted-color">{{ row.percent }}%</span>
               </div>
               <div
                 class="h-2 w-full overflow-hidden rounded bg-surface-200"
@@ -333,7 +350,7 @@ let introPlayed = false;
             </li>
             <li v-if="!brandRows.length" class="text-sm text-muted-color">Nenhuma marca cadastrada.</li>
           </ul>
-          <Button :as="RouterLink" to="/brands" :class="primaryButtonClass + ' mt-auto w-full justify-start!'">
+          <Button :as="RouterLink" to="/brands" :class="primaryButtonClass + ' mt-6 w-full justify-start! gap-2! px-4! py-[8.5px]! leading-[21px]! [&_.lucide]:size-4!'">
             Ver marcas
             <ArrowRight />
           </Button>
@@ -349,7 +366,7 @@ let introPlayed = false;
     >
       <template #content>
         <!-- Figma table header: 56px (16px above and below the 24px title). -->
-        <h2 class="p-4 text-base font-semibold text-color">Clientes recentes</h2>
+        <h2 class="p-4 text-lg leading-6 font-semibold text-color">Clientes recentes</h2>
         <Message v-if="recentError" severity="error" :closable="false" class="mx-4 mb-2">{{ recentError }}</Message>
         <DataTableCommon
           :value="recentCustomers"
@@ -374,8 +391,12 @@ let introPlayed = false;
           <template #col-email="{ data }">
             <span class="text-color">{{ data.email }}</span>
           </template>
+          <template #col-carName="{ data }">
+            <span v-if="data.carName" class="text-color">{{ data.carName }}</span>
+            <span v-else class="text-muted-color">—</span>
+          </template>
           <template #col-createdAt="{ data }">
-            <span class="text-color tabular-nums">{{ formatDate(data.createdAt) }}</span>
+            <span class="text-color">{{ formatDate(data.createdAt) }}</span>
           </template>
         </DataTableCommon>
       </template>

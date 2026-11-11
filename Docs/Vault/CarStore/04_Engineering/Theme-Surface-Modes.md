@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-11-10
-updated: 2026-11-10
+updated: 2026-11-11
 tags:
   - note
   - type/guide
@@ -46,6 +46,22 @@ ramp, the pre-paint script and the preset stay in sync.
   read plain steps.
 - Adding a mode: `SURFACE_MODES` + a `html[data-surface]` block + `SURFACE_LABELS` in the dialog + the
   `_Layout.cshtml` list.
+
+## Figma alignment (2026-11-11)
+
+- **Default mode:** gray stays the default. It is the mode the Figma frames resolve to (`get_variable_defs`).
+  Read resolved values, never the fallbacks in `get_design_context` code.
+- **Text tokens:** preset `text.color` = `{surface.800}` (Figma `text/color` `#1f2937`; Aura's default is
+  700), `mutedColor` = `{surface.500}`.
+- **ToggleButton tokens:**
+  - track = `var(--color-sunken)` and content padding 4.5px / 10px
+  - idle label `{surface.600}`, checked label `{surface.950}`
+- **Tag info:** `{cyan.100}` / `{cyan.700}`. Dark overrides in `style.css` use cyan 400/300.
+- **`--color-sunken`:** a new `@theme` token (`bg-sunken`). It is surface-50 in light and surface-100 in dark,
+  because surface-50 is the card background there.
+- **Typography:** Inter is self-hosted through `@fontsource/inter`, Latin + Latin Extended, weights
+  400–700, as `--font-sans`. `html` uses grayscale smoothing (`antialiased`). ECharts gets the family
+  explicitly in `BarChart.vue`.
 
 ## Related
 

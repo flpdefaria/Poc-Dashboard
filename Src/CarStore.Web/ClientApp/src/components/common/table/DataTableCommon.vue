@@ -17,6 +17,8 @@ export interface DataTableColumn {
   primary?: boolean;
   /** Current-page sorting on this column; defaults to true. */
   sortable?: boolean;
+  /** Fixed column width (any CSS length, e.g. "36.4%"). With `flush` the table uses a fixed layout. */
+  width?: string;
 }
 
 // `lucideIcon` (not PrimeVue's string `icon`) is rendered through the Menu's #itemicon slot.
@@ -52,13 +54,14 @@ const paginatorPt = {
   },
 };
 
-// `flush` rows follow the Figma table component (dashboard node 2009:212): 40px rows, 14px cell inset.
+// `flush` rows follow the Figma table component (dashboard node 2009:212): 40px rows INCLUDING the 1px bottom
+// border (20px text + 9.5px above/below + 1px), 14px cell inset, and cell content truncated with an ellipsis.
 // `!` is needed because PrimeVue's `.p-datatable-tbody > tr > td` padding outranks a utility class.
 // Header content spans the cell with the title growing, so the sort icon sits at the right edge 8px after
 // it (Figma table-header-cell, node I2009:212;553:9757;2009:414;553:987;2009:409).
 const flushColumnPt = {
-  headerCell: { class: "px-3.5! py-2.5!" },
-  bodyCell: { class: "px-3.5! py-2.5!" },
+  headerCell: { class: "px-3.5! py-[9.5px]!" },
+  bodyCell: { class: "truncate px-3.5! py-[9.5px]!" },
   columnHeaderContent: { class: "w-full gap-2!" },
   columnTitle: { class: "min-w-0 flex-1 truncate" },
 };
@@ -284,6 +287,7 @@ function toggleMenu(event: Event, data: any) {
         :sortOrder="sortOrder ?? undefined"
         class="text-sm"
         :pt="{ pcPaginator: paginatorPt }"
+        :table-style="flush ? 'table-layout: fixed' : undefined"
         @page="(e) => $emit('page', e)"
         @sort="onSort"
       >
@@ -294,6 +298,7 @@ function toggleMenu(event: Event, data: any) {
           :field="col.field"
           :header="col.header"
           :sortable="col.sortable ?? true"
+          :header-style="col.width ? { width: col.width } : undefined"
           :pt="flush ? flushColumnPt : undefined"
         >
           <!-- Flush sort icon = Figma "sortIcon": Lucide arrow-up-down, 12px, 1.5px stroke, gray-500 (muted).

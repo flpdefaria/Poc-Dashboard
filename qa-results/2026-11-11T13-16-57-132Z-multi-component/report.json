@@ -1,0 +1,1029 @@
+{
+  "schema": "carstore-visual-check/6",
+  "runStatus": "partial",
+  "component": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue, Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+  "generatedAt": "2026-11-11T13:17:11.405Z",
+  "latestAttempt": 1,
+  "attempts": [
+    {
+      "attempt": 1,
+      "directory": "actual/attempt-01",
+      "completedAt": "2026-11-11T13:17:11.405Z",
+      "scenarios": [
+        {
+          "id": "cars-page-dark",
+          "label": "Carros — tabela paginada, escuro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=cars-page-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/cars-page-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": null,
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/cars-page-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-dark.png."
+            },
+            {
+              "item": "reference/cars-page-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/cars?<redacted>",
+            "http://localhost:5175/api/brands/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/cars-page-dark.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 1662
+            },
+            "actual": {
+              "width": 2576,
+              "height": 1662
+            },
+            "mismatchedPixels": 23318,
+            "comparedPixels": 4281312,
+            "mismatchRatio": 0.005446461271684942,
+            "diffImage": "comparison/attempt-01/cars-page-dark.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/cars-page-dark.baseline.side-by-side.png",
+            "findings": [
+              "23318 of 4281312 pixels differ (0.545%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/cars-page-dark.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "cars-page-light",
+          "label": "Carros — tabela paginada, claro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=cars-page-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/cars-page-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": null,
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/cars-page-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-light.png."
+            },
+            {
+              "item": "reference/cars-page-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/cars?<redacted>",
+            "http://localhost:5175/api/brands/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/cars-page-light.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 1662
+            },
+            "actual": {
+              "width": 2576,
+              "height": 1662
+            },
+            "mismatchedPixels": 21735,
+            "comparedPixels": 4281312,
+            "mismatchRatio": 0.0050767148014440435,
+            "diffImage": "comparison/attempt-01/cars-page-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/cars-page-light.baseline.side-by-side.png",
+            "findings": [
+              "21735 of 4281312 pixels differ (0.508%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/cars-page-light.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customers-page-dark",
+          "label": "Clientes — tabela paginada, escuro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customers-page-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/customers-page-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": null,
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customers-page-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-dark.png."
+            },
+            {
+              "item": "reference/customers-page-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customers-page-dark.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 1662
+            },
+            "actual": {
+              "width": 2576,
+              "height": 1662
+            },
+            "mismatchedPixels": 34291,
+            "comparedPixels": 4281312,
+            "mismatchRatio": 0.008009460651314363,
+            "diffImage": "comparison/attempt-01/customers-page-dark.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/customers-page-dark.baseline.side-by-side.png",
+            "findings": [
+              "34291 of 4281312 pixels differ (0.801%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/customers-page-dark.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customers-page-empty-dark",
+          "label": "Clientes — lista vazia, escuro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customers-page-empty-dark",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "dark",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/customers-page-empty-dark.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "vazio",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customers-page-empty-dark.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-dark.png."
+            },
+            {
+              "item": "reference/customers-page-empty-dark.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customers-page-empty-dark.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 532
+            },
+            "actual": {
+              "width": 2576,
+              "height": 532
+            },
+            "mismatchedPixels": 12561,
+            "comparedPixels": 1370432,
+            "mismatchRatio": 0.009165722925325737,
+            "diffImage": "comparison/attempt-01/customers-page-empty-dark.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/customers-page-empty-dark.baseline.side-by-side.png",
+            "findings": [
+              "12561 of 1370432 pixels differ (0.917%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/customers-page-empty-dark.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customers-page-empty-light",
+          "label": "Clientes — lista vazia, claro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customers-page-empty-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/customers-page-empty-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": "vazio",
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customers-page-empty-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-light.png."
+            },
+            {
+              "item": "reference/customers-page-empty-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customers-page-empty-light.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 532
+            },
+            "actual": {
+              "width": 2576,
+              "height": 532
+            },
+            "mismatchedPixels": 12522,
+            "comparedPixels": 1370432,
+            "mismatchRatio": 0.00913726474571522,
+            "diffImage": "comparison/attempt-01/customers-page-empty-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/customers-page-empty-light.baseline.side-by-side.png",
+            "findings": [
+              "12522 of 1370432 pixels differ (0.914%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/customers-page-empty-light.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        },
+        {
+          "id": "customers-page-light",
+          "label": "Clientes — tabela paginada, claro, desktop",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+          "status": "not-applicable",
+          "attempt": 1,
+          "previewUrl": "/visual/preview.html?scenario=customers-page-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 2
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-01/customers-page-light.png",
+          "referenceImage": null,
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": null,
+          "state": null,
+          "responsiveFindings": null,
+          "comparison": null,
+          "findings": [
+            "Captured successfully, but marked not-applicable: there is nothing to compare against."
+          ],
+          "missingEvidence": [
+            {
+              "item": "reference/customers-page-light.png",
+              "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-light.png."
+            },
+            {
+              "item": "reference/customers-page-light.figma.json",
+              "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+            }
+          ],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/customers?<redacted>"
+          ],
+          "error": null,
+          "baselineImage": "baseline/customers-page-light.png",
+          "baselineStatus": "captured",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 2576,
+              "height": 1662
+            },
+            "actual": {
+              "width": 2576,
+              "height": 1662
+            },
+            "mismatchedPixels": 34183,
+            "comparedPixels": 4281312,
+            "mismatchRatio": 0.007984234739257499,
+            "diffImage": "comparison/attempt-01/customers-page-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-01/customers-page-light.baseline.side-by-side.png",
+            "findings": [
+              "34183 of 4281312 pixels differ (0.798%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": null,
+          "triptychImage": "comparison/attempt-01/customers-page-light.triptych.png",
+          "figmaSpec": null,
+          "figmaSpecError": null,
+          "specComparison": null,
+          "baselineSpecComparison": null
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "cars-page-dark",
+      "label": "Carros — tabela paginada, escuro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=cars-page-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/cars-page-dark.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": null,
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/cars-page-dark.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-dark.png."
+        },
+        {
+          "item": "reference/cars-page-dark.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/cars?<redacted>",
+        "http://localhost:5175/api/brands/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/cars-page-dark.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 1662
+        },
+        "actual": {
+          "width": 2576,
+          "height": 1662
+        },
+        "mismatchedPixels": 23318,
+        "comparedPixels": 4281312,
+        "mismatchRatio": 0.005446461271684942,
+        "diffImage": "comparison/attempt-01/cars-page-dark.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/cars-page-dark.baseline.side-by-side.png",
+        "findings": [
+          "23318 of 4281312 pixels differ (0.545%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/cars-page-dark.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "cars-page-light",
+      "label": "Carros — tabela paginada, claro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=cars-page-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/cars-page-light.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": null,
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/cars-page-light.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-light.png."
+        },
+        {
+          "item": "reference/cars-page-light.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/cars?<redacted>",
+        "http://localhost:5175/api/brands/options"
+      ],
+      "error": null,
+      "baselineImage": "baseline/cars-page-light.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 1662
+        },
+        "actual": {
+          "width": 2576,
+          "height": 1662
+        },
+        "mismatchedPixels": 21735,
+        "comparedPixels": 4281312,
+        "mismatchRatio": 0.0050767148014440435,
+        "diffImage": "comparison/attempt-01/cars-page-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/cars-page-light.baseline.side-by-side.png",
+        "findings": [
+          "21735 of 4281312 pixels differ (0.508%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/cars-page-light.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customers-page-dark",
+      "label": "Clientes — tabela paginada, escuro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/customers-page-dark.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": null,
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customers-page-dark.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-dark.png."
+        },
+        {
+          "item": "reference/customers-page-dark.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customers-page-dark.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 1662
+        },
+        "actual": {
+          "width": 2576,
+          "height": 1662
+        },
+        "mismatchedPixels": 34291,
+        "comparedPixels": 4281312,
+        "mismatchRatio": 0.008009460651314363,
+        "diffImage": "comparison/attempt-01/customers-page-dark.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/customers-page-dark.baseline.side-by-side.png",
+        "findings": [
+          "34291 of 4281312 pixels differ (0.801%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/customers-page-dark.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customers-page-empty-dark",
+      "label": "Clientes — lista vazia, escuro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-empty-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "dark",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/customers-page-empty-dark.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "vazio",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customers-page-empty-dark.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-dark.png."
+        },
+        {
+          "item": "reference/customers-page-empty-dark.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customers-page-empty-dark.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 532
+        },
+        "actual": {
+          "width": 2576,
+          "height": 532
+        },
+        "mismatchedPixels": 12561,
+        "comparedPixels": 1370432,
+        "mismatchRatio": 0.009165722925325737,
+        "diffImage": "comparison/attempt-01/customers-page-empty-dark.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/customers-page-empty-dark.baseline.side-by-side.png",
+        "findings": [
+          "12561 of 1370432 pixels differ (0.917%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/customers-page-empty-dark.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customers-page-empty-light",
+      "label": "Clientes — lista vazia, claro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-empty-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/customers-page-empty-light.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": "vazio",
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customers-page-empty-light.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-light.png."
+        },
+        {
+          "item": "reference/customers-page-empty-light.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customers-page-empty-light.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 532
+        },
+        "actual": {
+          "width": 2576,
+          "height": 532
+        },
+        "mismatchedPixels": 12522,
+        "comparedPixels": 1370432,
+        "mismatchRatio": 0.00913726474571522,
+        "diffImage": "comparison/attempt-01/customers-page-empty-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/customers-page-empty-light.baseline.side-by-side.png",
+        "findings": [
+          "12522 of 1370432 pixels differ (0.914%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/customers-page-empty-light.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    },
+    {
+      "id": "customers-page-light",
+      "label": "Clientes — tabela paginada, claro, desktop",
+      "componentPath": "Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue",
+      "status": "not-applicable",
+      "attempt": 1,
+      "previewUrl": "/visual/preview.html?scenario=customers-page-light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 2
+      },
+      "theme": "light",
+      "locale": "pt-BR",
+      "captureSelector": "#preview-root > div",
+      "actualImage": "actual/attempt-01/customers-page-light.png",
+      "referenceImage": null,
+      "referenceNote": null,
+      "device": "desktop",
+      "deviceDerived": false,
+      "figmaNode": null,
+      "state": null,
+      "responsiveFindings": null,
+      "comparison": null,
+      "findings": [
+        "Captured successfully, but marked not-applicable: there is nothing to compare against."
+      ],
+      "missingEvidence": [
+        {
+          "item": "reference/customers-page-light.png",
+          "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-light.png."
+        },
+        {
+          "item": "reference/customers-page-light.figma.json",
+          "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+        }
+      ],
+      "blockedRequests": [],
+      "fulfilledMocks": [
+        "http://localhost:5175/api/customers?<redacted>"
+      ],
+      "error": null,
+      "baselineImage": "baseline/customers-page-light.png",
+      "baselineStatus": "captured",
+      "baselineError": null,
+      "baselineComparison": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 2576,
+          "height": 1662
+        },
+        "actual": {
+          "width": 2576,
+          "height": 1662
+        },
+        "mismatchedPixels": 34183,
+        "comparedPixels": 4281312,
+        "mismatchRatio": 0.007984234739257499,
+        "diffImage": "comparison/attempt-01/customers-page-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-01/customers-page-light.baseline.side-by-side.png",
+        "findings": [
+          "34183 of 4281312 pixels differ (0.798%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      },
+      "baselineVsReference": null,
+      "triptychImage": "comparison/attempt-01/customers-page-light.triptych.png",
+      "figmaSpec": null,
+      "figmaSpecError": null,
+      "specComparison": null,
+      "baselineSpecComparison": null
+    }
+  ],
+  "findings": [
+    {
+      "scenarioId": "cars-page-dark",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "cars-page-light",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customers-page-dark",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customers-page-empty-dark",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customers-page-empty-light",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    },
+    {
+      "scenarioId": "customers-page-light",
+      "finding": "Captured successfully, but marked not-applicable: there is nothing to compare against."
+    }
+  ],
+  "blockedRequests": [],
+  "missingEvidence": [
+    {
+      "scenarioId": "cars-page-dark",
+      "item": "reference/cars-page-dark.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-dark.png."
+    },
+    {
+      "scenarioId": "cars-page-dark",
+      "item": "reference/cars-page-dark.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "cars-page-light",
+      "item": "reference/cars-page-light.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/cars-page-light.png."
+    },
+    {
+      "scenarioId": "cars-page-light",
+      "item": "reference/cars-page-light.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customers-page-dark",
+      "item": "reference/customers-page-dark.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-dark.png."
+    },
+    {
+      "scenarioId": "customers-page-dark",
+      "item": "reference/customers-page-dark.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customers-page-empty-dark",
+      "item": "reference/customers-page-empty-dark.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-dark.png."
+    },
+    {
+      "scenarioId": "customers-page-empty-dark",
+      "item": "reference/customers-page-empty-dark.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customers-page-empty-light",
+      "item": "reference/customers-page-empty-light.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-empty-light.png."
+    },
+    {
+      "scenarioId": "customers-page-empty-light",
+      "item": "reference/customers-page-empty-light.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    },
+    {
+      "scenarioId": "customers-page-light",
+      "item": "reference/customers-page-light.png",
+      "reason": "No reference image supplied, so pixel parity could not be judged. Export the Figma frame at 1440x900 @2x and save it as Src/CarStore.Web/ClientApp/visual/references/customers-page-light.png."
+    },
+    {
+      "scenarioId": "customers-page-light",
+      "item": "reference/customers-page-light.figma.json",
+      "reason": "No Figma spec supplied, so layout, typography, color, token and text values were not checked. qa-agent builds it from the Figma MCP next to the PNG."
+    }
+  ],
+  "baseline": {
+    "enabled": true,
+    "ref": "HEAD",
+    "commit": "85c800fbfd7dd79cfae10e4300e3d523cf08e8ce",
+    "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/85c800fbfd7d",
+    "depsStrategy": "npm-ci",
+    "url": "http://localhost:5174",
+    "changedScenarios": [
+      "cars-page-dark",
+      "cars-page-light",
+      "customers-page-dark",
+      "customers-page-empty-dark",
+      "customers-page-empty-light",
+      "customers-page-light"
+    ]
+  },
+  "verdictHistory": [],
+  "qaFindings": {
+    "status": "BLOCKED",
+    "base": {
+      "ref": "HEAD",
+      "commit": "85c800fbfd7dd79cfae10e4300e3d523cf08e8ce"
+    },
+    "attempt": 1,
+    "diferencas": [],
+    "minimas": [],
+    "bloqueios": [
+      "Julgamento QA pendente: registrar critérios e revisão visual com visual:verdict."
+    ]
+  }
+}

@@ -7,4 +7,7 @@ public class CustomerDto
     public string Email { get; init; } = string.Empty;
     public string? PhoneNumber { get; init; }
     public DateTime CreatedAt { get; init; }
+    public int? CarId { get; init; }
+    /// <summary>Brand + model of the linked car (e.g. "Toyota Corolla"), or null.</summary>
+    public string? CarName { get; init; }
 }

@@ -585,6 +585,29 @@ test.describe('visual check', () => {
             ))
           }
         }
+        // A baseline is only reusable for the same capture geometry. When a correction round changes the
+        // viewport, DPR, mount width, theme or capture root, the stored image cannot be compared with the
+        // new capture: archive it (evidence is never deleted) and capture the base again.
+        const baselineMetaPath = path.join(runDir, 'baseline', `${scenario.id}.capture.json`)
+        const captureGeometry = {
+          viewport: scenario.viewport,
+          mountWidth: scenario.mountWidth ?? null,
+          theme: scenario.theme,
+          captureSelector: scenario.captureSelector,
+        }
+        if (BASELINE_ENABLED && fs.existsSync(baselinePath)) {
+          const stored = fs.existsSync(baselineMetaPath)
+            ? JSON.stringify(JSON.parse(fs.readFileSync(baselineMetaPath, 'utf8')).geometry ?? null)
+            : null
+          if (stored !== JSON.stringify(captureGeometry)) {
+            const historyDir = path.join(runDir, 'baseline', 'history')
+            fs.mkdirSync(historyDir, { recursive: true })
+            const tag = `${scenario.id}.before-attempt-${String(attempt).padStart(2, '0')}`
+            fs.renameSync(baselinePath, path.join(historyDir, `${tag}.png`))
+            if (fs.existsSync(baselineSpecPath)) fs.renameSync(baselineSpecPath, path.join(historyDir, `${tag}.spec-check.json`))
+            if (fs.existsSync(baselineMetaPath)) fs.renameSync(baselineMetaPath, path.join(historyDir, `${tag}.capture.json`))
+          }
+        }
         if (fs.existsSync(baselinePath)) {
           status = 'reused'
         } else if (fs.existsSync(absentMarker)) {
@@ -627,6 +650,7 @@ test.describe('visual check', () => {
           }
           if (lastError === null) {
             status = 'captured'
+            writeJson(baselineMetaPath, { attempt, geometry: captureGeometry })
           } else {
             result.baselineError = lastError
             if (fs.existsSync(baselinePath)) fs.rmSync(baselinePath)

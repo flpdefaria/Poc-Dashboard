@@ -98,9 +98,9 @@ public static class DataSeeder
         if (db.Customers.Any())
             return;
 
-        static Customer MakeCustomer(int id, string fullName, string email, string? phoneNumber, DateTime createdAt)
+        static Customer MakeCustomer(int id, string fullName, string email, string? phoneNumber, DateTime createdAt, int? carId)
         {
-            var c = Customer.Create(fullName, email, phoneNumber);
+            var c = Customer.Create(fullName, email, phoneNumber, carId);
             c.Id = id;
             c.CreatedAt = createdAt;
             return c;
@@ -108,21 +108,21 @@ public static class DataSeeder
 
         var customers = new List<Customer>
         {
-            MakeCustomer(1,  "Alice Johnson",   "alice.johnson@example.com",   "555-0101", new DateTime(2021, 3, 15, 9, 30, 0, DateTimeKind.Utc)),
-            MakeCustomer(2,  "Bob Smith",       "bob.smith@example.com",       "555-0102", new DateTime(2021, 9, 2, 14, 15, 0, DateTimeKind.Utc)),
-            MakeCustomer(3,  "Carol Williams",  "carol.williams@example.com",  null,       new DateTime(2022, 2, 18, 11, 0, 0, DateTimeKind.Utc)),
-            MakeCustomer(4,  "David Brown",     "david.brown@example.com",     "555-0104", new DateTime(2022, 7, 30, 16, 45, 0, DateTimeKind.Utc)),
-            MakeCustomer(5,  "Eva Garcia",      "eva.garcia@example.com",      "555-0105", new DateTime(2022, 11, 9, 8, 0, 0, DateTimeKind.Utc)),
-            MakeCustomer(6,  "Frank Miller",    "frank.miller@example.com",    "555-0106", new DateTime(2023, 1, 22, 10, 20, 0, DateTimeKind.Utc)),
-            MakeCustomer(7,  "Grace Lee",       "grace.lee@example.com",       "555-0107", new DateTime(2023, 6, 14, 13, 50, 0, DateTimeKind.Utc)),
-            MakeCustomer(8,  "Henry Wilson",    "henry.wilson@example.com",    null,       new DateTime(2023, 10, 3, 15, 10, 0, DateTimeKind.Utc)),
-            MakeCustomer(9,  "Isabella Martin", "isabella.martin@example.com", "555-0109", new DateTime(2024, 2, 25, 9, 5, 0, DateTimeKind.Utc)),
-            MakeCustomer(10, "Jack Thompson",   "jack.thompson@example.com",   "555-0110", new DateTime(2024, 8, 11, 12, 40, 0, DateTimeKind.Utc)),
-            MakeCustomer(11, "Karen White",     "karen.white@example.com",     "555-0111", new DateTime(2025, 1, 15, 9, 30, 0, DateTimeKind.Utc)),
-            MakeCustomer(12, "Liam Harris",     "liam.harris@example.com",     "555-0112", new DateTime(2025, 4, 5, 16, 45, 0, DateTimeKind.Utc)),
-            MakeCustomer(13, "Mia Clark",       "mia.clark@example.com",       null,       new DateTime(2025, 9, 28, 8, 0, 0, DateTimeKind.Utc)),
-            MakeCustomer(14, "Noah Lewis",      "noah.lewis@example.com",      "555-0114", new DateTime(2026, 3, 19, 11, 15, 0, DateTimeKind.Utc)),
-            MakeCustomer(15, "Olivia Walker",   "olivia.walker@example.com",   "555-0115", new DateTime(2026, 7, 8, 14, 25, 0, DateTimeKind.Utc)),
+            MakeCustomer(1,  "Alice Johnson",   "alice.johnson@example.com",   "555-0101", new DateTime(2021, 3, 15, 9, 30, 0, DateTimeKind.Utc), 1),
+            MakeCustomer(2,  "Bob Smith",       "bob.smith@example.com",       "555-0102", new DateTime(2021, 9, 2, 14, 15, 0, DateTimeKind.Utc), 34),
+            MakeCustomer(3,  "Carol Williams",  "carol.williams@example.com",  null,       new DateTime(2022, 2, 18, 11, 0, 0, DateTimeKind.Utc), 7),
+            MakeCustomer(4,  "David Brown",     "david.brown@example.com",     "555-0104", new DateTime(2022, 7, 30, 16, 45, 0, DateTimeKind.Utc), 10),
+            MakeCustomer(5,  "Eva Garcia",      "eva.garcia@example.com",      "555-0105", new DateTime(2022, 11, 9, 8, 0, 0, DateTimeKind.Utc), 20),
+            MakeCustomer(6,  "Frank Miller",    "frank.miller@example.com",    "555-0106", new DateTime(2023, 1, 22, 10, 20, 0, DateTimeKind.Utc), 4),
+            MakeCustomer(7,  "Grace Lee",       "grace.lee@example.com",       "555-0107", new DateTime(2023, 6, 14, 13, 50, 0, DateTimeKind.Utc), 17),
+            MakeCustomer(8,  "Henry Wilson",    "henry.wilson@example.com",    null,       new DateTime(2023, 10, 3, 15, 10, 0, DateTimeKind.Utc), null),
+            MakeCustomer(9,  "Isabella Martin", "isabella.martin@example.com", "555-0109", new DateTime(2024, 2, 25, 9, 5, 0, DateTimeKind.Utc), 3),
+            MakeCustomer(10, "Jack Thompson",   "jack.thompson@example.com",   "555-0110", new DateTime(2024, 8, 11, 12, 40, 0, DateTimeKind.Utc), 15),
+            MakeCustomer(11, "Karen White",     "karen.white@example.com",     "555-0111", new DateTime(2025, 1, 15, 9, 30, 0, DateTimeKind.Utc), 2),
+            MakeCustomer(12, "Liam Harris",     "liam.harris@example.com",     "555-0112", new DateTime(2025, 4, 5, 16, 45, 0, DateTimeKind.Utc), 8),
+            MakeCustomer(13, "Mia Clark",       "mia.clark@example.com",       null,       new DateTime(2025, 9, 28, 8, 0, 0, DateTimeKind.Utc), null),
+            MakeCustomer(14, "Noah Lewis",      "noah.lewis@example.com",      "555-0114", new DateTime(2026, 3, 19, 11, 15, 0, DateTimeKind.Utc), 24),
+            MakeCustomer(15, "Olivia Walker",   "olivia.walker@example.com",   "555-0115", new DateTime(2026, 7, 8, 14, 25, 0, DateTimeKind.Utc), 12),
         };
 
         db.Customers.AddRange(customers);

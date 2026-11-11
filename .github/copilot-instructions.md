@@ -23,7 +23,7 @@ Shared by GitHub Copilot (loaded automatically) and Claude Code (imported by `CL
 ## Architecture rules
 - **Domain layer** (`CarStore.Domain`) owns all business rules.
   - Entities are **rich**: invariants are enforced through domain methods (`Create`, `Update`, `EnsureCanBeDeleted`), not in services.
-  - Invariants include: Car `Model` required, `Price`/`Stock`/`Mileage >= 0`, `ModelYear` not in the future, `IsAvailable = Stock > 0`; Brand name required and `FoundedDate` not in the future, a brand with cars cannot be deleted; Customer full name and a valid email required.
+  - Invariants include: Car `Model` required, `Price`/`Stock`/`Mileage >= 0`, `ModelYear` not in the future, `IsAvailable = Stock > 0`; Brand name required and `FoundedDate` not in the future, a brand with cars cannot be deleted; Customer full name and a valid email required, and an optional `CarId` must be positive and reference an existing car (checked in `CustomerService`).
   - Throw `DomainException` (`CarStore.Domain/Exceptions/DomainException.cs`) on invariant violations. Never throw `InvalidOperationException` from entities.
 - **Application layer** (`CarStore.Application`) only orchestrates: load aggregates via `CarStoreContext`, call domain methods, persist via `SaveChangesAsync`. Do not duplicate business rules.
 - **API controllers** are thin: bind the request DTO, call the service, map to a response DTO, and map `DomainException` to `400 { message }`. No business logic.
