@@ -11,27 +11,28 @@ specialized agent, make boundaries explicit, and output a sequential plan. Do no
 
 ## Agents
 
-Read the `name` and `description` of every file in `.github/agents/` at runtime, because new agents may exist.
-The core routing today:
+Shared by GitHub Copilot (this prompt) and Claude Code (`.claude/commands/task-planner.md` links here).
+Read the `name` and `description` of every file in `.github/agents/` (Copilot) and `.claude/agents/` (Claude)
+at runtime, because new agents may exist. The core routing today:
 
-| Work | Agent |
-|---|---|
-| Domain entities, invariants, services, API controllers/DTOs, seed data | Developer-Specialist |
-| Domain unit tests (xUnit + FluentAssertions) | Tester-Specialist |
-| Vue components, Figma, charts, responsive, dark theme | Frontend-Specialist |
-| Vite/Tailwind/PrimeVue/deps, bundle wiring, MCP config | Frontend-Tooling-Specialist |
-| Visual validation with the Playwright harness (`ClientApp/visual/`, `qa-results/`) | QA-Specialist |
+| Work | Copilot agent | Claude Code |
+|---|---|---|
+| Domain entities, invariants, services, API controllers/DTOs, seed data | Developer-Specialist | main thread, following `.github/agents/developer-specialist.agent.md` |
+| Domain unit tests (xUnit + FluentAssertions) | Tester-Specialist | main thread, following `.github/agents/tester-specialist.agent.md` |
+| Vue components, Figma, charts, responsive, dark theme | Frontend-Specialist | `frontend-agent` |
+| Vite/Tailwind/PrimeVue/deps, bundle wiring, MCP config | Frontend-Tooling-Specialist | main thread, following `.github/agents/frontend-tooling-specialist.agent.md` |
+| Visual validation with the Playwright harness (`ClientApp/visual/`, `qa-results/`) | QA-Specialist | `qa-agent` |
 
-Fall back to **Default Copilot** only when no agent's description covers the subtask. For a frontend-only
-feature that needs the implement → QA → correct loop, suggest the `/create-frontend-ticket` skill instead
-of a hand-made plan.
+Fall back to the default agent (Copilot) or the main thread (Claude) only when no agent's description covers
+the subtask. For a frontend-only feature that needs the implement → QA → correct loop, suggest the
+`/create-frontend-ticket` skill instead of a hand-made plan.
 
 ## Rules
 
 - One agent per subtask. Never combine work across agent boundaries; split it into sequential steps with explicit handoffs (e.g. a DTO change hands the list of affected Vue components to Frontend-Specialist).
 - Each subtask must be completable in isolation by its agent.
 - Include testing (Tester-Specialist) or QA (QA-Specialist) only when the user asks for it, or when the change alters domain invariants or visible UI.
-- Respect the repo constraints in `.github/copilot-instructions.md` (In-Memory EF, no migrations, server-side paging, no Bootstrap).
+- Respect the repo constraints in `.github/copilot-instructions.md` (imported by `CLAUDE.md`) (In-Memory EF, no migrations, server-side paging, no Bootstrap).
 
 ## Output format
 
@@ -39,14 +40,14 @@ of a hand-made plan.
 ## Task Plan: <title>
 
 ### Subtask N: <name>
-- **Assigned to**: <exact agent `name`>
+- **Assigned to**: <exact agent `name` for the current host (see the table)>
 - **Boundary**: includes … / excludes …
 - **Dependencies**: <subtasks that must finish first, or None>
 - **Handoff**: <artifact passed on: changed DTOs, delivery summary, findings.md…>
 - **Action**: "<what to ask the agent>"
 
 ### Hard Rules
-- Every subtask assigned to a custom agent MUST be executed by invoking that agent as a subagent (`runSubagent`) with the exact `name` from its frontmatter. The executor MUST NOT do the subtask itself or hand it to a general-purpose agent.
+- Every subtask assigned to a custom agent MUST be executed by invoking that agent as a subagent (Copilot `runSubagent`, Claude Code `Agent` tool) with the exact `name` from its frontmatter. The executor MUST NOT do the subtask itself or hand it to a general-purpose agent. Subtasks marked "main thread" run in the Claude session itself, following the named Copilot agent file.
 
 ### Next Steps
 - <verification the user should run>
@@ -83,7 +84,7 @@ of a hand-made plan.
 - **Action**: "Validate the Color field in the cars table and dialogs using the delivery summary."
 
 ### Hard Rules
-- Every subtask assigned to a custom agent MUST be executed by invoking that agent as a subagent (`runSubagent`) with the exact `name` from its frontmatter. The executor MUST NOT do the subtask itself or hand it to a general-purpose agent.
+- Every subtask assigned to a custom agent MUST be executed by invoking that agent as a subagent (Copilot `runSubagent`, Claude Code `Agent` tool) with the exact `name` from its frontmatter. The executor MUST NOT do the subtask itself or hand it to a general-purpose agent. Subtasks marked "main thread" run in the Claude session itself, following the named Copilot agent file.
 
 ### Next Steps
 - `dotnet build Src/CarStore.slnx`, `dotnet test Src/CarStore.Tests`, `npm run build` in ClientApp.

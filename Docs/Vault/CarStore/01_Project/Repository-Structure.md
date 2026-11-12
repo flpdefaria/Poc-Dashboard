@@ -54,6 +54,22 @@ CarStore.Tests
 - Seed data: `Src/CarStore.Domain/Seed/DataSeeder.cs`
 - Domain exception: `Src/CarStore.Domain/Exceptions/DomainException.cs`
 
+## AI agent tooling (Claude Code × Copilot)
+
+Both hosts share one copy of the skills (`.claude/skills/*` → `.github/skills/*` symlinks), the instructions
+(`.github/instructions/`, imported by `CLAUDE.md`) and the MCP servers (`.mcp.json` = `.vscode/mcp.json`).
+Mirrored by hand, changed together:
+
+| Concern | Copilot | Claude Code |
+|---|---|---|
+| Frontend implementation | `.github/agents/frontend-specialist.agent.md` | `.claude/agents/frontend-agent.md` |
+| Visual QA | `.github/agents/qa-specialist.agent.md` | `.claude/agents/qa-agent.md` |
+| Impeccable design hook | `.github/hooks/impeccable.json` | `.claude/settings.json` (`PostToolUse` Edit/Write + `Stop`) |
+| Task planner | `.github/prompts/task-planner.prompt.md` | `.claude/commands/task-planner.md` (symlink, host-neutral routing table) |
+
+Copilot-only: Frontend-Tooling-Specialist, Developer-Specialist, Tester-Specialist and the `impeccable-*`
+agents; Claude runs that work in the main thread following those files. See [[Visual-QA-Harness]].
+
 ## Related
 
 - [[Dependencies]]

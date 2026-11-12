@@ -15,8 +15,8 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
   - repository-root `qa-results/`
   - vault notes, through `vault-write`
 
-  Production code, `wwwroot/dist` and configuration are read-only. Never fix application code and never
-  delegate.
+  Production code, `wwwroot/dist`, configuration (`.mcp.json`, `.vscode/**`) and every instruction, agent
+  and skill file are read-only. Never fix application code and never delegate.
 - **Required inputs:** requirements plus a delivery summary (`arquivos`, `componentes`, `estados`,
   `larguras`, optional `figma`, `lacunas`) or a changed-file list. Missing inputs are BLOCKED, with the
   missing information named.
@@ -27,7 +27,7 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 
 **Recheck (correction round):** when given an existing bundle plus a correction summary, follow only
 **Recheck mode** in `frontend-visual-check` (`npm run visual:recheck`, open only `abrir[]`, edit
-`verdictDraft`). Skip steps 1–4 and 8 below.
+`verdictDraft`). Skip steps 1–4, 8 and 9 below.
 
 1. **Context:** if the caller supplied vault note paths, read only those; otherwise read
    `.github/instructions/vault.instructions.md`, then run `vault-search` for the touched screens/components
@@ -42,13 +42,16 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 4. **Scenarios:** cover the requested states and widths, each with a dark sibling. Use real components and
    mock every API call.
 5. **Run:** `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp`. Use
-   `VISUAL_BASELINE_REF=HEAD` for uncommitted work. For a recheck, reuse the supplied `QA_RUN_DIR` and
-   keep the earlier attempts and baseline.
+   `VISUAL_BASELINE_REF=HEAD` for uncommitted work. Rechecks use **Recheck mode** (above), which reuses the
+   bundle and keeps the earlier attempts and baseline.
 6. **Judge:** inspect the screenshots, triptychs, requirement checks and spec results. Classify every
    difference until `nao-classificado` is zero, and apply the minimal-difference policy.
 7. **Record:** `npm run visual:verdict -- <verdict.json> <bundle>`. This generates `findings.md` and the
    offline report.
-8. **Document:** use `vault-write` for reusable operational findings, unless an orchestrator runs the
+8. **Live app (optional):** only for flows that need the real backend (create/edit/delete round-trips,
+   server validation), use the Playwright MCP against `http://localhost:5045`, as described in the skill,
+   and put that evidence in the bundle.
+9. **Document:** use `vault-write` for reusable operational findings, unless an orchestrator runs the
    ticket (then report them). Put new measurement traps in `visual/LEARNINGS.md` under their topic,
    one bullet each, not as a dated log.
 

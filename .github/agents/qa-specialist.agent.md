@@ -26,7 +26,9 @@ You never fix application code and never delegate.
 ## Vault
 
 Follow the vault workflow in `.github/copilot-instructions.md`: run `/vault-search` for the touched
-screens/components and the visual harness first. Run `/vault-write` ONLY for reusable operational findings.
+screens/components and the visual harness first; when the orchestrator supplied vault note paths, read only
+those instead. Run `/vault-write` ONLY for reusable operational findings, and not at all in an orchestrated
+ticket (report them; the orchestrator writes the vault once at the end).
 
 ## Scope and inputs
 
@@ -56,7 +58,8 @@ screens/components and the visual harness first. Run `/vault-write` ONLY for reu
    - Verify component mappings with the PrimeVue MCP.
 4. Without Figma, encode the text requirements as `renderChecks`.
 5. Cover the requested states and widths, each with a dark sibling.
-6. Run `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp`. For a recheck after a
+6. Run `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp` (`VISUAL_BASELINE_REF=HEAD` for
+   uncommitted work). For a recheck after a
    correction, follow only **Recheck mode** in `/frontend-visual-check` (`npm run visual:recheck -- <run>`,
    open only `abrir[]`, edit `verdictDraft`) and skip the vault, Figma and scenario steps.
 7. Inspect every screenshot and triptych, and classify every difference until none is unclassified.

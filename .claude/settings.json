@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -x \"$CLAUDE_PROJECT_DIR/.claude/skills/impeccable/scripts/impeccable\" ] || \"$CLAUDE_PROJECT_DIR/.claude/skills/impeccable/scripts/impeccable\" hook",
+            "timeout": 10,
+            "statusMessage": "Checking UI changes"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ ! -x \"$CLAUDE_PROJECT_DIR/.claude/skills/impeccable/scripts/impeccable\" ] || \"$CLAUDE_PROJECT_DIR/.claude/skills/impeccable/scripts/impeccable\" hook",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

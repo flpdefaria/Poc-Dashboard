@@ -19,9 +19,9 @@ Keep new and changed UI faithful to Figma and consistent with the existing conve
 
 **Source of truth:** `.github/instructions/frontend.instructions.md`, which covers folder layout, placement,
 the new-entity file set, composables, styling rules, light/dark themes, the definition of done and the
-"Never" list. Read it before acting; this file does not repeat it. Also read `web.instructions.md` for the
+"Never" list. Read it before acting; this file does not repeat it. Read-only questions about the frontend end with an evidence-based answer and no edits. Also read `web.instructions.md` for the
 `/api/*` contract and `pagination.instructions.md` for lists. Follow the vault workflow in
-`.github/copilot-instructions.md`.
+`.github/copilot-instructions.md`; when the orchestrator supplied vault note paths, read only those instead of running `/vault-search`.
 
 ## Skills you own
 
@@ -41,7 +41,7 @@ QA-owned: never edit it. If a change breaks a scenario's selectors, report it in
 
 1. Design input: run `/figma-discovery`, then `/figma-refactor` if the UI exists. Skip both without a Figma URL.
 2. Read the sibling components in the target folder and never invent prop/emit names or locations. Reuse `composables/`, `styles/buttonStyles.ts`, `common/dialog/dialogStyles.ts` and `DataTableCommon.vue` before creating anything.
-3. Implement with `/primevue-component-build` (or `/echarts-chart-build`). Query the PrimeVue MCP for component APIs and `pt` section names instead of guessing.
+3. Implement with `/primevue-component-build` (or `/echarts-chart-build`). Query the PrimeVue MCP for component APIs and `pt` section names instead of guessing. If it is unavailable, report the blocked verification and continue only independent work; never claim it was verified.
 4. Wire it in: a new page = `router/index.ts` route + `Sidebar.vue` nav item; a DTO change = `types.ts` (the C# side belongs to Developer-Specialist).
 5. Validate: in `Src/CarStore.Web/ClientApp`, run `npx vue-tsc --noEmit` and `npm run build`, then `dotnet build Src/CarStore.slnx` if an API DTO changed. Run the Bootstrap/PrimeIcons grep from `/primevue-component-build`. Open the page in light and dark themes.
 6. Run `/vault-write` with the components changed, the Figma node and any new token mapping.
@@ -60,10 +60,11 @@ End with a **delivery summary** for QA-Specialist:
 - `lacunas`: backend dependencies, missing tokens, unresolved design decisions.
 
 - `figma-cache`: the `.figma-cache/<fileKey>/<node>/` folders used, so QA reuses them.
+- `vault`: components changed, Figma node IDs, new token mappings or shared helpers (for the orchestrator's final `/vault-write`; omit when you ran it yourself).
 
 `/figma-discovery` reads `.figma-cache/` first; call the Figma MCP only for nodes it lacks. In an orchestrated
 ticket, skip `/vault-write` (the orchestrator writes once at the end) and report the facts under `vault`.
 
 **Correction mode:** when given classified `defeito` items from a QA `findings.md`, fix only those within scope,
-rebuild, validate, and return an updated delivery summary. Skip the vault and Figma MCP calls (use the cache).
+rebuild, validate, and return an updated delivery summary. Skip the vault, Figma MCP calls (use the cache) and re-reading instruction files already applied.
 Do not polish `minimas[]` or expand the change.

@@ -61,6 +61,8 @@ Skills live in `.github/skills/`; `.claude/skills/` holds symlinks to the same f
 
 MCP servers (`primevue`, `figma-mcp`, `playwright`) are declared twice with the same content: `.mcp.json` (Claude Code) and `.vscode/mcp.json` (VS Code/Copilot). Change both together.
 
+Also mirrored between hosts (change both together): the Impeccable hook (`.github/hooks/impeccable.json` ↔ `.claude/settings.json`), the `task-planner` prompt (`.github/prompts/` ↔ symlink in `.claude/commands/`), and the agent pairs Frontend-Specialist ↔ `frontend-agent`, QA-Specialist ↔ `qa-agent`.
+
 ## General guidance
 - Read the file before editing it. Do not invent class names.
 - Keep changes minimal and focused on the requested task.
