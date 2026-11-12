@@ -62,6 +62,7 @@ Requested explicitly as an architecture change; the previous "never turn this in
 
 - [[Cars-Page]]
 - [[Brands-Page]]
+- [[Customers-Page]]
 - [[Icon-Motion]]
 - [[Visual-QA-Harness]]
 - [[Theme-Surface-Modes]]

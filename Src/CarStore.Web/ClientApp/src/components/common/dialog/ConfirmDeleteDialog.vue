@@ -36,7 +36,8 @@ const props = defineProps<{
   /**
    * Opt-in Figma layout (Cars delete-dialog 2072:2729): 400px dialog, "cannot be undone" error banner,
    * `message` as the intro line and these records in a scrollable bordered list. Without it the legacy
-   * label/value layout is used (Brands, Customers).
+   * label/value layout is used (no current
+   * consumer: Cars, Brands and Customers all pass `items`).
    */
   items?: ConfirmDeleteItem[];
   /** Label of the destructive action (Figma layout); defaults to "Excluir". */

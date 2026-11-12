@@ -31,6 +31,8 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 - **A `pt` key is dead when a slot replaces its element** (Menu `#itemicon` gets only `cx('itemIcon')`). Check the
   element's real `class` before trusting a `pt` fix.
 - **`@lucide/vue` 1.71: `Trash` is the old `Trash2`** (5 paths). Check the rendered path count, not the import name.
+- **`@lucide/vue` 1.71 `IdCard` is redrawn** (circle r3 at 9,12 + shoulder arc down to the card edge); Figma libraries still draw the
+  older glyph (small head r2 + short arc). Same name, different pixels: crop the icon box before calling it a wrong icon.
 - **Dialog autofocus:** PrimeVue Dialog focuses the close button when nothing has `[autofocus]`, so a `:focus-visible`
   ring shows in every dialog capture. Spec rows cannot see `outline`; measure it.
 - **Aura focus-visible replaces the box border** on checkboxes: read both outline and border.
@@ -85,6 +87,9 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 - **Dialog node exports (`get_screenshot` of a 400px dialog) are 440px wide**: shadow-xl adds 20px left/right and 40px below, none above. Crop at x20 y0 with the node size.
 
 ## Verdict classification
+
+- **A spec without a PNG is `partial` and blocks PASS even without `figmaNode`** (`findings.mjs`). A downscaled cache export
+  (Figma MCP >1024px frames) cannot be used either: re-export at 1x, never rescale.
 
 - Only padding, margin, gap, radius and letter-spacing spec rows can go in `minimas`. `dimension-mismatch`, sub-pixel
   `width` rows and `manual:` ids need an explicit category (or a criterion with measured values).

@@ -1,0 +1,690 @@
+{
+ "bundle": "/Users/felipefaria/projects/poc-dashboard/qa-results/2026-11-12T16-00-40-872Z-multi-component",
+ "baseline": {
+  "enabled": true,
+  "ref": "HEAD",
+  "commit": "839d767c64819d5c2b08394dcb02af0401de9c02",
+  "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/839d767c6481",
+  "depsStrategy": "junction",
+  "url": "http://localhost:5174",
+  "changedScenarios": []
+ },
+ "scenarios": [
+  {
+   "id": "brands-bulk-delete-blocked-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-bulk-delete-blocked-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-bulk-delete-blocked-many-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 171600
+  },
+  {
+   "id": "brands-bulk-delete-blocked-many-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 171600
+  },
+  {
+   "id": "brands-bulk-delete-blocked-mixed-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 150800
+  },
+  {
+   "id": "brands-bulk-delete-blocked-mixed-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 150800
+  },
+  {
+   "id": "brands-bulk-delete-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 135600
+  },
+  {
+   "id": "brands-bulk-delete-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 135600
+  },
+  {
+   "id": "brands-bulk-delete-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-bulk-delete-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 205200
+  },
+  {
+   "id": "brands-create-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 205200
+  },
+  {
+   "id": "brands-create-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-validation-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-create-validation-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-delete-blocked-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-delete-blocked-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-delete-blocked-one-car-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-delete-blocked-one-car-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 129200
+  },
+  {
+   "id": "brands-delete-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 114000
+  },
+  {
+   "id": "brands-delete-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 114000
+  },
+  {
+   "id": "brands-delete-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-delete-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-delete-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-delete-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-details-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 184000
+  },
+  {
+   "id": "brands-details-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 184000
+  },
+  {
+   "id": "brands-details-empty-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 140000
+  },
+  {
+   "id": "brands-details-empty-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 140000
+  },
+  {
+   "id": "brands-details-to-edit-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-details-to-edit-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 213600
+  },
+  {
+   "id": "brands-edit-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 213600
+  },
+  {
+   "id": "brands-edit-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-validation-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-edit-validation-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "brands-esc-closes-create-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-esc-closes-create-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-esc-closes-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-esc-closes-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-list-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-list-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-pagination-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-pagination-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-row-menu-open-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-row-menu-open-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-row-selected-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "brands-row-selected-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-bulk-delete-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 194800
+  },
+  {
+   "id": "cars-bulk-delete-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 194800
+  },
+  {
+   "id": "cars-bulk-delete-error-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-bulk-delete-error-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-bulk-delete-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-bulk-delete-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 277600
+  },
+  {
+   "id": "cars-create-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 277600
+  },
+  {
+   "id": "cars-create-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-validation-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-create-validation-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-delete-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-details-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 203200
+  },
+  {
+   "id": "cars-details-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 203200
+  },
+  {
+   "id": "cars-details-to-edit-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-details-to-edit-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-edit-dialog-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 277600
+  },
+  {
+   "id": "cars-edit-dialog-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 277600
+  },
+  {
+   "id": "cars-edit-error-400-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-edit-error-400-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-edit-success-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-edit-success-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1296000
+  },
+  {
+   "id": "cars-list-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-list-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-page-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 3781568
+  },
+  {
+   "id": "cars-page-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 3781568
+  },
+  {
+   "id": "cars-pagination-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-pagination-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-paginator-hover-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 87448
+  },
+  {
+   "id": "cars-paginator-hover-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 87448
+  },
+  {
+   "id": "cars-row-menu-closed-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-closed-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 18550
+  },
+  {
+   "id": "cars-row-menu-flip-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-flip-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 18550
+  },
+  {
+   "id": "cars-row-menu-open-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-open-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-selected-open-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-menu-selected-open-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-selected-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-row-selected-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 945392
+  },
+  {
+   "id": "cars-rows-per-page-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1563632
+  },
+  {
+   "id": "cars-rows-per-page-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1563632
+  },
+  {
+   "id": "cars-search-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 512624
+  },
+  {
+   "id": "cars-search-empty-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 359352
+  },
+  {
+   "id": "cars-search-empty-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 359352
+  },
+  {
+   "id": "cars-search-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 512624
+  },
+  {
+   "id": "home-dashboard-dark",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1384600
+  },
+  {
+   "id": "home-dashboard-light",
+   "baselineStatus": "captured",
+   "mismatchedPixels": 0,
+   "comparedPixels": 1384600
+  }
+ ],
+ "summary": {
+  "total": 112,
+  "identical": 112
+ }
+}

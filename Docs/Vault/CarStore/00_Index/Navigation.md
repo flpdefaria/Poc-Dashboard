@@ -48,6 +48,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 - [[Home-Dashboard]]
 - [[Cars-Page]]
 - [[Brands-Page]]
+- [[Customers-Page]]
 - [[Theme-Surface-Modes]]
 - [[UI-Language-pt-BR]]
 

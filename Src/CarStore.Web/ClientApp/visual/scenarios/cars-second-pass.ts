@@ -1,6 +1,5 @@
 import type { ScenarioAction, VisualScenario } from '../types'
-import { DESKTOP, brandOptions, brands, cars, customers, jsonMock, pageWidth, pagedMock } from './fixtures'
-import carOptionsJson from './fixtures/car-options.json' with { type: 'json' }
+import { DESKTOP, brandOptions, brands, cars, jsonMock, pageWidth, pagedMock } from './fixtures'
 
 /**
  * Cars second pass (2026-11-11): row actions menu open state and the card paginator
@@ -8,7 +7,8 @@ import carOptionsJson from './fixtures/car-options.json' with { type: 'json' }
  *
  * `cars-row-menu-open` compares the whole content area with the menu open on row 2 ("5 Series", as drawn).
  * The other scenarios are states without a frame (closed again, selected + open, upward flip, page hover,
- * rows per page) and regression guards for the Brands/Customers row menus, which must not change.
+ * rows per page). The Customers row-menu guard was retired when Customers moved to card mode (see
+ * `customers-figma.ts`, `customers-row-menu-open-*`).
  */
 const VIEWPORT = { ...DESKTOP, deviceScaleFactor: 1 }
 const FIGMA_FILE = 'https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id='
@@ -137,32 +137,6 @@ function rowsPerPage(theme: Theme): VisualScenario {
   })
 }
 
-// ---------------------------------------------------------------- Regression guards (must match HEAD)
-
-function customersMenu(theme: Theme): VisualScenario {
-  return {
-    id: `customers-row-menu-${theme}`,
-    label: `Clientes — menu de ações da linha (regressão), ${themeLabel(theme)}`,
-    componentPath: 'Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue',
-    component: () => import('../../src/components/CustomersPage.vue'),
-    route: { path: '/customers' },
-    viewport: DESKTOP,
-    mountWidth: pageWidth(DESKTOP.width),
-    theme,
-    locale: 'pt-BR',
-    device: 'desktop',
-    state: 'menu clientes',
-    referenceNote: 'Regressão: deve ser idêntico à base (HEAD).',
-    captureSelector: '#preview-root > div',
-    mocks: [pagedMock('/api/customers', customers, 10), jsonMock('/api/cars/options', carOptionsJson)],
-    actions: [waitRows(), { type: 'click', selector: trigger(3) }, { type: 'expect-count', selector: '.p-menu-overlay', count: 1 }, { type: 'wait', ms: 600 }],
-    renderChecks: [
-      { label: 'Três ações', selector: '.p-menu-overlay .p-menu-item', count: 3 },
-      { label: 'Sem aria-expanded fora do modo card', selector: 'button[aria-label="Ações da linha"][aria-expanded]', count: 0 },
-    ],
-  }
-}
-
 const both = (fn: (t: Theme) => VisualScenario) => [fn('light'), fn('dark')]
 
 export default [
@@ -172,5 +146,4 @@ export default [
   ...both(menuFlip),
   ...both(pageHover),
   ...both(rowsPerPage),
-  ...both(customersMenu),
 ]

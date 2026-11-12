@@ -45,4 +45,7 @@ function customersSelected(theme: Theme): VisualScenario {
   }
 }
 
-export default [customersSelected('light'), customersSelected('dark')]
+// Retired: Customers moved to card mode (`customers-figma.ts`, `customers-row-selected-figma-*`), so no page uses the
+// non-card path any more. Kept as a template; re-register when a non-card DataTableCommon consumer exists.
+void customersSelected
+export default [] as VisualScenario[]

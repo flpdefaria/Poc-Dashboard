@@ -43,4 +43,8 @@ function customerDelete(theme: Theme): VisualScenario {
 
 const both = (fn: (t: Theme) => VisualScenario) => [fn('light'), fn('dark')]
 
-export default [...both(customerDelete)]
+// Retired: Customers delete moved to the ConfirmDeleteDialog list mode (`customers-figma.ts`,
+// `customers-delete-dialog-figma-*`); no dialog keeps the legacy shell any more.
+void both
+void customerDelete
+export default [] as VisualScenario[]

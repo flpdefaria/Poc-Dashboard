@@ -1,0 +1,303 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2134-1401",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2134:1401",
+    "nodeName": "form-dialog (Tela · Clientes · Novo cliente 2134:1392)",
+    "retrievedAt": "2026-11-12T00:00:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2138:4, metadata.xml)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md / variables.json / design-context.md"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 450,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2134:1401",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2134:1408",
+      "component": "InputText",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2135:2885",
+      "component": "Select",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2134:1401",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 450,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2134:1402",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2134:1404",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2134:1405",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2134:1418",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2134:1403",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Novo cliente",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1406",
+      "nodeName": "field · Nome completo",
+      "selector": ":scope .p-dialog-content > div:nth-child(1)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2134:1407",
+      "nodeName": "label Nome completo",
+      "selector": ":scope label[for=\"create-customer-name\"]",
+      "text": "Nome completo",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1408",
+      "nodeName": "inputtext Nome completo",
+      "selector": ":scope #create-customer-name",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2134:1409",
+      "nodeName": "field · E-mail",
+      "selector": ":scope .p-dialog-content > div:nth-child(2)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2134:1410",
+      "nodeName": "label E-mail",
+      "selector": ":scope label[for=\"create-customer-email\"]",
+      "text": "E-mail",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1411",
+      "nodeName": "inputtext E-mail",
+      "selector": ":scope #create-customer-email",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2135:2876",
+      "nodeName": "field · Telefone",
+      "selector": ":scope .p-dialog-content > div:nth-child(3)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2135:2877",
+      "nodeName": "label Telefone",
+      "selector": ":scope label[for=\"create-customer-phone\"]",
+      "text": "Telefone",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2135:2878",
+      "nodeName": "inputtext Telefone",
+      "selector": ":scope #create-customer-phone",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2134:1412",
+      "nodeName": "field · Carro",
+      "selector": ":scope .p-dialog-content > div:nth-child(4)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2134:1413",
+      "nodeName": "label Carro",
+      "selector": ":scope label[for=\"create-customer-car\"]",
+      "text": "Carro",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2135:2885",
+      "nodeName": "select Carro",
+      "selector": ":scope .p-dialog-content > div:nth-child(4) .p-select",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2135:2885",
+      "nodeName": "select label",
+      "selector": ":scope .p-dialog-content > div:nth-child(4) .p-select-label",
+      "text": "Sem carro",
+      "props": {
+        "fontSize": 14,
+        "paddingLeft": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2135:2885",
+      "nodeName": "chevron-down",
+      "selector": ":scope .p-dialog-content > div:nth-child(4) .p-select-dropdown svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2134:1419",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2134:1420",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Cadastrar cliente",
+      "props": {
+        "width": 149,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2134:1401 (frame 2134:1392, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2134-1401), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x450 (borda #e5e7eb confirmada nas quatro bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (2138-4/discovery.md + 2134-811/variables.json: text #1f2937, muted #6b7280, borda #e5e7eb, input/select #9ca3af, contrast #030712, danger #dc2626).",
+    "Placeholders (discovery 2138-4): Ex.: Maria Silva, nome@email.com, (00) 00000-0000, Sem carro (muted #6b7280)."
+  ]
+}

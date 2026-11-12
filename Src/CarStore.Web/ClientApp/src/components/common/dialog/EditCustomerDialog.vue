@@ -6,9 +6,17 @@ import InputText from "primevue/inputtext";
 import Select from "primevue/select";
 import Message from "primevue/message";
 import FormField from "../form/FormField.vue";
-import { dialogShellPt, dialogSecondaryButtonClass, dialogPrimaryButtonClass } from "./dialogStyles";
+import {
+  modalDialogPt,
+  modalDialogTitleClass,
+  modalInputClass,
+  modalSelectPt,
+  modalSelectChevronProps,
+  modalFieldIconProps,
+} from "./dialogStyles";
+import { primaryButtonMdClass, secondaryButtonMdClass } from "../../../styles/buttonStyles";
 import type { CarOption, CustomerDto } from "../../../types";
-import { Check } from "@lucide/vue";
+import { ChevronDown, Search, X } from "@lucide/vue";
 
 export interface EditCustomerPayload {
   fullName: string;
@@ -74,7 +82,9 @@ function onSave() {
   });
 }
 
-const dialogPt = dialogShellPt("w-[480px]");
+// Figma form-dialog "Editar cliente" (2134:1115): 400px.
+const dialogPt = modalDialogPt("w-[400px]");
+const idPrefix = "edit-customer";
 </script>
 
 <template>
@@ -89,24 +99,49 @@ const dialogPt = dialogShellPt("w-[480px]");
     :pt="dialogPt"
   >
     <template #header>
-      <span class="text-[21px] font-bold text-color">Editar cliente</span>
+      <!-- Initial focus: without an [autofocus] element PrimeVue Dialog focuses the close button with a visible ring,
+           which Figma does not draw. The title takes it instead (tabindex -1: not in the Tab order, no outline). -->
+      <span :class="modalDialogTitleClass" class="outline-none" autofocus tabindex="-1">Editar cliente</span>
     </template>
+    <template #closeicon><X /></template>
 
-    <FormField label="Nome completo">
-      <InputText v-model="form.fullName" class="w-full" />
+    <FormField label="Nome completo" :input-id="`${idPrefix}-name`" compact>
+      <InputText
+        :id="`${idPrefix}-name`"
+        v-model="form.fullName"
+        placeholder="Ex.: Maria Silva"
+        class="w-full"
+        :class="modalInputClass"
+      />
     </FormField>
 
-    <FormField label="E-mail">
-      <InputText v-model="form.email" class="w-full" />
+    <FormField label="E-mail" :input-id="`${idPrefix}-email`" compact>
+      <InputText
+        :id="`${idPrefix}-email`"
+        v-model="form.email"
+        type="email"
+        placeholder="nome@email.com"
+        class="w-full"
+        :class="modalInputClass"
+      />
     </FormField>
 
-    <FormField label="Telefone">
-      <InputText v-model="form.phoneNumber" class="w-full" />
+    <FormField label="Telefone" :input-id="`${idPrefix}-phone`" compact>
+      <InputText
+        :id="`${idPrefix}-phone`"
+        v-model="form.phoneNumber"
+        type="tel"
+        placeholder="(00) 00000-0000"
+        class="w-full"
+        :class="modalInputClass"
+      />
     </FormField>
 
-    <FormField label="Carro">
+    <!-- Figma select (2135:2862): placeholder "Sem carro"; filter + clear kept from the previous dialog (ticket). -->
+    <FormField label="Carro" :input-id="`${idPrefix}-car`" compact>
       <Select
         v-model="form.carId"
+        :input-id="`${idPrefix}-car`"
         :options="props.cars"
         option-label="name"
         option-value="id"
@@ -115,8 +150,15 @@ const dialogPt = dialogShellPt("w-[480px]");
         filter-placeholder="Buscar carro"
         show-clear
         empty-filter-message="Nenhum carro encontrado"
-        class="w-full"
-      />
+        fluid
+        :pt="modalSelectPt"
+      >
+        <template #dropdownicon><ChevronDown v-bind="modalSelectChevronProps" /></template>
+        <template #clearicon="{ clearCallback }">
+          <X v-bind="modalFieldIconProps" class="p-select-clear-icon" @click="clearCallback" />
+        </template>
+        <template #filtericon><Search v-bind="modalFieldIconProps" /></template>
+      </Select>
     </FormField>
 
     <Message v-if="validationError || props.error" severity="error" :closable="false">
@@ -129,17 +171,10 @@ const dialogPt = dialogShellPt("w-[480px]");
         severity="secondary"
         outlined
         :disabled="loading"
-        :class="dialogSecondaryButtonClass"
+        :class="secondaryButtonMdClass"
         @click="onUpdateVisible(false)"
       />
-      <Button
-        label="Salvar"
-        :loading="loading"
-        :class="dialogPrimaryButtonClass"
-        @click="onSave"
-      >
-        <template #icon><Check /></template>
-      </Button>
+      <Button label="Salvar alterações" :loading="loading" :class="primaryButtonMdClass" @click="onSave" />
     </template>
   </Dialog>
 </template>

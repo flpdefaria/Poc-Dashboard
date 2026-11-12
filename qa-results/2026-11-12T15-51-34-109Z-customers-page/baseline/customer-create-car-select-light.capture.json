@@ -1,0 +1,13 @@
+{
+  "attempt": 1,
+  "geometry": {
+    "viewport": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 2
+    },
+    "mountWidth": 1288,
+    "theme": "light",
+    "captureSelector": "body"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2134-277",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2134:277",
+    "nodeName": "menu (Tela · Clientes · Menu de ações aberto 2134:269)",
+    "retrievedAt": "2026-11-12T00:00:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2138:4, metadata.xml)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md / variables.json / design-context.md"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "checks": [
+    {
+      "nodeId": "2134:276",
+      "nodeName": "table-row 1 (menu aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1)",
+      "text": "Alice Johnson",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "2134:276",
+      "nodeName": "button-small (gatilho aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2134:275",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598
+      }
+    }
+  ],
+  "notes": [
+    "Sem PNG de referência: o cache tem 2134-6/screenshot.png reduzido para 1024x610 (o frame main tem 1368x814; imagens nunca são reescaladas) e os frames 2134:269/2134:535 não foram exportados. O MCP Figma não foi chamado por instrução do orquestrador: só a spec é comparada; o pixel é revisado visualmente contra o PNG reduzido.",
+    "Menu 2134:277 = x1194 y269 175x106 no frame (overlay teleportado: medido com visual:measure, fora do :scope). Itens Detalhes (eye), Editar (pencil), Excluir (trash), ícones 14px; idêntico ao menu de Carros/Marcas (discovery 2138-4).",
+    "Cores = modo de superfície gray resolvido (2138-4/discovery.md + 2134-811/variables.json: text #1f2937, muted #6b7280, borda #e5e7eb, input/select #9ca3af, contrast #030712, danger #dc2626)."
+  ]
+}

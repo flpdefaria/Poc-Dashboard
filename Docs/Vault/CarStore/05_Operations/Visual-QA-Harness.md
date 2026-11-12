@@ -106,6 +106,11 @@ The harness needs neither `dotnet run` nor the normal dev server.
 - `scenarios/brands-figma.ts` (2026-11-12): light/dark pairs for the 8 Brands Figma frames (list, row menu,
   row selected, details, edit, create, bulk blocked, delete) plus functional flows; the old Brands guards in
   `legacy-dialogs.ts`, `cars-figma.ts`, `cars-second-pass.ts` and `selection-guards.ts` were removed. See [[Brands-Page]].
+- `scenarios/customers-figma.ts` (2026-11-12): 52 scenarios, light/dark pairs for the 7 Customers Figma frames (list,
+  row menu, row selected, details, edit, create, delete) plus states without a frame (bulk delete, no phone/car,
+  clear car, filter, empty, GET error, 400s, validation). Fixture = prototype content (10 customers). The old
+  Customers guards in `selection-guards.ts`, `legacy-dialogs.ts` and `cars-second-pass.ts` were retired. Page-frame
+  references are 1x `get_screenshot` exports (1440x814) cropped at x112 y40 1288x734. See [[Customers-Page]].
 
 `home-dashboard-light` and the light Figma-compared Cars scenarios declare `figmaNode`. Declaring one makes
 Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `references/<id>.png` and
@@ -143,6 +148,7 @@ Reference run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` (strict Cars QA,
 - [[Frontend-SPA]]
 - [[Home-Dashboard]]
 - [[Brands-Page]]
+- [[Customers-Page]]
 - [[Theme-Surface-Modes]]
 - [[Testing]]
 - [[Operations-Overview]]

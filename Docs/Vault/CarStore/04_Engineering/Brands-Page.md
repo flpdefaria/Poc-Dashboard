@@ -100,6 +100,7 @@ defects; Cars/Customers/Home unchanged vs base). Scenarios in `visual/scenarios/
 - [[Frontend-SPA]]
 - [[Brand]]
 - [[Pagination]]
+- [[Customers-Page]]
 - [[Theme-Surface-Modes]]
 - [[Visual-QA-Harness]]
 - [[UI-Language-pt-BR]]

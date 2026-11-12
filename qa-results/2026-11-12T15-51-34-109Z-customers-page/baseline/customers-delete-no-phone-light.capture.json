@@ -1,0 +1,13 @@
+{
+  "attempt": 1,
+  "geometry": {
+    "viewport": {
+      "width": 1440,
+      "height": 901,
+      "deviceScaleFactor": 1
+    },
+    "mountWidth": 1288,
+    "theme": "light",
+    "captureSelector": ".p-dialog"
+  }
+}

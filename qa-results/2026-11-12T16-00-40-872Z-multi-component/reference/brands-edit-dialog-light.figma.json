@@ -1,0 +1,294 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-3477",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:3486",
+    "nodeName": "form-dialog (Tela · Marcas · Editar marca 2113:3477)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 534,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2113:3486",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2114:4068",
+      "component": "DatePicker (iconDisplay input)",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2113:3520",
+      "component": "Textarea",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2113:3486",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 534,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:3487",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2113:3489",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2113:3490",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2113:3521",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2113:3488",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Editar marca",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:3491",
+      "nodeName": "field · Nome",
+      "selector": ":scope .p-dialog-content > div:nth-child(1)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:3492",
+      "nodeName": "label Nome",
+      "selector": ":scope label[for=\"edit-brand-name\"]",
+      "text": "Nome",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:3493",
+      "nodeName": "inputtext Nome",
+      "selector": ":scope #edit-brand-name",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:3494",
+      "nodeName": "field · País",
+      "selector": ":scope .p-dialog-content > div:nth-child(2)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:3495",
+      "nodeName": "label País",
+      "selector": ":scope label[for=\"edit-brand-country\"]",
+      "text": "País",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:3496",
+      "nodeName": "inputtext País",
+      "selector": ":scope #edit-brand-country",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2114:4059",
+      "nodeName": "field · Data de fundação",
+      "selector": ":scope .p-dialog-content > div:nth-child(3)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2114:4060",
+      "nodeName": "label Data de fundação",
+      "selector": ":scope label[for=\"edit-brand-founded\"]",
+      "text": "Data de fundação",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2114:4068",
+      "nodeName": "datepicker Data de fundação",
+      "selector": ":scope #edit-brand-founded",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2114:4068",
+      "nodeName": "calendar (ícone dentro do campo)",
+      "selector": ":scope .p-dialog-content > div:nth-child(3) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:3518",
+      "nodeName": "field · Descrição",
+      "selector": ":scope .p-dialog-content > div:nth-child(4)",
+      "props": {
+        "width": 362,
+        "height": 148,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:3519",
+      "nodeName": "label Descrição",
+      "selector": ":scope label[for=\"edit-brand-description\"]",
+      "text": "Descrição",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:3520",
+      "nodeName": "textarea Descrição",
+      "selector": ":scope #edit-brand-description",
+      "props": {
+        "width": 362,
+        "height": 124,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2113:3522",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:3523",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Salvar alterações",
+      "props": {
+        "width": 150,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2113:3486 (frame 2113:3477, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2113-3486), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x534 (a sombra shadow-xl não sobe acima do nó; borda #e5e7eb confirmada nas bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend.",
+    "Datepicker 2114:4068: inputtext 40px com ícone calendar 14px #6b7280 DENTRO do campo à direita (16px da borda interna, 10.5px após o texto).",
+    "Textarea de edição = 124px (2113:3520)."
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2134-537",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2134:537",
+    "nodeName": "main (Tela · Clientes · Linha selecionada 2134:535)",
+    "retrievedAt": "2026-11-12T00:00:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2138:4, metadata.xml)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md / variables.json / design-context.md"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "checks": [
+    {
+      "nodeId": "I2134:538;363:2790",
+      "nodeName": "title-row",
+      "selector": ":scope > div:nth-child(1)",
+      "props": {
+        "width": 1288,
+        "height": 56
+      }
+    },
+    {
+      "nodeId": "I2134:538;363:2793",
+      "nodeName": "title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Clientes",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:538;363:2794",
+      "nodeName": "description",
+      "selector": ":scope > div:nth-child(1) p",
+      "text": "Gerencie os clientes da concessionária: consulte nome completo, e-mail, telefone e data de cadastro, e crie, edite ou remova registros.",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2134:538;363:2756;2134:554",
+      "nodeName": "button Novo cliente",
+      "selector": ":scope > div:nth-child(1) .p-button",
+      "text": "Novo cliente",
+      "props": {
+        "width": 142,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2134:541",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2134:541",
+      "nodeName": "inputtext (busca) input",
+      "selector": ":scope .p-iconfield input",
+      "props": {
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254",
+      "nodeName": "table-header-row",
+      "selector": ":scope .p-datatable-thead > tr",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:256",
+      "nodeName": "header checkbox cell",
+      "selector": ":scope .p-datatable-thead th:nth-child(1)",
+      "props": {
+        "width": 56,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "2134:543",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2134:542",
+      "nodeName": "button Excluir selecionados",
+      "selector": ":scope .p-button-danger.p-button-outlined",
+      "text": "Excluir selecionados (1)",
+      "props": {
+        "width": 216,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#fecaca",
+        "color": "#b91c1c",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:556",
+      "nodeName": "table-row selecionada",
+      "selector": ":scope .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 48,
+        "backgroundColor": "#d7e6fe"
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:556;553:1055;2134:568",
+      "nodeName": "cell Nome (selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+      "text": "Alice Johnson",
+      "props": {
+        "fontSize": 14,
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:556;553:1055;2134:571",
+      "nodeName": "cell Cadastrado em (selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5) span",
+      "text": "15/03/2021",
+      "props": {
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:556;553:1055;2134:567",
+      "nodeName": "checkbox marcado (caixa)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "backgroundColor": "#2564cf",
+        "borderColor": "#2564cf"
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:557",
+      "nodeName": "table-row 2 (não selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2)",
+      "props": {
+        "height": 48,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2134:544;553:9904;2134:557;553:999;2134:589",
+      "nodeName": "checkbox desmarcado (caixa, linha 2)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2) .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "borderColor": "#9ca3af",
+        "backgroundColor": "#ffffff"
+      }
+    }
+  ],
+  "notes": [
+    "Sem PNG de referência: o cache tem 2134-6/screenshot.png reduzido para 1024x610 (o frame main tem 1368x814; imagens nunca são reescaladas) e os frames 2134:269/2134:535 não foram exportados. O MCP Figma não foi chamado por instrução do orquestrador: só a spec é comparada; o pixel é revisado visualmente contra o PNG reduzido.",
+    "Toolbar 2134:540: busca 216 + botão 2134:542 216x40 em x1072 (alinhado à direita).",
+    "Seleção (design-context 2134-537): linha #d7e6fe, tinta #1046a0, checkbox #2564cf.",
+    "Cores = modo de superfície gray resolvido (2138-4/discovery.md + 2134-811/variables.json: text #1f2937, muted #6b7280, borda #e5e7eb, input/select #9ca3af, contrast #030712, danger #dc2626).",
+    "Dados = conteúdo do protótipo (fixture figmaCustomers em scenarios/customers-figma.ts): e-mails @email.com e telefones (11) 95550-01xx como nos frames. O seed (@example.com, 555-01xx) é diferença de conteúdo conhecida."
+  ]
+}

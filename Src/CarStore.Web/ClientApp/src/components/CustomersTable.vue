@@ -11,6 +11,7 @@ import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatDate } from "../utils/format";
 import { customerLabel } from "../utils/entityLabel";
 import type { CarOption, CustomerDto } from "../types";
+import type { ConfirmDeleteItem } from "./common/dialog/ConfirmDeleteDialog.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -63,6 +64,21 @@ const {
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
+// Delete dialogs (Figma 2134:1687): one list row per customer, e-mail subtitle and the phone on the right.
+function customersLabel(count: number) {
+  return count === 1 ? "1 cliente" : `${count} clientes`;
+}
+
+function toDeleteItem(customer: CustomerDto): ConfirmDeleteItem {
+  return { key: customer.id, title: customer.fullName, subtitle: customer.email, meta: customer.phoneNumber || undefined };
+}
+
+// Details "Editar" (Figma 2134:848) hands the customer straight to the edit dialog.
+function onDetailsEdit(customer: CustomerDto) {
+  detailsDialogVisible.value = false;
+  onEditRequest(customer);
+}
+
 onMounted(() => load(1, rows.value));
 
 defineExpose({ reload: () => load(1, rows.value) });
@@ -82,22 +98,28 @@ defineExpose({ reload: () => load(1, rows.value) });
     confirm-delete
     confirm-edit
     bulk-delete
+    card
     @page="onPage"
     @delete="onDeleteRequest"
     @edit="onEditRequest"
     @details="onDetailsRequest"
     @bulk-delete="onBulkDeleteRequest"
   >
+    <!-- Figma 2134:11: plain body/md cells; a customer without phone shows an em dash. -->
+    <template #col-phoneNumber="{ data }">
+      <span>{{ data.phoneNumber || "—" }}</span>
+    </template>
     <template #col-createdAt="{ data }">
-      <span class="text-xs text-muted-color">{{ formatDate(data.createdAt) }}</span>
+      <span>{{ formatDate(data.createdAt) }}</span>
     </template>
   </DataTableCommon>
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Excluir cliente"
-    message="Tem certeza de que deseja excluir este cliente?"
-    :details="deleteTarget ? [{ label: 'Nome completo', value: deleteTarget.fullName }, { label: 'E-mail', value: deleteTarget.email }] : []"
+    :title="deleteTarget ? `Excluir ${deleteTarget.fullName}?` : 'Excluir cliente?'"
+    message="O cliente será removido do cadastro:"
+    :items="deleteTarget ? [toDeleteItem(deleteTarget)] : []"
+    confirm-label="Excluir cliente"
     :loading="deleteLoading"
     :error="deleteError"
     @confirm="onDeleteConfirm"
@@ -105,9 +127,10 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Excluir clientes"
-    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} cliente(s)?`"
-    :details="bulkDeleteTargets.map((customer) => ({ label: customer.fullName, value: customer.email }))"
+    :title="`Excluir ${customersLabel(bulkDeleteTargets.length)}?`"
+    :message="bulkDeleteTargets.length === 1 ? 'O cliente será removido do cadastro:' : 'Os clientes serão removidos do cadastro:'"
+    :items="bulkDeleteTargets.map(toDeleteItem)"
+    :confirm-label="`Excluir ${customersLabel(bulkDeleteTargets.length)}`"
     :loading="bulkDeleteLoading"
     :error="bulkDeleteError"
     @confirm="onBulkDeleteConfirm"
@@ -122,6 +145,6 @@ defineExpose({ reload: () => load(1, rows.value) });
     @submit="onEditSubmit"
   />
 
-  <DetailsCustomerDialog v-model:visible="detailsDialogVisible" :customer="detailsTarget" />
+  <DetailsCustomerDialog v-model:visible="detailsDialogVisible" :customer="detailsTarget" @edit="onDetailsEdit" />
 </template>
 

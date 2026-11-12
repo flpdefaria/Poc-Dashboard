@@ -1,7 +1,7 @@
 ---
 type: reference
 created: 2026-11-11
-updated: 2026-11-11
+updated: 2026-11-12
 tags:
   - note
   - type/reference
@@ -78,6 +78,7 @@ step, a deleted car left a dangling `CarId` (found by API test on 2026-11-11).
   (unlink).
 - QA: `visual/scenarios/customer-dialogs.ts` (create with filter, edit with car, light/dark). The run
   `qa-results/2026-11-11T13-40-40-382Z-customers-page` is PASS.
+- Screen layout and dialogs follow the Figma "Clientes" canvas: see [[Customers-Page]].
 
 ## Seed
 
@@ -98,3 +99,4 @@ step, a deleted car left a dangling `CarId` (found by API test on 2026-11-11).
 - [[Domain-Overview]]
 - [[Home-Dashboard]]
 - [[Testing]]
+- [[Customers-Page]]

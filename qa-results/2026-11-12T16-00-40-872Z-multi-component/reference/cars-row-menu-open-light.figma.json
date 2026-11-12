@@ -1,0 +1,143 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2069-2759",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2069:2759",
+    "nodeName": "Tela · Carros · Menu de ações aberto / main (área de conteúdo)",
+    "retrievedAt": "2026-11-11T19:00:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2069:3601",
+      "component": "Menu (popup)",
+      "status": "verified"
+    },
+    {
+      "nodeId": "I2069:2766;553:9905;2069:3083",
+      "component": "Paginator",
+      "status": "verified"
+    }
+  ],
+  "texts": [
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2779;553:1027;2069:3671;552:983;2069:2829",
+      "text": "5 Series"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "--p-table-row-hover-background",
+      "value": "#f3f4f6"
+    },
+    {
+      "name": "button/text/secondary/hover/background",
+      "value": "#f9fafb"
+    },
+    {
+      "name": "button/text/secondary/color",
+      "value": "#111827"
+    },
+    {
+      "name": "--p-button-sm-icon-size",
+      "value": "16"
+    },
+    {
+      "name": "--p-icon-stroke-width",
+      "value": "1.5"
+    },
+    {
+      "name": "--p-table-row-background",
+      "value": "#ffffff"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2778",
+      "nodeName": "table-row 1 (fechada)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1)",
+      "props": {
+        "backgroundColor": "#ffffff",
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2779",
+      "nodeName": "table-row 2 (menu aberto, Hover)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2)",
+      "text": "5 Series",
+      "props": {
+        "backgroundColor": "#f3f4f6",
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2779;553:1027;2069:3671;552:983;2069:2829",
+      "nodeName": "texto da linha aberta",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2) > td:nth-child(2)",
+      "props": {
+        "color": "#1f2937",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2779;553:1027;2069:3678;552:983;2069:2843",
+      "nodeName": "button-small (gatilho aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2) button[aria-label=\"Ações da linha\"]",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6,
+        "backgroundColor": "#f9fafb"
+      }
+    },
+    {
+      "nodeId": "I2069:2766;553:9904;2069:2779;553:1027;2069:3678;552:983;2069:2843;7593:169482",
+      "nodeName": "ellipsis-vertical (gatilho aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2) button[aria-label=\"Ações da linha\"] svg",
+      "props": {
+        "width": 16,
+        "height": 16,
+        "color": "#111827"
+      }
+    },
+    {
+      "nodeId": "I2069:2766;553:9905;2069:3083;394:18726",
+      "nodeName": "paginator page 1 (ativa)",
+      "selector": ":scope .p-paginator-page-selected",
+      "text": "1",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "fontWeight": 600,
+        "backgroundColor": "#d7e6fe",
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "2069:2765",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2069:2759 (1440x814 @1x) recortado em x112 y40 1288x734 (área main/conteúdo), incluindo o menu 2069:3601 sobreposto (x1194 y317 no frame).",
+    "Linha aberta = 2ª linha (5 Series), gatilho I2069:2766;553:9904;2069:2779;...;2069:2843 em x1337..1369 y280.5..312.5 do frame; menu em x1194..1369 y317: borda direita do menu = borda direita do gatilho, 4px abaixo.",
+    "Cores do estado aberto conferidas também por amostragem de pixel do PNG: linha #f3f4f6, gatilho #f9fafb.",
+    "O alinhamento do menu com o gatilho (fora da raiz de captura) é medido à parte e citado no veredito."
+  ]
+}

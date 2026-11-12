@@ -1,0 +1,30 @@
+{
+  "exitCode": 0,
+  "runDir": "/Users/felipefaria/projects/poc-dashboard/qa-results/2026-11-12T15-51-34-109Z-customers-page",
+  "attempt": 4,
+  "verdictDraft": "/Users/felipefaria/projects/poc-dashboard/qa-results/2026-11-12T15-51-34-109Z-customers-page/verdict-draft.json",
+  "cenarios": [
+    {
+      "id": "customers-list-light",
+      "status": "differences",
+      "spec": "103/103",
+      "erro": null
+    },
+    {
+      "id": "customers-row-menu-open-light",
+      "status": "differences",
+      "spec": "9/9",
+      "erro": null
+    },
+    {
+      "id": "customers-row-selected-figma-light",
+      "status": "differences",
+      "spec": "58/58",
+      "erro": null
+    }
+  ],
+  "defeitos": [],
+  "novas": [],
+  "abrir": [],
+  "proximo": "Classifique só `persiste` e `novas` no verdictDraft (adicione `novas` em diferencas/minimas, ajuste result e criteria) e rode npm run visual:verdict -- <verdictDraft> <runDir>."
+}

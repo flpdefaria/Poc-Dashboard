@@ -1,0 +1,330 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2134-6",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2134:6",
+    "nodeName": "main (Tela · Clientes 2134:4)",
+    "retrievedAt": "2026-11-12T00:00:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2138:4, metadata.xml)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md / variables.json / design-context.md"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2134:11",
+      "component": "DataTable",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2134:9",
+      "component": "InputText + IconField",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2134:7;363:2790",
+      "nodeName": "title-row",
+      "selector": ":scope > div:nth-child(1)",
+      "props": {
+        "width": 1288,
+        "height": 56
+      }
+    },
+    {
+      "nodeId": "I2134:7;363:2793",
+      "nodeName": "title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Clientes",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:7;363:2794",
+      "nodeName": "description",
+      "selector": ":scope > div:nth-child(1) p",
+      "text": "Gerencie os clientes da concessionária: consulte nome completo, e-mail, telefone e data de cadastro, e crie, edite ou remova registros.",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2134:7;363:2756;2134:21",
+      "nodeName": "button Novo cliente",
+      "selector": ":scope > div:nth-child(1) .p-button",
+      "text": "Novo cliente",
+      "props": {
+        "width": 142,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2134:9",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2134:9",
+      "nodeName": "inputtext (busca) input",
+      "selector": ":scope .p-iconfield input",
+      "props": {
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2134:10",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254",
+      "nodeName": "table-header-row",
+      "selector": ":scope .p-datatable-thead > tr",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:256",
+      "nodeName": "header checkbox cell",
+      "selector": ":scope .p-datatable-thead th:nth-child(1)",
+      "props": {
+        "width": 56,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:257",
+      "nodeName": "header Nome completo",
+      "selector": ":scope .p-datatable-thead th:nth-child(2)",
+      "text": "Nome completo",
+      "props": {
+        "width": 287.5,
+        "paddingLeft": 18,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:258",
+      "nodeName": "header E-mail",
+      "selector": ":scope .p-datatable-thead th:nth-child(3)",
+      "text": "E-mail",
+      "props": {
+        "width": 287.5,
+        "paddingLeft": 18,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:259",
+      "nodeName": "header Telefone",
+      "selector": ":scope .p-datatable-thead th:nth-child(4)",
+      "text": "Telefone",
+      "props": {
+        "width": 287.5,
+        "paddingLeft": 18,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:260",
+      "nodeName": "header Cadastrado em",
+      "selector": ":scope .p-datatable-thead th:nth-child(5)",
+      "text": "Cadastrado em",
+      "props": {
+        "width": 287.5,
+        "paddingLeft": 18,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:257",
+      "nodeName": "header Nome completo title",
+      "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+      "text": "Nome completo",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:262",
+      "nodeName": "header Ações",
+      "selector": ":scope .p-datatable-thead th:nth-child(6)",
+      "text": "Ações",
+      "props": {
+        "width": 80,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:256;552:983;2134:264",
+      "nodeName": "checkbox do cabeçalho",
+      "selector": ":scope .p-datatable-thead .p-checkbox",
+      "props": {
+        "width": 18,
+        "height": 18
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9903;2134:254;553:987;2134:256;552:983;2134:264",
+      "nodeName": "checkbox do cabeçalho (caixa)",
+      "selector": ":scope .p-datatable-thead .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "borderColor": "#9ca3af"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23",
+      "nodeName": "table-row 1",
+      "selector": ":scope .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23",
+      "nodeName": "cell Nome completo",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+      "text": "Alice Johnson",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "paddingLeft": 18,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23",
+      "nodeName": "cell E-mail",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+      "text": "alice.johnson@email.com",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23",
+      "nodeName": "cell Telefone",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(4)",
+      "text": "(11) 95550-0101",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23",
+      "nodeName": "cell Cadastrado em (texto simples, não muted)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5) span",
+      "text": "15/03/2021",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:25",
+      "nodeName": "cell Telefone nulo (Carol) = travessão",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(3) > td:nth-child(4) span",
+      "text": "—",
+      "props": {
+        "fontSize": 14,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9904;2134:23;553:999;2134:40;552:983;2134:54",
+      "nodeName": "button-small (ações)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9905",
+      "nodeName": "Footer / paginator",
+      "selector": ":scope .p-paginator",
+      "props": {
+        "height": 68
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9905",
+      "nodeName": "paginator page 1 (ativa)",
+      "selector": ":scope .p-paginator-page-selected",
+      "text": "1",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "borderRadius": 18,
+        "backgroundColor": "#d7e6fe",
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2134:11;553:9905",
+      "nodeName": "rows-per-page select",
+      "selector": ":scope .p-paginator .p-select",
+      "props": {
+        "width": 90,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af"
+      }
+    }
+  ],
+  "notes": [
+    "Sem PNG de referência: o cache tem 2134-6/screenshot.png reduzido para 1024x610 (o frame main tem 1368x814; imagens nunca são reescaladas) e os frames 2134:269/2134:535 não foram exportados. O MCP Figma não foi chamado por instrução do orquestrador: só a spec é comparada; o pixel é revisado visualmente contra o PNG reduzido.",
+    "Área = main 2134:6 sem o padding de 40px: x40 y40 1288x734 (page-header 56 + 24 + busca 40 + 16 + card 598).",
+    "Colunas (metadata): 56 | 4 x 287.5 (flex-1) | 80; linhas 48px; células 14/20 400 #1f2937; data em texto simples; telefone nulo = —.",
+    "Cores = modo de superfície gray resolvido (2138-4/discovery.md + 2134-811/variables.json: text #1f2937, muted #6b7280, borda #e5e7eb, input/select #9ca3af, contrast #030712, danger #dc2626).",
+    "Dados = conteúdo do protótipo (fixture figmaCustomers em scenarios/customers-figma.ts): e-mails @email.com e telefones (11) 95550-01xx como nos frames. O seed (@example.com, 555-01xx) é diferença de conteúdo conhecida."
+  ]
+}

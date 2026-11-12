@@ -1,0 +1,149 @@
+{
+  "selectors": [
+    ":scope .p-datatable-tbody > tr:nth-child(1)",
+    ":scope .p-datatable-tbody > tr:nth-child(2)",
+    ":scope .p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]",
+    ":scope .p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"] svg",
+    ":scope div:has(> .p-datatable)"
+  ],
+  "snapshot": {
+    "root": {
+      "found": true,
+      "width": 1288,
+      "height": 734,
+      "text": "Marcas Gerencie as marcas de carros: consulte nome, país, data de fundação e número de carros, e crie, edite ou remova registros. Nova marca Nome País Fundação Anos de atuação Carros Ações Audi Alemanha 16/07/1909 117 3 BMW Alemanha 07/03/1916 110 5 Chevrolet EUA 03/11/1911 115 2 Ford EUA 16/06/1903 123 6 Honda Japão 24/09/1948 78 4 Hyundai Coreia do Sul 29/12/1967 58 2 Mazda Japão 30/01/1920 106 3 Tesla EUA 01/07/2003 23 3 Toyota Japão 28/08/1937 89 7 Volkswagen Alemanha 28/05/1937 89 2 1 10"
+    },
+    "checks": [
+      {
+        "found": true,
+        "width": 1286,
+        "height": 48,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgb(243, 244, 246)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Audi Alemanha 16/07/1909 117 3",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 1286,
+        "height": 48,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "BMW Alemanha 07/03/1916 110 5",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 32,
+        "height": 32,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "8px",
+          "borderTopLeftRadius": "6px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "22.8571px",
+          "letterSpacing": "normal",
+          "color": "rgb(17, 24, 39)",
+          "backgroundColor": "rgb(249, 250, 251)",
+          "borderTopColor": "rgba(0, 0, 0, 0)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 16,
+        "height": 16,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "22.8571px",
+          "letterSpacing": "normal",
+          "color": "rgb(17, 24, 39)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(17, 24, 39)",
+          "opacity": "1",
+          "strokeWidth": "2.25px"
+        },
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 1288,
+        "height": 598,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "12px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(0, 0, 0)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(229, 231, 235)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Nome País Fundação Anos de atuação Carros Ações Audi Alemanha 16/07/1909 117 3 BMW Alemanha 07/03/1916 110 5 Chevrolet EUA 03/11/1911 115 2 Ford EUA 16/06/1903 123 6 Honda Japão 24/09/1948 78 4 Hyundai Coreia do Sul 29/12/1967 58 2 Mazda Japão 30/01/1920 106 3 Tesla EUA 01/07/2003 23 3 Toyota Japão 28/08/1937 89 7 Volkswagen Alemanha 28/05/1937 89 2 1 10",
+        "vars": {}
+      }
+    ]
+  }
+}

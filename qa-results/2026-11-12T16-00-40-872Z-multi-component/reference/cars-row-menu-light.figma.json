@@ -1,0 +1,270 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2069-2759",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2069:3601",
+    "nodeName": "menu (Tela · Carros · Menu de ações aberto 2069:2759)",
+    "retrievedAt": "2026-11-11T19:00:00Z",
+    "tools": [
+      "get_metadata",
+      "get_screenshot",
+      "get_design_context",
+      "get_variable_defs"
+    ]
+  },
+  "frame": {
+    "width": 175,
+    "height": 106,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2069:3601",
+      "component": "Menu (popup)",
+      "status": "verified"
+    }
+  ],
+  "tree": [
+    {
+      "id": "I2069:3601;608:40633",
+      "name": "menu",
+      "type": "FRAME",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 175,
+        "height": 106
+      }
+    },
+    {
+      "id": "I2069:3601;6577:33851",
+      "name": "list",
+      "type": "FRAME",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 175,
+        "height": 106
+      }
+    },
+    {
+      "id": "I2069:3601;608:40599",
+      "name": "menu-item",
+      "type": "INSTANCE",
+      "bounds": {
+        "x": 4,
+        "y": 4,
+        "width": 167,
+        "height": 30
+      }
+    },
+    {
+      "id": "I2069:3601;608:40600",
+      "name": "menu-item",
+      "type": "INSTANCE",
+      "bounds": {
+        "x": 4,
+        "y": 38,
+        "width": 167,
+        "height": 30
+      }
+    },
+    {
+      "id": "I2069:3601;608:40602",
+      "name": "menu-item",
+      "type": "INSTANCE",
+      "bounds": {
+        "x": 4,
+        "y": 72,
+        "width": 167,
+        "height": 30
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "name": "menu/background",
+      "value": "#ffffff"
+    },
+    {
+      "name": "menu/border/color",
+      "value": "#e5e7eb"
+    },
+    {
+      "name": "menu/border/radius",
+      "value": "6"
+    },
+    {
+      "name": "menu/list/padding/x",
+      "value": "4"
+    },
+    {
+      "name": "menu/list/padding/y",
+      "value": "4"
+    },
+    {
+      "name": "scale/0-25 (list gap)",
+      "value": "4"
+    },
+    {
+      "name": "scale/0-75 (item padding x)",
+      "value": "12"
+    },
+    {
+      "name": "scale/0-5 (item padding y)",
+      "value": "8"
+    },
+    {
+      "name": "menu/item/gap",
+      "value": "8"
+    },
+    {
+      "name": "menu/item/border/radius",
+      "value": "4"
+    },
+    {
+      "name": "menu/item/color",
+      "value": "#1f2937"
+    },
+    {
+      "name": "menu/item/icon/color",
+      "value": "#6b7280"
+    },
+    {
+      "name": "menu/item/icon/size",
+      "value": "14"
+    },
+    {
+      "name": "--p-icon-stroke-width",
+      "value": "1.5"
+    },
+    {
+      "name": "menu/shadow",
+      "value": "0 2px 4px -2px #0000001A, 0 4px 6px -1px #0000001A"
+    }
+  ],
+  "texts": [
+    {
+      "nodeId": "I2069:3601;608:40599;3864:41624",
+      "text": "Detalhes"
+    },
+    {
+      "nodeId": "I2069:3601;608:40600;3864:41624",
+      "text": "Editar"
+    },
+    {
+      "nodeId": "I2069:3601;608:40602;3864:41624",
+      "text": "Excluir"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2069:3601;608:40633",
+      "nodeName": "menu",
+      "selector": ":scope",
+      "props": {
+        "width": 175,
+        "height": 106,
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;6577:33851",
+      "nodeName": "list",
+      "selector": ":scope .p-menu-list",
+      "props": {
+        "paddingTop": 4,
+        "paddingLeft": 4,
+        "gap": 4
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40599",
+      "nodeName": "menu-item Detalhes",
+      "selector": ":scope .p-menu-item:nth-child(1) .p-menu-item-link",
+      "text": "Detalhes",
+      "props": {
+        "width": 167,
+        "height": 30,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+        "paddingTop": 8,
+        "paddingBottom": 8,
+        "borderRadius": 4,
+        "gap": 8,
+        "fontSize": 14,
+        "fontWeight": 400,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40599;452:28239",
+      "nodeName": "eye",
+      "selector": ":scope .p-menu-item:nth-child(1) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40600",
+      "nodeName": "menu-item Editar",
+      "selector": ":scope .p-menu-item:nth-child(2) .p-menu-item-link",
+      "text": "Editar",
+      "props": {
+        "height": 30,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40600;452:28239",
+      "nodeName": "pencil",
+      "selector": ":scope .p-menu-item:nth-child(2) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40602",
+      "nodeName": "menu-item Excluir",
+      "selector": ":scope .p-menu-item:nth-child(3) .p-menu-item-link",
+      "text": "Excluir",
+      "props": {
+        "height": 30,
+        "color": "#1f2937",
+        "fontWeight": 400
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40602;3864:41624",
+      "nodeName": "Excluir label",
+      "selector": ":scope .p-menu-item:nth-child(3) .p-menu-item-label",
+      "props": {
+        "color": "#1f2937",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "I2069:3601;608:40602;452:28239",
+      "nodeName": "trash",
+      "selector": ":scope .p-menu-item:nth-child(3) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2069:2759 (1440x814 @1x) recortado em x1194 y317 175x106 (bounds do get_metadata do nó 2069:3601). Atualizada em 2026-11-11 19:00: o componente menu do Figma mudou (itens 22 -> 30px, gap 2 -> 4px, menu 78 -> 106px).",
+    "Cores e espaçamentos = get_variable_defs do nó 2069:3601. O stroke do Figma fica fora do auto layout: o padding de lista de 4px no Figma equivale a 3px de padding + 1px de borda em CSS, dentro da tolerância de 1px.",
+    "O ícone 'trash' do Figma não tem as linhas internas (Lucide Trash, não Trash2); conferido visualmente no PNG.",
+    "Espessura do traço (1.5px, --p-icon-stroke-width) não é linha de spec: o harness lê o stroke-width computado em unidades do viewBox (24), não em px renderizados. É medida à parte (stroke-width x tamanho/24) e citada no veredito."
+  ]
+}

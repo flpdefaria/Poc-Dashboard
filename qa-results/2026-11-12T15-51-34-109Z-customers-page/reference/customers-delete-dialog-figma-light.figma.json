@@ -1,0 +1,224 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2134-1687",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2134:1687",
+    "nodeName": "delete-dialog (Tela · Clientes · Excluir cliente 2134:1678)",
+    "retrievedAt": "2026-11-12T00:00:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2138:4, metadata.xml)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md / variables.json / design-context.md"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 285,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2134:1687",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2134:1692",
+      "component": "Message",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2134:1687",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 285,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2134:1688",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2134:1690",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2134:1691",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2134:1700",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2134:1689",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Excluir Alice Johnson?",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1692",
+      "nodeName": "message",
+      "selector": ":scope .p-message",
+      "props": {
+        "height": 33,
+        "borderRadius": 6,
+        "borderColor": "#fecaca"
+      }
+    },
+    {
+      "nodeId": "2134:1692",
+      "nodeName": "message text",
+      "selector": ":scope .p-message-text",
+      "text": "Esta ação não pode ser desfeita.",
+      "props": {
+        "fontSize": 16,
+        "fontWeight": 500,
+        "color": "#b91c1c"
+      }
+    },
+    {
+      "nodeId": "2134:1693",
+      "nodeName": "intro",
+      "selector": ":scope .p-dialog-content > p",
+      "text": "O cliente será removido do cadastro:",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1694",
+      "nodeName": "selected-list",
+      "selector": ":scope .p-dialog-content > ul",
+      "props": {
+        "width": 362,
+        "height": 54,
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2134:1695",
+      "nodeName": "item · Alice Johnson",
+      "selector": ":scope ul > li:first-child",
+      "props": {
+        "height": 52,
+        "paddingLeft": 16,
+        "paddingTop": 8,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2134:1697",
+      "nodeName": "title (nome)",
+      "selector": ":scope ul > li:first-child div p:nth-child(1)",
+      "text": "Alice Johnson",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2134:1698",
+      "nodeName": "subtitle (e-mail)",
+      "selector": ":scope ul > li:first-child div p:nth-child(2)",
+      "text": "alice.johnson@email.com",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2134:1699",
+      "nodeName": "meta (telefone)",
+      "selector": ":scope ul > li:first-child > p",
+      "text": "(11) 95550-0101",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2134:1701",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2134:1702",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Excluir cliente",
+      "props": {
+        "width": 152,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#dc2626",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2134:1687 (frame 2134:1678, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2134-1687), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x285 (borda #e5e7eb confirmada nas quatro bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (2138-4/discovery.md + 2134-811/variables.json: text #1f2937, muted #6b7280, borda #e5e7eb, input/select #9ca3af, contrast #030712, danger #dc2626).",
+    "Dados = conteúdo do protótipo (fixture figmaCustomers em scenarios/customers-figma.ts): e-mails @email.com e telefones (11) 95550-01xx como nos frames. O seed (@example.com, 555-01xx) é diferença de conteúdo conhecida."
+  ]
+}
