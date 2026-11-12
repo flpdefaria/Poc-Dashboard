@@ -8,7 +8,7 @@
  * shell (the engine provides a memory router; the shell is not mounted).
  *
  * The default below is a PrimeVue 4 + Aura + Tailwind v4 app whose dark theme is
- * a class on <html> (PrimeVue `darkModeSelector: '.app-dark'`). The CarStore
+ * a class on <html> (PrimeVue `darkModeSelector: '.app-dark'`). A reference-project
  * variant (inverted surface scale, `data-surface` palette modes) is shown in
  * the comments as a worked example.
  */
@@ -23,12 +23,12 @@ import type { VisualScenario } from './types'
 
 // ADAPT: the global stylesheets production loads (Tailwind entry, fonts, legacy site CSS).
 import '../src/style.css'
-// CarStore example: `_Layout.cshtml` also links wwwroot/css/site.css (root font-size):
+// Reference-project example: `_Layout.cshtml` also links wwwroot/css/site.css (root font-size):
 //   import '../../wwwroot/css/site.css'
 
 // ADAPT: the preset / locale production registers (import them from src/, never copy them).
-// CarStore example:
-//   import { CarStorePreset, DEFAULT_SURFACE_MODE } from '../src/plugins/primevue-preset'
+// Reference-project example:
+//   import { AppPreset, DEFAULT_SURFACE_MODE } from '../src/plugins/primevue-preset'
 //   import { primeVueLocalePtBr } from '../src/plugins/primevue-locale-pt-br'
 const PRESET = Aura
 const DARK_MODE_SELECTOR: string | false = '.app-dark'
@@ -55,16 +55,16 @@ export function applyTheme(scenario: VisualScenario): void {
   // so paint the same token behind it (Tailwind + tailwindcss-primeui utility).
   document.body.classList.add('bg-surface-0')
 
-  // CarStore example (surface palette modes persisted next to the theme):
-  //   const surface = scenario.localStorageSeed?.['carstore-surface'] ?? DEFAULT_SURFACE_MODE
-  //   localStorage.setItem('carstore-surface', surface)
+  // Reference-project example (surface palette modes persisted next to the theme):
+  //   const surface = scenario.localStorageSeed?.['app-surface'] ?? DEFAULT_SURFACE_MODE
+  //   localStorage.setItem('app-surface', surface)
   //   document.documentElement.setAttribute('data-surface', surface)
 }
 
 /** Register the plugins/services production registers (except the router: the engine adds a memory router). */
 export async function installApp(app: App, _scenario: VisualScenario): Promise<void> {
   // ADAPT: PrimeVue options as in src/main.ts.
-  // CarStore example: { theme: { preset: CarStorePreset, options: { darkModeSelector: false } }, locale: primeVueLocalePtBr }
+  // Reference-project example: { theme: { preset: AppPreset, options: { darkModeSelector: false } }, locale: primeVueLocalePtBr }
   app.use(PrimeVue, {
     theme: { preset: PRESET, options: { darkModeSelector: DARK_MODE_SELECTOR } },
     ...(LOCALE ? { locale: LOCALE } : {}),

@@ -34,7 +34,7 @@ const GENERIC_RULES = [
 ]
 
 const PROJECT_RULES = [
-  // Example (CarStore keeps PrimeVue's dark mode off because its dark theme inverts the surface scale):
+  // Example (a project that keeps PrimeVue's dark mode off because its dark theme inverts the surface scale):
   // { id: 'dark-mode-selector', re: /darkModeSelector:\s*(?![\sf]|false)/, only: /main\.ts$/,
   //   why: 'Keep darkModeSelector: false (dark = inverted surface scale under html.app-dark).' },
 ]

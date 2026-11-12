@@ -23,7 +23,7 @@ Merge into the client app's `package.json` (the folder that holds `vite.config.t
 "visual:test": "node --test visual/lib/findings.test.mjs"
 ```
 
-## Dependencies the flow assumes (versions verified on CarStore)
+## Dependencies the flow assumes (versions verified on the reference project)
 
 ```bash
 npm i vue@^3.5 vue-router@^5 primevue@^4.3 @primeuix/themes@^1 @lucide/vue@^1.71

@@ -20,7 +20,7 @@ export function jsonMock(urlPattern: string | RegExp, body: unknown, status = 20
 /**
  * ADAPT: the paged response shape this project's API returns, built exactly
  * like the server builds it. The default matches a common .NET `PagedResult<T>`
- * (CarStore). Prefer importing the DTO type from `src/types` instead of this
+ * (reference project). Prefer importing the DTO type from `src/types` instead of this
  * local interface.
  */
 export interface PagedResponse<T> {
@@ -64,7 +64,7 @@ export function pagedMock<T>(apiUrl: string, items: readonly T[], pageSize: numb
 /**
  * ADAPT: the width a page component really gets at a given viewport, because
  * the preview does not mount the app shell (sidebar, paddings). Subtract the
- * shell's fixed widths. CarStore: 72px collapsed sidebar + `p-10` main
+ * shell's fixed widths. Reference project: 72px collapsed sidebar + `p-10` main
  * (`viewport - 72 - 80`). Use it as `mountWidth` for page scenarios.
  */
 export const SHELL_HORIZONTAL_CHROME = 0

@@ -10,7 +10,7 @@ The three versions are:
 - **Atual / Current**: the working tree.
 - **Figma**: an optional reference PNG plus a `.figma.json` spec.
 
-Generic engine of the frontend flow kit (originally built for Atlas, then CarStore). The engine is
+Generic engine of the frontend flow kit. The engine is
 project-agnostic; a project adapts exactly these files:
 
 | File | What to set |
