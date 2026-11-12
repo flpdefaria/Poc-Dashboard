@@ -135,9 +135,10 @@ const cardPaginatorPt = {
   }),
   // Figma "select" (…;394:18797): 40px, surface-400 border, 16px label inset, 14px/1.5 value in the muted
   // select colour (#6b7280), 40px dropdown with a 14px muted chevron (Aura's width matches; its chevron colour is
-  // surface-400, so it is forced to muted).
+  // surface-400, so it is forced to muted). Fixed 90px wide as in Figma: Aura sizes it by the label text, which
+  // renders "10" at 88.53px in Chromium.
   pcRowPerPageDropdown: {
-    root: { class: "h-10 rounded-md not-[.p-focus]:border-surface-400!" },
+    root: { class: "h-10 w-[90px] rounded-md not-[.p-focus]:border-surface-400!" },
     // 38px line = 40px - 2 x 1px border: centers the label, which `.p-select-label { display: block }` keeps from flexing.
     label: { class: "px-4! py-0! text-sm! leading-[38px]! text-muted-color!" },
     dropdownIcon: { class: "size-3.5! text-muted-color!" },

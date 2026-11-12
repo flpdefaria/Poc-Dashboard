@@ -1,0 +1,232 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-5353",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:5364",
+    "nodeName": "delete-dialog (Tela · Marcas · 2113:5353)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 323,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2113:5364",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2113:5369",
+      "component": "Message",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2113:5424",
+      "component": "Button (severity danger)",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2113:5364",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 323,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:5365",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2113:5367",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2113:5368",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2113:5422",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2113:5366",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Excluir 1 marca?",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:5369",
+      "nodeName": "message",
+      "selector": ":scope .p-message",
+      "props": {
+        "height": 71,
+        "borderRadius": 6,
+        "borderColor": "#fed7aa",
+        "backgroundColor": "rgba(255, 247, 237, 0.95)"
+      }
+    },
+    {
+      "nodeId": "2113:5369",
+      "nodeName": "message text",
+      "selector": ":scope .p-message-text",
+      "text": "Audi tem 3 carros cadastrados. Remova ou transfira os carros antes de excluir a marca.",
+      "props": {
+        "fontSize": 16,
+        "fontWeight": 500,
+        "color": "#c2410c"
+      }
+    },
+    {
+      "nodeId": "2113:5370",
+      "nodeName": "intro",
+      "selector": ":scope .p-dialog-content > p",
+      "text": "Marca selecionada:",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:5372",
+      "nodeName": "selected-list",
+      "selector": ":scope .p-dialog-content > ul",
+      "props": {
+        "width": 362,
+        "height": 54,
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2113:5372",
+      "nodeName": "item · Audi",
+      "selector": ":scope ul > li:first-child",
+      "props": {
+        "height": 52,
+        "paddingLeft": 16,
+        "paddingTop": 8,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2113:5366",
+      "nodeName": "title",
+      "selector": ":scope ul > li:first-child div p:nth-child(1)",
+      "text": "Audi",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:5372",
+      "nodeName": "subtitle",
+      "selector": ":scope ul > li:first-child div p:nth-child(2)",
+      "text": "Alemanha",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:5372",
+      "nodeName": "meta (carros)",
+      "selector": ":scope ul > li:first-child > p",
+      "text": "3 carros",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:5423",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:5424",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Excluir 1 marca",
+      "props": {
+        "width": 158,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#dc2626",
+        "fontSize": 14,
+        "fontWeight": 500,
+        "opacity": 0.6
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2113:5364 (frame 2113:5353, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2113-5364), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x323 (a sombra shadow-xl não sobe acima do nó; borda #e5e7eb confirmada nas bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Mensagem warn 2113:5369 (discovery.md): borda #fed7aa, fundo #fff7ed a 95% (f2), tinta #c2410c (orange-700), 16/500, items-start, 3 linhas (71px).",
+    "Botão 2113:5424 desabilitado: danger #dc2626 com opacidade 60% (o check backgroundColor mede a cor do fundo; a opacidade é linha separada)."
+  ]
+}

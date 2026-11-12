@@ -352,9 +352,6 @@ const manyBrands: BrandDto[] = [
   ...Array.from({ length: 15 }, (_, i) => ({ ...figmaBrands[0], id: 100 + i, name: `Marca QA ${String(i + 1).padStart(2, '0')}`, carsCount: 0, cars: [] })),
 ]
 
-// The base commit's Brands dialogs have no field ids, so flows that type into them only show the list at the base.
-const baseListOnly: ScenarioAction[] = [waitRows, { type: 'wait', ms: 300 }]
-
 const pagination = (theme: Theme) =>
   flow(theme, 'brands-pagination', 'Marcas — paginação no servidor para a página 2', {
     captureSelector: '#preview-root > div',
@@ -382,7 +379,6 @@ const fillCreate: ScenarioAction[] = [
 
 const createSuccess = (theme: Theme) =>
   flow(theme, 'brands-create-success', 'Marcas — cadastrar (201) fecha, toast e recarrega', {
-    baselineActions: baseListOnly,
     mocks: [jsonMock(/\/api\/brands$/, created, 201), listThen(figmaBrands, [created, ...figmaBrands])],
     actions: [...openCreate, ...fillCreate, { type: 'click', selector: footerPrimary }, { type: 'expect-count', selector: '.p-dialog', count: 0 }, { type: 'expect-text', selector: '.p-datatable-tbody > tr:first-child', value: 'Alfa QA' }, { type: 'wait', ms: 400 }],
     renderChecks: [
@@ -394,7 +390,6 @@ const createSuccess = (theme: Theme) =>
 
 const createError = (theme: Theme) =>
   flow(theme, 'brands-create-error-400', 'Marcas — cadastrar com 400 mostra a mensagem da API', {
-    baselineActions: baseListOnly,
     mocks: [{ urlPattern: /\/api\/brands$/, ...err400('Founded date cannot be in the future.') }, ...listMocks()],
     actions: [...openCreate, ...fillCreate, { type: 'click', selector: footerPrimary }, { type: 'expect-text', selector: '.p-dialog .p-message', value: 'Founded date cannot be in the future.' }, { type: 'wait', ms: 300 }],
     renderChecks: [
@@ -413,7 +408,6 @@ const openEdit: ScenarioAction[] = [...openRowMenu(1), menuItem('Editar'), ...di
 
 const editSuccess = (theme: Theme) =>
   flow(theme, 'brands-edit-success', 'Marcas — salvar edição (200) fecha, toast e recarrega', {
-    baselineActions: baseListOnly,
     mocks: [jsonMock(/\/api\/brands\/\d+$/, { ...figmaBrands[0], name: 'Audi QA' }), listThen(figmaBrands, withBrand('Audi', { name: 'Audi QA' }))],
     actions: [...openEdit, { type: 'fill', selector: '#edit-brand-name', value: 'Audi QA' }, { type: 'click', selector: footerPrimary }, { type: 'expect-count', selector: '.p-dialog', count: 0 }, { type: 'expect-text', selector: '.p-datatable-tbody > tr:first-child', value: 'Audi QA' }, { type: 'wait', ms: 400 }],
     renderChecks: [
@@ -435,7 +429,6 @@ const editError = (theme: Theme) =>
 
 const editValidation = (theme: Theme) =>
   flow(theme, 'brands-edit-validation', 'Marcas — editar com nome vazio mostra validação', {
-    baselineActions: baseListOnly,
     actions: [...openEdit, { type: 'fill', selector: '#edit-brand-name', value: '' }, { type: 'click', selector: footerPrimary }, { type: 'expect-count', selector: '.p-dialog .p-message', count: 1 }, { type: 'wait', ms: 300 }],
     renderChecks: [{ label: 'Mensagem de validação', selector: '.p-dialog .p-message-error', text: 'Nome e data de fundação são obrigatórios.' }],
   })
@@ -443,7 +436,6 @@ const editValidation = (theme: Theme) =>
 const detailsToEdit = (theme: Theme) =>
   flow(theme, 'brands-details-to-edit', 'Marcas — Editar nos detalhes fecha detalhes e abre edição', {
     actions: [...openRowMenu(1), menuItem('Detalhes'), ...dialogOpen, { type: 'click', selector: footerPrimary }, { type: 'expect-text', selector: '.p-dialog-header', value: 'Editar marca' }, { type: 'wait', ms: 600 }],
-    baselineActions: [...openRowMenu(1), menuItem('Detalhes'), ...dialogOpen],
     renderChecks: [
       { label: 'Só o diálogo de edição aberto', selector: '.p-dialog', count: 1 },
       { label: 'Título Editar marca', selector: '.p-dialog-header', text: 'Editar marca' },

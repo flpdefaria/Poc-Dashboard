@@ -51,7 +51,8 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   `angle-*` icons, not Lucide), sized 14px through the `firstIcon`/`prevIcon`/`nextIcon`/`lastIcon` pt sections.
   Idle pages 14px regular muted; the current page is semibold on `--color-selected` / `--color-selected-ink`
   (Figma `paginator/nav/button/selected` #d7e6fe / #1046a0). Hover only on idle pages; disabled nav buttons keep
-  Aura's 0.6 opacity (no Figma disabled state). Rows-per-page select 40px, `leading-[38px]!` label in
+  Aura's 0.6 opacity (no Figma disabled state). Rows-per-page select 90x40px (fixed `w-[90px]`: Aura sizes it
+  by the label, which gave 88.53px in Chromium; shared by every card table), `leading-[38px]!` label in
   `text-muted-color` (Figma `select/placeholder/color`), 14px dropdown chevron, surface-400 border.
 - Row menu 175px, 6px radius, 30px items (`px-3! py-2!`, 8px icon gap), 4px item gap, 3px list padding (106px
   menu, because Figma's stroke sits outside auto layout), 14px `text-muted-color` icons with an absolute 1.5px

@@ -1,0 +1,230 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-6292",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2114:4132",
+    "nodeName": "delete-dialog (Tela · Marcas · 2113:6292)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 285,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2114:4132",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2114:4137",
+      "component": "Message",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2114:4147",
+      "component": "Button (severity danger)",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2114:4132",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 285,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2114:4133",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2114:4135",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2114:4136",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2114:4145",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2114:4134",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Excluir Hyundai?",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2114:4137",
+      "nodeName": "message",
+      "selector": ":scope .p-message",
+      "props": {
+        "height": 33,
+        "borderRadius": 6,
+        "borderColor": "#fecaca"
+      }
+    },
+    {
+      "nodeId": "2114:4137",
+      "nodeName": "message text",
+      "selector": ":scope .p-message-text",
+      "text": "Esta ação não pode ser desfeita.",
+      "props": {
+        "fontSize": 16,
+        "fontWeight": 500,
+        "color": "#b91c1c"
+      }
+    },
+    {
+      "nodeId": "2114:4138",
+      "nodeName": "intro",
+      "selector": ":scope .p-dialog-content > p",
+      "text": "A marca será removida do cadastro:",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2114:4140",
+      "nodeName": "selected-list",
+      "selector": ":scope .p-dialog-content > ul",
+      "props": {
+        "width": 362,
+        "height": 54,
+        "borderRadius": 6,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2114:4140",
+      "nodeName": "item · Hyundai",
+      "selector": ":scope ul > li:first-child",
+      "props": {
+        "height": 52,
+        "paddingLeft": 16,
+        "paddingTop": 8,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2114:4134",
+      "nodeName": "title",
+      "selector": ":scope ul > li:first-child div p:nth-child(1)",
+      "text": "Hyundai",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2114:4140",
+      "nodeName": "subtitle",
+      "selector": ":scope ul > li:first-child div p:nth-child(2)",
+      "text": "Coreia do Sul",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2114:4140",
+      "nodeName": "meta (carros)",
+      "selector": ":scope ul > li:first-child > p",
+      "text": "0 carros",
+      "props": {
+        "fontSize": 14,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2114:4146",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2114:4147",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Excluir marca",
+      "props": {
+        "width": 148,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#dc2626",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2114:4132 (frame 2113:6292, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2114-4132), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x285 (a sombra shadow-xl não sobe acima do nó; borda #e5e7eb confirmada nas bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados do frame: Hyundai com 0 carros (a lista 2113:4 mostra 2): a fixture do cenário zera carsCount da Hyundai, como no protótipo.",
+    "Mensagem de erro = mesma do canvas Carros (2072:2739): 33px, borda #fecaca, tinta #b91c1c 16/500."
+  ]
+}
