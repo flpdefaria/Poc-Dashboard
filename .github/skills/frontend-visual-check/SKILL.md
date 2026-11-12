@@ -161,5 +161,5 @@ run path, the `findings.md` path, the `index.html` path and a concise outcome.
 
 In `qa-results/<run>/`, git versions only the judgement (`findings.md`, `report.json`, `index.html`,
 `recheck-summary.json`). Screenshots, `comparison/`, `data/` and `verdict-draft.json` stay local
-(git-ignored), as do the root `qa-results/index.html` and `.current-run`. Put harness learnings in `visual/README.md`, and
+(git-ignored), as do the root `qa-results/index.html` and `.current-run`. Put measurement traps in `visual/LEARNINGS.md` (by topic), and
 reusable operational findings in the vault through `vault-write`.

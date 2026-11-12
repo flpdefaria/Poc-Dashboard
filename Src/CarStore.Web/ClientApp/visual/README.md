@@ -231,16 +231,8 @@ qa-results/<utc-timestamp>-<component-slug | multi-component>/
 
 `qa-results/index.html` lists every run, newest first. It is git-ignored, as is `qa-results/.current-run`.
 
-The report has five tabs:
-
-| Tab | Content |
-|---|---|
-| **Resumo** | Totals, reasons by category, the per-combination table, the device × theme matrix and the QA verdict. |
-| **Light** / **Dark** | Device sub-tabs, each with the full scenario cards. |
-| **Outros estados** | Scenarios that declare a `state`. |
-| **Detalhes técnicos** | Every scenario, the baseline, the attempts and the embedded `report.json`. |
-
-Any anchor (`#<scenario-id>`, `#dark-desktop`) opens the tabs that contain it.
+The report tabs are Resumo, Light, Dark, Outros estados (scenarios with a `state`) and Detalhes técnicos;
+any anchor (`#<scenario-id>`) opens the tab that contains it.
 
 Run status measures Figma parity only:
 
@@ -255,29 +247,16 @@ A baseline difference is reported as "visual change vs base" and never fails the
 
 ## Baseline (previous version)
 
-1. **Worktree.** The launcher (`run-compare.mjs` / `run-scenario.mjs`, using `lib/launch.mjs` and
-   `lib/baseline.mjs`) runs `git worktree add --detach <repo>/.visual-baseline/<sha12> <sha>` before
-   Playwright starts. It then overlays the current `visual/`, `playwright.config.ts` and
-   `tsconfig.visual.json` on the worktree's `Src/CarStore.Web/ClientApp/`. The base's production code is
-   never modified.
-2. **Dependencies.**
-   - Same `package-lock.json`: `node_modules` is symlinked (`depsStrategy: junction`).
-   - Otherwise: `npm ci` runs in the worktree (`npm-ci`, about 6s).
-3. **Capture.** Playwright starts a second preview server from the worktree on 5174. Each scenario is
-   captured there with the same mocks, viewport, theme, clock and actions.
-   - Use `baselineActions` when the new flow does not exist at the base, for example
-     `[{ type: 'wait', ms: 3000 }]` when the base lacks a readiness hook.
-   - A component missing at the base is reported as `absent-at-base`, which never fails the run.
-4. **Cleanup.** The worktree is always removed afterwards. Keep it for debugging with
-   `VISUAL_KEEP_BASELINE=1`.
+The launcher (`lib/launch.mjs`, `lib/baseline.mjs`) checks the base commit out as a detached worktree in
+`<repo>/.visual-baseline/<sha12>`, overlays the current `visual/` harness on it (base production code is never
+modified), symlinks `node_modules` when the lockfile matches (else `npm ci`), and captures every scenario
+there on port 5174 with the same mocks, viewport, theme, clock and actions. The worktree is removed afterwards
+(`VISUAL_KEEP_BASELINE=1` keeps it).
 
-`baselineStatus` values: `captured`, `reused` (from an earlier attempt), `absent-at-base`, `blocked` or
-`disabled`.
-
-A baseline is reused only for the same capture geometry (viewport, DPR, `mountWidth`, theme and
-`captureSelector`), which is recorded in `baseline/<id>.capture.json`. When a correction round changes any
-of these, the old baseline is moved to `baseline/history/<id>.before-attempt-NN.*` and the base is captured
-again.
+- `baselineActions` replaces `actions` at the base when the new flow does not exist there.
+- `baselineStatus`: `captured`, `reused` (earlier attempt, same geometry recorded in
+  `baseline/<id>.capture.json`), `absent-at-base` (never fails the run), `blocked` or `disabled`. A geometry
+  change moves the old capture to `baseline/history/` and captures again.
 
 ## Figma exports at 1x
 
@@ -335,136 +314,8 @@ The CLI enforces the evidence. It **downgrades** a requested PASS when any of th
 It returns FAIL when a defect or failed criterion is evidenced and nothing blocks. Read `qaFindings.status`
 in `report.json`, not the exit code.
 
-## Learnings (2026-11-11, Cars screen run)
+## Pitfalls
 
-`scenarios/cars-figma.ts` covers the Cars screen against seven Figma frames and the CRUD flows. Lessons
-from that run:
-
-- **Spec selectors are CSS.** `.figma.json` `checks[].selector` goes through `querySelector`, so
-  Playwright-only syntax (`:has-text()`, `>> nth=`) reports `missing-element`. Use classes, `:nth-child`,
-  `:has()` or attributes. `renderChecks` and `actions` use Playwright selectors, so these work there.
-- **Checkbox selection.** With `selectionMode="multiple"`, PrimeVue adds `p-datatable-row-selected` only
-  when `highlightOnSelect` is set. Target `tr[data-p-selected="true"]` instead.
-- **Write mocks.** Mocks match the URL only, regardless of method. `/\/api\/cars$/` catches only the POST,
-  because the list GET carries a query string. `/\/api\/cars\/\d+$/` catches PUT and DELETE. A
-  `{ status: 400, body: { message } }` mock reproduces a `DomainException` response.
-- **Overlays.** Capture popups and dialogs by their own root (`.p-menu-overlay`, `.p-dialog`). Crop the
-  Figma frame at the overlay's `get_metadata` bounds. Toasts need a `body` capture.
-- **Prototype data.** A Figma frame's sample rows may skip seed rows. The Cars list drops "Corolla", for
-  example. Filter the fixture in the scenario so that the pixel diff measures layout, not data.
-- **Classifying ids.** `verdict.diferencas` can classify any generated id. Only padding, margin, gap,
-  radius and letter-spacing spec rows can go in `minimas`. A sub-pixel `width` row needs an explicit
-  category instead.
-
-## Learnings (2026-11-11, Cars screen round 2)
-
-- **Focus and hover colors need a settle delay.** Aura inputs and selects have a 0.2s `border-color`
-  transition, and `reducedMotion: 'reduce'` does not stop it. Wait about 600ms after `focus()`/`hover()`
-  before reading `getComputedStyle`, or you will read the previous color.
-- **A `pt` key can be dead when a slot replaces its element.** With the Menu `#itemicon` slot, PrimeVue passes
-  only `cx('itemIcon')` as `class`, so `pt.itemIcon` classes never reach the icon. Check the element's real
-  `class` attribute before trusting a `pt` fix.
-- **Figma strokes are outside auto layout.** A 175x78 Figma menu with a 1px stroke and 4px padding is
-  4px from the outer edge. In CSS the border adds 2px (80px), unless the padding drops to 3px.
-- **`dimension-mismatch` never goes in `minimas`.** A 1px capture rounding needs an explicit category, and
-  `artefato-harness` downgrades any verdict to BLOCKED.
-- `scenarios/legacy-dialogs.ts` guards the legacy dialog shell (`dialogShellPt`, `dangerButtonClass`) on
-  Brands create/delete and Customers delete against the base.
-
-## Learnings (2026-11-11, Cars second pass: menu + paginator)
-
-- **`strokeWidth` spec rows read viewBox units.** `getComputedStyle(svg).strokeWidth` returns the `stroke-width`
-  attribute in the icon's 24-unit viewBox, not rendered px. For a Figma "1.5px" icon stroke, measure
-  `stroke-width × renderedSize / 24` separately. Lucide's `absoluteStrokeWidth` divides by the `size` prop
-  (default 24), not by the CSS size, so a `size-3.5!` icon with `stroke-width 1.5` renders 0.875px.
-- **`@lucide/vue` 1.71: `Trash` is the old `Trash2`** (`aliases: ["trash-2"]`, 5 paths). Check the rendered
-  path count, not the import name.
-- **Popups close on scroll.** A `captureSelector` taller than the viewport makes the element screenshot scroll,
-  and PrimeVue closes the menu. Size the viewport so the capture fits (`cars-row-menu-flip` uses 1440x760).
-- **Move the pointer off the trigger** (`hover` on `h1`) after opening a row menu; otherwise the capture shows
-  the row hover ink, not the open state.
-- **Inline `transform-origin` is serialised.** PrimeVue writes `bottom`, Chromium reads back `center bottom`.
-- `scenarios/cars-second-pass.ts` covers the open/closed/selected/flip menu states, paginator hover, rows per page
-  and Brands/Customers menu guards. Menu-to-trigger geometry lives outside the capture root, so it is measured by
-  the bundle's `evidence/measure.cjs`.
-
-## Learnings (2026-11-11, Cars second pass, recheck)
-
-- **Rounded popup positions on a half-pixel trigger cannot give an exact gap.** The Cars table rows put the ⋮ trigger at
-  y = n.5, so `Math.round` on `trigger ± 4` yields 4.5px below (the same as Figma: trigger bottom 312.5, menu y317) and
-  3.5px above. Judge "4px" as ±0.5px when whole-pixel positions are also required, and check for overlap instead.
-- **Dimension fixes surface the pixel diff.** While a capture is 1px off, the harness emits no pixel diff. Once the size
-  matches, expect new `#preview-root` pixel rows (text anti-aliasing plus the accepted colour deviations) that need
-  classifying. Cluster the red pixels in `*.diff.png` before deciding between `minimas` and a category.
-- **`manual:` ids cannot go in `minimas`.** Record a sub-pixel geometry judgement as a criterion with the measured
-  values, or as a categorised `diferencas` entry.
-- **Regression check across attempts.** For pages that the delivery should not touch, a pixel diff of `actual/attempt-NN`
-  against the previous attempt (0 px expected) is a stronger guard than a diff against the base when the base differs
-  for known reasons (here, the 18px PageHeader).
-
-## Learnings (2026-11-11, Cars-only QA bundle)
-
-- **Delete flows need a list mock that drops the deleted rows.** `playRowExit` (`src/utils/rowEffects.ts`) flags the
-  deleted ids `row-fx-leaving` for 2s, keyed by id, then `reload()` runs. A static `pagedMock` sends the same ids back,
-  so the reloaded rows stay invisible and the capture shows a blank band at the top of the table (also at the base).
-  Use `responses: [before, after]` on the list mock (`listAfterDelete` in `scenarios/cars-figma.ts`). Then assert the
-  reloaded first row and `tr.row-fx-leaving` count 0. Remember that page 1 refills to `pageSize` from the next seed rows.
-- **The success toast appears before the reload.** Wait for the reloaded rows (`expect-text` on the new first row),
-  not for the toast alone.
-- **Search is current-page only.** `scenarios/cars-search.ts` covers a case-insensitive match and the no-result state.
-  With no `#empty` slot, the no-result state is a blank `.p-datatable-empty-message` row.
-- **Cars-only bundle:** `npm run visual:list | grep -oE "\bcars-[a-z0-9-]+-(light|dark)\b" | sort -u | paste -sd, -`
-  gives the id list for `visual:compare`.
-
-## Learnings (2026-11-11, strict Cars QA, no accepted deviations)
-
-- **Spec `explanations` classify rows automatically.** An `intencional` entry in a `.figma.json` keeps accepting the row in
-  every later run. When the policy changes, remove the entries (the expected values stay Figma's) and classify in the verdict.
-- **Centred dialogs on a 900px viewport can sit at y = n.5.** A 487px dialog lands at y=206.5 and the element screenshot rounds to
-  488 rows (`dimension-mismatch`, no pixel diff). Use an odd viewport height (`cars-bulk-delete-dialog` uses 1440x901) so the
-  capture matches the frame and the pixel diff runs.
-- **PrimeVue Dialog focuses the close button on show** when nothing in the footer, header or content has `[autofocus]`
-  (`primevue/dialog` `focus()`), and Chromium shows `:focus-visible` on it. The ring appears in every dialog capture; spec rows
-  cannot see `outline`, so measure it (`evidence/measure-dialogs.cjs`) and zoom the region.
-- **Spec rows only cover what someone wrote.** Unchecked checkbox border, check icon size and dialog select chevrons had no
-  rows, so earlier runs never measured them. Pull the component variables with `get_variable_defs` on the frame and add a row
-  for each visible state, not only the one the delivery touched.
-- `scenarios/selection-guards.ts` (`brands-row-selected`, `customers-row-selected`) guards the non-card DataTableCommon path:
-  checked checkbox, selected row and active page against the base.
-- `pngjs` is installed (no PIL): the bundle's `evidence/crop.cjs` crops the same box from the reference and the capture and
-  scales them side by side for glyph-level checks.
-
-## Learnings (2026-11-11, strict Cars QA, fix-round recheck)
-
-- **An icon box row does not check the glyph.** A `width`/`height`/`color` spec row on `svg` passed at 14px #6b7280 while the
-  PrimeVue `ChevronDownIcon` path fills 12x6.8px of the box and the Figma vector is 8.05x4.55px. Read the vector bounds with
-  `get_metadata` on the icon instance and compare them with `path.getBBox()` scaled by `svgWidth / viewBox.width`
-  (bundle `evidence/measure-chevron-glyph.cjs`).
-- **Spec rows do not check position inside a cell.** An 18px checkbox can pass every size/colour row and still sit 1px low: an
-  `inline-flex` checkbox with `vertical-align: bottom` in a 20px line box lands at 15.5px, Figma's slot is at y=14.5. Compare the
-  `get_metadata` slot `y` with `child.top - row.top` (bundle `evidence/measure-checkbox-offset.cjs`), and count diff pixels in the
-  column to confirm.
-- **Vue warnings never reach `report.json`.** The report records console *errors* only. `console.warn` from the preview shows up in
-  the run log as `[WebServer] ... [console.warn] [Vue warn]: ...`; grep the `visual:compare` output for `Vue warn` on every run.
-  Example: a non-functional SFC icon (e.g. `TrashIcon.vue`) put into a reactive Menu `model` warns "Vue received a Component that
-  was made a reactive object" on each open; Lucide icons are functional components and do not.
-- **Keyboard focus on a checkbox needs a real Tab sequence.** `page.focus()` on the hidden `.p-checkbox-input` and one Tab can land
-  outside the table. Focus the search input and Tab until `document.activeElement` is a `.p-checkbox-input`
-  (bundle `evidence/measure-checkbox-focus.cjs`). Aura's focus-visible rule also replaces the box border, so read both outline and border.
-- **A second preview for measurements.** While `visual:compare` holds 5175, run
-  `npm run dev -- --config visual/vite.config.ts --port 5185 --strictPort` and pass `PORT=5185` to the bundle scripts.
-
-## Learnings (2026-11-11, strict Cars QA, attempt-04 recheck)
-
-- **A clean `Vue warn` grep is only proof if the log carries console output.** The attempt-04 `visual:compare` log had no
-  `[console.*]` lines at all, so its 0 hits proved nothing. Confirm warnings with a page `console` listener on the measurement
-  preview and fire a probe `console.warn` first (bundle `evidence/measure-trashicon-warning-attempt04.cjs`).
-- **Calibrate icon weight against an accepted icon.** Sum the ink (`255 - G` above 20) in the 1x capture and in the Figma PNG for the
-  icon under test and for one already judged equal (the card search icon: 6574 vs 6716). A ratio far from 1 (the Marca chevron
-  at 1.5px: 2184 vs 1463) means the stroke weight differs even when the bbox matches. `evidence/probe-chevron-stroke-attempt04.cjs`
-  sets `stroke-width` in the DOM to test candidate widths without touching code.
-- **Lucide `getBBox` is the centreline.** Add the stroke width (round caps/joins) before comparing with a Figma vector's bounds.
-- **Half-pixel Figma edges.** An 18px box at y=14.5 is anti-aliased across 2 rows in the Figma PNG and snapped to 1 row by Chromium,
-  leaving about 19 red px per box. Compare a body-row residual with the header's before calling it a position defect.
-- **Attempt-to-attempt capture diff** (`actual/attempt-N-1` vs `actual/attempt-N`, delta above 8 per channel) isolates exactly what a fix
-  changed. Lower deltas (up to 8) appear on dark toast/backdrop captures between runs and are rasterization noise.
+Measurement traps (selectors, PrimeVue/Lucide quirks, half-pixel rounding, mocks, console) are in
+`LEARNINGS.md`, grouped by topic. Open the matching section only when a result looks wrong, and add new traps
+there, not here.

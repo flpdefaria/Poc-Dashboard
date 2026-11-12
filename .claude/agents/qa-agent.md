@@ -11,7 +11,7 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 ## Scope and inputs
 
 - **Write scope:**
-  - `Src/CarStore.Web/ClientApp/visual/**` (scenarios, fixtures, references, harness learnings in its README)
+  - `Src/CarStore.Web/ClientApp/visual/**` (scenarios, fixtures, references, `LEARNINGS.md`)
   - repository-root `qa-results/`
   - vault notes, through `vault-write`
 
@@ -49,8 +49,8 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 7. **Record:** `npm run visual:verdict -- <verdict.json> <bundle>`. This generates `findings.md` and the
    offline report.
 8. **Document:** use `vault-write` for reusable operational findings, unless an orchestrator runs the
-   ticket (then report them). Put harness learnings in `visual/README.md` only when they change a rule,
-   folded into the matching section, not as a dated log.
+   ticket (then report them). Put new measurement traps in `visual/LEARNINGS.md` under their topic,
+   one bullet each, not as a dated log.
 
 Return PASS / FAIL / BLOCKED, the run path, and the `findings.md` and `index.html` paths.
 

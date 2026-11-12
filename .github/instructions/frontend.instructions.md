@@ -4,28 +4,23 @@ applyTo: "Src/CarStore.Web/ClientApp/**,Src/CarStore.Web/wwwroot/dist/**"
 
 # Front-end instructions (Vue 3 + PrimeVue + Tailwind v4)
 
-Reference guide for humans and coding agents working inside `Src/CarStore.Web/ClientApp/`.
-For how the built bundle is served by ASP.NET Core MVC (Razor mount points, API endpoints, run/publish),
-see `web.instructions.md`. For the vault rules, see `vault.instructions.md`.
-
-This file documents the **reference implementation**. The same architecture is reused when migrating other
-classic MVC + Razor + Bootstrap projects - see "Porting to a new project" at the end.
-
-Follow the vault workflow in `.github/copilot-instructions.md` (`vault-search` before, `vault-write` after).
+Rules for humans and coding agents working inside `Src/CarStore.Web/ClientApp/`. Serving/API contract:
+`web.instructions.md`. Background (theme internals, app bootstrap, setup, porting to another project):
+`reference/frontend-reference.md`, read only when the task touches it.
 
 ## Stack
 
 | Concern | Choice | Notes |
 |---|---|---|
-| Framework | Vue 3.5 SFC, `<script setup lang="ts">` | Single-page app: `vue-router` (history mode) owns client-side navigation. No Pinia yet. |
-| Build | Vite 8 (Rolldown) + `@vitejs/plugin-vue` 6 | Output goes to `../wwwroot/dist`. |
-| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (`CarStorePreset` on Aura, `src/plugins/primevue-preset.ts`) | Monochrome primary and surface modes modeled on the Atlas app (Prometheus design system). Registered in `src/main.ts` with `darkModeSelector: false` **on purpose**: the app has light AND dark themes, but dark is implemented by inverting the surface scale under `html.app-dark` (see "Light and dark themes"), not by PrimeVue's dark mode. |
-| Icons | `@lucide/vue` (Lucide) | Import each icon as a component (`import { Plus } from "@lucide/vue"`, then `<Plus />`). Sized to `1em` by a `.lucide` rule in `src/style.css`, so the surrounding `text-*` class sets the size; a `size-*` utility on the icon overrides it. In PrimeVue components use the `#icon` slot (`Button`, `Avatar`), `#itemicon` (`Menu`) or `InputIcon`'s default slot - never the string `icon` prop. Never PrimeIcons (`pi pi-*`) or Bootstrap Icons (`bi-*`), never a raw SVG when a Lucide icon exists. |
-| CSS | Tailwind CSS v4 via `@tailwindcss/vite` + `tailwindcss-primeui` | CSS-first config: **there is no `tailwind.config.js`**. |
-| Types | TypeScript 6, `strict: true`, `vue-tsc` 3 (TypeScript 7 is not supported by `vue-tsc` yet - do not upgrade) | `tsconfig.json` is `noEmit` - Vite does the transpiling. |
-| Bootstrap / jQuery | **Removed** | No Razor forms remain; every CRUD flow is a Vue dialog. Do not reintroduce either. |
-| Charts | Apache ECharts 6, tree-shaken (`echarts/core`) | Only via `components/common/chart/` and the `/echarts-chart-build` skill. |
-| Typography | Inter via `@fontsource/inter` (self-hosted, Latin + Latin Extended, 400-700) | `--font-sans` in `src/style.css`; `html` uses grayscale smoothing (`antialiased`) like the Figma frames. No CDN fonts. |
+| Framework | Vue 3.5 SFC, `<script setup lang="ts">` | SPA with `vue-router` (history mode). No Pinia. |
+| Build | Vite 8 (Rolldown) + `@vitejs/plugin-vue` 6 | Output `../wwwroot/dist`. |
+| UI kit | PrimeVue 4 + `@primeuix/themes` 1 (`CarStorePreset` on Aura, `src/plugins/primevue-preset.ts`) | `darkModeSelector: false` **on purpose**: dark = inverted surface scale under `html.app-dark`. |
+| Icons | `@lucide/vue` | `import { Plus } from "@lucide/vue"` → `<Plus />`; sized `1em` by `.lucide` in `style.css` (a `text-*`/`size-*` class sets it). In PrimeVue use the `#icon` / `#itemicon` / `InputIcon` slot, never the string `icon` prop. Never `pi pi-*`, `bi-*` or raw SVG when a Lucide icon exists. |
+| CSS | Tailwind CSS v4 (`@tailwindcss/vite`) + `tailwindcss-primeui` | CSS-first: **no `tailwind.config.js`**. |
+| Types | TypeScript 6 strict, `vue-tsc` 3 | Do not upgrade to TS 7 (unsupported by `vue-tsc`). |
+| Bootstrap / jQuery | **Removed** | Never reintroduce. |
+| Charts | ECharts 6 tree-shaken (`echarts/core`) | Only via `components/common/chart/` and `/echarts-chart-build`. |
+| Typography | Inter via `@fontsource/inter` | `--font-sans` in `style.css`, `antialiased`. No CDN fonts. |
 
 ## Folder layout (do not deviate)
 
@@ -95,53 +90,18 @@ Plus, outside `components/`:
 - `common/sidebar/Sidebar.vue` - add the nav item.
 - No new composable - `usePagedFetch`, `useEntityCrud`, `useCreateEntity` are already generic over `<TEntity>`; only new API URL constants change.
 
-## Setup
+## Build loop
 
-Prerequisites: Node.js 20+ (repo verified on Node 24) and npm 10+; .NET 10 SDK for the host app.
+- Run `npm run build` after **every** ClientApp change (it is not part of `dotnet build`) and commit the rebuilt `wwwroot/dist` with the source: deployments serve it.
+- `npx vue-tsc --noEmit` and `npm run build` must both pass before finishing.
+- Local dev: `npm run dev` (5173) alongside `dotnet run --project Src/CarStore.Web`; in Development `#app` stays empty without it.
 
-```bash
-cd Src/CarStore.Web/ClientApp
-npm install          # first clone only
-npm run build        # emits ../wwwroot/dist/main.js + main.css
-```
+## Pages and routing
 
-MCP servers used by the front-end agents (`primevue` stdio, `figma-mcp` http, `playwright` stdio) are declared,
-with identical content, in `.vscode/mcp.json` (VS Code/Copilot) and `.mcp.json` (Claude Code). Both are committed;
-creating/repairing them is Frontend-Tooling-Specialist's job, and they must change together.
-
-## Build / run loop
-
-- `npm run build` is **not** wired into `dotnet build` or the `.csproj`. Re-run it after **every** ClientApp change and commit the rebuilt `wwwroot/dist` - it is what every non-Development environment (and `deploy.sh`) serves.
-- `npm run dev` (Vite dev server, fixed port `5173`) now powers real front-end HMR: `Views/Shared/_Layout.cshtml` loads the SPA from `http://localhost:5173` instead of `~/dist/main.js` whenever `ASPNETCORE_ENVIRONMENT=Development`. Run it alongside `dotnet run --project Src/CarStore.Web` (or the `watch` task) - both processes must be up for local component work and for Impeccable `live` mode (`.impeccable/live/config.json` targets `_Layout.cshtml`). If `npm run dev` isn't running, `#app` stays empty in Development - it does **not** fall back to the built bundle.
-- `wwwroot/dist/` **is committed to git on purpose**: `dotnet publish` / `deploy.sh` never run npm, so the deployed app would have no front-end without it. Commit the rebuilt bundle together with the source change even though local dev now goes through Vite HMR. (`ClientApp/node_modules/` and `ClientApp/dist/` stay ignored.)
-- Type-check with `npx vue-tsc --noEmit` before finishing. Both this and `npm run build` must pass.
-
-## How a component reaches the page
-
-`src/main.ts` is the only entry point. It mounts a **single** app once, on `#app` (the only mount point,
-declared in `Views/Home/Index.cshtml`), wired with `vue-router`:
-
-```ts
-const el = document.querySelector<HTMLElement>("#app");
-if (el) {
-  createApp(App)
-    .use(router)
-    .use(PrimeVue, { theme: { preset: Aura, options: { darkModeSelector: false } } })
-    .mount(el);
-}
-```
-
-`App.vue` renders `<Sidebar />` next to `<RouterView />`; `router/index.ts` maps each path to a `<Feature>Page.vue`
-component. Consequences to respect:
-
-- API URLs are static (`/api/cars`, `/api/brands`, `/api/customers`) and are declared as constants inside
-  each page component - they are no longer threaded through Razor `data-*` attributes, since there is only one
-  mount point left.
-- Adding a new page = add the route in `router/index.ts`, add the component, add a nav item in `Sidebar.vue`.
-  No new Razor view or mount `<div>` is needed - MVC's fallback route (`Program.cs`) serves the same SPA shell
-  for any unmatched path.
-- Cross-page state still travels through the URL or the API; there is no Pinia store yet. Add one if two or
-  more pages need to share client-side state.
+- `src/main.ts` mounts one app on `#app`; `App.vue` = `<Sidebar />` + `<RouterView />`.
+- New page = route in `router/index.ts` + `<Feature>Page.vue` + nav item in `Sidebar.vue`. No Razor view needed.
+- API URLs are static constants (`/api/cars`, `/api/brands`, `/api/customers`) inside the page component that owns the fetch.
+- Cross-page state travels through the URL or the API (no Pinia).
 
 ## Data access
 
@@ -173,15 +133,7 @@ Rules:
 
 ### Light and dark themes (mandatory for every screen)
 
-The app ships both themes ("Showroom After Hours" dark theme, see `DESIGN.md`). Every screen, dialog and chart must be readable and consistent in both.
-
-| Piece | Role |
-|---|---|
-| `plugins/primevue-preset.ts` | `CarStorePreset`: `--p-surface-N` = `var(--sm-N)`; `primary.N` aliases `surface.N` (Atlas "Noir": `primary.color` = `primary.950`, contrast = `surface.0`, highlight = solid `primary.950`); `extend` adds `--p-soft-*`, `--p-layout-*`, `--p-highlight-pressed-background`. |
-| `Views/Shared/_Layout.cshtml` inline script | Before first paint: `app-dark` on `<html>` (saved `localStorage["carstore-theme"]`, else OS `prefers-color-scheme`) and `data-surface` (saved `localStorage["carstore-surface"]`, else `gray`). |
-| `composables/useTheme.ts` | `useTheme()` -> `{ theme, surface, toggle, setTheme, setSurface }`. Applies the class/attribute, persists both choices, plays the circular View Transition reveal on theme changes (instant under reduced motion). |
-| `common/sidebar/Sidebar.vue` | "Appearance" row (opens `common/dialog/ThemeSettingsDialog.vue`: light/dark + surface mode `gray`/`neutral`/`slate`/`stone`/`zinc`) and the "Dark theme" quick switch. |
-| `src/style.css` -> `html[data-surface]` + `html.app-dark { ... }` | `data-surface` picks the Aura primitive palette behind `--sm-*`. Dark inverts `--p-surface-0...950` from the same `--sm-*` (canvas = mode 950, body text `surface-800` = mode 100, `surface-950` = white), plus card, tag/message/toast and `--color-paint-*` overrides. Aura's semantic tokens and the primary scale resolve through the surface scale, so PrimeVue components, Tailwind `surface-*`/`primary` utilities and the primary accent flip together. |
+Every screen, dialog and chart must be readable in both themes. Internals (preset, `_Layout.cshtml` script, `useTheme`, `style.css` blocks): `reference/frontend-reference.md`.
 
 Rules:
 
@@ -208,15 +160,13 @@ Rules:
 
 ## Working from Figma
 
-1. Run `/figma-discovery` FIRST for any task that references a Figma URL/node or must match a design. It parses the URL, calls the Figma MCP tools, and maps raw values onto the token conventions above.
-2. Then run `/primevue-component-build` (or follow the equivalent manual steps) to implement.
-3. Query the `primevue` MCP server for component APIs/examples instead of guessing prop or `pt` section names.
-4. Exported image/icon assets go to `Src/CarStore.Web/wwwroot/images/<page>/...` and are referenced by absolute URL (`/images/home/cars.jpg`) - not imported through Vite, so no hashing surprises.
-5. Delete temporary screenshots/reference assets once the implementation is verified.
+1. `/figma-discovery` FIRST (it reuses `.figma-cache/` before calling the Figma MCP), then `/primevue-component-build`.
+2. Query the `primevue` MCP for component APIs and `pt` section names instead of guessing.
+3. Exported images go to `Src/CarStore.Web/wwwroot/images/<page>/` and are referenced by absolute URL (`/images/home/cars.jpg`), not imported through Vite.
 
 ## Definition of done
 
-- [ ] `/vault-search` ran before the work, `/vault-write` after it.
+- [ ] Vault: `/vault-search` before and `/vault-write` after (in an orchestrated ticket, the orchestrator does both once).
 - [ ] Existing composable/style/`pt` helper reused instead of duplicated.
 - [ ] No raw hex where a token exists; no Bootstrap; no `bi-*` icons; no second JS/CSS framework.
 - [ ] `npx vue-tsc --noEmit` clean.
@@ -233,18 +183,3 @@ Rules:
 - Never hardcode a `/api/*` base URL other than the documented constants; keep them colocated in the page component that owns the fetch.
 - Never edit `wwwroot/dist/*` by hand; it is generated.
 - Never change `vite.config.ts`, `package.json` deps, `.mcp.json` or `.vscode/mcp.json` from a component task - that is Frontend-Tooling-Specialist scope.
-
-## Porting to a new project
-
-When migrating another classic MVC + Razor + Bootstrap app, reproduce this exact shape:
-
-1. `<WebProject>/ClientApp/` scaffolded with Vite + Vue 3 + TS; `build.outDir` -> `../wwwroot/dist`, `base: "/dist/"`, fixed `main.js` / `main.css` output names.
-2. `npm i vue primevue @primeuix/themes @lucide/vue` + `npm i -D vite @vitejs/plugin-vue tailwindcss @tailwindcss/vite tailwindcss-primeui typescript vue-tsc`.
-3. `src/style.css` with the `@import`s and `@source "../../Views";`. Add a temporary `@layer components` shim only while Razor forms still need Bootstrap class names, and delete it with the last form.
-4. `src/main.ts` mounting a single `App` (Sidebar + `RouterView`) on `#app`, with `vue-router` and the PrimeVue/Aura registration; `src/router/index.ts` for the routes.
-5. Remove `wwwroot/lib/bootstrap/` and every Bootstrap `<link>`/`<script>`/`bi-*` icon; keep jQuery + jquery-validation only while Razor forms still use unobtrusive validation.
-6. Add `Controllers/Api/*ApiController.cs` + `Models/Api/*Dto.cs` returning `PagedResultDto<T>`, reusing the existing services (never re-implement paging or business rules).
-7. Migrate page by page: add a route + `<Feature>Page.vue` over the paged API, then the CRUD dialogs, then delete the old Razor controller/views (see `web.instructions.md` -> "Porting to a new project").
-8. Copy `composables/`, `common/table`, `common/dialog`, `common/form`, `common/pageheader`, `styles/`, `utils/` as the starting kit, then adapt to that project's design system.
-9. Create `.mcp.json` and `.vscode/mcp.json` with the `primevue`, `figma-mcp` and `playwright` servers.
-10. Seed the new project's vault with the equivalent front-end notes via `/vault-write`.

@@ -31,7 +31,7 @@ screens/components and the visual harness first. Run `/vault-write` ONLY for reu
 ## Scope and inputs
 
 - **Write scope:**
-  - `Src/CarStore.Web/ClientApp/visual/**` (scenarios, fixtures, references, harness learnings in its
+  - `Src/CarStore.Web/ClientApp/visual/**` (scenarios, fixtures, references, `LEARNINGS.md` pitfalls by topic,
     README)
   - repository-root `qa-results/`
   - the vault, through `/vault-write`

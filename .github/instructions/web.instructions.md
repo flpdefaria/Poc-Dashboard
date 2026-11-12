@@ -60,7 +60,7 @@ Rules:
 
 - There is exactly **one** mount point (`id="app"`), declared once in `Views/Home/Index.cshtml`. Do not add
   per-feature Razor views or mount `<div>`s anymore - new pages are added entirely on the Vue side (see
-  `frontend.instructions.md` -> "How a component reaches the page").
+  `frontend.instructions.md` -> "Pages and routing").
 - `Program.cs` maps `app.MapFallbackToController("Index", "Home")` after the default MVC route, so any path
   vue-router owns (`/cars`, `/brands/123`, ...) that doesn't match a real MVC/API endpoint falls back to
   this same shell on a full load or refresh.
@@ -182,7 +182,7 @@ data resets on restart, and every mutation done through the API disappears with 
 ## Porting to a new project
 
 1. Keep a single `HomeController` (SPA shell) + `Controllers/Api/` + `Models/Api/` DTOs over the existing services.
-2. Add the `ClientApp/` Vite project with `vue-router` (see `frontend.instructions.md` -> "Porting to a new project").
+2. Add the `ClientApp/` Vite project with `vue-router` (see `instructions/reference/frontend-reference.md` -> "Porting to a new project").
 3. In `_Layout.cshtml`: drop Bootstrap, add `~/dist/main.css` and `~/dist/main.js` (`type="module"`, `asp-append-version`), keep `@RenderBody()` only for genuinely server-rendered pages (errors, etc.).
 4. `Views/Home/Index.cshtml` renders the single `<div id="app">`; add `app.MapFallbackToController("Index", "Home")` in `Program.cs` after the default route.
 5. Migrate page by page: add a vue-router route + `<Feature>Page.vue` -> Vue list over the paged API -> then the CRUD dialogs -> then delete the obsolete Razor controller/views for that feature.
