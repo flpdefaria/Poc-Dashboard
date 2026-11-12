@@ -1,6 +1,6 @@
 # Kit do fluxo de desenvolvimento front-end
 
-Leva para outro projeto o fluxo de front-end criado no CarStore: agentes, skills, instruções, MCPs, checagem de
+Leva para qualquer projeto Vue + PrimeVue o fluxo de desenvolvimento front-end: agentes, skills, instruções, MCPs, checagem de
 convenções e o harness visual de QA. O stack é **Vue 3 + PrimeVue 4 + Tailwind v4 + Lucide**, com
 **Figma → código → QA visual** e ciclo de correção limitado.
 
@@ -91,7 +91,7 @@ frontend-flow-kit/
 
 - Repositório git, Node 20+ (testado no 24), `perl`.
 - Projeto front-end **Vite + Vue 3 + TypeScript** já criado, com `package.json` e `"type": "module"`. Num projeto
-  ASP.NET MVC, use o mesmo formato do CarStore: `<Web>/ClientApp/`, build em `wwwroot/dist`.
+  ASP.NET MVC, o front fica em `<Web>/ClientApp/`, com build em `wwwroot/dist`.
 - Claude Code e/ou VS Code com Copilot.
 - Acesso ao arquivo do Figma com a conta que vai autenticar o Figma MCP.
 
@@ -120,21 +120,21 @@ Configuração mínima esperada (o `Frontend-Tooling-Specialist` faz isso se voc
 
 ## 4. Instalar o kit
 
-Da raiz deste repositório (CarStore):
+Da raiz do repositório onde o kit está:
 
 ```bash
-# Projeto ASP.NET MVC com ClientApp (mesmo formato do CarStore)
-./frontend-flow-kit/install.sh ../power-monitor \
-  --name "PowerMonitor" \
-  --client-app Src/PowerMonitor.Web/ClientApp \
+# Projeto ASP.NET MVC com ClientApp
+./frontend-flow-kit/install.sh ../meu-projeto \
+  --name "MeuProjeto" \
+  --client-app Src/MeuProjeto.Web/ClientApp \
   --app-url http://localhost:5045 \
-  --backend-build "dotnet build Src/PowerMonitor.slnx" \
-  --build-output Src/PowerMonitor.Web/wwwroot/dist \
-  --images-dir Src/PowerMonitor.Web/wwwroot/images \
+  --backend-build "dotnet build Src/MeuProjeto.slnx" \
+  --build-output Src/MeuProjeto.Web/wwwroot/dist \
+  --images-dir Src/MeuProjeto.Web/wwwroot/images \
   --with-charts --install
 
 # SPA solta (front na raiz ou em frontend/)
-./frontend-flow-kit/install.sh ../atlas --name Atlas --client-app frontend --no-vault
+./frontend-flow-kit/install.sh ../meu-app --name MeuApp --client-app frontend --no-vault
 ```
 
 | Opção | Padrão | Uso |
@@ -221,7 +221,7 @@ O motor (captura, baseline por git worktree, comparação com o Figma, relatóri
 | Arquivo | O que ajustar |
 |---|---|
 | `visual/project.json` | O instalador preenche `projectName` e `clientAppDir`. Revise `fixedNow` (relógio fixo das capturas), `locale`, `timezone`, `apiBasePath` (tudo abaixo dele é mock ou bloqueado) e `devServerHttps` |
-| `visual/app-setup.ts` | **Único arquivo do navegador que conhece o projeto.** Reproduza o que `src/main.ts` e a página host fazem antes de montar o app: CSS global, preset e opções do PrimeVue, locale, como o tema escuro é aplicado (classe, chave no `localStorage`, atributos), fundo do body, plugins globais (Toast, ConfirmationService, i18n) e elementos globais do shell. Os comentários mostram a variante do CarStore como exemplo |
+| `visual/app-setup.ts` | **Único arquivo do navegador que conhece o projeto.** Reproduza o que `src/main.ts` e a página host fazem antes de montar o app: CSS global, preset e opções do PrimeVue, locale, como o tema escuro é aplicado (classe, chave no `localStorage`, atributos), fundo do body, plugins globais (Toast, ConfirmationService, i18n) e elementos globais do shell. Os comentários mostram uma variante com tema escuro por superfície invertida como exemplo |
 | `visual/scenarios/fixtures.ts` | O formato da resposta paginada da API (`pagedMock`), a query string que o fetch paginado envia e a largura real que uma página recebe ao lado do menu (`pageWidth`) |
 | `visual/scenarios/*.ts` | Troque o `example.ts` pelos cenários reais (componente real + mocks de todas as chamadas + irmão escuro) e registre em `scenarios/index.ts`. Snapshots da API vão em `scenarios/fixtures/*.json` |
 
