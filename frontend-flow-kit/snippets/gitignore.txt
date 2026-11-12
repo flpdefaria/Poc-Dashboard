@@ -1,0 +1,18 @@
+
+# --- frontend-flow-kit ---
+# Figma discovery cache (figma-discovery skill; re-pulled on demand)
+.figma-cache/
+
+# Playwright MCP profile and raw output
+.playwright-mcp/
+
+# Visual harness: baseline worktrees and machine-local run pointers
+.visual-baseline/
+qa-results/.current-run
+qa-results/index.html
+
+# Screenshots, diffs, triptychs and per-scenario data stay local; regenerate with visual:compare.
+qa-results/*/**/*.png
+qa-results/*/data/
+qa-results/*/comparison/
+qa-results/*/verdict-draft.json

@@ -1,0 +1,13 @@
+{
+  "$comment": "Per-project settings for the visual harness. install.sh fills projectName and clientAppDir; review the rest.",
+  "projectName": "{{PROJECT_NAME}}",
+  "clientAppDir": "{{CLIENT_APP_DIR}}",
+  "devServerHttps": false,
+  "apiBasePath": "/api",
+  "fixedNow": "2026-01-15T12:00:00Z",
+  "locale": "pt-BR",
+  "timezone": "UTC",
+  "previewPort": 5175,
+  "baselinePort": 5174,
+  "artifactDir": "qa-results"
+}

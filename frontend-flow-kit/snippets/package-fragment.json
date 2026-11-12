@@ -1,0 +1,45 @@
+{
+  "scripts": {
+    "check:conventions": "node scripts/check-conventions.mjs",
+    "verify": "vue-tsc --noEmit && node scripts/check-conventions.mjs && vite build",
+    "visual:check": "playwright test visual/capture.spec.ts",
+    "visual:check:scenario": "node visual/run-scenario.mjs",
+    "visual:compare": "node visual/run-compare.mjs",
+    "visual:recheck": "node visual/run-recheck.mjs",
+    "visual:verdict": "node visual/write-verdict.mjs",
+    "visual:measure": "node visual/run-measure.mjs",
+    "visual:crop": "node visual/tools/crop.mjs",
+    "visual:attempt-diff": "node visual/tools/attempt-diff.mjs",
+    "visual:ids": "node visual/tools/ids.mjs",
+    "visual:prune": "node visual/tools/prune.mjs",
+    "visual:list": "playwright test visual/capture.spec.ts --list",
+    "visual:type-check": "vue-tsc --noEmit -p tsconfig.visual.json",
+    "visual:test": "node --test visual/lib/findings.test.mjs"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.71.0",
+    "@primeuix/themes": "^1.0.0",
+    "primevue": "^4.3.0",
+    "vue": "^3.5.45",
+    "vue-router": "^5.5.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^24.19.2",
+    "@types/pngjs": "^6.0.5",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
+    "tailwindcss": "^4.3.5",
+    "tailwindcss-primeui": "^0.6.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.7",
+    "vue-tsc": "^3.3.14"
+  },
+  "withCharts": {
+    "dependencies": {
+      "echarts": "^6.1.0"
+    }
+  }
+}

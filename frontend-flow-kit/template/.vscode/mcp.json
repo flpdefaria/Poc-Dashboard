@@ -1,0 +1,30 @@
+{
+  "servers": {
+    "primevue": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@primevue/mcp"
+      ]
+    },
+    "figma-mcp": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--browser",
+        "chrome",
+        "--ignore-https-errors",
+        "--user-data-dir",
+        ".playwright-mcp/profile",
+        "--output-dir",
+        ".playwright-mcp/output"
+      ]
+    }
+  }
+}
