@@ -16,10 +16,10 @@ import {
 } from './baseline.mjs'
 
 /**
- * @param {{ ids: string[], passthrough: string[], baselineRef?: string | null }} options
+ * @param {{ ids: string[], passthrough: string[], baselineRef?: string | null, stdio?: import('node:child_process').StdioOptions }} options
  * @returns {Promise<number>} exit code
  */
-export async function runPlaywright({ ids, passthrough, baselineRef }) {
+export async function runPlaywright({ ids, passthrough, baselineRef, stdio = 'inherit' }) {
   /** @type {Record<string, string>} */
   const env = { ...process.env }
   if (ids.length) env.VISUAL_SCENARIO = ids.join(',')
@@ -49,7 +49,7 @@ export async function runPlaywright({ ids, passthrough, baselineRef }) {
     return await new Promise((resolve) => {
       const child = spawn('npx', ['playwright', 'test', 'visual/capture.spec.ts', ...passthrough], {
         cwd: CLIENT_APP_ROOT,
-        stdio: 'inherit',
+        stdio,
         shell: process.platform === 'win32',
         env,
       })

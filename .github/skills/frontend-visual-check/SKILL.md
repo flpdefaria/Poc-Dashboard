@@ -23,7 +23,7 @@ Read these before adding scenarios:
 | Working dir | `Src/CarStore.Web/ClientApp` |
 | First run on a machine | `npm install`, then `npx playwright install chromium` |
 | Capture | `npm run visual:compare -- <ids>` |
-| Recheck | `QA_RUN_DIR=<bundle> npm run visual:compare -- <ids>` |
+| Recheck (after a correction) | `npm run visual:recheck -- <bundle>`: see **Recheck mode** below |
 | Explicit base | `VISUAL_BASELINE_REF=<ref>`. Use `HEAD` for uncommitted changes; `auto` is the merge-base with `main`. |
 | Verdict | `npm run visual:verdict -- <verdict.json> <bundle>` |
 | Servers | The harness starts its own preview server (5175) and a baseline server (5174). It does not need `dotnet run` or the normal `npm run dev` (5173). |
@@ -36,8 +36,9 @@ Read these before adding scenarios:
 1. **Scope.** Require text/design requirements and a delivery summary (`arquivos`, `componentes`,
    `estados`, `larguras`, optional `figma`, `lacunas`) or a changed-file list. Identify the components,
    states, widths and expected outcomes. Missing scope is BLOCKED.
-2. **With Figma.** Use `figma-discovery` and the Figma MCP for the metadata, design context, variables,
-   Code Connect and the screenshot.
+2. **With Figma.** Use `figma-discovery`. Read its `.figma-cache/<fileKey>/<node>/` folder first (the
+   implementer usually filled it); call the Figma MCP only for what the cache lacks. Existing
+   `visual/references/<id>.png` + `.figma.json` for the same node are reused as they are.
    - Save `visual/references/<id>.png` at the scenario's DPR, cropped to the `captureSelector` element.
    - Save `<id>.figma.json` following the `FigmaSpec` contract in `visual/types.ts`, and set `figmaNode`
      on the scenario.
@@ -68,7 +69,8 @@ Read these before adding scenarios:
 
 - Run `npm run visual:compare -- <ids>` and record the base ref and commit. The "before" image is the base
   commit rendered from a temporary git worktree with the same mocks and clock.
-- Rechecks reuse the same `QA_RUN_DIR` and append attempts. Keep the earlier evidence and the baseline.
+- Inspect images economically: open a section diff or crop before a full-page screenshot, and a 1920px or
+  full-page PNG only when the crop cannot show the problem. Never open every evidence file of a run.
 - Inspect, for every scenario:
   - the actual screenshots
   - the previous | current | Figma triptych
@@ -85,6 +87,20 @@ Read these before adding scenarios:
   - No Bootstrap classes.
   - `surface-*`/semantic tokens instead of hardcoded grays.
   - Readable dark contrast.
+
+### Recheck mode (correction rounds)
+
+When given an existing bundle and a correction summary, do only this, without re-reading the README, the
+vault, Figma or this skill's scenario sections:
+
+1. `npm run visual:recheck -- <bundle>` (or `<bundle> <ids>` when the correction touched other scenarios).
+2. Read the JSON it prints. Open only the images in `abrir[]`.
+3. Classify the `persiste` and `novas` items in `verdictDraft`, then
+   `npm run visual:verdict -- <verdictDraft> <bundle>`.
+4. Return the status from `qaFindings.status`, the bundle path and the remaining `defeito` ids.
+
+Change a scenario only when a reported selector broke; that and a full new scenario set go back to the
+normal flow.
 
 ### Live app (optional)
 
@@ -143,6 +159,7 @@ checks.
 Before returning, confirm that the relative evidence links and the offline `index.html` open. Return the
 run path, the `findings.md` path, the `index.html` path and a concise outcome.
 
-Run bundles under `qa-results/` are reviewable repository artifacts. The root `qa-results/index.html` and
-`.current-run` are machine-local and git-ignored. Put harness learnings in `visual/README.md`, and
+In `qa-results/<run>/`, git versions only the judgement (`findings.md`, `report.json`, `index.html`,
+`recheck-summary.json`). Screenshots, `comparison/`, `data/` and `verdict-draft.json` stay local
+(git-ignored), as do the root `qa-results/index.html` and `.current-run`. Put harness learnings in `visual/README.md`, and
 reusable operational findings in the vault through `vault-write`.

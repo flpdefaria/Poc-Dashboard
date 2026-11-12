@@ -21,7 +21,7 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 - **References:** vault notes, exact source files and patterns, Figma URL/node when supplied.
 - **Requirements:** visible elements, copy (pt-BR UI), interactions, data sources, loading/empty/error states, widths (`carstore-mobile-responsive` when below desktop), both themes, accessibility. Each expected outcome must be verifiable from the text or from Figma.
 - **Tech Details:** ClientApp conventions, mandatory PrimeVue MCP, Lucide only, tokens instead of hex, no Bootstrap, server-side paging, no fixture data in production.
-- **Implementation:** context → optional `figma-discovery` / `figma-refactor` → `primevue-component-build` (or `echarts-chart-build`) → `npx vue-tsc --noEmit` + `npm run build` → `vault-write` → delivery summary with `arquivos`, `componentes`, `estados`, `larguras`, optional `figma`, `lacunas`.
+- **Implementation:** context → optional `figma-discovery` (cached in `.figma-cache/`) / `figma-refactor` → `primevue-component-build` (or `echarts-chart-build`) → `npx vue-tsc --noEmit` + `npm run build` → delivery summary with `arquivos`, `componentes`, `estados`, `larguras`, optional `figma`, `figma-cache`, `lacunas`, `vault` (facts for the final `vault-write`).
 - **Ciclo de desenvolvimento e QA:** the full cycle below.
 - **Verify:** `npx vue-tsc --noEmit`, `npm run build`, `dotnet build Src/CarStore.slnx` if a DTO changed, and the QA evidence cycle.
 - **Out of Scope:** backend, API contracts, domain rules, persistence, tooling (`vite.config.ts`, `package.json`, `.mcp.json`), and unrelated design changes.
@@ -30,11 +30,15 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 
 ## Cycle to include in the ticket
 
-1. Give the requirements and optional Figma URL to the frontend agent, and keep its delivery summary.
-2. Give the requirements and summary to the QA agent (Claude `qa-agent` / Copilot `QA-Specialist`), and keep `qa-results/<run>/findings.md` and the run path. QA can also run alone for an existing change, given requirements and a changed-file list.
-3. Pass only non-minimal `defeito` items back to the frontend agent (correction mode), then give the updated summary to QA with the **same run folder**. Never send `minimas[]` for correction.
+0. The orchestrator runs `vault-search` **once** and passes the relevant note paths to every agent. With a Figma URL, the first agent fills `.figma-cache/` (`figma-discovery`); every later agent and round receives that folder path instead of calling the Figma MCP again.
+1. Give the requirements, vault note paths and optional Figma URL to the frontend agent, and keep its delivery summary.
+2. Give the requirements and summary to the QA agent (Claude `qa-agent` / Copilot `QA-Specialist`), and keep `qa-results/<run>/findings.md` and the run path. This first QA pass is **exhaustive**: every requested scenario, light and dark, strict against Figma, so all defects surface in one round instead of one per round. QA can also run alone for an existing change, given requirements and a changed-file list.
+3. Pass only non-minimal `defeito` items back to the frontend agent (correction mode), then send QA in **recheck mode** (`npm run visual:recheck -- <run>`) with the **same run folder**. Never send `minimas[]` for correction. Rechecks and corrections skip the vault, the Figma MCP and the instruction re-reads.
 4. Allow at most **three correction rounds**. Stop earlier when no defects remain, when blocked, or when a round does not reduce defects. Record remaining items in Observations without claiming PASS.
-5. As part of an authorized delivery, commit the code, the rebuilt `wwwroot/dist/` and `qa-results/<run>/`, keeping every attempt. Creating the ticket does not authorize committing.
+5. After the last round, the orchestrator runs `vault-write` **once**, from the facts the agents reported.
+6. As part of an authorized delivery, commit the code, the rebuilt `wwwroot/dist/` and `qa-results/<run>/` (git keeps only the judgement files; screenshots stay local, see `frontend-visual-check`). Creating the ticket does not authorize committing.
+
+**Model per stage (Claude Code):** the first implementation and the exhaustive QA pass use the agents' default model. Correction rounds and rechecks are narrow and scripted: launch them with `model: "sonnet"` on the Agent call. Start each ticket in a fresh session (`/clear`); the ticket file, delivery summaries and `findings.md` carry the state, not the chat history.
 
 Neither agent invokes the other. The orchestrator passes artifacts between stages. If the host cannot launch subagents, run each agent's instructions sequentially in the current session, preserving scope and artifacts.
 

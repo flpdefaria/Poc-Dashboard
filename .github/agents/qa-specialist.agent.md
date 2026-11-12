@@ -50,13 +50,15 @@ screens/components and the visual harness first. Run `/vault-write` ONLY for reu
    commands, scenarios, mocks, baseline, minimal-difference policy and the `findings.md` contract.
 2. For tablet/phone scope, also apply `/carstore-mobile-responsive`.
 3. With a Figma URL:
-   - Collect the reference PNG and the `.figma.json` spec through `/figma-discovery` into
-     `visual/references/`. Expected values come only from Figma.
+   - Collect the reference PNG and the `.figma.json` spec into `visual/references/`, reading the
+     `.figma-cache/` folder first and using `/figma-discovery` only for what it lacks. Expected values come
+     only from Figma.
    - Verify component mappings with the PrimeVue MCP.
 4. Without Figma, encode the text requirements as `renderChecks`.
 5. Cover the requested states and widths, each with a dark sibling.
-6. Run `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp`. For a recheck, reuse
-   `QA_RUN_DIR` to append an attempt.
+6. Run `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp`. For a recheck after a
+   correction, follow only **Recheck mode** in `/frontend-visual-check` (`npm run visual:recheck -- <run>`,
+   open only `abrir[]`, edit `verdictDraft`) and skip the vault, Figma and scenario steps.
 7. Inspect every screenshot and triptych, and classify every difference until none is unclassified.
 8. Record the verdict with `npm run visual:verdict -- <verdict.json> <bundle>`.
 9. Optional: use the Playwright MCP against the live app (`http://localhost:5045`) only for flows that need

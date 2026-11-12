@@ -59,6 +59,11 @@ End with a **delivery summary** for QA-Specialist:
 - `figma`: URL and node if supplied; otherwise absent.
 - `lacunas`: backend dependencies, missing tokens, unresolved design decisions.
 
+- `figma-cache`: the `.figma-cache/<fileKey>/<node>/` folders used, so QA reuses them.
+
+`/figma-discovery` reads `.figma-cache/` first; call the Figma MCP only for nodes it lacks. In an orchestrated
+ticket, skip `/vault-write` (the orchestrator writes once at the end) and report the facts under `vault`.
+
 **Correction mode:** when given classified `defeito` items from a QA `findings.md`, fix only those within scope,
-rebuild, validate, run `/vault-write`, and return an updated delivery summary. Do not polish `minimas[]` or
-expand the change.
+rebuild, validate, and return an updated delivery summary. Skip the vault and Figma MCP calls (use the cache).
+Do not polish `minimas[]` or expand the change.

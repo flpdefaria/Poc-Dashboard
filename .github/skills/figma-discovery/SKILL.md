@@ -23,6 +23,20 @@ Output of this skill is a **discovery report**, not code. Hand it to `/primevue-
 - Run `/vault-search` for the component/page name and for prior Figma token mappings before starting, so you reuse decisions already made.
 - After the implementation lands, the calling agent records the node -> component mapping and any NEW token mapping through `/vault-write`. If this skill discovers a token mapping not in the table below, say so explicitly in the report so it gets persisted.
 
+## Discovery cache (read once per node)
+
+Every node is pulled through the MCP **once** and reused by every agent and round of the ticket:
+`.figma-cache/<fileKey>/<nodeId-with-dashes>/` (git-ignored) holds `discovery.md` (the report from step 8),
+`design-context.md` (raw `get_design_context` output), `variables.json` (`get_variable_defs`),
+`screenshot.png` and `meta.json` (`{ url, nodeId, name, fetchedAt }`).
+
+- **Before step 2**, check the folder. If `discovery.md` exists and the user has not said the design changed,
+  read it and skip the MCP calls entirely. Pull only the child nodes the cache does not cover.
+- **After step 8**, write the folder. Give the orchestrator / QA the folder path in the hand-off instead of
+  pasting the raw MCP output.
+- Refresh (delete and re-run) only when the user says the Figma changed or the cached node id is not the
+  one requested.
+
 ## Procedure
 
 1. **Parse the reference.** From `figma.com/design/:fileKey/:fileName?node-id=:nodeId`, extract `fileKey` and `nodeId`, converting `-` to `:` in the node id (`39-21141` -> `39:21141`). If only a node id was given with no file link, ask for the URL - never reuse a `fileKey` from a previous, unrelated task.

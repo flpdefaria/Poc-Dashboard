@@ -68,6 +68,19 @@ QA_RUN_DIR=/abs/path/qa-results/<run> npm run visual:compare -- <ids>
 
 A new attempt invalidates the recorded verdict and moves it to `verdictHistory`, so submit a fresh review.
 
+**Recheck after a correction (preferred, token-cheap):**
+
+```bash
+npm run visual:recheck -- /abs/path/qa-results/<run>            # scenarios of the open `defeito` items
+npm run visual:recheck -- /abs/path/qa-results/<run> <ids>      # named scenarios
+```
+
+It appends an attempt (reusing the bundle's baseline commit; `--no-baseline` skips it) and prints one JSON:
+`defeitos[]` (`resolvido` / `persiste`), `novas[]`, `abrir[]` (the only images worth opening) and
+`verdictDraft` — the previous judgement minus resolved ids. Classify only `persiste`/`novas` in the draft,
+then `npm run visual:verdict -- <verdictDraft> <run>`. With nothing persisting and no `novas`, the draft
+records PASS without opening any image.
+
 ## Preview
 
 `visual/preview.ts` mounts the scenario component with the production wiring:

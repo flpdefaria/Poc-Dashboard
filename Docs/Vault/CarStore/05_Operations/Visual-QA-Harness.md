@@ -44,6 +44,7 @@ Run from `Src/CarStore.Web/ClientApp`:
 |---|---|
 | `npm run visual:compare -- <ids>` | Capture with the baseline. `VISUAL_BASELINE_REF=HEAD` compares uncommitted work. |
 | `QA_RUN_DIR=<bundle> npm run visual:compare -- <ids>` | Correction round. Appends `attempt-NN`. |
+| `npm run visual:recheck -- <bundle> [<ids>] [--no-baseline]` | Preferred recheck after a correction (`visual/run-recheck.mjs`). Re-runs the scenarios of the open `defeito` items, reuses the bundle's baseline commit and prints one JSON: `defeitos[]` (`resolvido`/`persiste`), `novas[]`, `abrir[]` (only images worth opening), `verdictDraft`. Writes `recheck-summary.json` and `verdict-draft.json` (previous judgement minus resolved ids). |
 | `npm run visual:verdict -- <verdict.json> <bundle>` | Records the QA judgement, then regenerates `findings.md` and `index.html`. |
 | `npm run visual:type-check` | Type-checks the harness. |
 | `npm run visual:test` | Runs the findings/verdict contract tests. |
@@ -146,7 +147,9 @@ Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `refe
 
 | Path | Status |
 |---|---|
-| `qa-results/<run>/` bundles | Reviewable artifacts |
+| `qa-results/<run>/` `findings.md`, `report.json`, `index.html`, `recheck-summary.json` | Versioned (the judgement) |
+| `qa-results/<run>/` PNGs, `comparison/`, `data/`, `verdict-draft.json` | Ignored (local evidence) |
+| `.figma-cache/` | Ignored |
 | `qa-results/index.html`, `qa-results/.current-run` | Ignored |
 | `.visual-baseline/` | Ignored |
 | `Src/CarStore.Web/ClientApp/test-results/` | Ignored |
@@ -216,6 +219,13 @@ Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `refe
 - Diff `actual/attempt-N-1` against `actual/attempt-N` (delta above 8 per channel) to isolate exactly what a fix changed.
 - Run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` attempt-04 (PASS). See [[Cars-Page]].
 - Full list: "Learnings (2026-11-11, strict Cars QA, attempt-04 recheck)" in `visual/README.md`.
+
+### Token-economy cycle (orchestrated tickets)
+
+- `figma-discovery` caches each node once in `.figma-cache/<fileKey>/<node>/` (`discovery.md`, `design-context.md`, `variables.json`, `screenshot.png`, `meta.json`); frontend and QA agents read it before calling the Figma MCP.
+- The orchestrator runs `vault-search` once and `vault-write` once after the last round; corrections and rechecks skip the vault, Figma MCP and instruction re-reads.
+- First QA pass is exhaustive; corrections and rechecks (`visual:recheck`) run with `model: "sonnet"`. Rules live in `create-frontend-ticket` and `frontend-visual-check` (Recheck mode).
+- Measured motivation: the Cars cycle used ~254M tokens over 13 subagents (7 QA runs), mostly re-reads and 167 opened screenshots.
 
 ## Related
 

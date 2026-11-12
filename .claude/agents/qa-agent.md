@@ -25,13 +25,18 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 
 ## Workflow
 
-1. **Context:** read `.github/instructions/vault.instructions.md`, then run `vault-search` for the touched
-   screens/components and the visual harness.
+**Recheck (correction round):** when given an existing bundle plus a correction summary, follow only
+**Recheck mode** in `frontend-visual-check` (`npm run visual:recheck`, open only `abrir[]`, edit
+`verdictDraft`). Skip steps 1–4 and 8 below.
+
+1. **Context:** if the caller supplied vault note paths, read only those; otherwise read
+   `.github/instructions/vault.instructions.md`, then run `vault-search` for the touched screens/components
+   and the visual harness.
 2. **Procedure:** load `frontend-visual-check` and read `visual/README.md`. Use `carstore-mobile-responsive`
    for tablet and phone scope.
 3. **Evidence:**
-   - With Figma: collect the PNG and the `.figma.json` spec through `figma-discovery` / the Figma MCP into
-     `visual/references/`. Derive expected values only from that source, and verify component mappings
+   - With Figma: collect the PNG and the `.figma.json` spec into `visual/references/` from the supplied
+     `.figma-cache/` folder, calling `figma-discovery` / the Figma MCP only for what it lacks. Derive expected values only from that source, and verify component mappings
      with the PrimeVue MCP.
    - Without Figma: derive `renderChecks` from the text and record the visual review criteria.
 4. **Scenarios:** cover the requested states and widths, each with a dark sibling. Use real components and
@@ -43,8 +48,9 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
    difference until `nao-classificado` is zero, and apply the minimal-difference policy.
 7. **Record:** `npm run visual:verdict -- <verdict.json> <bundle>`. This generates `findings.md` and the
    offline report.
-8. **Document:** use `vault-write` for reusable operational findings. Put harness learnings in
-   `visual/README.md`.
+8. **Document:** use `vault-write` for reusable operational findings, unless an orchestrator runs the
+   ticket (then report them). Put harness learnings in `visual/README.md` only when they change a rule,
+   folded into the matching section, not as a dated log.
 
 Return PASS / FAIL / BLOCKED, the run path, and the `findings.md` and `index.html` paths.
 

@@ -10,7 +10,8 @@
     "visual:check": "playwright test visual/capture.spec.ts",
     "visual:check:scenario": "node visual/run-scenario.mjs",
     "visual:compare": "node visual/run-compare.mjs",
-    "visual:verdict": "node visual/write-verdict.mjs",
+    "visual:recheck": "node visual/run-recheck.mjs",
+    "visual:verdict":"node visual/write-verdict.mjs",
     "visual:list": "playwright test visual/capture.spec.ts --list",
     "visual:type-check": "vue-tsc --noEmit -p tsconfig.visual.json",
     "visual:test": "node --test visual/lib/findings.test.mjs"

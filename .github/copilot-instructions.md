@@ -46,6 +46,8 @@ Shared by GitHub Copilot (loaded automatically) and Claude Code (imported by `CL
 
 Never hand-edit vault notes; always go through `vault-write`. Read-only tasks (QA, reviews) write to the vault only for reusable findings.
 
+**Orchestrated tickets (implement → QA → correct):** the orchestrator runs `vault-search` once and passes the relevant note paths to each agent, and runs `vault-write` once after the final round. Agents launched with that context, correction rounds and QA rechecks skip both steps. Vault notes describe the current state; history stays in git.
+
 ## Agents and skills
 | Work | Copilot agent (`.github/agents/`) | Claude agent (`.claude/agents/`) |
 |---|---|---|
