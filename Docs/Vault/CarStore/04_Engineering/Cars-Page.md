@@ -117,18 +117,23 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   menu shadow -> `shadow-md`, sunken `#f9fafb` -> `bg-sunken`. Second pass: `paginator/nav/button/selected`
   #d7e6fe / #1046a0 -> `--color-selected` / `--color-selected-ink` (style.css, exact hex); `button/text/secondary/hover/background` #f9fafb
   -> `bg-surface-50`; `button/text/secondary/color` #111827 -> `text-surface-900`; table row hover #f3f4f6 ->
-  `--p-datatable-row-hover-background`.
+  `--p-datatable-row-hover-background`; `iconfield/icon/color` #6b7280 -> `text-muted-color`.
 
 ## Figma alignment policy
 
 No deviations from the frame are approved (2026-11-11). The former list (selection color, bulk button ink,
-checkbox size, trash glyph, VIN font) was fixed; see "Third pass". The upward menu gap is 4.5px (whole pixels,
+checkbox size, trash glyph, VIN font) was fixed in the strict QA pass (see History). The upward menu gap is 4.5px (whole pixels,
 same as the downward gap and Figma's own rounding), approved by the user.
 
 ## Gaps
 
 - No API gaps: every field shown comes from `CarDto`. "N un." and "Brand · Body" are client formatting.
-- Search and column sort still act only on the loaded page (see [[Pagination]]).
+- Search and column sort still act only on the loaded page (see [[Pagination]]). A search with no result shows a
+  blank row: `DataTableCommon` has no `#empty` slot.
+- API 400 messages come from English `DomainException` texts (e.g. `Car.cs`), so the pt-BR UI shows English (backend).
+- The table has no accessible name (`aria-label`), which the Figma table component asks for.
+- The Figma inputtext main component (`2004:11640`) is not readable through the MCP, so filled/hover/focus states keep
+  Aura's (text surface-700, hover border surface-400, focus border primary).
 - **VIN font (resolved):** Figma `code/sm` is Roboto Mono 12/16. It is self-hosted like Inter (no CDN):
   `@fontsource/roboto-mono` dependency, `@import "@fontsource/roboto-mono/latin-400.css"` in `style.css`, and
   `--font-mono` in `@theme` starts with "Roboto Mono". The VIN is the only `font-mono` use in the app.
@@ -142,95 +147,16 @@ the `!` suffix (`p-[18px]!`, `min-w-[175px]!`, `text-muted-color!`). Classes wit
 properties the theme leaves unset. `display: block` on `.p-select-label` is why labels are centered with a
 line-height instead of `flex`.
 
-## QA 2026-11-11 (resolved: 7 of 7 fixed)
+## Decisions
 
-The visual QA run `qa-results/2026-11-11T17-32-22-727Z-multi-component/` (FAIL) found 7 defects, all
-caused by missing `!` suffixes or default PrimeVue colors. The correction round fixed them:
+- Paginator: no `#paginatorcontainer` or separate paginator component. The DataTable renders its own Paginator, and
+  the pt sections plus PrimeVue's built-in angle icons already match Figma.
+- A PrimeVue slot can drop a `pt` class silently (Menu `#itemicon`): put the classes on the slot content itself.
 
-- **Dialog shell** (`modalDialogPt`): header/content/footer padding and footer gap now use `!`, giving 18px
-  insets, a 68px header, a 6px footer gap and 362px content.
-- **Row menu** (`cardMenuPt`): 175px wide and 22px items were fixed in round 1. Round 2 (`attempt-03`, FAIL)
-  left two gaps, both fixed afterwards and confirmed in `attempt-04` (`cars-row-menu-light` spec rows all pass):
-  - Icons: the Menu `#itemicon` slot only receives `cx('itemIcon')` as its `class` (`primevue/menu/index.mjs`),
-    so `cardMenuPt.itemIcon` never applied. The template now adds `cardMenuPt.itemIcon.class` to the slot's
-    `<component>` in card mode, giving #6b7280 icons.
-  - Height: list padding went from `p-1!` to `p-[3px]!`, because the 1px `.p-menu` border adds 2px and the
-    Figma stroke sits outside auto layout. The menu is now 78px.
-- **Paginator** (`cardPaginatorPt`, `cardNavButtonPt`): 36px buttons, 68px footer, 598px card.
-- **Select labels**: centered with `leading-[38px]!` in the Car dialogs and the rows-per-page select.
-- **Delete banner**: 33px, #fecaca border, #b91c1c text (see Dialogs).
-- **Input borders**: surface-400 on dialog inputs/selects/textareas, the card search box and the
-  rows-per-page select; skipped while focused so the focus color still shows. In dark theme surface-400
-  follows the inverted ramp.
-- **Danger button**: #dc2626 via `dangerButtonMdClass`.
+## History
 
-The other six fixes (dialog shell, paginator, select labels, delete banner, input borders with the focus
-color preserved in both themes, danger button) were measured and confirmed in round 2. The deviations listed
-above were accepted (the active-page one was dropped in the second pass). Lesson: a PrimeVue slot can silently drop a `pt` class, so put the classes on
-the slot content itself.
-
-## Second pass 2026-11-11 (menu + paginator)
-
-The Figma frame `2069:2759` was re-read node by node. The menu component changed since the first round (items
-22px -> 30px, gap 2px -> 4px, menu 78px -> 106px) and the paginator now marks the active page with a fill; both are
-implemented above. A PrimeVue `#paginatorcontainer` or a separate paginator component was rejected: the DataTable
-renders its own Paginator and the pt sections plus built-in icons already match Figma, so a custom container would
-only duplicate PrimeVue's page-link logic. The committed QA reference `visual/references/cars-row-menu-light.png`
-(175x78) predates the change and must be refreshed by the QA agent.
-
-### QA of the second pass (resolved: PASS in attempt 02)
-
-Attempt 01 (FAIL) found the defects below. They were fixed and the same bundle's attempt 02 is PASS:
-- strokes: `size` passed to the Lucide icons, so they render at 1.5px;
-- flip: `onMenuShow` detects it from geometry (menu top above trigger top) and sets a rounded `top`/`left`, so the
-  gap is 3.5px above and 4.5px below with a half-pixel trigger, never an overlap;
-- chevron: `dropdownIcon` gets `text-muted-color!`;
-- double bottom line: `paginatorContainer: border-0!`, because the outer `<nav>` carries
-  `.p-datatable-paginator-bottom`, so the card is 598px;
-- trash glyph: reverted to `Trash2` as an accepted, pending-design deviation.
-
-Original attempt 01 notes:
-
-Run `qa-results/2026-11-11T18-37-24-682Z-multi-component/` refreshed `cars-row-menu-light` (175x106),
-`cars-list-light` and `cars-row-selected-light` (active page filled) and added `cars-row-menu-open-light`. Menu size,
-item metrics, colours, right-edge alignment, open/closed state, selection precedence, paginator sizes, hover and dark
-contrast pass. Open defects in `common/table/DataTableCommon.vue`:
-
-- Icon stroke renders 0.875px (menu, 14px) and 1px (ellipsis, 16px), not 1.5px: `@lucide/vue` computes
-  `absoluteStrokeWidth` from the `size` prop (default 24), not from the CSS size. Pass `size`.
-- `Trash` in `@lucide/vue` 1.71.0 is the former `Trash2` (`aliases: ["trash-2"]`), so the Excluir glyph still has the
-  inner lines that the Figma `trash` lacks.
-- Upward flip overlaps the trigger by 4px: `onMenuShow` compares `style.transformOrigin === "bottom"`, but Chromium
-  returns `center bottom`, so the -4px branch never runs. The menu also lands on a half pixel (y = trigger bottom + 4
-  with a 7.5px cell inset); Figma rounds it.
-- Rows-per-page chevron is Aura surface-400 (#9ca3af); Figma `select/dropdown/color` is #6b7280.
-- `.p-datatable-paginator-bottom` keeps Aura's 1px bottom border under the paginator, so the card is 599px (Figma
-  598) with a double bottom line (from the first pass).
-
-## Cars-only QA 2026-11-11
-
-Run `qa-results/2026-11-11T19-20-27-011Z-cars-page/` (base HEAD 90c8f9d, 56 `cars-*` scenarios, desktop 1440, light
-and dark): PASS. The accepted deviations are unchanged. Open observations, with no defect raised:
-
-- 400 messages come from English `DomainException` texts (e.g. `Car.cs`), so the pt-BR UI shows English.
-- A search with no result shows a blank empty row: `DataTableCommon` has no `#empty` slot. This matches the base.
-
-## Content node re-read 2026-11-11 (`2066:560`)
-
-The Figma "content" frame (search `2066:561` + card `2064:7106`, 1288x654) was compared property by property
-with card mode. Layout, sizes, spacing, typography, placeholder ("Buscar nesta página…"), table, tag, row button
-and paginator all still match; there are no new filters, counters or toolbar actions (the table's Header and
-Toolbar slots are hidden). The only deltas were the search icon colour (#9ca3af -> #6b7280) and stroke
-(1.17px -> 1.5px), fixed in `DataTableCommon.vue`. Token mapping added: `iconfield/icon/color` #6b7280 ->
-`text-muted-color`. The inputtext main component (`2004:11640`) is not readable through the MCP, so the filled,
-hover and focus states keep Aura's (text surface-700, hover border surface-400, focus border primary). The table
-component description asks for an accessible table name (`aria-label`); `DataTableCommon` has none yet (open).
-
-## Third pass 2026-11-11 (strict QA `qa-results/2026-11-11T21-59-27-336Z-cars-page/`)
-
-Fixed: checkbox 18px / 12px icon / surface-400 border / no shadow; bulk button ink `--p-red-700`; `TrashIcon` in
-the card menu, card bulk button and list-mode delete button; select chevron 14px muted; no close-button focus
-ring on open; upward menu gap 3.5px -> 4.5px; VIN in self-hosted Roboto Mono (see Gaps).
+Refactor and QA rounds (first pass, menu + paginator pass, content re-read, strict third pass) are in git history.
+Final evidence: `qa-results/2026-11-11T21-59-27-336Z-cars-page/findings.md` (attempt 04, PASS).
 
 ## Related
 

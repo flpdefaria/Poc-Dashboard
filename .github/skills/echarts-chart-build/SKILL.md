@@ -97,7 +97,7 @@ verbatim.
 
 ## Verify
 
-1. From `Src/CarStore.Web/ClientApp`: `npx vue-tsc --noEmit`, then `npm run build`; fix all errors.
+1. From `Src/CarStore.Web/ClientApp`: `npm run verify` (`vue-tsc` + `check:conventions` + build); fix all errors.
 2. Commit the regenerated `wwwroot/dist/` alongside the source change (same rule as every other ClientApp
    change in this repo).
 3. Load the page (`dotnet run --project Src/CarStore.Web`, `http://localhost:5045`), confirm the chart renders
@@ -115,4 +115,4 @@ verbatim.
 - Never hardcode a chart color as a raw hex - always a `--color-paint-*` or `--p-*` token, re-read on theme change.
 - Never duplicate a data-shaping/aggregation computed that already exists on the target page - reuse it and
   only add the small mapping to the chart's prop contract.
-- Never skip the `vue-tsc --noEmit` + `npm run build` verification step.
+- Never skip the `npm run verify` step.

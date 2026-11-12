@@ -44,7 +44,8 @@ optional Figma designs, using the committed visual harness in `Src/CarStore.Web/
 5. **Run:** `npm run visual:compare -- <ids>` in `Src/CarStore.Web/ClientApp`. Use
    `VISUAL_BASELINE_REF=HEAD` for uncommitted work. Rechecks use **Recheck mode** (above), which reuses the
    bundle and keeps the earlier attempts and baseline.
-6. **Judge:** inspect the screenshots, triptychs, requirement checks and spec results. Classify every
+6. **Judge:** inspect the screenshots, triptychs, requirement checks and spec results. For anything a spec row
+   cannot see, use `visual:measure` / `visual:crop` / `visual:attempt-diff`, never a hand-written script. Classify every
    difference until `nao-classificado` is zero, and apply the minimal-difference policy.
 7. **Record:** `npm run visual:verdict -- <verdict.json> <bundle>`. This generates `findings.md` and the
    offline report.

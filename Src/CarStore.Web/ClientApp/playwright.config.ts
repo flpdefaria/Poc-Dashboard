@@ -32,6 +32,9 @@ const webServers: WebServerEntry[] = [
   },
 ]
 
+/** Reused by `visual/measure.config.ts` (`npm run visual:measure`). */
+export const previewWebServer = webServers[0]
+
 const worktree = baselineDir()
 if (BASELINE_ENABLED && worktree) {
   // The base commit's own dev server, with the current harness overlaid.

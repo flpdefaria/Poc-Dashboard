@@ -34,6 +34,12 @@ Run from `Src/CarStore.Web/ClientApp`. `visual:compare` is the normal QA command
 | `npm run visual:verdict -- <verdict.json> <bundle>` | Records the QA judgement, then regenerates `findings.md` and `index.html`. |
 | `npm run visual:type-check` | Type-checks the harness. It is not part of `npm run build`. |
 | `npm run visual:test` | Runs the findings/verdict contract tests (`node --test`). |
+| `npm run visual:recheck -- <bundle> [<ids>]` | Correction recheck; see "Correction rounds". |
+| `npm run visual:ids -- cars [--light\|--dark]` | Comma-joined ids of one screen, for `visual:compare`. |
+| `npm run visual:measure -- <ids> --sel "<css>" [--props a,b]` | Opens the scenario exactly as captured (mocks, clock, theme, actions) and prints boxes, computed styles, focus state and SVG glyph bounds per selector. `--probe file.mjs` runs a custom `export default async (page, scenario) => json`; `--out` keeps the JSON. Never writes a bundle. **Use this instead of ad-hoc Playwright scripts.** |
+| `npm run visual:crop -- <a.png> <b.png> x y w h [--scale 8]` | Same box from two images side by side, scaled up: open this, not full screenshots. |
+| `npm run visual:attempt-diff -- <bundle> <id>` | What a correction changed between two attempts (changed pixels, bbox, diff PNG). |
+| `npm run visual:prune [-- --yes]` | Drops git-ignored evidence of older bundles (keeps the newest per screen and every versioned file). |
 
 First time on a machine: `npm install`, then `npx playwright install chromium`.
 

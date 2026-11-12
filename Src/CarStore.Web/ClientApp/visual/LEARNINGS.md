@@ -12,10 +12,10 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 - **Spec rows only cover what someone wrote.** Pull the frame's component variables with `get_variable_defs` and add a row
   for each visible state (unchecked border, check icon, select chevron), not only the one the delivery touched.
 - **An icon box row does not check the glyph.** Compare the Figma vector bounds (`get_metadata` on the icon instance) with
-  `path.getBBox()` scaled by `svgWidth / viewBox.width`. Lucide `getBBox` is the centreline: add the stroke width first.
+  the `glyph` that `visual:measure --sel "<svg selector>"` prints (`withStrokePx` already adds the stroke to Lucide's centreline).
 - **Spec rows do not check position inside a cell.** Compare the `get_metadata` slot `y` with `child.top - row.top` and
   count diff pixels in the column (an `inline-flex` checkbox with `vertical-align: bottom` lands 1px low).
-- **`strokeWidth` rows read viewBox units.** Rendered px = `stroke-width × renderedSize / 24`. Lucide
+- **`strokeWidth` rows read viewBox units.** Use `glyph.renderedStrokePx` from `visual:measure`. Lucide
   `absoluteStrokeWidth` divides by the `size` prop (default 24), not the CSS size.
 - **Inline `transform-origin` is serialised**: PrimeVue writes `bottom`, Chromium reads back `center bottom`.
 - **Spec `explanations` classify rows automatically** in every later run. When the acceptance policy changes, remove the
@@ -43,7 +43,7 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
   `get_metadata` bounds. Toasts need a `body` capture.
 - **Popups close on scroll.** Size the viewport so the capture fits (`cars-row-menu-flip` uses 1440x760).
 - **Move the pointer off the trigger** (`hover` on `h1`) after opening a row menu, or the capture shows the row hover.
-- **Focus/hover colours need ~600ms.** Aura's 0.2s `border-color` transition ignores `reducedMotion`.
+- **Focus/hover colours need ~600ms.** Aura's 0.2s `border-color` transition ignores `reducedMotion` (`visual:measure` waits 600ms).
 - **Keyboard focus on a checkbox needs a real Tab sequence** from the search input until `document.activeElement` is a
   `.p-checkbox-input`.
 - **Success toasts appear before the reload.** Wait for the reloaded rows (`expect-text`), not the toast.
@@ -76,7 +76,7 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
   the red pixels in `*.diff.png` first.
 - **Icon weight:** sum the ink (`255 - G` above 20) for the icon and for one already judged equal; a ratio far from 1
   means the stroke weight differs even when the bbox matches.
-- **Attempt-to-attempt diff** (`actual/attempt-N-1` vs `attempt-N`, delta above 8 per channel) isolates what a fix
+- **Attempt-to-attempt diff** (`npm run visual:attempt-diff -- <bundle> <id>`, delta above 8 per channel) isolates what a fix
   changed; deltas up to 8 on dark toast/backdrop captures are noise. For pages the delivery should not touch it beats a
   diff against the base.
 
@@ -91,10 +91,10 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 - **API contract tests use their own port** (`--urls http://localhost:5046`); 5045 may be the developer's instance.
 - **Vue warnings never reach `report.json`** (console errors only). Grep the run log for `Vue warn`, but a clean grep is
   proof only if the log carries `[console.*]` lines; otherwise use a page `console` listener and a probe `console.warn`.
-- **Second preview for measurements** while `visual:compare` holds 5175:
-  `npm run dev -- --config visual/vite.config.ts --port 5185 --strictPort`, then `PORT=5185` for bundle scripts.
-- `pngjs` is installed (no PIL): crop the same box from reference and capture for glyph-level checks.
-- **Id list for one screen:** `npm run visual:list | grep -oE "\bcars-[a-z0-9-]+-(light|dark)\b" | sort -u | paste -sd, -`.
+- **Measurements reuse the preview on 5175** (`visual:measure` starts or reuses it); run them after `visual:compare`
+  finishes, or set `VISUAL_PORT` for a second preview.
+- **Glyph-level checks:** `npm run visual:crop` (pngjs; there is no PIL).
+- **Id list for one screen:** `npm run visual:ids -- cars`.
 
 ## Guard scenarios
 

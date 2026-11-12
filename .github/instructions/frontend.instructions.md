@@ -31,6 +31,7 @@ Src/CarStore.Web/ClientApp/
   package.json               # dev | build | preview scripts, plus visual:* (QA harness)
   playwright.config.ts       # visual harness only (Chromium, preview server 5175, baseline 5174)
   tsconfig.visual.json       # type-checks visual/ + playwright.config.ts (npm run visual:type-check)
+  scripts/check-conventions.mjs # npm run check:conventions (part of npm run verify)
   visual/                    # QA visual-check harness, test-only: never built, excluded from Tailwind
                              # scanning (`@source not "../visual"`). Owned by the QA agent; see visual/README.md
   src/
@@ -93,7 +94,7 @@ Plus, outside `components/`:
 ## Build loop
 
 - Run `npm run build` after **every** ClientApp change (it is not part of `dotnet build`) and commit the rebuilt `wwwroot/dist` with the source: deployments serve it.
-- `npx vue-tsc --noEmit` and `npm run build` must both pass before finishing.
+- `npm run verify` (`vue-tsc --noEmit` + `check:conventions` + `vite build`) must pass before finishing. `check:conventions` enforces the colour, icon and Bootstrap rules below and prints file:line per violation.
 - Local dev: `npm run dev` (5173) alongside `dotnet run --project Src/CarStore.Web`; in Development `#app` stays empty without it.
 
 ## Pages and routing
@@ -129,7 +130,7 @@ Rules:
 4. **Arbitrary values are fine and expected** when the design does not land on Tailwind's scale: `rounded-[21px]`, `gap-1.75`, `px-[11.5px]`, `w-69.5`.
 5. **Reuse the shared class strings**: `styles/buttonStyles.ts` (`primaryButtonClass`, `secondaryButtonClass`, `dangerButtonClass`) and `common/dialog/dialogStyles.ts` (`dialogShellPt(width, contentClass?)`, `detailsDialogPt(width)`). If a new combination appears in 2+ places, extract it there.
 6. **Tailwind v4 config lives in `src/style.css`**: `@import "tailwindcss"; @import "tailwindcss-primeui";`. Content scanning only covers files under `ClientApp/`, so `@source "../../Views";` is what makes utility classes used in `.cshtml` files (e.g. `h-screen` on `<body>`) get generated. Keep it.
-7. **No component-class shim.** The Razor-era `@layer components` block (`.btn*`, `.form-*`, `.alert-danger`) was removed on 2026-11-11. Never reintroduce Bootstrap-style class names. Use PrimeVue components, `pt` and the shared class strings.
+7. **No Bootstrap-style class names** (`.btn*`, `.form-*`, `.alert-danger`): use PrimeVue components, `pt` and the shared class strings.
 
 ### Light and dark themes (mandatory for every screen)
 
@@ -168,9 +169,7 @@ Rules:
 
 - [ ] Vault: `/vault-search` before and `/vault-write` after (in an orchestrated ticket, the orchestrator does both once).
 - [ ] Existing composable/style/`pt` helper reused instead of duplicated.
-- [ ] No raw hex where a token exists; no Bootstrap; no `bi-*` icons; no second JS/CSS framework.
-- [ ] `npx vue-tsc --noEmit` clean.
-- [ ] `npm run build` clean, and the rebuilt `wwwroot/dist` committed with the change.
+- [ ] `npm run verify` clean, and the rebuilt `wwwroot/dist` committed with the change.
 - [ ] `dotnet build Src/CarStore.slnx` run if a `.cshtml` mount point or an API DTO changed.
 - [ ] Page opened in the running app and checked against the Figma frame, in **both light and dark themes** (toggle in the sidebar).
 - [ ] Visual validation, when requested, runs through the QA agent (`/frontend-visual-check`, harness in `ClientApp/visual/`), not the implementing agent.

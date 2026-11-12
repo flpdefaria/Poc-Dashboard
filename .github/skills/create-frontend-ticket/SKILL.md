@@ -10,7 +10,7 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 
 ## Discover
 
-1. Run `vault-search` for the screens/components involved. Read `.github/instructions/frontend.instructions.md`, `web.instructions.md`, and the existing components, composables and `types.ts`.
+1. Run `vault-search` for the screens/components involved. Read `.github/instructions/frontend.instructions.md`, the "JSON API controllers" section of `web.instructions.md`, and the existing components, composables and `types.ts`.
 2. With a Figma URL, run `figma-discovery`. For existing UI, also run `figma-refactor`. Without a URL, use the text requirements and skip Figma tools.
 3. Use the PrimeVue MCP to verify the selected components and APIs. Existing CarStore components come first, then PrimeVue primitives.
 4. Identify the real `/api/*` endpoints and affected files. A missing backend capability is an explicit dependency for a separate ticket (Developer-Specialist), never a hidden endpoint/DTO change.
@@ -21,9 +21,9 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 - **References:** vault notes, exact source files and patterns, Figma URL/node when supplied.
 - **Requirements:** visible elements, copy (pt-BR UI), interactions, data sources, loading/empty/error states, widths (`carstore-mobile-responsive` when below desktop), both themes, accessibility. Each expected outcome must be verifiable from the text or from Figma.
 - **Tech Details:** ClientApp conventions, mandatory PrimeVue MCP, Lucide only, tokens instead of hex, no Bootstrap, server-side paging, no fixture data in production.
-- **Implementation:** context → optional `figma-discovery` (cached in `.figma-cache/`) / `figma-refactor` → `primevue-component-build` (or `echarts-chart-build`) → `npx vue-tsc --noEmit` + `npm run build` → delivery summary with `arquivos`, `componentes`, `estados`, `larguras`, optional `figma`, `figma-cache`, `lacunas`, `vault` (facts for the final `vault-write`).
+- **Implementation:** context → optional `figma-discovery` (cached in `.figma-cache/`) / `figma-refactor` → `primevue-component-build` (or `echarts-chart-build`) → `npm run verify` → delivery summary with `arquivos`, `componentes`, `estados`, `larguras`, optional `figma`, `figma-cache`, `lacunas`, `vault` (facts for the final `vault-write`).
 - **Ciclo de desenvolvimento e QA:** the full cycle below.
-- **Verify:** `npx vue-tsc --noEmit`, `npm run build`, `dotnet build Src/CarStore.slnx` if a DTO changed, and the QA evidence cycle.
+- **Verify:** `npm run verify`, `dotnet build Src/CarStore.slnx` if a DTO changed, and the QA evidence cycle.
 - **Out of Scope:** backend, API contracts, domain rules, persistence, tooling (`vite.config.ts`, `package.json`, `.mcp.json`), and unrelated design changes.
 - **Observations:** prerequisites, backend/design decisions, unavailable checks, defects left after the cycle.
 - **Acceptance Criteria:** checkboxes for the requested behavior, PrimeVue evidence, optional Figma evidence, QA `findings.md`, and the final vault criterion.

@@ -52,7 +52,7 @@ Requested explicitly as an architecture change; the previous "never turn this in
 
 ## Verification performed
 
-- `npx vue-tsc --noEmit` and `npm run build` clean.
+- `npm run verify` clean (`vue-tsc --noEmit` + `check:conventions` + `vite build`; `scripts/check-conventions.mjs` enforces the icon, colour and Bootstrap rules).
 - `dotnet build Src/CarStore.slnx` clean; `dotnet test` — 20/20 passing (domain tests unaffected).
 - Manual smoke test: `/`, `/cars`, `/brands`, `/customers` all return 200 and serve the `div#app` shell
   (verifying the MVC fallback route); `/api/cars` and `/api/customers` unaffected; a full

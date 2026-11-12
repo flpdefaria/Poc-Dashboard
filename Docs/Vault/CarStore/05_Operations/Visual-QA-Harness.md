@@ -46,6 +46,10 @@ Run from `Src/CarStore.Web/ClientApp`:
 | `QA_RUN_DIR=<bundle> npm run visual:compare -- <ids>` | Correction round. Appends `attempt-NN`. |
 | `npm run visual:recheck -- <bundle> [<ids>] [--no-baseline]` | Preferred recheck after a correction (`visual/run-recheck.mjs`). Re-runs the scenarios of the open `defeito` items, reuses the bundle's baseline commit and prints one JSON: `defeitos[]` (`resolvido`/`persiste`), `novas[]`, `abrir[]` (only images worth opening), `verdictDraft`. Writes `recheck-summary.json` and `verdict-draft.json` (previous judgement minus resolved ids). |
 | `npm run visual:verdict -- <verdict.json> <bundle>` | Records the QA judgement, then regenerates `findings.md` and `index.html`. |
+| `npm run visual:ids -- <screen>` | Comma-joined scenario ids of one screen. |
+| `npm run visual:measure -- <ids> --sel "<css>"` | Measures the real render (boxes, styles, focus, SVG glyph bounds) through `lib/open-scenario.ts`, the same path as the capture; `--probe` for custom probes. Replaces ad-hoc measurement scripts (15 were hand-written during the Cars QA). |
+| `npm run visual:crop` / `visual:attempt-diff` | Zoomed side-by-side crop; what changed between two attempts. |
+| `npm run visual:prune [-- --yes]` | Drops git-ignored evidence of older bundles, keeping the newest per screen. |
 | `npm run visual:type-check` | Type-checks the harness. |
 | `npm run visual:test` | Runs the findings/verdict contract tests. |
 
@@ -111,8 +115,7 @@ Measurement traps (PrimeVue vs Tailwind layers, CSS-only spec selectors, write m
 glyph/stroke checks, console warnings) live in `Src/CarStore.Web/ClientApp/visual/LEARNINGS.md`, grouped by topic.
 The harness README and this note no longer keep dated learning logs.
 
-Reference runs: `qa-results/2026-11-11T19-20-27-011Z-cars-page/` (Cars-only, PASS) and
-`qa-results/2026-11-11T21-59-27-336Z-cars-page/` (strict Cars QA, attempt-04 PASS). See [[Cars-Page]].
+Reference run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` (strict Cars QA, attempt-04 PASS). See [[Cars-Page]].
 
 ### Git
 

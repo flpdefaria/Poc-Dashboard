@@ -26,6 +26,10 @@ Read these before adding scenarios:
 | Recheck (after a correction) | `npm run visual:recheck -- <bundle>`: see **Recheck mode** below |
 | Explicit base | `VISUAL_BASELINE_REF=<ref>`. Use `HEAD` for uncommitted changes; `auto` is the merge-base with `main`. |
 | Verdict | `npm run visual:verdict -- <verdict.json> <bundle>` |
+| Ids of a screen | `npm run visual:ids -- <screen>` |
+| Fine measurement | `npm run visual:measure -- <ids> --sel "<css>"` (or `--probe`). Never hand-write Playwright measurement scripts. |
+| Zoomed comparison | `npm run visual:crop -- <ref.png> <actual.png> x y w h` |
+| What a fix changed | `npm run visual:attempt-diff -- <bundle> <id>` |
 | Servers | The harness starts its own preview server (5175) and a baseline server (5174). It does not need `dotnet run` or the normal `npm run dev` (5173). |
 | Data | Snapshots of the seeded API in `visual/scenarios/fixtures/*.json`, served through mocks. Every undeclared `/api` call is aborted. |
 | Theme | `theme: 'dark'` on the scenario. The preview sets `carstore-theme`, `app-dark` and `data-surface` as `_Layout.cshtml` does. |
@@ -82,11 +86,8 @@ Read these before adding scenarios:
 - Classify each failing, missing or dynamic spec row and each failing section through `explanations`
   until `nao-classificado` is zero. The categories are `defeito`, `decisao-design`, `backend`,
   `artefato-harness`, `intencional` and `conteudo-dinamico`. Explanations never change expected values.
-- Check the conventions too:
-  - Lucide icons only (no `pi pi-*` / `bi-*`).
-  - No Bootstrap classes.
-  - `surface-*`/semantic tokens instead of hardcoded grays.
-  - Readable dark contrast.
+- Conventions: run `npm run check:conventions -- <changed .vue/.ts files>` (icons, tokens, Bootstrap remnants,
+  `alert`, string icon props) and judge readable dark contrast on the captures.
 
 ### Recheck mode (correction rounds)
 

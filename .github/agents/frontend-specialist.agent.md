@@ -19,7 +19,7 @@ Keep new and changed UI faithful to Figma and consistent with the existing conve
 
 **Source of truth:** `.github/instructions/frontend.instructions.md`, which covers folder layout, placement,
 the new-entity file set, composables, styling rules, light/dark themes, the definition of done and the
-"Never" list. Read it before acting; this file does not repeat it. Read-only questions about the frontend end with an evidence-based answer and no edits. Also read `web.instructions.md` for the
+"Never" list. Read it before acting; this file does not repeat it. Read-only questions about the frontend end with an evidence-based answer and no edits. Also read only the "JSON API controllers" section of `web.instructions.md` for the
 `/api/*` contract and `pagination.instructions.md` for lists. Follow the vault workflow in
 `.github/copilot-instructions.md`; when the orchestrator supplied vault note paths, read only those instead of running `/vault-search`.
 
@@ -29,7 +29,7 @@ the new-entity file set, composables, styling rules, light/dark themes, the defi
 |---|---|
 | `/figma-discovery` | FIRST, whenever the task references a Figma URL/node or must match a design. Extracts the real spec through the Figma MCP and maps it to existing tokens. |
 | `/figma-refactor` | After discovery, when the node targets UI that already exists. Produces a read-only delta plan. |
-| `/primevue-component-build` | To create/restyle a component: placement, reuse, tokens + `pt` + Tailwind + Lucide, Bootstrap audit, verification. |
+| `/primevue-component-build` | To create/restyle a component: placement, reuse, tokens + `pt` + Tailwind + Lucide, verification (`npm run verify`). |
 | `/echarts-chart-build` | ANY chart work, on any page. ECharts is the only charting library. |
 | `/carstore-mobile-responsive` | Tablet/phone scope or a Figma tablet/phone frame. |
 
@@ -43,13 +43,13 @@ QA-owned: never edit it. If a change breaks a scenario's selectors, report it in
 2. Read the sibling components in the target folder and never invent prop/emit names or locations. Reuse `composables/`, `styles/buttonStyles.ts`, `common/dialog/dialogStyles.ts` and `DataTableCommon.vue` before creating anything.
 3. Implement with `/primevue-component-build` (or `/echarts-chart-build`). Query the PrimeVue MCP for component APIs and `pt` section names instead of guessing. If it is unavailable, report the blocked verification and continue only independent work; never claim it was verified.
 4. Wire it in: a new page = `router/index.ts` route + `Sidebar.vue` nav item; a DTO change = `types.ts` (the C# side belongs to Developer-Specialist).
-5. Validate: in `Src/CarStore.Web/ClientApp`, run `npx vue-tsc --noEmit` and `npm run build`, then `dotnet build Src/CarStore.slnx` if an API DTO changed. Run the Bootstrap/PrimeIcons grep from `/primevue-component-build`. Open the page in light and dark themes.
+5. Validate: in `Src/CarStore.Web/ClientApp`, run `npm run verify` (`vue-tsc` + `check:conventions` + build; fix every reported line), then `dotnet build Src/CarStore.slnx` if an API DTO changed. Open the page in light and dark themes.
 6. Run `/vault-write` with the components changed, the Figma node and any new token mapping.
 
 ## Output
 
 Report the files created/modified, the Figma node(s) and new token mappings, the shared helpers reused or
-extracted, the `vue-tsc`/`build` results, confirmation of no Bootstrap/PrimeIcons, and the vault notes written.
+extracted, the `npm run verify` result, and the vault notes written.
 End with a **delivery summary** for QA-Specialist:
 
 - `arquivos`: changed application files.

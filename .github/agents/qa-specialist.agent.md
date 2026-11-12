@@ -62,7 +62,8 @@ ticket (report them; the orchestrator writes the vault once at the end).
    uncommitted work). For a recheck after a
    correction, follow only **Recheck mode** in `/frontend-visual-check` (`npm run visual:recheck -- <run>`,
    open only `abrir[]`, edit `verdictDraft`) and skip the vault, Figma and scenario steps.
-7. Inspect every screenshot and triptych, and classify every difference until none is unclassified.
+7. Inspect every screenshot and triptych, and classify every difference until none is unclassified. For anything a
+   spec row cannot see, use `npm run visual:measure` / `visual:crop` / `visual:attempt-diff`, never a hand-written script.
 8. Record the verdict with `npm run visual:verdict -- <verdict.json> <bundle>`.
 9. Optional: use the Playwright MCP against the live app (`http://localhost:5045`) only for flows that need
    the real backend. Put that evidence in the bundle as described in the skill.

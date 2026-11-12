@@ -82,13 +82,10 @@ On 2026-11-10 it was refactored to match the Figma frame **"Tela · Central da f
   `DataTableColumn.sortable` (default `true`) makes sorting per column. The defaults leave the
   Cars/Brands/Customers tables unchanged.
 
-## Figma parity pass (2026-11-11)
+## Figma parity details
 
-QA bundle `qa-results/2026-11-11T12-39-34-926Z-home` is **PASS** at attempt-09:
-- Figma spec 140/140.
-- Whole screen 1288x1075; the 1.03% pixel diff is Inter rasterization plus 4 fixture dates.
-
-Fixes made in that round:
+Evidence: `qa-results/2026-11-11T12-39-34-926Z-home` (PASS; spec 140/140; whole screen 1288x1075, the 1.03% pixel
+diff is Inter rasterization plus 4 fixture dates).
 
 | Area | Change |
 |---|---|

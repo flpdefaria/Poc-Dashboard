@@ -21,6 +21,8 @@
 @source "../../Views";
 /* The visual-check harness (ClientApp/visual, test-only) must never add utilities to the shipped CSS. */
 @source not "../visual";
+/* Tooling scripts (ClientApp/scripts) quote class names in their rules; they must not add utilities either. */
+@source not "../scripts";
 
 /* Data palette: automotive paint swatches. Color on the dashboard encodes data categories and
    metric identity only; the monochrome surface-700/800 stays the single "act here" color. Every swatch
