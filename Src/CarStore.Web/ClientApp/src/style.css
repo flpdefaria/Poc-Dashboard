@@ -52,6 +52,11 @@
   --color-selected: #d7e6fe;
   --color-selected-ink: #1046a0;
   --color-selected-accent: #2564cf;
+  /* Figma "message" warn (Brands delete-dialog 2113:5369) is orange, while Aura's message warn is yellow:
+     bg #fff7ed at 95%, border #fed7aa, ink #c2410c. Used by ConfirmDeleteDialog list mode (`warnBannerPt`) only. */
+  --color-warn-banner: color-mix(in srgb, var(--p-orange-50), transparent 5%);
+  --color-warn-banner-border: var(--p-orange-200);
+  --color-warn-banner-ink: var(--p-orange-700);
 }
 
 /* Card-mode tables (Cars): Figma's blue checked checkbox instead of the monochrome primary. Unlayered so it
@@ -204,6 +209,11 @@ html.app-dark {
   --color-selected: color-mix(in srgb, #7aa7f5 22%, transparent);
   --color-selected-ink: #bcd4fb;
   --color-selected-accent: #7aa7f5;
+  /* Warn banner on the dark canvas: same tint formula as the dark error message, on the orange ramp.
+     Ink orange-300 is >= 9.6:1 on the tinted fill in every surface mode. */
+  --color-warn-banner: color-mix(in srgb, var(--p-orange-400) 14%, transparent);
+  --color-warn-banner-border: color-mix(in srgb, var(--p-orange-400) 35%, transparent);
+  --color-warn-banner-ink: var(--p-orange-300);
 }
 html.app-dark .dt-card .p-checkbox-checked .p-checkbox-icon {
   color: var(--p-surface-0);

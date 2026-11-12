@@ -1,0 +1,199 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-1744",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:1744",
+    "nodeName": "Tela · Marcas · Linha selecionada (main)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "checks": [
+    {
+      "nodeId": "I2113:7;363:2790",
+      "nodeName": "title-row",
+      "selector": ":scope > div:nth-child(1)",
+      "props": {
+        "width": 1288,
+        "height": 56
+      }
+    },
+    {
+      "nodeId": "I2113:7;363:2793",
+      "nodeName": "title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Marcas",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "color": "#1f2937",
+        "fontFamily": "Inter"
+      }
+    },
+    {
+      "nodeId": "I2113:7;363:2794",
+      "nodeName": "description",
+      "selector": ":scope > div:nth-child(1) p",
+      "text": "Gerencie as marcas de carros: consulte nome, país, data de fundação e número de carros, e crie, edite ou remova registros.",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2113:1747;363:2756;2113:1763",
+      "nodeName": "button Nova marca",
+      "selector": ":scope > div:nth-child(1) .p-button",
+      "text": "Nova marca",
+      "props": {
+        "width": 138,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:9",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2113:9",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield input",
+      "props": {
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2113:10",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2113:1751",
+      "nodeName": "button Excluir selecionados",
+      "selector": ":scope .p-button-danger.p-button-outlined",
+      "text": "Excluir selecionados (1)",
+      "props": {
+        "width": 216,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#fecaca",
+        "color": "#b91c1c",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "table-row selecionada",
+      "selector": ":scope .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 48,
+        "backgroundColor": "#d7e6fe"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "cell Nome (selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+      "text": "Audi",
+      "props": {
+        "fontSize": 14,
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "cell País (selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+      "text": "Alemanha",
+      "props": {
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "checkbox marcado",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox",
+      "props": {
+        "width": 18,
+        "height": 18
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "checkbox marcado (caixa)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "backgroundColor": "#2564cf",
+        "borderColor": "#2564cf"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1765",
+      "nodeName": "checkbox marcado (ícone check)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child .p-checkbox-icon",
+      "props": {
+        "width": 12,
+        "height": 12,
+        "color": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1766",
+      "nodeName": "table-row 2 (não selecionada)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2)",
+      "props": {
+        "height": 48,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2113:1753;553:9904;2113:1766",
+      "nodeName": "checkbox desmarcado (caixa, linha 2)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2) .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "borderColor": "#9ca3af",
+        "backgroundColor": "#ffffff"
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2113:1744 (cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO) recortado em x112 y40 1288x734 (bounds do get_metadata), sem a nav-rail/margem do shell.",
+    "Botão 2113:1751 = 216x40 em x1072 da linha de busca (alinhado à direita do card).",
+    "Cores da seleção = tokens do canvas Carros (selected #d7e6fe, ink #1046a0, checkbox #2564cf), conferidas por pixel (#d7e6fe na linha 1).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend."
+  ]
+}

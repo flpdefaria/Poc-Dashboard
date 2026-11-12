@@ -1,0 +1,374 @@
+{
+  "selectors": [
+    ":scope",
+    ":scope .p-dialog-header",
+    ":scope .p-dialog-close-button",
+    ":scope .p-dialog-content",
+    ":scope .p-dialog-footer",
+    ":scope .p-dialog-header .bg-sunken",
+    ":scope .p-dialog-header .bg-sunken svg",
+    ":scope .p-dialog-header span",
+    ":scope .p-dialog-header p",
+    ":scope .p-dialog-content > dl",
+    ":scope .p-dialog-content > dl > div:nth-child(1) dt",
+    ":scope .p-dialog-content > dl > div:nth-child(1) dd",
+    ":scope .p-dialog-content > dl > div:nth-child(2) dd",
+    ":scope .p-dialog-content > dl > div:nth-child(3) dd",
+    ":scope .p-dialog-content > section:nth-of-type(1)",
+    ":scope .p-dialog-content > section:nth-of-type(1) h3",
+    ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1)",
+    ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1) p:nth-child(1)",
+    ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1) p:nth-child(2)",
+    ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(3)",
+    ":scope .p-dialog-content > section:nth-of-type(2)",
+    ":scope .p-dialog-content > section:nth-of-type(2) p",
+    ":scope .p-dialog-footer button:first-child",
+    ":scope .p-dialog-footer button:last-child"
+  ],
+  "snapshot": {
+    "root": {
+      "found": true,
+      "width": 520,
+      "height": 502,
+      "text": "Detalhes NOME Audi PAÍS Alemanha ANOS DE ATUAÇÃO 117 DATA DE FUNDAÇÃO 1909-07-16 NÚMERO DE CARROS 3 CARROS A4 (2024) Q5 (2024) e-tron GT (2025) DESCRIÇÃO Marca alemã de luxo, conhecida pela tração integral quattro. Fechar"
+    },
+    "checks": [
+      {
+        "found": true,
+        "width": 520,
+        "height": 502,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "12px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderTopColor": "rgb(229, 231, 235)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Detalhes NOME Audi PAÍS Alemanha ANOS DE ATUAÇÃO 117 DATA DE FUNDAÇÃO 1909-07-16 NÚMERO DE CARROS 3 CARROS A4 (2024) Q5 (2024) e-tron GT (2025) DESCRIÇÃO Marca alemã de luxo, conhecida pela tração integral quattro. Fechar",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 518,
+        "height": 67,
+        "style": {
+          "paddingTop": "20px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Detalhes",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 40,
+        "height": 40,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "0px",
+          "paddingBottom": "8px",
+          "paddingLeft": "0px",
+          "gap": "0px",
+          "borderTopLeftRadius": "50%",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(107, 114, 128)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgba(0, 0, 0, 0)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 518,
+        "height": 375,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "7px",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "NOME Audi PAÍS Alemanha ANOS DE ATUAÇÃO 117 DATA DE FUNDAÇÃO 1909-07-16 NÚMERO DE CARROS 3 CARROS A4 (2024) Q5 (2024) e-tron GT (2025) DESCRIÇÃO Marca alemã de luxo, conhecida pela tração integral quattro.",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 518,
+        "height": 58,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "20px",
+          "paddingBottom": "20px",
+          "paddingLeft": "20px",
+          "gap": "8px",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Fechar",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 90.703125,
+        "height": 31.5,
+        "style": {
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "gap": "normal",
+          "borderTopLeftRadius": "0px",
+          "borderTopWidth": "0px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "31.5px",
+          "letterSpacing": "normal",
+          "color": "rgb(31, 41, 55)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(31, 41, 55)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Detalhes",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": false,
+        "width": 0,
+        "height": 0,
+        "style": {},
+        "text": "",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 70.84375,
+        "height": 38,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "11.5px",
+          "paddingBottom": "8px",
+          "paddingLeft": "11.5px",
+          "gap": "7px",
+          "borderTopLeftRadius": "6px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(107, 114, 128)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(209, 213, 219)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Fechar",
+        "vars": {}
+      },
+      {
+        "found": true,
+        "width": 70.84375,
+        "height": 38,
+        "style": {
+          "paddingTop": "8px",
+          "paddingRight": "11.5px",
+          "paddingBottom": "8px",
+          "paddingLeft": "11.5px",
+          "gap": "7px",
+          "borderTopLeftRadius": "6px",
+          "borderTopWidth": "1px",
+          "fontFamily": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+          "fontSize": "14px",
+          "fontWeight": "500",
+          "lineHeight": "20px",
+          "letterSpacing": "normal",
+          "color": "rgb(107, 114, 128)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderTopColor": "rgb(209, 213, 219)",
+          "opacity": "1",
+          "strokeWidth": "1px"
+        },
+        "text": "Fechar",
+        "vars": {}
+      }
+    ]
+  }
+}

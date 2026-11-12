@@ -11,6 +11,7 @@ import { useEntityCrud } from "../composables/useEntityCrud";
 import { formatDate } from "../utils/format";
 import { brandLabel } from "../utils/entityLabel";
 import type { BrandDto } from "../types";
+import type { ConfirmDeleteItem } from "./common/dialog/ConfirmDeleteDialog.vue";
 
 const props = defineProps<{
   apiUrl: string;
@@ -62,7 +63,49 @@ const {
   reload: () => load(Math.floor(first.value / rows.value) + 1, rows.value),
 });
 
+// Delete dialogs (Figma 2114:4132 / 2113:5364): one list row per brand, country subtitle and the car count.
+function carsLabel(count: number) {
+  return count === 1 ? "1 carro" : `${count} carros`;
+}
+
+function brandsLabel(count: number) {
+  return count === 1 ? "1 marca" : `${count} marcas`;
+}
+
+function toDeleteItem(brand: BrandDto): ConfirmDeleteItem {
+  return { key: brand.id, title: brand.name, subtitle: brand.country || undefined, meta: carsLabel(brand.carsCount) };
+}
+
+function joinNames(names: string[]) {
+  return names.length <= 1 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} e ${names[names.length - 1]}`;
+}
+
+// A brand with cars cannot be deleted (Brand.EnsureCanBeDeleted): the dialog shows the Figma warn banner
+// (2113:5369) and disables the confirm button. Copy for one brand follows the frame; the plural form is derived.
+function blockedWarning(blocked: BrandDto[]) {
+  if (!blocked.length) return null;
+  if (blocked.length === 1) {
+    const [brand] = blocked;
+    const cars = brand.carsCount === 1 ? "1 carro cadastrado" : `${brand.carsCount} carros cadastrados`;
+    return `${brand.name} tem ${cars}. Remova ou transfira os carros antes de excluir a marca.`;
+  }
+  return `${joinNames(blocked.map((brand) => brand.name))} têm carros cadastrados. Remova ou transfira os carros antes de excluir as marcas.`;
+}
+
+const deleteBlocked = computed(() => !!deleteTarget.value && deleteTarget.value.carsCount > 0);
 const bulkDeleteBlockedBrands = computed(() => bulkDeleteTargets.value.filter((brand) => brand.carsCount > 0));
+
+const bulkDeleteMessage = computed(() => {
+  const count = bulkDeleteTargets.value.length;
+  if (bulkDeleteBlockedBrands.value.length) return count === 1 ? "Marca selecionada:" : "Marcas selecionadas:";
+  return count === 1 ? "A marca será removida do cadastro:" : "As marcas serão removidas do cadastro:";
+});
+
+// Details "Editar" (Figma 2113:2637) hands the brand straight to the edit dialog.
+function onDetailsEdit(brand: BrandDto) {
+  detailsDialogVisible.value = false;
+  onEditRequest(brand);
+}
 
 onMounted(() => load(1, rows.value));
 
@@ -84,6 +127,7 @@ defineExpose({ reload: () => load(1, rows.value) });
     confirm-delete
     confirm-edit
     bulk-delete
+    card
     @page="onPage"
     @delete="onDeleteRequest"
     @edit="onEditRequest"
@@ -91,29 +135,18 @@ defineExpose({ reload: () => load(1, rows.value) });
     @bulk-delete="onBulkDeleteRequest"
   >
     <template #col-foundedDate="{ data }">
-      <span class="text-xs text-muted-color">{{ formatDate(data.foundedDate) }}</span>
+      <span>{{ formatDate(data.foundedDate) }}</span>
     </template>
   </DataTableCommon>
 
   <ConfirmDeleteDialog
     v-model:visible="deleteDialogVisible"
-    title="Excluir marca"
-    message="Tem certeza de que deseja excluir esta marca?"
-    :details="
-      deleteTarget
-        ? [
-            { label: 'Nome', value: deleteTarget.name },
-            { label: 'País', value: deleteTarget.country },
-            { label: 'Carros', value: String(deleteTarget.carsCount) },
-          ]
-        : []
-    "
-    :confirm-disabled="!!deleteTarget && deleteTarget.carsCount > 0"
-    :warning="
-      deleteTarget && deleteTarget.carsCount > 0
-        ? `Esta marca tem ${deleteTarget.carsCount} carro(s) cadastrado(s). Remova-os ou transfira-os antes de excluir a marca.`
-        : null
-    "
+    :title="deleteTarget ? `Excluir ${deleteTarget.name}?` : 'Excluir marca?'"
+    :message="deleteBlocked ? 'Marca selecionada:' : 'A marca será removida do cadastro:'"
+    :items="deleteTarget ? [toDeleteItem(deleteTarget)] : []"
+    confirm-label="Excluir marca"
+    :confirm-disabled="deleteBlocked"
+    :warning="deleteTarget ? blockedWarning(deleteBlocked ? [deleteTarget] : []) : null"
     :loading="deleteLoading"
     :error="deleteError"
     @confirm="onDeleteConfirm"
@@ -121,15 +154,12 @@ defineExpose({ reload: () => load(1, rows.value) });
 
   <ConfirmDeleteDialog
     v-model:visible="bulkDeleteDialogVisible"
-    title="Excluir marcas"
-    :message="`Tem certeza de que deseja excluir ${bulkDeleteTargets.length} marca(s)?`"
-    :details="bulkDeleteTargets.map((brand) => ({ label: brand.name, value: `${brand.carsCount} carro(s)` }))"
+    :title="`Excluir ${brandsLabel(bulkDeleteTargets.length)}?`"
+    :message="bulkDeleteMessage"
+    :items="bulkDeleteTargets.map(toDeleteItem)"
+    :confirm-label="`Excluir ${brandsLabel(bulkDeleteTargets.length)}`"
     :confirm-disabled="bulkDeleteBlockedBrands.length > 0"
-    :warning="
-      bulkDeleteBlockedBrands.length > 0
-        ? `${bulkDeleteBlockedBrands.map((brand) => brand.name).join(', ')} ainda ${bulkDeleteBlockedBrands.length === 1 ? 'tem' : 'têm'} carros cadastrados. Remova-os ou transfira-os antes de excluir.`
-        : null
-    "
+    :warning="blockedWarning(bulkDeleteBlockedBrands)"
     :loading="bulkDeleteLoading"
     :error="bulkDeleteError"
     @confirm="onBulkDeleteConfirm"
@@ -143,6 +173,5 @@ defineExpose({ reload: () => load(1, rows.value) });
     @submit="onEditSubmit"
   />
 
-  <DetailsBrandDialog v-model:visible="detailsDialogVisible" :brand="detailsTarget" />
+  <DetailsBrandDialog v-model:visible="detailsDialogVisible" :brand="detailsTarget" @edit="onDetailsEdit" />
 </template>
-

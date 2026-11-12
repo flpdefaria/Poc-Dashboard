@@ -43,13 +43,6 @@ function createWithCarFilter(theme: 'light' | 'dark'): VisualScenario {
       { type: 'expect-count', selector: '.p-select-overlay .p-select-option', count: 7 },
       { type: 'wait', ms: 200 },
     ],
-    // The base commit has no "Carro" field: just open the dialog for the before/after comparison.
-    baselineActions: [
-      { type: 'expect-count', selector: '.p-datatable-tbody > tr', count: 10 },
-      { type: 'click', selector: 'button:has-text("Novo cliente")' },
-      { type: 'expect-text', selector: '.p-dialog', value: 'Novo cliente' },
-      { type: 'wait', ms: 200 },
-    ],
     renderChecks: [
       { label: 'Diálogo Novo cliente aberto', selector: '.p-dialog', text: 'Novo cliente' },
       { label: 'Campo Carro presente', selector: '.p-dialog label:has-text("Carro")', count: 1 },

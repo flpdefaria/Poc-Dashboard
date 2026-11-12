@@ -4,7 +4,7 @@ import PageHeader from "./common/pageheader/PageHeader.vue";
 import BrandsTable from "./BrandsTable.vue";
 import CreateBrandDialog, { type CreateBrandPayload } from "./common/dialog/CreateBrandDialog.vue";
 import Button from "primevue/button";
-import { primaryButtonClass } from "../styles/buttonStyles";
+import { primaryButtonMdClass } from "../styles/buttonStyles";
 import { useCreateEntity } from "../composables/useCreateEntity";
 import { brandLabel } from "../utils/entityLabel";
 import { Plus } from "@lucide/vue";
@@ -27,18 +27,15 @@ const {
 </script>
 
 <template>
-  <div class="flex flex-col gap-3">
+  <!-- Figma "Tela · Marcas" main (2113:6): 24px between the page header and the content. -->
+  <div class="flex flex-col gap-6">
     <PageHeader
       title="Marcas"
       description="Gerencie as marcas de carros: consulte nome, país, data de fundação e número de carros, e crie, edite ou remova registros."
     >
       <template #actions>
-        <Button
-          :class="primaryButtonClass"
-          @click="openCreate"
-        >
-          <Plus class="text-xs" />
-          Nova marca
+        <Button label="Nova marca" :class="primaryButtonMdClass" @click="openCreate">
+          <template #icon><Plus /></template>
         </Button>
       </template>
     </PageHeader>

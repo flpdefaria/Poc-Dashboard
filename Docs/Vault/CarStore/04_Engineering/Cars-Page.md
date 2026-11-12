@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-11-11
-updated: 2026-11-11
+updated: 2026-11-12
 tags:
   - note
   - type/guide
@@ -32,7 +32,7 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
 
 ## Table (`DataTableCommon` `card` mode)
 
-- Opt-in: Brands, Customers and Home keep their current table. Do not combine `card` with `flush`.
+- Opt-in: used by Cars and Brands ([[Brands-Page]]); Customers and Home keep their current table. Do not combine `card` with `flush`.
 - Search box 216x40 above the card (16px gap); card `rounded-xl border-surface-200 shadow-sm`. Search icon 14px
   in `text-muted-color!` (Figma `iconfield/icon/color` #6b7280; Aura's `--p-iconfield-icon-color` is surface-400)
   with a 1.5px absolute stroke (`cardSearchIconProps`, card only).
@@ -76,7 +76,7 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   class="outline-none"` on its `#header` title element (details: the header block). PrimeVue's `focus()` searches
   the header container before falling back to the close button. The title was chosen over a content wrapper so the
   content DOM (and the QA selectors such as `.p-dialog-content > section`) stays unchanged. Tab reaches the close
-  button and the fields; Esc still closes. Brands/Customers dialogs are untouched.
+  button and the fields; Esc still closes. Brands dialogs use the same pattern ([[Brands-Page]]); Customers dialogs are untouched.
 - Shell: `modalDialogPt(width)` in `common/dialog/dialogStyles.ts` (12px radius, surface-200 border, shadow-xl,
   18px header/content/footer insets, 16px content gap, 6px footer gap, 32px close button). Close glyph = Lucide `X`
   in the Dialog `#closeicon` slot. Title class `modalDialogTitleClass` (18/24, 600). All Car dialogs are 400px.
@@ -93,7 +93,7 @@ and paging are unchanged. Copy is in Portuguese (see [[UI-Language-pt-BR]]).
   Aura's outline, 6x10px padding, 16/19 text, `--p-red-700` ink in light and the dark message token under
   `html.app-dark`), list rows
   (model, "Marca · Carroceria", price), danger button "Excluir carro" / "Excluir N carros" with `TrashIcon`. Without
-  `items` the dialog keeps its legacy layout (Brands, Customers).
+  `items` the dialog keeps its legacy layout (Customers). With `items` + `warning`, a warn banner replaces the error banner (Brands, see [[Brands-Page]]).
 - Details: header icon box (`bg-sunken`, Lucide `Car`), model + "Disponível"/"Indisponível" tag, "Marca ·
   Carroceria"; price at 32/40; sunken stats (Estoque "N un.", Quilometragem, Ano do modelo); Especificações
   (Marca, Carroceria, Chassi in `font-mono`); Descrição ("Sem descrição." when empty); footer "Fechar" + "Editar"
@@ -160,6 +160,7 @@ Final evidence: `qa-results/2026-11-11T21-59-27-336Z-cars-page/findings.md` (att
 
 ## Related
 
+- [[Brands-Page]]
 - [[Home-Dashboard]]
 - [[Frontend-SPA]]
 - [[Pagination]]

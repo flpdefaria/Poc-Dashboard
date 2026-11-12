@@ -1,5 +1,5 @@
 import type { ScenarioAction, ScenarioMock, VisualScenario } from '../types'
-import { DESKTOP, brandOptions, brands, cars, jsonMock, pageWidth, pagedMock } from './fixtures'
+import { DESKTOP, brandOptions, cars, jsonMock, pageWidth, pagedMock } from './fixtures'
 
 /**
  * Cars screen refactor (Figma EOvtzuJAvw1UnoH9tsYmiO, page 2079:3816): list 2063:4, row menu 2069:2759,
@@ -418,38 +418,12 @@ function bulkError(theme: Theme) {
 function detailsToEdit(theme: Theme) {
   return flow(theme, 'cars-details-to-edit', 'Carros — Editar nos detalhes abre o diálogo de edição', {
     actions: [...openRowMenu(1), menuItem('Detalhes'), ...dialogOpen, { type: 'click', selector: footerPrimary }, { type: 'expect-text', selector: '.p-dialog-header', value: 'Editar carro' }, { type: 'wait', ms: 300 }],
-    baselineActions: [...openRowMenu(1), menuItem('Detalhes'), ...dialogOpen],
     renderChecks: [
       { label: 'Só o diálogo de edição aberto', selector: '.p-dialog', count: 1 },
       { label: 'Título Editar carro', selector: '.p-dialog-header', text: 'Editar carro' },
       { label: 'Carro carregado', selector: '#edit-car-model', value: '3 Series' },
     ],
   })
-}
-
-// ---------------------------------------------------------------- PageHeader regression on Brands
-
-function brandsPage(theme: Theme): VisualScenario {
-  return {
-    id: `brands-page-${theme}`,
-    label: `Marcas — tabela paginada (regressão PageHeader), ${themeLabel(theme)}, desktop`,
-    componentPath: 'Src/CarStore.Web/ClientApp/src/components/BrandsPage.vue',
-    component: () => import('../../src/components/BrandsPage.vue'),
-    route: { path: '/brands' },
-    viewport: DESKTOP,
-    mountWidth: pageWidth(DESKTOP.width),
-    theme,
-    locale: 'pt-BR',
-    device: 'desktop',
-    captureSelector: '#preview-root > div',
-    mocks: [pagedMock('/api/brands', brands, 10)],
-    actions: [{ type: 'expect-count', selector: '.p-datatable-tbody > tr', count: 10 }],
-    renderChecks: [
-      { label: 'Título da página', selector: 'h1', text: 'Marcas' },
-      { label: 'Botão de criação', selector: 'button:has-text("Nova marca")', count: 1 },
-      { label: 'Primeira página com 10 linhas', selector: '.p-datatable-tbody > tr', count: 10 },
-    ],
-  }
 }
 
 const both = (fn: (t: Theme) => VisualScenario) => [fn('light'), fn('dark')]
@@ -474,5 +448,4 @@ export default [
   ...both(bulkSuccess),
   ...both(bulkError),
   ...both(detailsToEdit),
-  ...both(brandsPage),
 ]

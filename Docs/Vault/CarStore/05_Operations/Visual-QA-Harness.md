@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-11-11
-updated: 2026-11-11
+updated: 2026-11-12
 tags:
   - note
   - type/guide
@@ -103,7 +103,9 @@ The harness needs neither `dotnet run` nor the normal dev server.
   - Functional flows: `cars-pagination`, `cars-create-{success,error-400,validation}`,
     `cars-edit-{success,error-400}`, `cars-delete-{dialog,success,error-400}`,
     `cars-bulk-delete-{success,error}`, `cars-details-to-edit`
-  - `brands-page`, for the PageHeader regression check
+- `scenarios/brands-figma.ts` (2026-11-12): light/dark pairs for the 8 Brands Figma frames (list, row menu,
+  row selected, details, edit, create, bulk blocked, delete) plus functional flows; the old Brands guards in
+  `legacy-dialogs.ts`, `cars-figma.ts`, `cars-second-pass.ts` and `selection-guards.ts` were removed. See [[Brands-Page]].
 
 `home-dashboard-light` and the light Figma-compared Cars scenarios declare `figmaNode`. Declaring one makes
 Figma evidence required: `visual:verdict` downgrades PASS to BLOCKED until `references/<id>.png` and
@@ -140,6 +142,7 @@ Reference run: `qa-results/2026-11-11T21-59-27-336Z-cars-page/` (strict Cars QA,
 
 - [[Frontend-SPA]]
 - [[Home-Dashboard]]
+- [[Brands-Page]]
 - [[Theme-Surface-Modes]]
 - [[Testing]]
 - [[Operations-Overview]]

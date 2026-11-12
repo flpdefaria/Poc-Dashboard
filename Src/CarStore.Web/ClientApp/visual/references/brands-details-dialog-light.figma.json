@@ -1,0 +1,306 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-2587",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:2596",
+    "nodeName": "details-dialog (Tela · Marcas · Detalhes 2113:2587)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 460,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2113:2596",
+      "component": "Dialog",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2113:2596",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 460,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:2597",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 76,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2113:2605",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2113:2606",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2113:2635",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2113:2598",
+      "nodeName": "icon-box",
+      "selector": ":scope .p-dialog-header .bg-sunken",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "borderRadius": 6,
+        "paddingTop": 8,
+        "paddingLeft": 8
+      }
+    },
+    {
+      "nodeId": "2113:2599",
+      "nodeName": "building",
+      "selector": ":scope .p-dialog-header .bg-sunken svg",
+      "props": {
+        "width": 20,
+        "height": 20
+      }
+    },
+    {
+      "nodeId": "2113:2602",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header span",
+      "text": "Audi",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:2604",
+      "nodeName": "subtitle",
+      "selector": ":scope .p-dialog-header p",
+      "text": "Alemanha",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:2610",
+      "nodeName": "stats",
+      "selector": ":scope .p-dialog-content > dl",
+      "props": {
+        "width": 362,
+        "height": 68,
+        "paddingTop": 16,
+        "paddingLeft": 16,
+        "gap": 16,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2113:2612",
+      "nodeName": "stat label Fundação",
+      "selector": ":scope .p-dialog-content > dl > div:nth-child(1) dt",
+      "text": "Fundação",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:2613",
+      "nodeName": "stat value Fundação",
+      "selector": ":scope .p-dialog-content > dl > div:nth-child(1) dd",
+      "text": "16/07/1909",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:2616",
+      "nodeName": "stat value Anos",
+      "selector": ":scope .p-dialog-content > dl > div:nth-child(2) dd",
+      "text": "117",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600
+      }
+    },
+    {
+      "nodeId": "2113:2619",
+      "nodeName": "stat value Carros",
+      "selector": ":scope .p-dialog-content > dl > div:nth-child(3) dd",
+      "text": "3",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600
+      }
+    },
+    {
+      "nodeId": "2113:2620",
+      "nodeName": "section · carros",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1)",
+      "props": {
+        "width": 362,
+        "height": 138,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:2621",
+      "nodeName": "section title Carros da marca",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1) h3",
+      "text": "Carros da marca",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:2623",
+      "nodeName": "car · A4",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1)",
+      "text": "A4",
+      "props": {
+        "height": 37,
+        "paddingTop": 8,
+        "gap": 16,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "2113:2624",
+      "nodeName": "car label",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1) p:nth-child(1)",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:2625",
+      "nodeName": "car year",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(1) p:nth-child(2)",
+      "text": "2024",
+      "props": {
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:2629",
+      "nodeName": "car · e-tron GT (última, sem borda)",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(1) li:nth-child(3)",
+      "text": "e-tron GT",
+      "props": {
+        "height": 36
+      }
+    },
+    {
+      "nodeId": "2113:2632",
+      "nodeName": "section · descrição",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(2)",
+      "props": {
+        "width": 362,
+        "height": 68,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:2634",
+      "nodeName": "description",
+      "selector": ":scope .p-dialog-content > section:nth-of-type(2) p",
+      "text": "Marca alemã de luxo, conhecida pela tração integral quattro.",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:2636",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Fechar",
+      "props": {
+        "width": 80,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:2637",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Editar",
+      "props": {
+        "width": 98,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2113:2596 (frame 2113:2587, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2113-2596), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x460 (a sombra shadow-xl não sobe acima do nó; borda #e5e7eb confirmada nas bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend.",
+    "Header 76px: icon-box 36px (sunken, p-2, r6) com Lucide Building 20px, título heading/sm, subtítulo body/xs muted (discovery.md)."
+  ]
+}

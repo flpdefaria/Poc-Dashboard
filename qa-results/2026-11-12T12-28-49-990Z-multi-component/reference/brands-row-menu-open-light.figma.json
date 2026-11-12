@@ -1,0 +1,76 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-885",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:885",
+    "nodeName": "Tela · Marcas · Menu de ações aberto (main)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "checks": [
+    {
+      "nodeId": "I2113:892;553:9904",
+      "nodeName": "table-row 1 (menu aberto, Hover)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1)",
+      "text": "Audi",
+      "props": {
+        "backgroundColor": "#f3f4f6",
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2113:892;553:9904",
+      "nodeName": "table-row 2 (fechada)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(2)",
+      "props": {
+        "backgroundColor": "#ffffff",
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2113:892;553:9904",
+      "nodeName": "button-small (gatilho aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"]",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6,
+        "backgroundColor": "#f9fafb"
+      }
+    },
+    {
+      "nodeId": "I2113:892;553:9904",
+      "nodeName": "ellipsis-vertical (gatilho aberto)",
+      "selector": ":scope .p-datatable-tbody > tr:nth-child(1) button[aria-label=\"Ações da linha\"] svg",
+      "props": {
+        "width": 16,
+        "height": 16,
+        "color": "#111827"
+      }
+    },
+    {
+      "nodeId": "2113:891",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2113:885 (cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO) recortado em x112 y40 1288x734 (bounds do get_metadata), sem a nav-rail/margem do shell. Inclui o menu 2113:893 sobreposto (x1194 y269 175x106 no frame; o traço de 1px fica fora dos bounds: borda visível em x1193..1369 y268..375).",
+    "Cores do estado aberto por amostragem de pixel do PNG: linha #f3f4f6, gatilho #f9fafb (iguais ao canvas Carros).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend."
+  ]
+}

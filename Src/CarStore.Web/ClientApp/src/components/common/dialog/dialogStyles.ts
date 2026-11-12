@@ -59,14 +59,30 @@ export const modalSelectPt = {
   // (`modalSelectChevronProps`): PrimeVue's own chevron fills 12x6.8px of the box, Figma's ~8x4.5px.
   dropdownIcon: { class: "size-3.5! text-muted-color!" },
 };
-export const modalSelectChevronProps = {
+// Figma 14px field icon (`icon/size`, `iconfield/icon/color` #6b7280 -> muted, 1.5px stroke): select chevron and
+// datepicker calendar.
+export const modalFieldIconProps = {
   size: 14,
   strokeWidth: 1.5,
   absoluteStrokeWidth: true,
   class: "size-3.5 text-muted-color",
 };
-// Textarea: 5 lines of 21px + 2 x 8.5px padding + 2px border = 124px (Figma 2075:5025).
-export const modalTextareaClass = `h-[124px] resize-none px-4! py-[8.5px]! text-sm! leading-[21px]! ${modalBorderClass}`;
+export const modalSelectChevronProps = modalFieldIconProps;
+// Textarea: 5 lines of 21px + 2 x 8.5px padding + 2px border = 124px (Figma 2075:5025, Brands edit 2113:3520).
+const modalTextareaBaseClass = `resize-none px-4! py-[8.5px]! text-sm! leading-[21px]! ${modalBorderClass}`;
+export const modalTextareaClass = `h-[124px] ${modalTextareaBaseClass}`;
+// 4 lines: 4 x 21px + 17px + 2px = 103px (Figma Brands "Nova marca" textarea 2113:4459).
+export const modalTextareaShortClass = `h-[103px] ${modalTextareaBaseClass}`;
+
+// Figma "datepicker" (Brands form-dialog 2114:4068): the same 40px inputtext with a 14px `calendar` icon INSIDE the
+// field (`iconDisplay="input"`), 16px from the inner border edge (17px from the outer edge) and 10.5px after the text,
+// so the text stops 17 + 14 + 10.5 = 41.5px from the edge. Aura positions the icon container with `form.field.padding.x`
+// (12px) and a -8px top margin for a 16px icon; `!` beats those unlayered rules. Render the glyph through the
+// `#inputicon` slot with `modalFieldIconProps` (Lucide `Calendar`) and wire the slot's `clickCallback`.
+export const modalDatePickerPt = {
+  pcInputText: { root: { class: `${modalInputClass} pe-[41.5px]!` } },
+  inputIconContainer: { class: "flex! end-[17px]! -mt-[7px]!" },
+};
 
 export const dialogSecondaryButtonClass = secondaryButtonClass;
 export const dialogPrimaryButtonClass = primaryButtonClass;

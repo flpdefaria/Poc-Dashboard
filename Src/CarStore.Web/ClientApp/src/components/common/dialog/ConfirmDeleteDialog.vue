@@ -45,6 +45,10 @@ const props = defineProps<{
   error?: string | null;
   /** Blocks the Delete action for a known rule (e.g. a brand with cars), shown as a warning instead of the danger message. */
   confirmDisabled?: boolean;
+  /**
+   * Legacy layout: a warn Message under the details. List mode (Brands delete-dialog 2113:5364): the warn banner
+   * replaces the "cannot be undone" error banner at the top. Cars never passes it, so its dialog is unchanged.
+   */
   warning?: string | null;
 }>();
 
@@ -71,6 +75,18 @@ const bannerPt = {
   content: { class: "gap-2! px-2.5! py-1.5!" },
   text: { class: "text-base! leading-[19px]! font-medium!" },
 };
+
+// Figma "message" warn (Brands delete-dialog 2113:5369): same box as the error banner, top-aligned for wrapped
+// text. Figma's warn palette is orange while Aura's is yellow, so the colors come from the `--color-warn-banner*`
+// tokens in style.css (orange in both themes; the dark values are overridden under `html.app-dark`).
+const warnBannerPt = {
+  root: {
+    class:
+      "rounded-md! border border-warn-banner-border outline-0! bg-warn-banner! text-warn-banner-ink! shadow-[0px_4px_8px_0px_rgba(9,7,0,0.04)]!",
+  },
+  content: { class: "items-start! gap-2! px-2.5! py-1.5!" },
+  text: { class: "text-base! leading-[19px]! font-medium!" },
+};
 </script>
 
 <template>
@@ -93,7 +109,12 @@ const bannerPt = {
     <template v-if="listMode" #closeicon><X /></template>
 
     <template v-if="listMode">
-      <Message severity="error" :closable="false" :pt="bannerPt">
+      <Message v-if="props.warning" severity="warn" :closable="false" :pt="warnBannerPt">
+        <!-- Figma items-start: the 16px icon sits at the top of the first 19px text line. -->
+        <template #icon><TriangleAlert class="size-4 shrink-0" /></template>
+        {{ props.warning }}
+      </Message>
+      <Message v-else severity="error" :closable="false" :pt="bannerPt">
         <template #icon><TriangleAlert class="size-4 shrink-0" /></template>
         Esta ação não pode ser desfeita.
       </Message>
@@ -130,7 +151,7 @@ const bannerPt = {
       </div>
     </template>
 
-    <Message v-if="props.warning" severity="warn" :closable="false">{{ props.warning }}</Message>
+    <Message v-if="props.warning && !listMode" severity="warn" :closable="false">{{ props.warning }}</Message>
     <Message v-if="props.error" severity="error" :closable="false">{{ props.error }}</Message>
 
     <template #footer>

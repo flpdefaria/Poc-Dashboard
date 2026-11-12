@@ -29,5 +29,7 @@ export const primaryButtonMdClass = `${buttonMdBaseClass} ${primaryColorClass}`;
 export const secondaryButtonMdClass = `${buttonMdBaseClass} border-surface-400! text-color!`;
 // Danger fill = Figma `button/danger/background` #dc2626 (red 600; Aura's danger is red 500), hover one step
 // darker. Uses the PrimeVue palette vars (`--p-red-*`, Aura #dc2626), not Tailwind v4's oklch red-600. Only the
-// Cars delete dialog (ConfirmDeleteDialog list mode) uses it; the label keeps Aura's danger ink in both themes.
-export const dangerButtonMdClass = `${buttonMdBaseClass} border-(--p-red-600)! bg-(--p-red-600)! text-(--p-button-danger-color)! hover:border-(--p-red-700)! hover:bg-(--p-red-700)!`;
+// Cars and Brands delete dialogs (ConfirmDeleteDialog list mode) use it; the label keeps Aura's danger ink in both themes.
+// Hover is `enabled:` only, so a disabled button (Brands delete blocked, Figma 2113:5424: red 600 at 60% opacity) does
+// not darken under the pointer.
+export const dangerButtonMdClass = `${buttonMdBaseClass} border-(--p-red-600)! bg-(--p-red-600)! text-(--p-button-danger-color)! enabled:hover:border-(--p-red-700)! enabled:hover:bg-(--p-red-700)!`;

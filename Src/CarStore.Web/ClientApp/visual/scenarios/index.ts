@@ -7,12 +7,13 @@ import legacyDialogs from './legacy-dialogs'
 import carsSecondPass from './cars-second-pass'
 import carsSearch from './cars-search'
 import selectionGuards from './selection-guards'
+import brandsFigma from './brands-figma'
 
 /**
  * Scenario registry. Every id must be unique and filename-safe; a light
  * scenario needs its dark sibling (`visual:verdict` blocks PASS otherwise).
  */
-export const scenarios: VisualScenario[] = [...homeDashboard, ...entityPages, ...customerDialogs, ...carsFigma, ...legacyDialogs, ...carsSecondPass, ...carsSearch, ...selectionGuards]
+export const scenarios: VisualScenario[] = [...homeDashboard, ...entityPages, ...customerDialogs, ...carsFigma, ...legacyDialogs, ...carsSecondPass, ...carsSearch, ...selectionGuards, ...brandsFigma]
 
 export function getScenario(id: string): VisualScenario | undefined {
   return scenarios.find((s) => s.id === id)

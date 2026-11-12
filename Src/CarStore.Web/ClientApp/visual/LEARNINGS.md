@@ -41,6 +41,7 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 
 - **Capture popups/dialogs by their own root** (`.p-menu-overlay`, `.p-dialog`) and crop Figma at the overlay's
   `get_metadata` bounds. Toasts need a `body` capture.
+- **DatePicker panel stays open after `fill`** and intercepts footer clicks; click the typed day in `.p-datepicker-panel` to close it. Esc closes the whole dialog, and clicking another label does not close the panel.
 - **Popups close on scroll.** Size the viewport so the capture fits (`cars-row-menu-flip` uses 1440x760).
 - **Move the pointer off the trigger** (`hover` on `h1`) after opening a row menu, or the capture shows the row hover.
 - **Focus/hover colours need ~600ms.** Aura's 0.2s `border-color` transition ignores `reducedMotion` (`visual:measure` waits 600ms).
@@ -65,6 +66,7 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 ## Geometry and pixel rounding
 
 - **Figma colours:** take expected colours from `get_variable_defs` (resolved); hexes in `get_design_context` are fallbacks.
+- **`baselineActions` go stale when the base gains the flow** (or a redesign drops the ids it types into, giving `baseline bloqueado`, which blocks PASS). Update them, then move `baseline/<id>.*` into `baseline/history/` so the next attempt recaptures instead of reusing.
 - **Baseline geometry** must match the capture (viewport, DPR, mount width, theme, root) or it is recaptured; never
   compare a DPR 2 baseline with a DPR 1 capture. The preview uses the app's `DEFAULT_SURFACE_MODE`.
 - **Half-pixel positions:** a centred 487px dialog on a 900px viewport sits at y=206.5 and captures 488 rows
@@ -79,6 +81,8 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 - **Attempt-to-attempt diff** (`npm run visual:attempt-diff -- <bundle> <id>`, delta above 8 per channel) isolates what a fix
   changed; deltas up to 8 on dark toast/backdrop captures are noise. For pages the delivery should not touch it beats a
   diff against the base.
+
+- **Dialog node exports (`get_screenshot` of a 400px dialog) are 440px wide**: shadow-xl adds 20px left/right and 40px below, none above. Crop at x20 y0 with the node size.
 
 ## Verdict classification
 
@@ -98,7 +102,7 @@ Add a new trap to its topic (one bullet, the fix first), never as a dated log.
 
 ## Guard scenarios
 
-- `scenarios/legacy-dialogs.ts`: legacy dialog shell on Brands create/delete and Customers delete.
-- `scenarios/cars-second-pass.ts`: row menu states, paginator hover, rows per page, Brands/Customers menu guards.
-- `scenarios/selection-guards.ts`: non-card DataTableCommon path (checkbox, selected row, active page).
+- `scenarios/legacy-dialogs.ts`: legacy dialog shell on Customers delete (Brands moved to `scenarios/brands-figma.ts`).
+- `scenarios/cars-second-pass.ts`: row menu states, paginator hover, rows per page, Customers menu guard.
+- `scenarios/selection-guards.ts`: non-card DataTableCommon path on Customers (checkbox, selected row, active page).
 - `scenarios/cars-search.ts`: case-insensitive match and no-result state.

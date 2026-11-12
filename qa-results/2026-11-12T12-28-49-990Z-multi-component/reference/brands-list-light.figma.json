@@ -1,0 +1,430 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-4",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:6",
+    "nodeName": "Tela · Marcas / main (área de conteúdo)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 1288,
+    "height": 734,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2113:11",
+      "component": "DataTable",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2113:9",
+      "component": "IconField + InputText",
+      "status": "verified"
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "component": "Paginator",
+      "status": "verified"
+    },
+    {
+      "nodeId": "I2113:7;363:2756;2113:21",
+      "component": "Button",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "I2113:7;363:2790",
+      "nodeName": "title-row",
+      "selector": ":scope > div:nth-child(1)",
+      "props": {
+        "width": 1288,
+        "height": 56
+      }
+    },
+    {
+      "nodeId": "I2113:7;363:2793",
+      "nodeName": "title",
+      "selector": ":scope > div:nth-child(1) h1",
+      "text": "Marcas",
+      "props": {
+        "fontSize": 24,
+        "fontWeight": 600,
+        "lineHeight": 32,
+        "color": "#1f2937",
+        "fontFamily": "Inter"
+      }
+    },
+    {
+      "nodeId": "I2113:7;363:2794",
+      "nodeName": "description",
+      "selector": ":scope > div:nth-child(1) p",
+      "text": "Gerencie as marcas de carros: consulte nome, país, data de fundação e número de carros, e crie, edite ou remova registros.",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2113:7;363:2756;2113:21",
+      "nodeName": "button Nova marca",
+      "selector": ":scope > div:nth-child(1) .p-button",
+      "text": "Nova marca",
+      "props": {
+        "width": 138,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:9",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield",
+      "props": {
+        "width": 216,
+        "height": 40
+      }
+    },
+    {
+      "nodeId": "2113:9",
+      "nodeName": "inputtext (busca)",
+      "selector": ":scope .p-iconfield input",
+      "props": {
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2113:10",
+      "nodeName": "cars-table (card)",
+      "selector": ":scope div:has(> .p-datatable)",
+      "props": {
+        "width": 1288,
+        "height": 598,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314",
+      "nodeName": "table-header-row",
+      "selector": ":scope .p-datatable-thead > tr",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:316",
+      "nodeName": "header checkbox cell",
+      "selector": ":scope .p-datatable-thead th:nth-child(1)",
+      "props": {
+        "width": 56,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:317",
+      "nodeName": "header Nome",
+      "selector": ":scope .p-datatable-thead th:nth-child(2)",
+      "props": {
+        "width": 230,
+        "paddingLeft": 18,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:317",
+      "nodeName": "header Nome title",
+      "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+      "text": "Nome",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 600,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:318",
+      "nodeName": "header País",
+      "selector": ":scope .p-datatable-thead th:nth-child(3)",
+      "text": "País",
+      "props": {
+        "width": 230
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:319",
+      "nodeName": "header Fundação",
+      "selector": ":scope .p-datatable-thead th:nth-child(4)",
+      "text": "Fundação",
+      "props": {
+        "width": 230
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:320",
+      "nodeName": "header Anos de atuação",
+      "selector": ":scope .p-datatable-thead th:nth-child(5)",
+      "text": "Anos de atuação",
+      "props": {
+        "width": 230
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:321",
+      "nodeName": "header Carros",
+      "selector": ":scope .p-datatable-thead th:nth-child(6)",
+      "text": "Carros",
+      "props": {
+        "width": 230
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:324",
+      "nodeName": "header Ações",
+      "selector": ":scope .p-datatable-thead th:nth-child(7)",
+      "text": "Ações",
+      "props": {
+        "width": 80,
+        "paddingLeft": 18
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:316;552:983;2113:326",
+      "nodeName": "checkbox do cabeçalho",
+      "selector": ":scope .p-datatable-thead .p-checkbox",
+      "props": {
+        "width": 18,
+        "height": 18
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9903;2113:314;553:987;2113:316;552:983;2113:326",
+      "nodeName": "checkbox do cabeçalho (caixa)",
+      "selector": ":scope .p-datatable-thead .p-checkbox-box",
+      "props": {
+        "borderRadius": 4,
+        "borderColor": "#9ca3af"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23",
+      "nodeName": "table-row 1",
+      "selector": ":scope .p-datatable-tbody > tr:first-child",
+      "props": {
+        "height": 48
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:35",
+      "nodeName": "cell Nome",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+      "text": "Audi",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937",
+        "paddingLeft": 18,
+        "borderColor": "#e5e7eb"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:36",
+      "nodeName": "cell País",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+      "text": "Alemanha",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:37",
+      "nodeName": "cell Fundação",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(4)",
+      "text": "16/07/1909",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:38",
+      "nodeName": "cell Anos de atuação",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5)",
+      "text": "117",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:39",
+      "nodeName": "cell Carros",
+      "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(6)",
+      "text": "3",
+      "props": {
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": 20,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9904;2113:23;553:999;2113:42;552:983;2113:60",
+      "nodeName": "button-small (ações)",
+      "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905",
+      "nodeName": "Footer",
+      "selector": ":scope .p-paginator",
+      "props": {
+        "height": 68
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "paginator",
+      "selector": ":scope .p-paginator",
+      "props": {
+        "gap": 4,
+        "paddingTop": 14
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "paginator page 1 (ativa, única página)",
+      "selector": ":scope .p-paginator-page-selected",
+      "text": "1",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "borderRadius": 18,
+        "fontSize": 14,
+        "fontWeight": 600,
+        "backgroundColor": "#d7e6fe",
+        "color": "#1046a0"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "paginator-navbutton first",
+      "selector": ":scope .p-paginator-first",
+      "props": {
+        "width": 36,
+        "height": 36,
+        "borderRadius": 18
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "angle-double-left",
+      "selector": ":scope .p-paginator-first svg",
+      "props": {
+        "width": 14,
+        "height": 14
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "angle-left",
+      "selector": ":scope .p-paginator-prev svg",
+      "props": {
+        "width": 14,
+        "height": 14
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "angle-right",
+      "selector": ":scope .p-paginator-next svg",
+      "props": {
+        "width": 14,
+        "height": 14
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "angle-double-right",
+      "selector": ":scope .p-paginator-last svg",
+      "props": {
+        "width": 14,
+        "height": 14
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "rows-per-page select",
+      "selector": ":scope .p-paginator .p-select",
+      "props": {
+        "width": 90,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "rows-per-page valor 10",
+      "selector": ":scope .p-paginator .p-select-label",
+      "text": "10",
+      "props": {
+        "fontSize": 14,
+        "color": "#6b7280",
+        "paddingLeft": 16
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "chevron-down",
+      "selector": ":scope .p-paginator .p-select-dropdown svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "I2113:11;553:9905;2113:328",
+      "nodeName": "dropdown",
+      "selector": ":scope .p-paginator .p-select-dropdown",
+      "props": {
+        "width": 40
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do frame 2113:4 (cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO) recortado em x112 y40 1288x734 (bounds do get_metadata), sem a nav-rail/margem do shell.",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend.",
+    "Tabela = estrutura idêntica ao modo card de Carros (discovery.md): colunas 56 | 5 x 230 | 80, linhas 48px, células 18 x 13.5px."
+  ]
+}

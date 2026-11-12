@@ -139,30 +139,6 @@ function rowsPerPage(theme: Theme): VisualScenario {
 
 // ---------------------------------------------------------------- Regression guards (must match HEAD)
 
-function brandsMenu(theme: Theme): VisualScenario {
-  return {
-    id: `brands-row-menu-${theme}`,
-    label: `Marcas — menu de ações da linha (regressão), ${themeLabel(theme)}`,
-    componentPath: 'Src/CarStore.Web/ClientApp/src/components/BrandsPage.vue',
-    component: () => import('../../src/components/BrandsPage.vue'),
-    route: { path: '/brands' },
-    viewport: DESKTOP,
-    mountWidth: pageWidth(DESKTOP.width),
-    theme,
-    locale: 'pt-BR',
-    device: 'desktop',
-    state: 'menu marcas',
-    referenceNote: 'Regressão: deve ser idêntico à base (HEAD).',
-    captureSelector: '.p-menu-overlay',
-    mocks: [pagedMock('/api/brands', brands, 10)],
-    actions: [waitRows(), { type: 'click', selector: trigger(1) }, { type: 'expect-count', selector: '.p-menu-overlay', count: 1 }, { type: 'wait', ms: 600 }],
-    renderChecks: [
-      { label: 'Três ações', selector: '.p-menu-overlay .p-menu-item', count: 3 },
-      { label: 'Sem aria-expanded fora do modo card', selector: 'button[aria-label="Ações da linha"][aria-expanded]', count: 0 },
-    ],
-  }
-}
-
 function customersMenu(theme: Theme): VisualScenario {
   return {
     id: `customers-row-menu-${theme}`,
@@ -196,6 +172,5 @@ export default [
   ...both(menuFlip),
   ...both(pageHover),
   ...both(rowsPerPage),
-  ...both(brandsMenu),
   ...both(customersMenu),
 ]

@@ -1,7 +1,7 @@
 ---
 type: index
 created: 2026-07-22
-updated: 2026-11-11
+updated: 2026-11-12
 tags:
   - note
   - type/index
@@ -47,6 +47,7 @@ Full list of notes in the CarStore vault, grouped by folder.
 - [[Icon-Motion]]
 - [[Home-Dashboard]]
 - [[Cars-Page]]
+- [[Brands-Page]]
 - [[Theme-Surface-Modes]]
 - [[UI-Language-pt-BR]]
 

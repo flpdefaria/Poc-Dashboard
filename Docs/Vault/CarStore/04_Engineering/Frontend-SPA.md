@@ -1,7 +1,7 @@
 ---
 type: guide
 created: 2026-09-17
-updated: 2026-11-11
+updated: 2026-11-12
 tags:
   - note
   - type/guide
@@ -61,6 +61,7 @@ Requested explicitly as an architecture change; the previous "never turn this in
 ## Related
 
 - [[Cars-Page]]
+- [[Brands-Page]]
 - [[Icon-Motion]]
 - [[Visual-QA-Harness]]
 - [[Theme-Surface-Modes]]

@@ -1,0 +1,294 @@
+{
+  "source": {
+    "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2113-4416",
+    "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+    "nodeId": "2113:4425",
+    "nodeName": "form-dialog (Tela · Marcas · Nova marca 2113:4416)",
+    "retrievedAt": "2026-11-11T22:30:00Z",
+    "tools": [
+      ".figma-cache get_metadata (canvas 2121:4)",
+      ".figma-cache get_screenshot",
+      ".figma-cache discovery.md (get_design_context/get_variable_defs resumidos)"
+    ]
+  },
+  "frame": {
+    "width": 400,
+    "height": 513,
+    "exportScale": 1
+  },
+  "primevue": [
+    {
+      "nodeId": "2113:4425",
+      "component": "Dialog",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2114:4093",
+      "component": "DatePicker (iconDisplay input)",
+      "status": "verified"
+    },
+    {
+      "nodeId": "2113:4459",
+      "component": "Textarea",
+      "status": "verified"
+    }
+  ],
+  "checks": [
+    {
+      "nodeId": "2113:4425",
+      "nodeName": "dialog",
+      "selector": ":scope",
+      "props": {
+        "width": 400,
+        "height": 513,
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "borderColor": "#e5e7eb",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:4426",
+      "nodeName": "header",
+      "selector": ":scope .p-dialog-header",
+      "props": {
+        "height": 68,
+        "paddingTop": 18,
+        "paddingLeft": 18,
+        "paddingRight": 18
+      }
+    },
+    {
+      "nodeId": "2113:4428",
+      "nodeName": "button-small (fechar)",
+      "selector": ":scope .p-dialog-close-button",
+      "props": {
+        "width": 32,
+        "height": 32,
+        "borderRadius": 6
+      }
+    },
+    {
+      "nodeId": "2113:4429",
+      "nodeName": "content",
+      "selector": ":scope .p-dialog-content",
+      "props": {
+        "paddingTop": 0,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "gap": 16
+      }
+    },
+    {
+      "nodeId": "2113:4460",
+      "nodeName": "footer",
+      "selector": ":scope .p-dialog-footer",
+      "props": {
+        "height": 58,
+        "paddingLeft": 18,
+        "paddingBottom": 18,
+        "paddingTop": 0,
+        "gap": 6
+      }
+    },
+    {
+      "nodeId": "2113:4427",
+      "nodeName": "title",
+      "selector": ":scope .p-dialog-header > span",
+      "text": "Nova marca",
+      "props": {
+        "fontSize": 18,
+        "fontWeight": 600,
+        "lineHeight": 24,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:4430",
+      "nodeName": "field · Nome",
+      "selector": ":scope .p-dialog-content > div:nth-child(1)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:4431",
+      "nodeName": "label Nome",
+      "selector": ":scope label[for=\"create-brand-name\"]",
+      "text": "Nome",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:4432",
+      "nodeName": "inputtext Nome",
+      "selector": ":scope #create-brand-name",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2113:4433",
+      "nodeName": "field · País",
+      "selector": ":scope .p-dialog-content > div:nth-child(2)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:4434",
+      "nodeName": "label País",
+      "selector": ":scope label[for=\"create-brand-country\"]",
+      "text": "País",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:4435",
+      "nodeName": "inputtext País",
+      "selector": ":scope #create-brand-country",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14,
+        "backgroundColor": "#ffffff"
+      }
+    },
+    {
+      "nodeId": "2114:4084",
+      "nodeName": "field · Data de fundação",
+      "selector": ":scope .p-dialog-content > div:nth-child(3)",
+      "props": {
+        "width": 362,
+        "height": 64,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2114:4085",
+      "nodeName": "label Data de fundação",
+      "selector": ":scope label[for=\"create-brand-founded\"]",
+      "text": "Data de fundação",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2114:4093",
+      "nodeName": "datepicker Data de fundação",
+      "selector": ":scope #create-brand-founded",
+      "props": {
+        "width": 362,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2114:4093",
+      "nodeName": "calendar (ícone dentro do campo)",
+      "selector": ":scope .p-dialog-content > div:nth-child(3) svg",
+      "props": {
+        "width": 14,
+        "height": 14,
+        "color": "#6b7280"
+      }
+    },
+    {
+      "nodeId": "2113:4457",
+      "nodeName": "field · Descrição",
+      "selector": ":scope .p-dialog-content > div:nth-child(4)",
+      "props": {
+        "width": 362,
+        "height": 127,
+        "gap": 8
+      }
+    },
+    {
+      "nodeId": "2113:4458",
+      "nodeName": "label Descrição",
+      "selector": ":scope label[for=\"create-brand-description\"]",
+      "text": "Descrição",
+      "props": {
+        "fontSize": 12,
+        "fontWeight": 500,
+        "lineHeight": 16,
+        "color": "#1f2937"
+      }
+    },
+    {
+      "nodeId": "2113:4459",
+      "nodeName": "textarea Descrição",
+      "selector": ":scope #create-brand-description",
+      "props": {
+        "width": 362,
+        "height": 103,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "paddingLeft": 16,
+        "fontSize": 14
+      }
+    },
+    {
+      "nodeId": "2113:4461",
+      "nodeName": "button secundário",
+      "selector": ":scope .p-dialog-footer button:first-child",
+      "text": "Cancelar",
+      "props": {
+        "width": 94,
+        "height": 40,
+        "borderRadius": 6,
+        "borderColor": "#9ca3af",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    },
+    {
+      "nodeId": "2113:4462",
+      "nodeName": "button primário",
+      "selector": ":scope .p-dialog-footer button:last-child",
+      "text": "Cadastrar marca",
+      "props": {
+        "width": 146,
+        "height": 40,
+        "borderRadius": 6,
+        "backgroundColor": "#030712",
+        "fontSize": 14,
+        "fontWeight": 500
+      }
+    }
+  ],
+  "notes": [
+    "Referência = get_screenshot do nó 2113:4425 (frame 2113:4416, cache .figma-cache/EOvtzuJAvw1UnoH9tsYmiO/2113-4425), 440 de largura com a sombra overlay/modal: recortado em x20 y0 400x513 (a sombra shadow-xl não sobe acima do nó; borda #e5e7eb confirmada nas bordas do recorte).",
+    "Cores = modo de superfície gray resolvido (discovery.md 2121:4: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712), os mesmos tokens do canvas Carros.",
+    "Dados = conteúdo do protótipo (fixture figmaBrands em scenarios/brands-figma.ts): países em português (Alemanha, EUA, Japão, Coreia do Sul) e descrição da Audi em português, como nos frames. O seed em inglês é lacuna conhecida do backend.",
+    "Datepicker 2114:4068: inputtext 40px com ícone calendar 14px #6b7280 DENTRO do campo à direita (16px da borda interna, 10.5px após o texto).",
+    "Textarea de criação = 103px (2113:4459). Placeholders: \"Ex.: Volkswagen\", \"Ex.: Alemanha\", \"DD/MM/AAAA\", \"Opcional\"."
+  ]
+}
