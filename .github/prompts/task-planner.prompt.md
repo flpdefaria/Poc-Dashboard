@@ -19,9 +19,9 @@ at runtime, because new agents may exist. The core routing today:
 |---|---|---|
 | Domain entities, invariants, services, API controllers/DTOs, seed data | Developer-Specialist | main thread, following `.github/agents/developer-specialist.agent.md` |
 | Domain unit tests (xUnit + FluentAssertions) | Tester-Specialist | main thread, following `.github/agents/tester-specialist.agent.md` |
-| Vue components, Figma, charts, responsive, dark theme | Frontend-Specialist | `frontend-agent` |
+| Vue components, Figma, charts, responsive, dark theme | `frontend-agent` | `frontend-agent` |
 | Vite/Tailwind/PrimeVue/deps, bundle wiring, MCP config | Frontend-Tooling-Specialist | main thread, following `.github/agents/frontend-tooling-specialist.agent.md` |
-| Visual validation with the Playwright harness (`ClientApp/visual/`, `qa-results/`) | QA-Specialist | `qa-agent` |
+| Visual validation with the Playwright harness (`ClientApp/visual/`, `qa-results/`) | `qa-agent` | `qa-agent` |
 
 Fall back to the default agent (Copilot) or the main thread (Claude) only when no agent's description covers
 the subtask. For a frontend-only feature that needs the implement → QA → correct loop, suggest the
@@ -29,9 +29,9 @@ the subtask. For a frontend-only feature that needs the implement → QA → cor
 
 ## Rules
 
-- One agent per subtask. Never combine work across agent boundaries; split it into sequential steps with explicit handoffs (e.g. a DTO change hands the list of affected Vue components to Frontend-Specialist).
+- One agent per subtask. Never combine work across agent boundaries; split it into sequential steps with explicit handoffs (e.g. a DTO change hands the list of affected Vue components to frontend-agent).
 - Each subtask must be completable in isolation by its agent.
-- Include testing (Tester-Specialist) or QA (QA-Specialist) only when the user asks for it, or when the change alters domain invariants or visible UI.
+- Include testing (Tester-Specialist) or QA (qa-agent) only when the user asks for it, or when the change alters domain invariants or visible UI.
 - Respect the repo constraints in `.github/copilot-instructions.md` (imported by `CLAUDE.md`) (In-Memory EF, no migrations, server-side paging, no Bootstrap).
 
 ## Output format
@@ -71,14 +71,14 @@ the subtask. For a frontend-only feature that needs the implement → QA → cor
 - **Action**: "Cover the new Car.Color invariant in CarTests."
 
 ### Subtask 3: UI
-- **Assigned to**: Frontend-Specialist
+- **Assigned to**: frontend-agent
 - **Boundary**: `CarsTable.vue` column, Create/Edit/Details car dialogs. Excludes backend.
 - **Dependencies**: Subtask 1
 - **Handoff**: delivery summary
 - **Action**: "Show Car.color in the cars table and in the Create/Edit/Details dialogs."
 
 ### Subtask 4: Visual QA
-- **Assigned to**: QA-Specialist
+- **Assigned to**: qa-agent
 - **Boundary**: `/cars` table and car dialogs at 1440 (the shell is desktop-only), light and dark, through the visual harness. Excludes production code changes.
 - **Dependencies**: Subtask 3
 - **Action**: "Validate the Color field in the cars table and dialogs using the delivery summary."

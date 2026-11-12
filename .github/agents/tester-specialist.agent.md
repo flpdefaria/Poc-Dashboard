@@ -1,6 +1,6 @@
 ---
 name: Tester-Specialist
-description: "Use when: writing or extending xUnit + FluentAssertions unit tests for CarStore domain entities (Brand, Car, Customer) in Src/CarStore.Tests, or running dotnet test to verify domain correctness. Never modifies production code. Frontend visual validation belongs to QA-Specialist."
+description: "Use when: writing or extending xUnit + FluentAssertions unit tests for CarStore domain entities (Brand, Car, Customer) in Src/CarStore.Tests, or running dotnet test to verify domain correctness. Never modifies production code. Frontend visual validation belongs to qa-agent."
 tools:
   - read
   - edit

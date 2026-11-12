@@ -17,7 +17,7 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 
 ## Ticket contents
 
-- **Title / Description:** outcome, frontend-only scope, with the frontend agent as implementer (Claude `frontend-agent` / Copilot `Frontend-Specialist`).
+- **Title / Description:** outcome, frontend-only scope, with `frontend-agent` as implementer (same name in Claude and Copilot).
 - **References:** vault notes, exact source files and patterns, Figma URL/node when supplied.
 - **Requirements:** visible elements, copy (pt-BR UI), interactions, data sources, loading/empty/error states, widths (`carstore-mobile-responsive` when below desktop), both themes, accessibility. Each expected outcome must be verifiable from the text or from Figma.
 - **Tech Details:** ClientApp conventions, mandatory PrimeVue MCP, Lucide only, tokens instead of hex, no Bootstrap, server-side paging, no fixture data in production.
@@ -32,7 +32,7 @@ Write a self-contained `ticket-frontend-<kebab-slug>.md` in the repository root.
 
 0. The orchestrator runs `vault-search` **once** and passes the relevant note paths to every agent. With a Figma URL, the first agent fills `.figma-cache/` (`figma-discovery`); every later agent and round receives that folder path instead of calling the Figma MCP again.
 1. Give the requirements, vault note paths and optional Figma URL to the frontend agent, and keep its delivery summary.
-2. Give the requirements and summary to the QA agent (Claude `qa-agent` / Copilot `QA-Specialist`), and keep `qa-results/<run>/findings.md` and the run path. This first QA pass is **exhaustive**: every requested scenario, light and dark, strict against Figma, so all defects surface in one round instead of one per round. QA can also run alone for an existing change, given requirements and a changed-file list.
+2. Give the requirements and summary to `qa-agent`, and keep `qa-results/<run>/findings.md` and the run path. This first QA pass is **exhaustive**: every requested scenario, light and dark, strict against Figma, so all defects surface in one round instead of one per round. QA can also run alone for an existing change, given requirements and a changed-file list.
 3. Pass only non-minimal `defeito` items back to the frontend agent (correction mode), then send QA in **recheck mode** (`npm run visual:recheck -- <run>`) with the **same run folder**. Never send `minimas[]` for correction. Rechecks and corrections skip the vault, the Figma MCP and the instruction re-reads.
 4. Allow at most **three correction rounds**. Stop earlier when no defects remain, when blocked, or when a round does not reduce defects. Record remaining items in Observations without claiming PASS.
 5. After the last round, the orchestrator runs `vault-write` **once**, from the facts the agents reported.

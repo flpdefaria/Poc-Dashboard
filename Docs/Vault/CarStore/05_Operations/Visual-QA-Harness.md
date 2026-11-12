@@ -29,7 +29,7 @@ running app with the Playwright MCP and wrote `findings.md` by hand.
 Owners:
 
 - Claude `qa-agent` (`.claude/agents/qa-agent.md`)
-- Copilot QA-Specialist (`.github/agents/qa-specialist.agent.md`)
+- Copilot `qa-agent` (`.github/agents/qa-agent.agent.md`)
 - the `frontend-visual-check` skill (`.github/skills/frontend-visual-check/SKILL.md`)
 
 The full reference is `Src/CarStore.Web/ClientApp/visual/README.md`.

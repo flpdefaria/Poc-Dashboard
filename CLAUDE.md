@@ -19,4 +19,4 @@ The instructions above are shared with GitHub Copilot. Copilot loads the path-sp
 - MCP: `.mcp.json` here mirrors `.vscode/mcp.json` for Copilot. Change both together.
 - Commands: `.claude/commands/task-planner.md` is a symlink to `.github/prompts/task-planner.prompt.md` (shared, host-neutral). Edit the `.github/prompts/` file.
 - Hooks: `.claude/settings.json` runs the Impeccable design detector (`PostToolUse` on `Edit|Write`, deep pass on `Stop`), mirroring `.github/hooks/impeccable.json` for Copilot. Change both together; toggle per project with `impeccable hooks on|off`.
-- Agent pairs: `frontend-agent` ↔ `Frontend-Specialist` and `qa-agent` ↔ `QA-Specialist` are kept equivalent by hand. When you change one, apply the same rule to the other (host-specific bits only differ: Claude `model`, Copilot `tools`).
+- Agent pairs: `frontend-agent` and `qa-agent` share the same name in both hosts (`.claude/agents/<name>.md` ↔ `.github/agents/<name>.agent.md`) and are kept equivalent by hand. When you change one, apply the same rule to the other (host-specific bits only differ: Claude `model`, Copilot `tools`).

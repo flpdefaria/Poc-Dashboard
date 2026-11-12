@@ -1,6 +1,6 @@
 ---
-name: Frontend-Specialist
-description: "Use when: creating or modifying Vue 3 SFC components inside Src/CarStore.Web/ClientApp/src, implementing or matching a Figma design through the Figma MCP server, refactoring existing UI to align with the Figma design system, styling with PrimeVue design tokens + Tailwind CSS v4 (light and dark themes), adding or changing an ECharts chart on any page, responsive work, or fixing defects reported by QA-Specialist. Component-level front-end work only - build/tooling/MCP setup belongs to Frontend-Tooling-Specialist, visual validation to QA-Specialist."
+name: frontend-agent
+description: "Use when: creating or modifying Vue 3 SFC components inside Src/CarStore.Web/ClientApp/src, implementing or matching a Figma design through the Figma MCP server, refactoring existing UI to align with the Figma design system, styling with PrimeVue design tokens + Tailwind CSS v4 (light and dark themes), adding or changing an ECharts chart on any page, responsive work, or fixing defects reported by qa-agent. Component-level front-end work only - build/tooling/MCP setup belongs to Frontend-Tooling-Specialist, visual validation to qa-agent."
 tools:
   - read
   - edit
@@ -33,7 +33,7 @@ the new-entity file set, composables, styling rules, light/dark themes, the defi
 | `/echarts-chart-build` | ANY chart work, on any page. ECharts is the only charting library. |
 | `/carstore-mobile-responsive` | Tablet/phone scope or a Figma tablet/phone frame. |
 
-Visual validation (Playwright, screenshots, `qa-results/`) is NOT yours: it belongs to QA-Specialist via
+Visual validation (Playwright, screenshots, `qa-results/`) is NOT yours: it belongs to qa-agent via
 `/frontend-visual-check`. The test-only harness in `ClientApp/visual/` (scenarios, fixtures, Figma references) is also
 QA-owned: never edit it. If a change breaks a scenario's selectors, report it in `lacunas`. Return the delivery summary below so QA can validate.
 
@@ -50,7 +50,7 @@ QA-owned: never edit it. If a change breaks a scenario's selectors, report it in
 
 Report the files created/modified, the Figma node(s) and new token mappings, the shared helpers reused or
 extracted, the `npm run verify` result, and the vault notes written.
-End with a **delivery summary** for QA-Specialist:
+End with a **delivery summary** for qa-agent:
 
 - `arquivos`: changed application files.
 - `componentes`: affected components and routes (`/`, `/cars`, `/brands`, `/customers`, dialogs).

@@ -53,15 +53,15 @@ Never hand-edit vault notes; always go through `vault-write`. Read-only tasks (Q
 |---|---|---|
 | Domain/API changes | Developer-Specialist | - |
 | Domain unit tests | Tester-Specialist | - |
-| Vue components, Figma, charts | Frontend-Specialist | `frontend-agent` |
+| Vue components, Figma, charts | `frontend-agent` | `frontend-agent` |
 | Front-end tooling, deps, MCP setup | Frontend-Tooling-Specialist | - |
-| Visual QA (Playwright harness in `ClientApp/visual/`, report in `qa-results/`) | QA-Specialist | `qa-agent` |
+| Visual QA (Playwright harness in `ClientApp/visual/`, report in `qa-results/`) | `qa-agent` | `qa-agent` |
 
 Skills live in `.github/skills/`; `.claude/skills/` holds symlinks to the same folders. Keep one copy.
 
 MCP servers (`primevue`, `figma-mcp`, `playwright`) are declared twice with the same content: `.mcp.json` (Claude Code) and `.vscode/mcp.json` (VS Code/Copilot). Change both together.
 
-Also mirrored between hosts (change both together): the Impeccable hook (`.github/hooks/impeccable.json` ↔ `.claude/settings.json`), the `task-planner` prompt (`.github/prompts/` ↔ symlink in `.claude/commands/`), and the agent pairs Frontend-Specialist ↔ `frontend-agent`, QA-Specialist ↔ `qa-agent`.
+Also mirrored between hosts (change both together): the Impeccable hook (`.github/hooks/impeccable.json` ↔ `.claude/settings.json`), the `task-planner` prompt (`.github/prompts/` ↔ symlink in `.claude/commands/`), and the agent pairs `frontend-agent` and `qa-agent` (same name in both hosts: `.github/agents/<name>.agent.md` ↔ `.claude/agents/<name>.md`).
 
 ## General guidance
 - Read the file before editing it. Do not invent class names.

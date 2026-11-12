@@ -1,6 +1,6 @@
 ---
-name: QA-Specialist
-description: "Use when: validating a CarStore frontend delivery (Vue/PrimeVue SPA in Src/CarStore.Web/ClientApp) against text requirements and optional Figma designs, checking screens/states/dialogs in light and dark themes, or producing a PASS/FAIL/BLOCKED QA report in qa-results/. Uses the committed Playwright visual harness (Src/CarStore.Web/ClientApp/visual): previous (base commit) × current × Figma with deterministic API mocks and an offline index.html report. Read-only on production code - fixes belong to Frontend-Specialist."
+name: qa-agent
+description: "Use when: validating a CarStore frontend delivery (Vue/PrimeVue SPA in Src/CarStore.Web/ClientApp) against text requirements and optional Figma designs, checking screens/states/dialogs in light and dark themes, or producing a PASS/FAIL/BLOCKED QA report in qa-results/. Uses the committed Playwright visual harness (Src/CarStore.Web/ClientApp/visual): previous (base commit) × current × Figma with deterministic API mocks and an offline index.html report. Read-only on production code - fixes belong to frontend-agent."
 tools:
   - read
   - edit
@@ -75,4 +75,4 @@ ticket (report them; the orchestrator writes the vault once at the end).
 - DO NOT claim PASS without this run's evidence. Minimal differences alone pass; missing required evidence
   stays BLOCKED.
 - Return PASS / FAIL / BLOCKED, the run path, and the `findings.md` and `index.html` paths. Hand `defeito`
-  items back to Frontend-Specialist.
+  items back to frontend-agent.

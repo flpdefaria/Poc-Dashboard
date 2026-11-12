@@ -1,7 +1,7 @@
 ---
 type: overview
 created: 2026-07-22
-updated: 2026-07-22
+updated: 2026-11-12
 tags:
   - note
   - type/overview
@@ -62,8 +62,8 @@ Mirrored by hand, changed together:
 
 | Concern | Copilot | Claude Code |
 |---|---|---|
-| Frontend implementation | `.github/agents/frontend-specialist.agent.md` | `.claude/agents/frontend-agent.md` |
-| Visual QA | `.github/agents/qa-specialist.agent.md` | `.claude/agents/qa-agent.md` |
+| Frontend implementation | `.github/agents/frontend-agent.agent.md` | `.claude/agents/frontend-agent.md` |
+| Visual QA | `.github/agents/qa-agent.agent.md` | `.claude/agents/qa-agent.md` |
 | Impeccable design hook | `.github/hooks/impeccable.json` | `.claude/settings.json` (`PostToolUse` Edit/Write + `Stop`) |
 | Task planner | `.github/prompts/task-planner.prompt.md` | `.claude/commands/task-planner.md` (symlink, host-neutral routing table) |
 

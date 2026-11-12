@@ -30,7 +30,7 @@ Read the entity before editing. This table is a map, not the source of truth.
 2. Validation goes into the entity's existing private `Validate()` and throws `DomainException` with a clear message.
 3. For a settable property, update the `Create()` / `Update()` signatures and bodies, then the callers in `Src/CarStore.Application/Services/*Service.cs`.
 4. API layer: add the field to `Models/Api/Create<Entity>Request.cs` (used by both POST and PUT) and `<Entity>Dto.cs`, and to the mapping in `Controllers/Api/<Entity>sApiController.cs`.
-5. Mirror the DTO change in `Src/CarStore.Web/ClientApp/src/types.ts` so the frontend stays type-safe. Rendering the field in a table/dialog is Frontend-Specialist's job: list the Vue components that need it in your report.
+5. Mirror the DTO change in `Src/CarStore.Web/ClientApp/src/types.ts` so the frontend stays type-safe. Rendering the field in a table/dialog is frontend-agent's job: list the Vue components that need it in your report.
 6. Update `Src/CarStore.Domain/Seed/DataSeeder.cs` when a new required field is added.
 7. Run `dotnet build Src/CarStore.slnx` and fix all errors. Run `dotnet test Src/CarStore.Tests` to confirm nothing regressed, but new tests belong to Tester-Specialist.
 
@@ -45,4 +45,4 @@ Read the entity before editing. This table is a map, not the source of truth.
 ## Output
 
 Report files changed, the new/changed invariants, the DTO/`types.ts` changes, the Vue components that need a
-follow-up (for Frontend-Specialist), the build/test results and the vault notes written.
+follow-up (for frontend-agent), the build/test results and the vault notes written.
