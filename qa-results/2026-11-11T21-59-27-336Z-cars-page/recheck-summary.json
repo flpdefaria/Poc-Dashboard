@@ -1,0 +1,50 @@
+{
+  "exitCode": 0,
+  "runDir": "/Users/felipefaria/projects/poc-dashboard/qa-results/2026-11-11T21-59-27-336Z-cars-page",
+  "attempt": 5,
+  "verdictDraft": "/Users/felipefaria/projects/poc-dashboard/qa-results/2026-11-11T21-59-27-336Z-cars-page/verdict-draft.json",
+  "cenarios": [
+    {
+      "id": "cars-list-light",
+      "status": "differences",
+      "spec": "126/126",
+      "erro": null
+    }
+  ],
+  "defeitos": [],
+  "novas": [
+    {
+      "id": "cars-list-light:6ec9c2b0eb14",
+      "cenario": "cars-list-light",
+      "seletor": "#preview-root > div",
+      "prop": "pixels",
+      "esperado": "PNG do Figma",
+      "atual": {
+        "status": "differences",
+        "algorithm": "pixelmatch",
+        "threshold": 0.1,
+        "mismatchTolerance": 0.001,
+        "reference": {
+          "width": 1288,
+          "height": 734
+        },
+        "actual": {
+          "width": 1288,
+          "height": 734
+        },
+        "mismatchedPixels": 7526,
+        "comparedPixels": 945392,
+        "mismatchRatio": 0.00796071893986833,
+        "diffImage": "comparison/attempt-05/cars-list-light.diff.png",
+        "sideBySideImage": "comparison/attempt-05/cars-list-light.side-by-side.png",
+        "findings": [
+          "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+        ]
+      }
+    }
+  ],
+  "abrir": [
+    "comparison/attempt-05/cars-list-light.triptych.png"
+  ],
+  "proximo": "Classifique só `persiste` e `novas` no verdictDraft (adicione `novas` em diferencas/minimas, ajuste result e criteria) e rode npm run visual:verdict -- <verdictDraft> <runDir>."
+}

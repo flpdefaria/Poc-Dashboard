@@ -2,8 +2,8 @@
   "schema": "carstore-visual-check/6",
   "runStatus": "differences",
   "component": "Src/CarStore.Web/ClientApp/src/components/BrandsPage.vue, Src/CarStore.Web/ClientApp/src/components/CarsPage.vue, Src/CarStore.Web/ClientApp/src/components/CustomersPage.vue, Src/CarStore.Web/ClientApp/src/components/Home.vue",
-  "generatedAt": "2026-11-11T22:38:18.402Z",
-  "latestAttempt": 4,
+  "generatedAt": "2026-11-13T17:56:13.619Z",
+  "latestAttempt": 5,
   "attempts": [
     {
       "attempt": 1,
@@ -62041,6 +62041,1712 @@
           }
         }
       ]
+    },
+    {
+      "attempt": 5,
+      "directory": "actual/attempt-05",
+      "completedAt": "2026-11-13T17:56:13.619Z",
+      "scenarios": [
+        {
+          "id": "cars-list-light",
+          "label": "Carros — lista (card), claro, desktop 1440",
+          "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
+          "status": "differences",
+          "attempt": 5,
+          "previewUrl": "/visual/preview.html?scenario=cars-list-light",
+          "viewport": {
+            "width": 1440,
+            "height": 900,
+            "deviceScaleFactor": 1
+          },
+          "theme": "light",
+          "locale": "pt-BR",
+          "captureSelector": "#preview-root > div",
+          "actualImage": "actual/attempt-05/cars-list-light.png",
+          "referenceImage": "reference/cars-list-light.png",
+          "referenceNote": null,
+          "device": "desktop",
+          "deviceDerived": false,
+          "figmaNode": {
+            "nodeId": "2063:4",
+            "name": "Tela · Carros",
+            "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2063-4"
+          },
+          "state": null,
+          "responsiveFindings": null,
+          "comparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 1288,
+              "height": 734
+            },
+            "actual": {
+              "width": 1288,
+              "height": 734
+            },
+            "mismatchedPixels": 7526,
+            "comparedPixels": 945392,
+            "mismatchRatio": 0.00796071893986833,
+            "diffImage": "comparison/attempt-05/cars-list-light.diff.png",
+            "sideBySideImage": "comparison/attempt-05/cars-list-light.side-by-side.png",
+            "findings": [
+              "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "findings": [
+            "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+          ],
+          "missingEvidence": [],
+          "blockedRequests": [],
+          "fulfilledMocks": [
+            "http://localhost:5175/api/cars?<redacted>",
+            "http://localhost:5175/api/brands/options"
+          ],
+          "error": null,
+          "baselineImage": "baseline/cars-list-light.png",
+          "baselineStatus": "reused",
+          "baselineError": null,
+          "baselineComparison": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 1288,
+              "height": 734
+            },
+            "actual": {
+              "width": 1288,
+              "height": 734
+            },
+            "mismatchedPixels": 1279,
+            "comparedPixels": 945392,
+            "mismatchRatio": 0.0013528779596188672,
+            "diffImage": "comparison/attempt-05/cars-list-light.baseline.diff.png",
+            "sideBySideImage": "comparison/attempt-05/cars-list-light.baseline.side-by-side.png",
+            "findings": [
+              "1279 of 945392 pixels differ (0.135%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "baselineVsReference": {
+            "status": "differences",
+            "algorithm": "pixelmatch",
+            "threshold": 0.1,
+            "mismatchTolerance": 0.001,
+            "reference": {
+              "width": 1288,
+              "height": 734
+            },
+            "actual": {
+              "width": 1288,
+              "height": 734
+            },
+            "mismatchedPixels": 8458,
+            "comparedPixels": 945392,
+            "mismatchRatio": 0.008946553387377935,
+            "diffImage": "comparison/attempt-05/cars-list-light.baseline-vs-reference.diff.png",
+            "sideBySideImage": "comparison/attempt-05/cars-list-light.baseline-vs-reference.side-by-side.png",
+            "findings": [
+              "8458 of 945392 pixels differ (0.895%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+            ]
+          },
+          "triptychImage": "comparison/attempt-05/cars-list-light.triptych.png",
+          "figmaSpec": {
+            "source": {
+              "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2063-4",
+              "fileKey": "EOvtzuJAvw1UnoH9tsYmiO",
+              "nodeId": "2063:4",
+              "nodeName": "Tela · Carros / main (área de conteúdo)",
+              "retrievedAt": "2026-11-11T19:00:00Z",
+              "tools": [
+                "get_metadata",
+                "get_screenshot",
+                "get_design_context",
+                "get_variable_defs",
+                "primevue:get_component"
+              ]
+            },
+            "frame": {
+              "width": 1288,
+              "height": 734,
+              "exportScale": 1
+            },
+            "primevue": [
+              {
+                "nodeId": "2064:7107",
+                "component": "DataTable",
+                "status": "verified"
+              },
+              {
+                "nodeId": "2066:561",
+                "component": "IconField + InputText",
+                "status": "verified"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318",
+                "component": "Paginator",
+                "status": "verified"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "component": "Tag",
+                "status": "verified"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290;552:983;2064:7295",
+                "component": "Checkbox",
+                "status": "verified"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "component": "Button",
+                "status": "verified"
+              }
+            ],
+            "checks": [
+              {
+                "nodeId": "I2063:7;363:2790",
+                "nodeName": "title-row",
+                "selector": ":scope > div:nth-child(1)",
+                "props": {
+                  "width": 1288,
+                  "height": 56
+                }
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "text": "Carros",
+                "props": {
+                  "fontSize": 24,
+                  "fontWeight": 600,
+                  "lineHeight": 32,
+                  "color": "#1f2937",
+                  "fontFamily": "Inter"
+                }
+              },
+              {
+                "nodeId": "I2063:7;363:2794",
+                "nodeName": "description",
+                "selector": ":scope > div:nth-child(1) p",
+                "props": {
+                  "fontSize": 14,
+                  "fontWeight": 400,
+                  "lineHeight": 20,
+                  "color": "#6b7280"
+                }
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "text": "Novo carro",
+                "props": {
+                  "width": 132,
+                  "height": 40,
+                  "borderRadius": 6,
+                  "backgroundColor": "#030712",
+                  "fontSize": 14,
+                  "fontWeight": 500
+                }
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield",
+                "props": {
+                  "width": 216,
+                  "height": 40
+                }
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield input",
+                "props": {
+                  "height": 40,
+                  "borderRadius": 6,
+                  "borderColor": "#9ca3af",
+                  "fontSize": 14
+                }
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "props": {
+                  "width": 1288,
+                  "height": 598,
+                  "borderRadius": 12,
+                  "borderWidth": 1,
+                  "borderColor": "#e5e7eb"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286",
+                "nodeName": "table-header-row",
+                "selector": ":scope .p-datatable-thead > tr",
+                "props": {
+                  "height": 48
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "header checkbox cell",
+                "selector": ":scope .p-datatable-thead th:nth-child(1)",
+                "props": {
+                  "width": 56,
+                  "paddingLeft": 18
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo",
+                "selector": ":scope .p-datatable-thead th:nth-child(2)",
+                "props": {
+                  "width": 164.29,
+                  "paddingLeft": 18,
+                  "backgroundColor": "#ffffff"
+                },
+                "tolerance": {
+                  "px": 1
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "text": "Modelo",
+                "props": {
+                  "fontSize": 14,
+                  "fontWeight": 600,
+                  "lineHeight": 20,
+                  "color": "#1f2937"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7332",
+                "nodeName": "header Disponível",
+                "selector": ":scope .p-datatable-thead th:nth-child(8)",
+                "text": "Disponível",
+                "props": {
+                  "width": 164.29
+                },
+                "tolerance": {
+                  "px": 1
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7335",
+                "nodeName": "header Ações",
+                "selector": ":scope .p-datatable-thead th:nth-child(9)",
+                "text": "Ações",
+                "props": {
+                  "width": 80,
+                  "paddingLeft": 18
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413",
+                "nodeName": "table-row 1",
+                "selector": ":scope .p-datatable-tbody > tr:first-child",
+                "props": {
+                  "height": 48
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "text": "3 Series",
+                "props": {
+                  "paddingLeft": 18,
+                  "fontSize": 14,
+                  "fontWeight": 400,
+                  "lineHeight": 20,
+                  "color": "#1f2937",
+                  "borderColor": "#e5e7eb"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7436",
+                "nodeName": "cell Marca",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+                "text": "BMW",
+                "props": {
+                  "fontSize": 14,
+                  "fontWeight": 400,
+                  "color": "#1f2937"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7448",
+                "nodeName": "cell Preço",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5)",
+                "text": "R$ 44.500,00",
+                "props": {
+                  "fontSize": 14,
+                  "color": "#1f2937"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7460",
+                "nodeName": "cell Quilometragem",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(7)",
+                "text": "10",
+                "props": {
+                  "fontSize": 14,
+                  "color": "#1f2937"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "text": "Sim",
+                "props": {
+                  "height": 17,
+                  "fontSize": 11,
+                  "fontWeight": 500,
+                  "paddingTop": 2,
+                  "paddingLeft": 6,
+                  "borderRadius": 6,
+                  "backgroundColor": "#dcfce7",
+                  "color": "#15803d"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7477;552:983;2064:7484",
+                "nodeName": "button-small (ações)",
+                "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+                "props": {
+                  "width": 32,
+                  "height": 32,
+                  "borderRadius": 6
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905",
+                "nodeName": "Footer",
+                "selector": ":scope .p-paginator",
+                "props": {
+                  "height": 68
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "text": "2",
+                "props": {
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 14,
+                  "fontWeight": 400,
+                  "color": "#6b7280"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318",
+                "nodeName": "paginator",
+                "selector": ":scope .p-paginator",
+                "props": {
+                  "gap": 4,
+                  "paddingTop": 14
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "text": "1",
+                "props": {
+                  "width": 36,
+                  "height": 36,
+                  "borderRadius": 18,
+                  "fontSize": 14,
+                  "fontWeight": 600,
+                  "backgroundColor": "#d7e6fe",
+                  "color": "#1046a0"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2 (idle, fundo transparente)",
+                "selector": ":scope .p-paginator-page:not(.p-paginator-page-selected)",
+                "props": {
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "color": "#6b7280",
+                  "fontWeight": 400
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703",
+                "nodeName": "paginator-navbutton first",
+                "selector": ":scope .p-paginator-first",
+                "props": {
+                  "width": 36,
+                  "height": 36,
+                  "borderRadius": 18
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703;394:18695",
+                "nodeName": "angle-double-left",
+                "selector": ":scope .p-paginator-first svg",
+                "props": {
+                  "width": 14,
+                  "height": 14
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18716;394:18695",
+                "nodeName": "angle-left",
+                "selector": ":scope .p-paginator-prev svg",
+                "props": {
+                  "width": 14,
+                  "height": 14
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18771;394:18695",
+                "nodeName": "angle-right",
+                "selector": ":scope .p-paginator-next svg",
+                "props": {
+                  "width": 14,
+                  "height": 14,
+                  "color": "#6b7280"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18772;394:18695",
+                "nodeName": "angle-double-right",
+                "selector": ":scope .p-paginator-last svg",
+                "props": {
+                  "width": 14,
+                  "height": 14
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
+                "nodeName": "rows-per-page select",
+                "selector": ":scope .p-paginator .p-select",
+                "props": {
+                  "width": 90,
+                  "height": 40,
+                  "borderRadius": 6,
+                  "borderColor": "#9ca3af"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7757;6220:9120",
+                "nodeName": "rows-per-page valor 10",
+                "selector": ":scope .p-paginator .p-select-label",
+                "text": "10",
+                "props": {
+                  "fontSize": 14,
+                  "color": "#6b7280",
+                  "paddingLeft": 16
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7759",
+                "nodeName": "chevron-down",
+                "selector": ":scope .p-paginator .p-select-dropdown svg",
+                "props": {
+                  "width": 14,
+                  "height": 14,
+                  "color": "#6b7280"
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7758",
+                "nodeName": "dropdown",
+                "selector": ":scope .p-paginator .p-select-dropdown",
+                "props": {
+                  "width": 40
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho",
+                "selector": ":scope .p-datatable-thead .p-checkbox",
+                "props": {
+                  "width": 18,
+                  "height": 18
+                }
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho (caixa)",
+                "selector": ":scope .p-datatable-thead .p-checkbox-box",
+                "props": {
+                  "borderRadius": 4,
+                  "borderColor": "#9ca3af"
+                }
+              }
+            ],
+            "notes": [
+              "Referência = get_screenshot do frame 2063:4 (1440x814 @1x) recortado em x112 y40 1288x734 (bounds do get_metadata), sem a nav-rail/margem do shell e sem sombra externa.",
+              "Cores = valores resolvidos por get_variable_defs (modo de superfície gray: text #1f2937, muted #6b7280, borda #e5e7eb, input #9ca3af, contrast #030712). Os hex do código gerado (#262626, #737373, #a3a3a3) são fallbacks.",
+              "Dados = primeira página do protótipo: seed sem \"Corolla\" (o frame lista Corolla Cross e CR-V nas linhas 9 e 10) e a descrição do 3 Series em português, como no frame.",
+              "Atualizada em 2026-11-11 19:00: o Figma passou a preencher a página ativa (paginator/nav/button/selected #d7e6fe / #1046a0, semibold). O resto do frame é idêntico ao PNG anterior (diff só em x519-554 y681-716).",
+              "Paginador I2064:7107;553:9905;2064:8318: gap 4, padding 14x6 dentro do footer de 8px (14px até o select de 40px = footer 68px), botões 36px raio 18, ícones angle-* 14px, select 90x40 com rótulo 14px #6b7280 (select/placeholder/color) e chevron 14px em dropdown de 40px.",
+              "2026-11-11 22:10 (qa-agent): checkbox do cabeçalho conferido com get_variable_defs (checkbox/width 18, border/color #9ca3af, raio 4). nodeId = célula do checkbox (header checkbox cell). Explicação 'intencional' da página ativa removida."
+            ]
+          },
+          "figmaSpecError": null,
+          "specComparison": {
+            "status": "passed",
+            "total": 126,
+            "passed": 126,
+            "failed": 0,
+            "missing": 0,
+            "dynamic": 0,
+            "results": [
+              {
+                "nodeId": "2063:4",
+                "nodeName": "Tela · Carros / main (área de conteúdo)",
+                "selector": ":scope",
+                "prop": "frame.width",
+                "expected": "1288px",
+                "actual": "1288px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2063:4",
+                "nodeName": "Tela · Carros / main (área de conteúdo)",
+                "selector": ":scope",
+                "prop": "frame.height",
+                "expected": "734px",
+                "actual": "734px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2790",
+                "nodeName": "title-row",
+                "selector": ":scope > div:nth-child(1)",
+                "prop": "width",
+                "expected": "1288px",
+                "actual": "1288px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2790",
+                "nodeName": "title-row",
+                "selector": ":scope > div:nth-child(1)",
+                "prop": "height",
+                "expected": "56px",
+                "actual": "56px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "fontSize",
+                "expected": "24px",
+                "actual": "24px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "fontWeight",
+                "expected": "600",
+                "actual": "600",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "lineHeight",
+                "expected": "32px",
+                "actual": "32px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "fontFamily",
+                "expected": "Inter",
+                "actual": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2793",
+                "nodeName": "title",
+                "selector": ":scope > div:nth-child(1) h1",
+                "prop": "text",
+                "expected": "Carros",
+                "actual": "Carros",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2794",
+                "nodeName": "description",
+                "selector": ":scope > div:nth-child(1) p",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2794",
+                "nodeName": "description",
+                "selector": ":scope > div:nth-child(1) p",
+                "prop": "fontWeight",
+                "expected": "400",
+                "actual": "400",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2794",
+                "nodeName": "description",
+                "selector": ":scope > div:nth-child(1) p",
+                "prop": "lineHeight",
+                "expected": "20px",
+                "actual": "20px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2794",
+                "nodeName": "description",
+                "selector": ":scope > div:nth-child(1) p",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "width",
+                "expected": "132px",
+                "actual": "132.11px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "height",
+                "expected": "40px",
+                "actual": "40px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "borderRadius",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "backgroundColor",
+                "expected": "#030712",
+                "actual": "rgb(3, 7, 18)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "fontWeight",
+                "expected": "500",
+                "actual": "500",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2063:7;363:2756;2064:7078",
+                "nodeName": "button Novo carro",
+                "selector": ":scope > div:nth-child(1) .p-button",
+                "prop": "text",
+                "expected": "Novo carro",
+                "actual": "Novo carro",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield",
+                "prop": "width",
+                "expected": "216px",
+                "actual": "216px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield",
+                "prop": "height",
+                "expected": "40px",
+                "actual": "40px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield input",
+                "prop": "height",
+                "expected": "40px",
+                "actual": "40px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield input",
+                "prop": "borderRadius",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield input",
+                "prop": "borderColor",
+                "expected": "#9ca3af",
+                "actual": "rgb(156, 163, 175)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2066:561",
+                "nodeName": "inputtext (busca)",
+                "selector": ":scope .p-iconfield input",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "prop": "width",
+                "expected": "1288px",
+                "actual": "1288px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "prop": "height",
+                "expected": "598px",
+                "actual": "598px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "prop": "borderRadius",
+                "expected": "12px",
+                "actual": "12px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "prop": "borderWidth",
+                "expected": "1px",
+                "actual": "1px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "2064:7106",
+                "nodeName": "cars-table (card)",
+                "selector": ":scope div:has(> .p-datatable)",
+                "prop": "borderColor",
+                "expected": "#e5e7eb",
+                "actual": "rgb(229, 231, 235)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286",
+                "nodeName": "table-header-row",
+                "selector": ":scope .p-datatable-thead > tr",
+                "prop": "height",
+                "expected": "48px",
+                "actual": "48px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "header checkbox cell",
+                "selector": ":scope .p-datatable-thead th:nth-child(1)",
+                "prop": "width",
+                "expected": "56px",
+                "actual": "56px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "header checkbox cell",
+                "selector": ":scope .p-datatable-thead th:nth-child(1)",
+                "prop": "paddingLeft",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo",
+                "selector": ":scope .p-datatable-thead th:nth-child(2)",
+                "prop": "width",
+                "expected": "164.29px",
+                "actual": "164.28px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo",
+                "selector": ":scope .p-datatable-thead th:nth-child(2)",
+                "prop": "paddingLeft",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo",
+                "selector": ":scope .p-datatable-thead th:nth-child(2)",
+                "prop": "backgroundColor",
+                "expected": "#ffffff",
+                "actual": "rgb(255, 255, 255)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "prop": "fontWeight",
+                "expected": "600",
+                "actual": "600",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "prop": "lineHeight",
+                "expected": "20px",
+                "actual": "20px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7300",
+                "nodeName": "header Modelo title",
+                "selector": ":scope .p-datatable-thead th:nth-child(2) .p-datatable-column-title",
+                "prop": "text",
+                "expected": "Modelo",
+                "actual": "Modelo",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7332",
+                "nodeName": "header Disponível",
+                "selector": ":scope .p-datatable-thead th:nth-child(8)",
+                "prop": "width",
+                "expected": "164.29px",
+                "actual": "164.31px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7332",
+                "nodeName": "header Disponível",
+                "selector": ":scope .p-datatable-thead th:nth-child(8)",
+                "prop": "text",
+                "expected": "Disponível",
+                "actual": "Disponível",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7335",
+                "nodeName": "header Ações",
+                "selector": ":scope .p-datatable-thead th:nth-child(9)",
+                "prop": "width",
+                "expected": "80px",
+                "actual": "80px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7335",
+                "nodeName": "header Ações",
+                "selector": ":scope .p-datatable-thead th:nth-child(9)",
+                "prop": "paddingLeft",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7335",
+                "nodeName": "header Ações",
+                "selector": ":scope .p-datatable-thead th:nth-child(9)",
+                "prop": "text",
+                "expected": "Ações",
+                "actual": "Ações",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413",
+                "nodeName": "table-row 1",
+                "selector": ":scope .p-datatable-tbody > tr:first-child",
+                "prop": "height",
+                "expected": "48px",
+                "actual": "48px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "paddingLeft",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "fontWeight",
+                "expected": "400",
+                "actual": "400",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "lineHeight",
+                "expected": "20px",
+                "actual": "20px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "borderColor",
+                "expected": "#e5e7eb",
+                "actual": "rgb(229, 231, 235)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7430",
+                "nodeName": "cell Modelo",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(2)",
+                "prop": "text",
+                "expected": "3 Series",
+                "actual": "3 Series",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7436",
+                "nodeName": "cell Marca",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7436",
+                "nodeName": "cell Marca",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+                "prop": "fontWeight",
+                "expected": "400",
+                "actual": "400",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7436",
+                "nodeName": "cell Marca",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7436",
+                "nodeName": "cell Marca",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(3)",
+                "prop": "text",
+                "expected": "BMW",
+                "actual": "BMW",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7448",
+                "nodeName": "cell Preço",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5)",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7448",
+                "nodeName": "cell Preço",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5)",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7448",
+                "nodeName": "cell Preço",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(5)",
+                "prop": "text",
+                "expected": "R$ 44.500,00",
+                "actual": "R$ 44.500,00",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7460",
+                "nodeName": "cell Quilometragem",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(7)",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7460",
+                "nodeName": "cell Quilometragem",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(7)",
+                "prop": "color",
+                "expected": "#1f2937",
+                "actual": "rgb(31, 41, 55)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7460",
+                "nodeName": "cell Quilometragem",
+                "selector": ":scope .p-datatable-tbody > tr:first-child > td:nth-child(7)",
+                "prop": "text",
+                "expected": "10",
+                "actual": "10",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "height",
+                "expected": "17px",
+                "actual": "17px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "fontSize",
+                "expected": "11px",
+                "actual": "11px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "fontWeight",
+                "expected": "500",
+                "actual": "500",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "paddingTop",
+                "expected": "2px",
+                "actual": "2px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "paddingLeft",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "borderRadius",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "backgroundColor",
+                "expected": "#dcfce7",
+                "actual": "rgb(220, 252, 231)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "color",
+                "expected": "#15803d",
+                "actual": "rgb(21, 128, 61)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7466;552:983;2064:7473",
+                "nodeName": "tag Sim",
+                "selector": ":scope .p-datatable-tbody > tr:first-child .p-tag",
+                "prop": "text",
+                "expected": "Sim",
+                "actual": "Sim",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7477;552:983;2064:7484",
+                "nodeName": "button-small (ações)",
+                "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+                "prop": "width",
+                "expected": "32px",
+                "actual": "32px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7477;552:983;2064:7484",
+                "nodeName": "button-small (ações)",
+                "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+                "prop": "height",
+                "expected": "32px",
+                "actual": "32px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9904;2064:7413;553:999;2064:7477;552:983;2064:7484",
+                "nodeName": "button-small (ações)",
+                "selector": ":scope .p-datatable-tbody > tr:first-child button[aria-label=\"Ações da linha\"]",
+                "prop": "borderRadius",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905",
+                "nodeName": "Footer",
+                "selector": ":scope .p-paginator",
+                "prop": "height",
+                "expected": "68px",
+                "actual": "68px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "width",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "height",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "fontWeight",
+                "expected": "400",
+                "actual": "400",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2",
+                "selector": ":scope .p-paginator-page:nth-child(2)",
+                "prop": "text",
+                "expected": "2",
+                "actual": "2",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318",
+                "nodeName": "paginator",
+                "selector": ":scope .p-paginator",
+                "prop": "gap",
+                "expected": "4px",
+                "actual": "4px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318",
+                "nodeName": "paginator",
+                "selector": ":scope .p-paginator",
+                "prop": "paddingTop",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "width",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "height",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "borderRadius",
+                "expected": "18px",
+                "actual": "50%",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "fontWeight",
+                "expected": "600",
+                "actual": "600",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "backgroundColor",
+                "expected": "#d7e6fe",
+                "actual": "rgb(215, 230, 254)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "color",
+                "expected": "#1046a0",
+                "actual": "rgb(16, 70, 160)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18726",
+                "nodeName": "paginator page 1 (ativa)",
+                "selector": ":scope .p-paginator-page-selected",
+                "prop": "text",
+                "expected": "1",
+                "actual": "1",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2 (idle, fundo transparente)",
+                "selector": ":scope .p-paginator-page:not(.p-paginator-page-selected)",
+                "prop": "backgroundColor",
+                "expected": "rgba(0, 0, 0, 0)",
+                "actual": "rgba(0, 0, 0, 0)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2 (idle, fundo transparente)",
+                "selector": ":scope .p-paginator-page:not(.p-paginator-page-selected)",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18759",
+                "nodeName": "paginator page 2 (idle, fundo transparente)",
+                "selector": ":scope .p-paginator-page:not(.p-paginator-page-selected)",
+                "prop": "fontWeight",
+                "expected": "400",
+                "actual": "400",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703",
+                "nodeName": "paginator-navbutton first",
+                "selector": ":scope .p-paginator-first",
+                "prop": "width",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703",
+                "nodeName": "paginator-navbutton first",
+                "selector": ":scope .p-paginator-first",
+                "prop": "height",
+                "expected": "36px",
+                "actual": "36px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703",
+                "nodeName": "paginator-navbutton first",
+                "selector": ":scope .p-paginator-first",
+                "prop": "borderRadius",
+                "expected": "18px",
+                "actual": "50%",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703;394:18695",
+                "nodeName": "angle-double-left",
+                "selector": ":scope .p-paginator-first svg",
+                "prop": "width",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18703;394:18695",
+                "nodeName": "angle-double-left",
+                "selector": ":scope .p-paginator-first svg",
+                "prop": "height",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18716;394:18695",
+                "nodeName": "angle-left",
+                "selector": ":scope .p-paginator-prev svg",
+                "prop": "width",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18716;394:18695",
+                "nodeName": "angle-left",
+                "selector": ":scope .p-paginator-prev svg",
+                "prop": "height",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18771;394:18695",
+                "nodeName": "angle-right",
+                "selector": ":scope .p-paginator-next svg",
+                "prop": "width",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18771;394:18695",
+                "nodeName": "angle-right",
+                "selector": ":scope .p-paginator-next svg",
+                "prop": "height",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18771;394:18695",
+                "nodeName": "angle-right",
+                "selector": ":scope .p-paginator-next svg",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18772;394:18695",
+                "nodeName": "angle-double-right",
+                "selector": ":scope .p-paginator-last svg",
+                "prop": "width",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18772;394:18695",
+                "nodeName": "angle-double-right",
+                "selector": ":scope .p-paginator-last svg",
+                "prop": "height",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
+                "nodeName": "rows-per-page select",
+                "selector": ":scope .p-paginator .p-select",
+                "prop": "width",
+                "expected": "90px",
+                "actual": "90px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
+                "nodeName": "rows-per-page select",
+                "selector": ":scope .p-paginator .p-select",
+                "prop": "height",
+                "expected": "40px",
+                "actual": "40px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
+                "nodeName": "rows-per-page select",
+                "selector": ":scope .p-paginator .p-select",
+                "prop": "borderRadius",
+                "expected": "6px",
+                "actual": "6px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
+                "nodeName": "rows-per-page select",
+                "selector": ":scope .p-paginator .p-select",
+                "prop": "borderColor",
+                "expected": "#9ca3af",
+                "actual": "rgb(156, 163, 175)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7757;6220:9120",
+                "nodeName": "rows-per-page valor 10",
+                "selector": ":scope .p-paginator .p-select-label",
+                "prop": "fontSize",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7757;6220:9120",
+                "nodeName": "rows-per-page valor 10",
+                "selector": ":scope .p-paginator .p-select-label",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7757;6220:9120",
+                "nodeName": "rows-per-page valor 10",
+                "selector": ":scope .p-paginator .p-select-label",
+                "prop": "paddingLeft",
+                "expected": "16px",
+                "actual": "16px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7757;6220:9120",
+                "nodeName": "rows-per-page valor 10",
+                "selector": ":scope .p-paginator .p-select-label",
+                "prop": "text",
+                "expected": "10",
+                "actual": "10",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7759",
+                "nodeName": "chevron-down",
+                "selector": ":scope .p-paginator .p-select-dropdown svg",
+                "prop": "width",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7759",
+                "nodeName": "chevron-down",
+                "selector": ":scope .p-paginator .p-select-dropdown svg",
+                "prop": "height",
+                "expected": "14px",
+                "actual": "14px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7759",
+                "nodeName": "chevron-down",
+                "selector": ":scope .p-paginator .p-select-dropdown svg",
+                "prop": "color",
+                "expected": "#6b7280",
+                "actual": "rgb(107, 114, 128)",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9905;2064:8318;394:18797;6195:16139;6195:7758",
+                "nodeName": "dropdown",
+                "selector": ":scope .p-paginator .p-select-dropdown",
+                "prop": "width",
+                "expected": "40px",
+                "actual": "40px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho",
+                "selector": ":scope .p-datatable-thead .p-checkbox",
+                "prop": "width",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho",
+                "selector": ":scope .p-datatable-thead .p-checkbox",
+                "prop": "height",
+                "expected": "18px",
+                "actual": "18px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho (caixa)",
+                "selector": ":scope .p-datatable-thead .p-checkbox-box",
+                "prop": "borderRadius",
+                "expected": "4px",
+                "actual": "4px",
+                "status": "pass"
+              },
+              {
+                "nodeId": "I2064:7107;553:9903;2064:7286;553:987;2064:7290",
+                "nodeName": "checkbox do cabeçalho (caixa)",
+                "selector": ":scope .p-datatable-thead .p-checkbox-box",
+                "prop": "borderColor",
+                "expected": "#9ca3af",
+                "actual": "rgb(156, 163, 175)",
+                "status": "pass"
+              }
+            ]
+          },
+          "baselineSpecComparison": null
+        }
+      ]
     }
   ],
   "scenarios": [
@@ -71035,7 +72741,7 @@
       "label": "Carros — lista (card), claro, desktop 1440",
       "componentPath": "Src/CarStore.Web/ClientApp/src/components/CarsPage.vue",
       "status": "differences",
-      "attempt": 4,
+      "attempt": 5,
       "previewUrl": "/visual/preview.html?scenario=cars-list-light",
       "viewport": {
         "width": 1440,
@@ -71045,7 +72751,7 @@
       "theme": "light",
       "locale": "pt-BR",
       "captureSelector": "#preview-root > div",
-      "actualImage": "actual/attempt-04/cars-list-light.png",
+      "actualImage": "actual/attempt-05/cars-list-light.png",
       "referenceImage": "reference/cars-list-light.png",
       "referenceNote": null,
       "device": "desktop",
@@ -71070,19 +72776,17 @@
           "width": 1288,
           "height": 734
         },
-        "mismatchedPixels": 7764,
+        "mismatchedPixels": 7526,
         "comparedPixels": 945392,
-        "mismatchRatio": 0.008212466363159409,
-        "diffImage": "comparison/attempt-04/cars-list-light.diff.png",
-        "sideBySideImage": "comparison/attempt-04/cars-list-light.side-by-side.png",
+        "mismatchRatio": 0.00796071893986833,
+        "diffImage": "comparison/attempt-05/cars-list-light.diff.png",
+        "sideBySideImage": "comparison/attempt-05/cars-list-light.side-by-side.png",
         "findings": [
-          "7764 of 945392 pixels differ (0.821%), above the 0.100% tolerance at pixelmatch threshold 0.1.",
-          "Figma spec: 1 property mismatch(es) and 0 missing element(s) out of 126 checks."
+          "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
         ]
       },
       "findings": [
-        "7764 of 945392 pixels differ (0.821%), above the 0.100% tolerance at pixelmatch threshold 0.1.",
-        "Figma spec: 1 property mismatch(es) and 0 missing element(s) out of 126 checks."
+        "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
       ],
       "missingEvidence": [],
       "blockedRequests": [],
@@ -71107,13 +72811,13 @@
           "width": 1288,
           "height": 734
         },
-        "mismatchedPixels": 1013,
+        "mismatchedPixels": 1279,
         "comparedPixels": 945392,
-        "mismatchRatio": 0.0010715131924111903,
-        "diffImage": "comparison/attempt-04/cars-list-light.baseline.diff.png",
-        "sideBySideImage": "comparison/attempt-04/cars-list-light.baseline.side-by-side.png",
+        "mismatchRatio": 0.0013528779596188672,
+        "diffImage": "comparison/attempt-05/cars-list-light.baseline.diff.png",
+        "sideBySideImage": "comparison/attempt-05/cars-list-light.baseline.side-by-side.png",
         "findings": [
-          "1013 of 945392 pixels differ (0.107%), above the 0.100% tolerance at pixelmatch threshold 0.1."
+          "1279 of 945392 pixels differ (0.135%), above the 0.100% tolerance at pixelmatch threshold 0.1."
         ]
       },
       "baselineVsReference": {
@@ -71132,13 +72836,13 @@
         "mismatchedPixels": 8458,
         "comparedPixels": 945392,
         "mismatchRatio": 0.008946553387377935,
-        "diffImage": "comparison/attempt-04/cars-list-light.baseline-vs-reference.diff.png",
-        "sideBySideImage": "comparison/attempt-04/cars-list-light.baseline-vs-reference.side-by-side.png",
+        "diffImage": "comparison/attempt-05/cars-list-light.baseline-vs-reference.diff.png",
+        "sideBySideImage": "comparison/attempt-05/cars-list-light.baseline-vs-reference.side-by-side.png",
         "findings": [
           "8458 of 945392 pixels differ (0.895%), above the 0.100% tolerance at pixelmatch threshold 0.1."
         ]
       },
-      "triptychImage": "comparison/attempt-04/cars-list-light.triptych.png",
+      "triptychImage": "comparison/attempt-05/cars-list-light.triptych.png",
       "figmaSpec": {
         "source": {
           "url": "https://www.figma.com/design/EOvtzuJAvw1UnoH9tsYmiO/?node-id=2063-4",
@@ -71586,10 +73290,10 @@
       },
       "figmaSpecError": null,
       "specComparison": {
-        "status": "differences",
+        "status": "passed",
         "total": 126,
-        "passed": 125,
-        "failed": 1,
+        "passed": 126,
+        "failed": 0,
         "missing": 0,
         "dynamic": 0,
         "results": [
@@ -72589,8 +74293,8 @@
             "selector": ":scope .p-paginator .p-select",
             "prop": "width",
             "expected": "90px",
-            "actual": "88.53px",
-            "status": "fail"
+            "actual": "90px",
+            "status": "pass"
           },
           {
             "nodeId": "I2064:7107;553:9905;2064:8318;394:18797",
@@ -81258,11 +82962,7 @@
     },
     {
       "scenarioId": "cars-list-light",
-      "finding": "7764 of 945392 pixels differ (0.821%), above the 0.100% tolerance at pixelmatch threshold 0.1."
-    },
-    {
-      "scenarioId": "cars-list-light",
-      "finding": "Figma spec: 1 property mismatch(es) and 0 missing element(s) out of 126 checks."
+      "finding": "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
     },
     {
       "scenarioId": "cars-page-dark",
@@ -82104,7 +83804,7 @@
   ],
   "baseline": {
     "enabled": true,
-    "ref": "HEAD",
+    "ref": "1a5ddb331703e2f8bbe7a9a585b8cb3e148f0776",
     "commit": "1a5ddb331703e2f8bbe7a9a585b8cb3e148f0776",
     "worktreePath": "/Users/felipefaria/projects/poc-dashboard/.visual-baseline/1a5ddb331703",
     "depsStrategy": "npm-ci",
@@ -82665,15 +84365,228 @@
       ],
       "recordedAt": "2026-11-11T22:33:26.508Z",
       "attempt": 3
+    },
+    {
+      "result": "PASS",
+      "criteria": [
+        {
+          "text": "Escopo attempt-04 (recheck A/B/C): 56 cenários cars-* (28 claro + 28 escuro, desktop 1440) + guardas Brands/Customers/Home (22), VISUAL_BASELINE_REF=HEAD = 1a5ddb3, QA_RUN_DIR = este bundle (attempts 01-03 e baseline preservados). 78/78 capturas, 308/308 renderChecks passam, 0 requisições bloqueadas, 0 console errors.",
+          "status": "pass",
+          "evidence": [
+            "report.json",
+            "data/scenarios.json"
+          ]
+        },
+        {
+          "text": "Item 1 - checkbox card 18x18: cabeçalho 18x18, desmarcado 18x18, marcado 18x18 (raiz e caixa), claro e escuro; spec 2063:4/2070:1090 passa. (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/zoom-checkbox-attempt03.png"
+          ]
+        },
+        {
+          "text": "Item 2 - ícone check 12x12 (branco no claro, surface-0 #030712 no escuro). (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json"
+          ]
+        },
+        {
+          "text": "Item 3 - desmarcado borda #9ca3af (rgb 156,163,175), box-shadow none; marcado fundo/borda #2564cf com check #ffffff; foco por teclado (Tab) mostra anel solid 1px #030712 offset 2px (escuro: 1px #ffffff). Observação sem valor Figma (nenhum frame de foco): no foco o Aura troca a borda do desmarcado para #d1d5db e a do marcado para #030712/#ffffff. (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/checkbox-focus-measurements.json"
+          ]
+        },
+        {
+          "text": "Item 4 - Excluir selecionados (1): texto e ícone #b91c1c no claro, #fca5a5 (red-300) no escuro; borda #fecaca (rgb 254,202,202). (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/zoom-bulk-button-attempt03.png"
+          ]
+        },
+        {
+          "text": "Item 5 - lixeira com 3 paths (sem linhas internas) no menu da linha card, no botão em massa, em 'Excluir 10 carros' e 'Excluir carro'; Brands/Customers mantêm Trash2 (menus 0 px vs HEAD). (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/zoom-bulk-dialog-trash-attempt03.png",
+            "comparison/attempt-03/cars-row-menu-light.diff.png"
+          ]
+        },
+        {
+          "text": "Item 6 - VIN: font-family \"Roboto Mono\", ...; 12px/16px/400; document.fonts.check('12px \"Roboto Mono\"') = true, FontFace status loaded; CDP getPlatformFontsForNode = RobotoMono-Regular (isCustomFont, 17 glifos). Zoom igual ao Figma. (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/zoom-vin-figma-vs-atual-attempt03.png"
+          ]
+        },
+        {
+          "text": "Correção B - chevron do select Marca (criar e editar): Lucide ChevronDown no slot #dropdownicon, svg 14x14, viewBox 24, stroke-width 2,571 = 1,5px absoluto, stroke #6b7280 (rgb 107,114,128; escuro #9ca3af), fill none. path.getBBox em px de tela 7,00x3,50 em x3,50 y5,25 (linha central); extensão com traço 1,5px e pontas redondas 8,50x5,00 em x2,75 y4,50 contra Figma 8,05x4,55 em x2,98 y4,73 (desvio <= 0,45px por borda, tolerância 1px). Ink no PNG 1x: bbox 3,4-10,9 (8x6) contra Figma 3,4-10,8 (8x5); pixelmatch na região 2 px vermelhos (attempt-03: 4) e 52 px mudaram vs attempt-03 só em x165-176 y269-276. Select abre (10 opções, aria-expanded true), seleciona BMW e fecha. Observação: traço visualmente mais pesado que o Figma (soma de tinta 2184 vs 1463; sonda DOM: 1,25px = 2041, 1px = 1036), o mesmo ajuste 1,5px no ícone de busca dá 6574 vs 6716 no Figma.",
+          "status": "pass",
+          "evidence": [
+            "evidence/chevron-glyph-measurements-attempt04.json",
+            "evidence/chevron-stroke-probe-attempt04.json",
+            "evidence/zoom-select-chevron-attempt04.png",
+            "evidence/chevron-create-light-attempt04.png",
+            "evidence/chevron-edit-light-attempt04.png",
+            "evidence/chevron-create-dark-attempt04.png"
+          ]
+        },
+        {
+          "text": "Item 8 - ao abrir (criar, editar, detalhes, excluir, excluir em massa) o foco vai para o título (autofocus, tabindex -1, outline none); o botão fechar não tem :focus-visible nem anel. Tab -> fechar (anel visível), Tab -> Modelo, Tab -> VIN (detalhes: Fechar, Editar); Esc fecha os 5 diálogos. (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "evidence/zoom-close-chevron-attempt03.png"
+          ]
+        },
+        {
+          "text": "Item 9 - menu da linha: abaixo 4,5px (gatilho bottom 272,5, menu y 277), acima 4,5px (gatilho y 624,5, menu bottom 620), posições inteiras, sem sobreposição, claro e escuro. Aprovado pelo usuário. (attempt-04: captura idêntica à attempt-03 fora das regiões das correções A e B; medições da attempt-03 seguem válidas.)",
+          "status": "pass",
+          "evidence": [
+            "evidence/fixround-measurements.json",
+            "actual/attempt-03/cars-row-menu-flip-light.png"
+          ]
+        },
+        {
+          "text": "Correção A - checkbox nas linhas do corpo: vertical-align top + margin-top 1px; topo em y=14,5 nas 10 linhas (desmarcado e marcado), igual ao cabeçalho (14,5) e ao Figma 2070:1951 / 2070:1402; altura de todas as linhas 48px; 18x18. No PNG 1x a caixa ocupa as linhas 248-265 (Figma 247,5-265,5 suavizado em 247/248 e 264/265) - mesmo padrão residual do cabeçalho (8/2/9 px vermelhos por caixa). Diff da coluna x0-80 caiu de 995 para 415 px vermelhos; frame inteiro 8344->7764 (lista), 8565->7994 (menu aberto), 8980->8415 (selecionada).",
+          "status": "pass",
+          "evidence": [
+            "evidence/checkbox-offset-measurements-attempt04.json",
+            "evidence/zoom-checkbox-attempt04.png",
+            "evidence/zoom-checkbox-header-row1-attempt04.png",
+            "comparison/attempt-04/cars-list-light.diff.png"
+          ]
+        },
+        {
+          "text": "Correção C - markRaw(TrashIcon): 0 ocorrências de \"Vue warn\" no log do visual:compare (78 cenários) e 0 avisos do Vue em 20 aberturas do menu card (10 linhas x claro/escuro) com listener de console (sonda console.warn capturada, prova de que o canal funciona). Lixeira do menu segue com 3 paths.",
+          "status": "pass",
+          "evidence": [
+            "evidence/trashicon-warning-attempt04.json",
+            "evidence/measure-trashicon-warning-attempt04.cjs"
+          ]
+        },
+        {
+          "text": "Regressão: Brands (10), Customers (10) e Home (2) idênticos ao HEAD (baselineComparison 0 px nos 22) e idênticos à attempt-03 (0 px).",
+          "status": "pass",
+          "evidence": [
+            "comparison/attempt-04/brands-row-selected-light.baseline.diff.png",
+            "comparison/attempt-04/customers-row-selected-light.baseline.diff.png",
+            "comparison/attempt-04/home-dashboard-light.triptych.png"
+          ]
+        },
+        {
+          "text": "Fluxos /cars: criar/editar/excluir/excluir em massa (sucesso, 400, validação), detalhes->editar, paginação, linhas por página, busca e menu continuam funcionando (renderChecks 100%).",
+          "status": "pass",
+          "evidence": [
+            "actual/attempt-04/cars-create-success-light.png",
+            "actual/attempt-04/cars-bulk-delete-success-light.png",
+            "actual/attempt-04/cars-details-to-edit-light.png"
+          ]
+        }
+      ],
+      "diferencas": [
+        {
+          "id": "cars-details-dialog-light:06a0193342ff",
+          "categoria": "conteudo-dinamico",
+          "imagem": "actual/attempt-04/cars-details-dialog-light.png",
+          "motivo": "Botão Editar 96,83 contra 98px: largura segue a métrica do texto Inter no Chromium (padding 16, ícone 16, gap 8 conferem). Mesma classificação das attempts anteriores."
+        },
+        {
+          "id": "cars-list-light:3ed3c3900571",
+          "categoria": "conteudo-dinamico",
+          "imagem": "actual/attempt-04/cars-list-light.png",
+          "motivo": "Select de linhas por página 88,53 contra 90px: largura segue o conteúdo '10'; altura, raio e borda conferem. Mesma classificação das attempts anteriores."
+        },
+        {
+          "id": "home-dashboard-light:6ec9c2b0eb14",
+          "categoria": "conteudo-dinamico",
+          "imagem": "comparison/attempt-04/home-dashboard-light.triptych.png",
+          "motivo": "Guarda fora do escopo: 0 px contra o HEAD e contra a attempt-03. O 1,03% contra o Figma é o mesmo já revisado (datas do fixture e rasterização do Inter); spec passa."
+        },
+        {
+          "id": "manual:menu-flip-gap",
+          "cenario": "cars-row-menu-flip-light",
+          "seletor": ".p-menu-overlay vs gatilho da linha 10",
+          "esperado": "Figma menu/gap 4px",
+          "atual": "acima 4,5px (gatilho y 624,5, menu bottom 620), abaixo 4,5px; posições inteiras, sem sobreposição",
+          "categoria": "intencional",
+          "imagem": "actual/attempt-04/cars-row-menu-flip-light.png",
+          "motivo": "Exceção aprovada pelo usuário: menu aberto para cima com 4,5px (pixels inteiros, igual ao gap para baixo)."
+        }
+      ],
+      "minimas": [
+        {
+          "id": "cars-bulk-delete-dialog-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "evidence/zoom-bulk-dialog-trash-attempt03.png",
+          "motivo": "2493 px (1,28%): só anti-aliasing de texto; captura 0 px vs attempt-03."
+        },
+        {
+          "id": "cars-details-dialog-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "actual/attempt-04/cars-details-dialog-light.png",
+          "motivo": "2033 px (1,00%): anti-aliasing mais o deslocamento do rodapé pela largura de texto do Editar; 0 px vs attempt-03."
+        },
+        {
+          "id": "cars-row-menu-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "comparison/attempt-04/cars-row-menu-light.diff.png",
+          "motivo": "218 px (1,18%): só rótulos (anti-aliasing); 0 px vs attempt-03."
+        },
+        {
+          "id": "cars-create-dialog-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "evidence/zoom-select-chevron-attempt04.png",
+          "motivo": "1741 px (0,63%): anti-aliasing de texto; o chevron corrigido deixa 2 px vermelhos na região (antes 4), geometria a <=0,45px do vetor Figma."
+        },
+        {
+          "id": "cars-edit-dialog-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "evidence/zoom-select-chevron-attempt04.png",
+          "motivo": "2094 px (0,75%): anti-aliasing de texto; chevron igual ao criar (2 px vermelhos na região)."
+        },
+        {
+          "id": "cars-list-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "evidence/zoom-checkbox-attempt04.png",
+          "motivo": "7764 px (0,82%): anti-aliasing de texto; checkbox do corpo em y=14,5 como o Figma, resíduo de meio pixel igual ao do cabeçalho (Figma suaviza a borda em 2 linhas, Chromium alinha em 1). Spec: só a largura do select de paginação (conteúdo)."
+        },
+        {
+          "id": "cars-row-menu-open-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "comparison/attempt-04/cars-row-menu-open-light.diff.png",
+          "motivo": "7994 px (0,85%): anti-aliasing de texto mais o mesmo resíduo de meio pixel do checkbox do cabeçalho; menu e lixeira conferem."
+        },
+        {
+          "id": "cars-row-selected-light:6ec9c2b0eb14",
+          "categoria": "intencional",
+          "imagem": "evidence/zoom-checkbox-attempt04.png",
+          "motivo": "8415 px (0,89%): anti-aliasing de texto mais o resíduo de meio pixel do checkbox (igual ao cabeçalho); botão em massa e checkbox marcado conferem."
+        }
+      ],
+      "bloqueios": [],
+      "notes": [
+        "Attempt 04 (recheck das correções A, B e C). Medições em preview manual :5185 (evidence/measure-checkbox-offset-attempt04.cjs, measure-chevron-glyph-attempt04.cjs, probe-chevron-stroke-attempt04.cjs, measure-trashicon-warning-attempt04.cjs); scripts e medições da attempt-03 preservados.",
+        "Diff attempt-03 x attempt-04 das capturas: guardas 0 px; em cars-* só mudaram a coluna do checkbox (x19-36, 2x: x38-73) e o chevron (x165-176 / x685-696); demais deltas <= 8 por canal (ruído de rasterização).",
+        "Política: sem desvios pré-aceitos; única exceção do usuário é o gap de 4,5px do menu aberto para cima. wwwroot/dist reconstruído após as fontes (main.css contém a regra do checkbox do corpo)."
+      ],
+      "recordedAt": "2026-11-11T22:43:45.573Z",
+      "attempt": 4
     }
   ],
   "qaFindings": {
     "status": "PASS",
     "base": {
-      "ref": "HEAD",
+      "ref": "1a5ddb331703e2f8bbe7a9a585b8cb3e148f0776",
       "commit": "1a5ddb331703e2f8bbe7a9a585b8cb3e148f0776"
     },
-    "attempt": 4,
+    "attempt": 5,
     "diferencas": [
       {
         "id": "cars-details-dialog-light:06a0193342ff",
@@ -82684,19 +84597,6 @@
         "categoria": "conteudo-dinamico",
         "imagem": "actual/attempt-04/cars-details-dialog-light.png",
         "motivo": "Botão Editar 96,83 contra 98px: largura segue a métrica do texto Inter no Chromium (padding 16, ícone 16, gap 8 conferem). Mesma classificação das attempts anteriores.",
-        "kind": "spec",
-        "prop": "width",
-        "status": "fail"
-      },
-      {
-        "id": "cars-list-light:3ed3c3900571",
-        "cenario": "cars-list-light",
-        "seletor": ":scope .p-paginator .p-select",
-        "esperado": "90px",
-        "atual": "88.53px",
-        "categoria": "conteudo-dinamico",
-        "imagem": "actual/attempt-04/cars-list-light.png",
-        "motivo": "Select de linhas por página 88,53 contra 90px: largura segue o conteúdo '10'; altura, raio e borda conferem. Mesma classificação das attempts anteriores.",
         "kind": "spec",
         "prop": "width",
         "status": "fail"
@@ -82931,19 +84831,18 @@
             "width": 1288,
             "height": 734
           },
-          "mismatchedPixels": 7764,
+          "mismatchedPixels": 7526,
           "comparedPixels": 945392,
-          "mismatchRatio": 0.008212466363159409,
-          "diffImage": "comparison/attempt-04/cars-list-light.diff.png",
-          "sideBySideImage": "comparison/attempt-04/cars-list-light.side-by-side.png",
+          "mismatchRatio": 0.00796071893986833,
+          "diffImage": "comparison/attempt-05/cars-list-light.diff.png",
+          "sideBySideImage": "comparison/attempt-05/cars-list-light.side-by-side.png",
           "findings": [
-            "7764 of 945392 pixels differ (0.821%), above the 0.100% tolerance at pixelmatch threshold 0.1.",
-            "Figma spec: 1 property mismatch(es) and 0 missing element(s) out of 126 checks."
+            "7526 of 945392 pixels differ (0.796%), above the 0.100% tolerance at pixelmatch threshold 0.1."
           ]
         },
         "categoria": "intencional",
-        "imagem": "evidence/zoom-checkbox-attempt04.png",
-        "motivo": "7764 px (0,82%): anti-aliasing de texto; checkbox do corpo em y=14,5 como o Figma, resíduo de meio pixel igual ao do cabeçalho (Figma suaviza a borda em 2 linhas, Chromium alinha em 1). Spec: só a largura do select de paginação (conteúdo).",
+        "imagem": "comparison/attempt-05/cars-list-light.diff.png",
+        "motivo": "7526 px (0,80%): anti-aliasing de texto e o mesmo resíduo de meio pixel da borda dos checkboxes já aceito na attempt-04; nenhuma mudança de layout. Spec 126/126.",
         "kind": "pixels",
         "status": "differences"
       },
@@ -83138,6 +85037,14 @@
           "actual/attempt-04/cars-bulk-delete-success-light.png",
           "actual/attempt-04/cars-details-to-edit-light.png"
         ]
+      },
+      {
+        "text": "attempt-05 (recheck cars-list-light): select de linhas por página agora 90x40px como o Figma (w-[90px] em DataTableCommon.vue, commit 839d767); spec 126/126, a linha de largura que estava em diferencas como conteudo-dinamico foi resolvida.",
+        "status": "pass",
+        "evidence": [
+          "actual/attempt-05/cars-list-light.png",
+          "comparison/attempt-05/cars-list-light.diff.png"
+        ]
       }
     ],
     "diferencas": [
@@ -83146,12 +85053,6 @@
         "categoria": "conteudo-dinamico",
         "imagem": "actual/attempt-04/cars-details-dialog-light.png",
         "motivo": "Botão Editar 96,83 contra 98px: largura segue a métrica do texto Inter no Chromium (padding 16, ícone 16, gap 8 conferem). Mesma classificação das attempts anteriores."
-      },
-      {
-        "id": "cars-list-light:3ed3c3900571",
-        "categoria": "conteudo-dinamico",
-        "imagem": "actual/attempt-04/cars-list-light.png",
-        "motivo": "Select de linhas por página 88,53 contra 90px: largura segue o conteúdo '10'; altura, raio e borda conferem. Mesma classificação das attempts anteriores."
       },
       {
         "id": "home-dashboard-light:6ec9c2b0eb14",
@@ -83204,8 +85105,8 @@
       {
         "id": "cars-list-light:6ec9c2b0eb14",
         "categoria": "intencional",
-        "imagem": "evidence/zoom-checkbox-attempt04.png",
-        "motivo": "7764 px (0,82%): anti-aliasing de texto; checkbox do corpo em y=14,5 como o Figma, resíduo de meio pixel igual ao do cabeçalho (Figma suaviza a borda em 2 linhas, Chromium alinha em 1). Spec: só a largura do select de paginação (conteúdo)."
+        "imagem": "comparison/attempt-05/cars-list-light.diff.png",
+        "motivo": "7526 px (0,80%): anti-aliasing de texto e o mesmo resíduo de meio pixel da borda dos checkboxes já aceito na attempt-04; nenhuma mudança de layout. Spec 126/126."
       },
       {
         "id": "cars-row-menu-open-light:6ec9c2b0eb14",
@@ -83226,7 +85127,7 @@
       "Diff attempt-03 x attempt-04 das capturas: guardas 0 px; em cars-* só mudaram a coluna do checkbox (x19-36, 2x: x38-73) e o chevron (x165-176 / x685-696); demais deltas <= 8 por canal (ruído de rasterização).",
       "Política: sem desvios pré-aceitos; única exceção do usuário é o gap de 4,5px do menu aberto para cima. wwwroot/dist reconstruído após as fontes (main.css contém a regra do checkbox do corpo)."
     ],
-    "recordedAt": "2026-11-11T22:43:45.573Z",
-    "attempt": 4
+    "recordedAt": "2026-11-13T17:56:37.233Z",
+    "attempt": 5
   }
 }
